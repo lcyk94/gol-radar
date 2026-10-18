@@ -372,6 +372,59 @@ def collect(leagues, days):
     return out_rows, skipped
 
 
+KEYWORDS_BIG = ("SÜPER LİG", "PREMIER", "LA LIGA", "SERIE A", "BUNDESLİGA", "LIGUE 1", "EREDİVİSİE",
+                "PRIMEIRA", "CHAMPIONSHIP", "1. LİG", "LALIGA", "PRO LEAGUE", "PREMIERSHIP")
+
+
+def _nes_of(r):
+    """Satırın Nesine verisi: (Nesine maçı ya da None, Nesine modu açık mı)."""
+    try:
+        return r.get("NES"), bool(r.get("NESACT", False))
+    except AttributeError:
+        return None, False
+
+
+def attach_nesine(rows):
+    """Taze Nesine verisi varsa maçlara bağlar. (satırlar, bilgi) döner; veri yoksa (satırlar, None)."""
+    try:
+        import nesine
+    except ImportError:
+        print("nesine.py bulunamadı; oranlar Avrupa sitelerinden.")
+        return rows, None
+    data = nesine.load(DATA_DIR / "nesine.json")
+    if not data:
+        print("Nesine verisi yok ya da 36 saatten eski; oranlar Avrupa sitelerinden.")
+        return rows, None
+    keys = [(r["Date"].date(), r["HomeTeam"], r["AwayTeam"]) for r, _, _ in rows]
+    found = nesine.match_rows(keys, data["matches"])
+    out, n_ok, m_nes, m_eur = [], 0, [], []
+    for (r, p, mk), m in zip(rows, found):
+        r = r.copy()
+        r["NESACT"] = True
+        r["NES"] = m
+        out.append((r, p, mk))
+        if m:
+            n_ok += 1
+            ro = raw_odds(r)
+            m_nes.append(sum(1 / x for x in m["ms"]) - 1)
+            if ro is not None:
+                m_eur.append(float((1 / ro).sum()) - 1)
+    used = {id(m) for m in found if m}
+    print(f"Nesine: {len(data['matches'])} maç okundu, fikstürdeki {n_ok}/{len(rows)} maç eşleşti.")
+    miss = [f"{r['Date']:%d.%m} {r['HomeTeam']} - {r['AwayTeam']}" for (r, _, _), m in zip(rows, found) if not m]
+    if miss:
+        print("  Nesine'de eşleşmeyen fikstür maçları:", "; ".join(miss[:25]))
+    un = [m for m in data["matches"] if id(m) not in used and not m.get("skip")
+          and any(k in (m.get("league") or "").upper() for k in KEYWORDS_BIG)]
+    if un:
+        print("  Nesine'de olup eşleşmeyen büyük lig maçları:",
+              "; ".join(f"{m['date']} {m['home']} - {m['away']} ({m['league']})" for m in un[:30]))
+    info = {"fetched": data["fetched"], "matched": n_ok, "total": len(rows),
+            "margin_nes": float(np.mean(m_nes)) if m_nes else None,
+            "margin_euro": float(np.mean(m_eur)) if m_eur else None}
+    return out, info
+
+
 def cmd_predict(leagues, days):
     out_rows, skipped = collect(leagues, days)
     if not out_rows:
@@ -434,20 +487,31 @@ def build_markets(p, row=None):
         return {"l": label, "p": round(float(prob), 4),
                 "o": round(float(odds), 2) if odds else None, "t": t, "n": note}
 
-    ro = raw_odds(row) if row is not None else None
-    o1, ox, o2 = ro if ro is not None else (None, None, None)
-    over25 = _num(row, "Avg>2.5", "B365>2.5")
-    under25 = _num(row, "Avg<2.5", "B365<2.5")
+    nes, act = _nes_of(row) if row is not None else (None, False)
+    cs = (None, None, None)
+    kgo = (None, None)
+    if act:                               # Nesine modu: oran yalnızca Nesine'den, yoksa boş
+        if nes:
+            o1, ox, o2 = nes["ms"]
+            under25, over25 = nes["ou25"]
+            cs, kgo = nes["cs"], nes["kg"]
+        else:
+            o1 = ox = o2 = under25 = over25 = None
+    else:
+        ro = raw_odds(row) if row is not None else None
+        o1, ox, o2 = ro if ro is not None else (None, None, None)
+        over25 = _num(row, "Avg>2.5", "B365>2.5")
+        under25 = _num(row, "Avg<2.5", "B365<2.5")
     p1, px, p2 = p["p1"], p["px"], p["p2"]
 
     M = [("Maç Sonucu", [S("MS 1", p1, o1), S("MS X", px, ox), S("MS 2", p2, o2)]),
-         ("Çifte Şans", [S("1-X", p1 + px), S("1-2", p1 + p2), S("X-2", px + p2)])]
+         ("Çifte Şans", [S("1-X", p1 + px, cs[0]), S("1-2", p1 + p2, cs[1]), S("X-2", px + p2, cs[2])])]
     for line in (1.5, 2.5, 3.5):
         over = m[g > line].sum()
         oo, uo = (over25, under25) if line == 2.5 else (None, None)
         M.append((f"Alt/Üst {line}", [S("Alt", 1 - over, uo), S("Üst", over, oo)]))
     yes = m[1:, 1:].sum()
-    M.append(("Karşılıklı Gol", [S("Var", yes), S("Yok", 1 - yes)]))
+    M.append(("Karşılıklı Gol", [S("Var", yes, kgo[0]), S("Yok", 1 - yes, kgo[1])]))
     M.append(("Toplam Gol", [S("0-1", m[g <= 1].sum()), S("2-3", m[(g >= 2) & (g <= 3)].sum()),
                              S("4-5", m[(g >= 4) & (g <= 5)].sum()), S("6+", m[g >= 6].sum())]))
     M.append(("Ev Sahibi Golleri", [S("0.5 Alt", m[0, :].sum()), S("0.5 Üst", 1 - m[0, :].sum()),
@@ -527,19 +591,35 @@ N_COUPONS = 4
 def _legs(r, p):
     """Gerçek bahis oranı olan seçenekler: MS 1/X/2 ve Alt/Üst 2.5.
     Diğer marketlerde gerçek oran yok, o yüzden kupona girmezler."""
+    nes, act = _nes_of(r)
     legs = []
-    ro = raw_odds(r)
-    if ro is not None:
-        legs += [("MS 1", p["p1"], float(ro[0])), ("MS X", p["px"], float(ro[1])),
-                 ("MS 2", p["p2"], float(ro[2]))]
-    ov, un = _num(r, "Avg>2.5", "B365>2.5"), _num(r, "Avg<2.5", "B365<2.5")
-    if ov:
-        legs.append(("Üst 2.5", p["over25"], ov))
-    if un:
-        legs.append(("Alt 2.5", 1 - p["over25"], un))
+    if act:
+        # Nesine modu: yalnızca Nesine'de bulunan maçlar, oranlar Nesine'den.
+        # MBS kupondaki en az maç sayısıdır; 4 maçlık kupona giremeyenler elenir.
+        if not nes or (nes.get("mbs") or 1) > COUPON_LEGS:
+            return []
+        ms, (alt, ust), cs, kg = nes["ms"], nes["ou25"], nes["cs"], nes["kg"]
+        p1, px, p2, ov, bt = p["p1"], p["px"], p["p2"], p["over25"], p["btts"]
+        cand = [("MS 1", p1, ms[0]), ("MS X", px, ms[1]), ("MS 2", p2, ms[2]),
+                ("1-X", p1 + px, cs[0]), ("1-2", p1 + p2, cs[1]), ("X-2", px + p2, cs[2]),
+                ("Alt 2.5", 1 - ov, alt), ("Üst 2.5", ov, ust),
+                ("KG Var", bt, kg[0]), ("KG Yok", 1 - bt, kg[1])]
+        legs = [(l, pr, float(o)) for l, pr, o in cand if o]
+        top_n = 4
+    else:
+        ro = raw_odds(r)
+        if ro is not None:
+            legs += [("MS 1", p["p1"], float(ro[0])), ("MS X", p["px"], float(ro[1])),
+                     ("MS 2", p["p2"], float(ro[2]))]
+        ov, un = _num(r, "Avg>2.5", "B365>2.5"), _num(r, "Avg<2.5", "B365<2.5")
+        if ov:
+            legs.append(("Üst 2.5", p["over25"], ov))
+        if un:
+            legs.append(("Alt 2.5", 1 - p["over25"], un))
+        top_n = 3
     # sadece listede de yeşil görünen seçenekler girer (turuncu/kırmızı girmez)
     legs = [l for l in legs if l[1] >= COUPON_MIN_P and tier(l[1], l[2])[0] == "g"]
-    return sorted(legs, key=lambda x: -x[1])[:3]
+    return sorted(legs, key=lambda x: -x[1])[:top_n]
 
 
 def build_coupons(out_rows):
@@ -551,13 +631,17 @@ def build_coupons(out_rows):
         legs = _legs(r, p)
         if legs:
             by_day.setdefault(r["Date"].normalize(), []).append((k, r, legs))
+    nearest = None
     for day in sorted(d for d in by_day if d >= today):
         if len(by_day[day]) < COUPON_LEGS:
             continue
         res = _coupons_for_day(day, by_day[day])
         if res["list"]:               # kupon çıkan ilk günü göster
             return res
-    return None
+        if nearest is None:           # çıkmadıysa: güvenilir seçeneklerle ulaşılabilen en yüksek toplam oran
+            best = sorted((max(l[2] for l in t[2]) for t in by_day[day]), reverse=True)[:COUPON_LEGS]
+            nearest = {"date": day.strftime("%Y-%m-%d"), "list": [], "max_odds": round(math.prod(best), 2)}
+    return nearest
 
 
 def _best_combo(items):
@@ -605,7 +689,8 @@ def _coupons_for_day(day, items):
                          "home": r["HomeTeam"], "away": r["AwayTeam"],
                          "league": LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
                          "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
-                         "t": tier(x[1], x[2])[0]})
+                         "t": tier(x[1], x[2])[0],
+                         "mbs": (_nes_of(r)[0] or {}).get("mbs")})
         legs.sort(key=lambda l: l["time"])
         chosen.append({"legs": legs, "odds": round(od, 2),
                        "p": round(pr, 4), "ev": round(pr * od, 2)})
@@ -758,10 +843,11 @@ def demo_history():
     return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
 
 
-def site_payload(out_rows, demo=False, perf=None):
+def site_payload(out_rows, demo=False, perf=None, nes_info=None):
     matches = []
     for k, (r, p, _) in enumerate(out_rows):
         t = str(r.get("Time", "") or "")
+        nes = _nes_of(r)[0]
         matches.append({
             "id": k, "div": r["Div"],
             "league": LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
@@ -769,9 +855,11 @@ def site_payload(out_rows, demo=False, perf=None):
             "time": "" if t in ("nan", "NaT") else t[:5],
             "home": r["HomeTeam"], "away": r["AwayTeam"],
             "xg": [round(p["xg_h"], 2), round(p["xg_a"], 2)],
+            "nes": bool(nes), "mbs": (nes or {}).get("mbs"),
             "markets": build_markets(p, r)})
     return {"generated": datetime.now().strftime("%d.%m.%Y %H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
+            "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
             "coupons": build_coupons(out_rows), "performance": perf}
 
 
@@ -799,7 +887,14 @@ def cmd_site(leagues, days, out, open_it, demo=False):
             print("  (başarı hesabı için yeterli geçmiş maç yok)")
     except Exception as e:  # noqa: BLE001  başarı hesabı sayfayı bozmasın
         print(f"  ! başarı hesabı atlandı: {e}")
-    path = write_site(site_payload(rows, demo, perf), out)
+    nes_info = None
+    if not demo:
+        try:
+            rows, nes_info = attach_nesine(rows)
+        except Exception as e:  # noqa: BLE001  Nesine kısmı sayfayı bozmasın
+            print(f"  ! Nesine verisi kullanılamadı, Avrupa oranlarıyla devam: {e}")
+            rows, nes_info = [(r, p, mk) for r, p, mk in rows], None
+    path = write_site(site_payload(rows, demo, perf, nes_info), out)
     print(f"{len(rows)} maç yazıldı → {path}")
     if skipped:
         print(f"({skipped} maç atlandı: takımın yeterli geçmiş verisi yok)")
