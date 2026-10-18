@@ -89,25 +89,34 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .cp{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .cp h3{margin:0;padding:8px 12px;background:var(--navy);color:#fff;font-size:14px}
 .cp ul{list-style:none;margin:0;padding:0}
-.lgb{display:grid;grid-template-columns:42px minmax(0,1fr) 78px;gap:0 8px;align-items:center;
-  width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:#fff;
-  padding:8px 12px;font:inherit;color:inherit;cursor:pointer}
-.cp li:first-child .lgb{border-top:0}
-.lgb:hover{background:#f4f8fc}
-.lgb:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px}
+.lgr{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:0 6px;align-items:center;
+  border-top:1px solid var(--line);padding:6px 12px 6px 0;background:#fff}
+.cp li:first-child{border-top:0}
+.lgr:hover{background:#f4f8fc}
+.lgb{display:grid;grid-template-columns:42px minmax(0,1fr);gap:0 8px;align-items:center;
+  text-align:left;border:0;background:transparent;padding:2px 4px 2px 12px;font:inherit;color:inherit;cursor:pointer;min-width:0}
+.lgb:focus-visible,.oi:focus-visible,.rst:focus-visible{outline:3px solid #2f6fd6;outline-offset:-1px}
 .lgb .lt{color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
 .lgb .ln{min-width:0;font-size:14px}
 .lgb .ln b,.lgb .ln span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lgb .ln span{font-weight:400}
-.lgb .ls{border-radius:5px;padding:3px 0;text-align:center;font-size:12px;
-  font-variant-numeric:tabular-nums}
-.lgb .ls b{display:block;font-size:15px;line-height:1.2}
+.ls{border-radius:5px;padding:3px 4px 4px;display:flex;flex-direction:column;align-items:center;
+  font-size:12px;font-variant-numeric:tabular-nums}
+.ls input{width:100%;max-width:76px;height:28px;margin-top:1px;border:1px solid rgba(0,0,0,.3);
+  border-radius:4px;background:rgba(255,255,255,.94);color:#13202f;font:700 15px system-ui,sans-serif;
+  text-align:center;font-variant-numeric:tabular-nums}
+.ls input.ed{outline:2px solid #2f6fd6;background:#fff}
+.cw{margin:0;padding:6px 12px;background:#fdecec;color:#7a1f24;font-size:13px;border-top:1px solid #f1c4c6}
+.rst{display:block;width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);
+  padding:7px 12px;font:inherit;font-size:13px;color:#1f4f9c;cursor:pointer;text-align:left}
+.rst:hover{text-decoration:underline}
 .tot{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:2px solid var(--line);
   background:var(--soft)}
 .tot div{padding:8px 6px;text-align:center}
 .tot dt{font-size:11.5px;color:var(--mut)}
 .tot dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
 .cnote{color:var(--mut);font-size:12.5px;margin:10px 0 0;max-width:80ch}
+.pill.np{background:#e3e8ee;color:#44546a}
 #perf{padding:22px 0 4px}
 #perf h2{margin:0 0 4px;font-size:18px}
 .pv{margin:0 0 12px;font-size:15px;max-width:76ch}
@@ -168,6 +177,14 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pct = p => Math.round(p*100);
 const state = {q:'', lg:'', date:'', rec:false, open:new Set()};
+// tarayıcı depolaması kapalı olabilir; hata verirse sayfa yine çalışır
+const LS = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
+  del(k){ try{ localStorage.removeItem(k); }catch(e){} }
+};
+const okey = (c,l) => `ov|${c.date}|${l.home}|${l.away}|${l.sel}`;
+const parseOdds = v => { const x = parseFloat(String(v).replace(',','.')); return isFinite(x) && x > 1 ? x : null; };
 
 $('#gen').textContent = 'Güncelleme: ' + D.generated;
 if(D.demo) $('#demo').hidden = false;
@@ -177,7 +194,10 @@ $('#legend').innerHTML =
   `<span><i class="sw t-g"></i>Önerilen: model %${G} ve üzeri görüyor</span>`+
   `<span><i class="sw t-o"></i>Riskli: %${O} ile %${G} arası</span>`+
   `<span><i class="sw t-r"></i>Önerilmez: %${O} altı</span>`+
-  `<span>"Oran düşük" notu: seçenek olası ama bahis sitesi çok düşük oran veriyor</span>`;
+  `<span>"Oran düşük" notu: seçenek olası ama bahis sitesi çok düşük oran veriyor</span>`+
+  (D.odds_source==='nesine'
+    ? `<span>Oranlar Nesine bülteninden alınır. Nesine'de bulunamayan maçlarda oran yerine modelin adil oranı (~) görünür.</span>`
+    : `<span>Listedeki oranlar Avrupa'daki bahis sitelerinden gelir, Türk sitelerinde farklı olabilir. Kupon kutularına kendi sitendeki oranı yazabilirsin.</span>`);
 
 const fmtLong = iso => new Date(iso+'T12:00:00').toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long'});
 const fmtChip = iso => {
@@ -223,7 +243,8 @@ function panel(m){
     `<h3>Botun önerileri</h3>`+
     (r.length ? `<div class="rcs">${top}</div>` :
       `<p class="none">Bu maçta güçlü bir öneri yok. Oynamamak da bir karardır.</p>`)+
-    `<p class="xg">Beklenen gol: ${esc(m.home)} ${m.xg[0].toFixed(2)}, ${esc(m.away)} ${m.xg[1].toFixed(2)}</p>`+
+    `<p class="xg">Beklenen gol: ${esc(m.home)} ${m.xg[0].toFixed(2)}, ${esc(m.away)} ${m.xg[1].toFixed(2)}`+
+      (m.mbs ? `. MBS ${m.mbs}: bu maçı içeren kuponda en az ${m.mbs} maç olmalı.` : '')+`</p>`+
     `<div class="mks">${cards}</div>`+
     `<p class="fine">İlk yarı ve oyuncu bahisleri bu modelde yok.</p></div>`;
 }
@@ -259,7 +280,8 @@ function render(){
     html += `<div class="m"><div class="row cols" role="button" tabindex="0" data-id="${m.id}" aria-expanded="${open}">`+
       `<span class="time">${esc(m.time)}</span>`+
       `<span class="teams"><b>${esc(m.home)}</b><span class="tn">${esc(m.away)}</span>`+
-        (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+`</span>`+
+        (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+
+        (D.odds_source==='nesine' && !m.nes ? ` <span class="pill np">Nesine'de bulunamadı</span>` : '')+`</span>`+
       ms.map(s=>qcell(s)).join('')+qcell(ou[0],1)+qcell(ou[1],1)+qcell(kg[0],1)+
       `<span class="more">${open?'Kapat':'+'+total}</span></div>`+
       (open?panel(m):'')+`</div>`;
@@ -270,8 +292,11 @@ function render(){
 function renderCoupons(){
   const c = D.coupons, el = $('#coupons');
   if(!c || !c.list.length){
-    el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Yaklaşan maçlarda, modelin %'+pct(D.green)+
-      ' ve üzeri gördüğü seçeneklerle toplam oranı 5\'e ulaşan kupon çıkmadı. Riskli seçenek ekleyip kupon doldurmuyorum.</div>';
+    const mx = c && c.max_odds ? ` ${fmtLong(c.date)} için dört farklı maçtan bu seçeneklerle ulaşılabilen en yüksek toplam oran ${c.max_odds.toFixed(2).replace('.',',')}.` : '';
+    el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Modelin %'+pct(D.green)+
+      ' ve üzeri gördüğü seçeneklerle toplam oranı 5\'e ulaşan kupon çıkmadı.'+mx+
+      ' Riskli seçenek ekleyip kupon doldurmuyorum.'+
+      (D.odds_source==='nesine' ? ' Nesine oranlarındaki bahisçi payı yüzünden güvenilir seçeneklerin oranları düşük kalıyor.' : '')+'</div>'+marginNote();
     return;
   }
   const notToday = new Date(c.date+'T12:00:00').toDateString() !== new Date().toDateString();
@@ -283,20 +308,61 @@ function renderCoupons(){
     (c.list.length<4 ? `Bu gün yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
     `Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
     `<div class="cps">`+ c.list.map((k,i)=>
-      `<article class="cp"><h3>Kupon ${i+1}</h3><ul>`+
-      k.legs.map(l=>
-        `<li><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
+      `<article class="cp" data-p="${k.p}"><h3>Kupon ${i+1}</h3><ul>`+
+      k.legs.map(l=>{
+        const ov = parseOdds(LS.get(okey(c,l))), cur = ov || l.o;
+        return `<li class="lgr"><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
         `<span class="lt">${esc(l.time)}</span>`+
-        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span></span>`+
-        `<span class="ls t-${l.t}">${esc(l.sel)}<b>${l.o.toFixed(2)}</b></span></button></li>`).join('')+
+        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span></span></button>`+
+        `<label class="ls t-${l.t}">${esc(l.sel)}`+
+        `<input class="oi" type="text" inputmode="decimal" autocomplete="off" value="${cur.toFixed(2)}" `+
+        `data-key="${esc(okey(c,l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label></li>`;
+      }).join('')+
       `</ul><dl class="tot">`+
-      `<div><dt>Toplam oran</dt><dd>${k.odds.toFixed(2)}</dd></div>`+
+      `<div><dt>Toplam oran</dt><dd class="to">${k.odds.toFixed(2)}</dd></div>`+
       `<div><dt>Tutma olasılığı</dt><dd>%${(k.p*100).toFixed(k.p<0.1?1:0)}</dd></div>`+
-      `<div><dt>Beklenen değer</dt><dd>${k.ev.toFixed(2)}</dd></div></dl></article>`).join('')+
+      `<div><dt>Beklenen değer</dt><dd class="te">${k.ev.toFixed(2)}</dd></div></dl>`+
+      `<p class="cw" hidden>Bu oranlarla toplam 5'in altında kaldı.</p>`+
+      `<button class="rst" hidden>Bot oranlarına dön</button></article>`).join('')+
     `</div>`+
-    `<p class="cnote">Kuponlara sadece bahis sitesi oranı olan seçenekler (MS 1/X/2 ve Alt/Üst 2.5) girer. `+
-    `Dört maçı birden tutturmak zordur: tutma olasılığı toplam oran 5 ve üzeri olduğu için çoğu zaman %20'yi geçmez.`+
-    `Beklenen değer 1'in altındaysa, model doğru olsa bile bu kuponu uzun vadede oynayan kaybeder.</p>`;
+    `<p class="cnote">`+(D.odds_source==='nesine'
+      ? `Kuponlardaki oranlar Nesine bülteninden alındı (${esc(nesTime())}). Bahis oynamadan önce sitede oranın değişmediğini kontrol et. `+
+        `Farklı bir oran görürsen kutuya yaz, toplam oran ve beklenen değer buna göre güncellenir. Yazdıkların sadece bu tarayıcıda saklanır. `+
+        `Kuponlara yalnızca Nesine'de bulunan, MBS'i 4'ü geçmeyen maçlar girer. `
+      : `Kuponlardaki oranlar Avrupa'daki bahis sitelerinden alındı (piyasa ortalaması ya da Bet365), Türk sitelerindeki oranlar farklı olabilir. `+
+        `Oran kutusuna oynayacağın sitede gördüğün oranı yaz, toplam oran ve beklenen değer buna göre güncellenir. Yazdıkların sadece bu tarayıcıda saklanır. `+
+        `Kuponlara yalnızca MS 1/X/2 ve Alt/Üst 2.5 girer. `)+
+    `Dört maçı birden tutturmak zordur: tutma olasılığı toplam oran 5 ve üzeri olduğu için çoğu zaman %20'yi geçmez. `+
+    `Beklenen değer 1'in altındaysa, model doğru olsa bile bu kuponu uzun vadede oynayan kaybeder.</p>`+marginNote();
+  el.querySelectorAll('.cp').forEach(recalc);
+}
+
+function nesTime(){
+  try{
+    const f = new Date(D.nesine.fetched);
+    return 'güncelleme: ' + f.toLocaleString('tr-TR',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+  }catch(e){ return 'güncelleme zamanı bilinmiyor'; }
+}
+function marginNote(){
+  const n = D.nesine;
+  if(D.odds_source!=='nesine' || !n || n.margin_nes==null) return '';
+  const f = x => (x*100).toFixed(1).replace('.',',');
+  return `<p class="cnote">Bu maçlarda Nesine 1/X/2 oranlarındaki bahisçi payı (oranların terslerinin toplamının 1'den fazlası) ortalama %${f(n.margin_nes)}`+
+    (n.margin_euro!=null ? `, Avrupa sitelerinde aynı maçlarda %${f(n.margin_euro)}` : '')+
+    `. Pay yüksek olduğu için aynı seçenek daha düşük oranla gelir, dört seçeneği çarpınca fark büyür. `+
+    `Nesine eşleşmesi: ${n.matched} / ${n.total} maç.</p>`;
+}
+
+function recalc(art){
+  let od = 1, edited = false;
+  art.querySelectorAll('.oi').forEach(i=>{
+    const bot = +i.dataset.bot, x = parseOdds(i.value) || bot, ch = Math.abs(x-bot) > 1e-9;
+    od *= x; edited = edited || ch; i.classList.toggle('ed', ch);
+  });
+  art.querySelector('.to').textContent = od.toFixed(2);
+  art.querySelector('.te').textContent = (+art.dataset.p * od).toFixed(2);
+  art.querySelector('.cw').hidden = od >= 5;
+  art.querySelector('.rst').hidden = !edited;
 }
 
 function renderPerf(){
@@ -350,7 +416,23 @@ $('#list').addEventListener('keydown', e=>{
   if(e.key!=='Enter' && e.key!==' ') return;
   const r = e.target.closest('.row'); if(r){ e.preventDefault(); toggle(+r.dataset.id); }
 });
+$('#coupons').addEventListener('input', e=>{
+  const i = e.target.closest('.oi'); if(!i) return;
+  const x = parseOdds(i.value);
+  if(x && Math.abs(x - +i.dataset.bot) > 1e-9) LS.set(i.dataset.key, String(x)); else LS.del(i.dataset.key);
+  recalc(i.closest('.cp'));
+});
+$('#coupons').addEventListener('change', e=>{
+  const i = e.target.closest('.oi'); if(!i) return;
+  if(!parseOdds(i.value)){ i.value = (+i.dataset.bot).toFixed(2); LS.del(i.dataset.key); recalc(i.closest('.cp')); }
+});
 $('#coupons').addEventListener('click', e=>{
+  const r = e.target.closest('.rst');
+  if(r){
+    const art = r.closest('.cp');
+    art.querySelectorAll('.oi').forEach(i=>{ i.value = (+i.dataset.bot).toFixed(2); LS.del(i.dataset.key); });
+    recalc(art); return;
+  }
   const b = e.target.closest('.lgb'); if(!b) return;
   const id = +b.dataset.id;
   Object.assign(state,{q:'',lg:'',date:'',rec:false});
