@@ -156,9 +156,10 @@ if(D.demo) $('#demo').hidden = false;
 
 const G = pct(D.green), O = pct(D.orange);
 $('#legend').innerHTML =
-  `<span><i class="sw t-g"></i>Önerilen: model %${G} ve üzeri görüyor, ya da %50 üzeri görüp oran değerli</span>`+
-  `<span><i class="sw t-o"></i>Riskli: %${O} ile %${G} arası, ya da oran olasılığa göre düşük</span>`+
-  `<span><i class="sw t-r"></i>Önerilmez: %${O} altı</span>`;
+  `<span><i class="sw t-g"></i>Önerilen: model %${G} ve üzeri görüyor</span>`+
+  `<span><i class="sw t-o"></i>Riskli: %${O} ile %${G} arası</span>`+
+  `<span><i class="sw t-r"></i>Önerilmez: %${O} altı</span>`+
+  `<span>"Oran düşük" notu: seçenek olası ama bahis sitesi çok düşük oran veriyor</span>`;
 
 const fmtLong = iso => new Date(iso+'T12:00:00').toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long'});
 const fmtChip = iso => {
@@ -251,12 +252,16 @@ function render(){
 function renderCoupons(){
   const c = D.coupons, el = $('#coupons');
   if(!c || !c.list.length){
-    el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Kupon için oranı olan en az 4 maç bulunamadı.</div>';
+    el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Yaklaşan maçlarda, modelin %'+pct(D.green)+
+      ' ve üzeri gördüğü seçeneklerle toplam oranı 5\'e ulaşan kupon çıkmadı. Riskli seçenek ekleyip kupon doldurmuyorum.</div>';
     return;
   }
+  const notToday = new Date(c.date+'T12:00:00').toDateString() !== new Date().toDateString();
   el.innerHTML = `<h2>Günün kuponları</h2>`+
     `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az 5 olan kuponlar. `+
-    `Her kuponda 4 maç var ve dördü de tutmalı. Model bu kuponları, hepsinin birden tutma olasılığı en yüksek olacak şekilde seçti.</p>`+
+    (notToday ? 'Bugün uygun kupon çıkmadığı için bu güne bakıldı. ' : '')+
+    `Kuponlara sadece modelin %${pct(D.green)} ve üzeri gördüğü seçenekler girer, riskli ya da önerilmeyen seçenek yok. `+
+    `Her kuponda 4 maç var ve dördü de tutmalı. Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
     `<div class="cps">`+ c.list.map((k,i)=>
       `<article class="cp"><h3>Kupon ${i+1}</h3><ul>`+
       k.legs.map(l=>
