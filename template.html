@@ -108,6 +108,23 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .tot dt{font-size:11.5px;color:var(--mut)}
 .tot dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
 .cnote{color:var(--mut);font-size:12.5px;margin:10px 0 0;max-width:80ch}
+#perf{padding:22px 0 4px}
+#perf h2{margin:0 0 4px;font-size:18px}
+.pv{margin:0 0 12px;font-size:15px;max-width:76ch}
+.pcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.pc dt{font-size:12.5px;color:var(--mut)}
+.pc dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.pc small{display:block;font-size:12.5px;color:var(--mut);font-weight:400;margin-top:2px}
+.cal{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
+  border-radius:8px;overflow:hidden;font-size:14px;font-variant-numeric:tabular-nums}
+.cal th,.cal td{padding:7px 10px;text-align:left;border-top:1px solid var(--line)}
+.cal thead th{border-top:0;background:var(--band);font-size:12.5px;color:var(--mut);font-weight:600}
+.cal td:first-child span{display:inline-block;min-width:78px;text-align:center;border-radius:4px;padding:1px 6px;font-size:13px;font-weight:600}
+.bar{height:8px;background:#e6ebf1;border-radius:4px;min-width:90px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--navy)}
+.bar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:#d33;border-radius:1px}
+.pn{color:var(--mut);font-size:12.5px;margin:8px 0 0;max-width:80ch}
 .empty{background:#fff;border:1px dashed var(--line);border-radius:6px;padding:28px 16px;
   text-align:center;color:var(--mut)}
 .foot{padding:22px 0 44px;color:var(--mut);font-size:13px;max-width:72ch}
@@ -138,6 +155,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   </div>
   <div class="legend" id="legend"></div>
   <div id="list"></div>
+  <section id="perf" aria-label="Model ne kadar tutuyor"></section>
   <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Hiçbir tahmin kazanç garantisi vermez. <i>~</i> ile başlayan oranlar bahis sitesinin değil, modelin olasılığından hesaplanan adil orandır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
 </main>
 
@@ -261,7 +279,9 @@ function renderCoupons(){
     `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az 5 olan kuponlar. `+
     (notToday ? 'Bugün uygun kupon çıkmadığı için bu güne bakıldı. ' : '')+
     `Kuponlara sadece modelin %${pct(D.green)} ve üzeri gördüğü seçenekler girer, riskli ya da önerilmeyen seçenek yok. `+
-    `Her kuponda 4 maç var ve dördü de tutmalı. Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
+    `Her kuponda 4 maç var ve dördü de tutmalı. Her kupon farklı maçlardan oluşur, bir maç yalnızca bir kuponda yer alır. `+
+    (c.list.length<4 ? `Bu gün yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
+    `Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
     `<div class="cps">`+ c.list.map((k,i)=>
       `<article class="cp"><h3>Kupon ${i+1}</h3><ul>`+
       k.legs.map(l=>
@@ -277,6 +297,43 @@ function renderCoupons(){
     `<p class="cnote">Kuponlara sadece bahis sitesi oranı olan seçenekler (MS 1/X/2 ve Alt/Üst 2.5) girer. `+
     `Dört maçı birden tutturmak zordur: tutma olasılığı toplam oran 5 ve üzeri olduğu için çoğu zaman %20'yi geçmez.`+
     `Beklenen değer 1'in altındaysa, model doğru olsa bile bu kuponu uzun vadede oynayan kaybeder.</p>`;
+}
+
+function renderPerf(){
+  const P = D.performance, el = $('#perf');
+  if(!P){
+    el.innerHTML = '<h2>Model ne kadar tutuyor?</h2><div class="empty">Başarı ölçümü için yeterli geçmiş maç yok.</div>';
+    return;
+  }
+  const ms = P.ms, p1 = x => (x*100).toFixed(1).replace('.',',');
+  let verdict = ms.ll < ms.base_ll
+    ? 'Model, her maça aynı oranı veren basit bir tahminden daha iyi.'
+    : 'Model bu dönemde basit bir tahminden daha iyi değil, bu yüzden tahminlerine güvenme.';
+  if(ms.mkt_ll!=null){
+    verdict += ms.model_ll_same <= ms.mkt_ll
+      ? ' Bahis sitesi oranlarının tahminiyle başa baş ya da daha iyi.'
+      : ' Bahis sitesi oranlarının tahmini ise modelden daha isabetli. Bunun sebebi oranların sakatlık ve kadro haberlerini içermesi olabilir.';
+  }
+  const g = (P.cal||[]).find(c=>c.t==='g');
+  const cards = [
+    ['1/X/2 isabeti', '%'+p1(ms.acc), ms.mkt_acc!=null ? `Aynı maçlarda bahis oranları: %${p1(ms.mkt_acc)}` : `${P.matches} maç`],
+    ['Alt/Üst 2.5 isabeti', '%'+p1(P.ou.acc), `Gerçekte maçların %${p1(P.ou.over_rate)}\'i üst bitti`],
+    ['Yeşil seçenekler', g ? '%'+p1(g.hit) : '-', g ? `Model ortalama %${p1(g.p)} dedi, ${g.n} seçenek` : 'Yeterli örnek yok']
+  ];
+  if(P.coupons && P.coupons.n){
+    const c = P.coupons;
+    const few = c.n < 30 ? ' Örnek çok az, bu rakama güvenme.' : '';
+    cards.push(['Geçmiş kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}.${few}`]);
+    cards.push(['Kuponların getirisi', (c.roi>=0?'+':'')+p1(c.roi)+'%', 'Her kupona 1 birim yatırsaydın.'+few]);
+  }
+  const rows = (P.cal||[]).map(c=>
+    `<tr><td><span class="t-${c.t}">${esc(c.label)}</span></td><td>${c.n}</td><td>%${p1(c.p)}</td><td>%${p1(c.hit)}</td>`+
+    `<td><div class="bar" aria-hidden="true"><i style="width:${Math.min(100,c.hit*100)}%"></i><b style="left:${Math.min(100,c.p*100)}%"></b></div></td></tr>`).join('');
+  el.innerHTML = '<h2>Model ne kadar tutuyor?</h2>'+
+    `<p class="pv">${esc(P.from)} ile ${esc(P.to)} arasındaki ${P.matches} maç, model her maçı sadece o günden önceki sonuçlarla tahmin edecek şekilde geriye dönük sınandı. ${esc(verdict)}</p>`+
+    '<dl class="pcs">'+cards.map(c=>`<div class="pc"><dt>${esc(c[0])}</dt><dd>${esc(c[1])}<small>${esc(c[2])}</small></dd></div>`).join('')+'</dl>'+
+    (rows ? '<table class="cal"><thead><tr><th>Modelin verdiği olasılık</th><th>Seçenek sayısı</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Fark</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    '<p class="pn">Model güvenilirse "Model ne dedi" ile "Gerçekte tuttu" sütunları birbirine yakın olur. Kırmızı çizgi modelin dediği, mavi çubuk gerçekte tutan orandır. Yeşil satırda gerçek oran modelin altında kalıyorsa, yeşil seçeneklere olduğundan fazla güveniliyor demektir.</p>' : '');
 }
 
 function toggle(id){
@@ -310,6 +367,7 @@ $('#lg').addEventListener('change', e=>{ state.lg = e.target.value; render(); })
 $('#rec').addEventListener('change', e=>{ state.rec = e.target.checked; render(); });
 
 renderCoupons();
+renderPerf();
 render();
 })();
 </script>
