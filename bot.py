@@ -582,8 +582,8 @@ def demo_rows(days=3):
     return rows
 
 
-COUPON_LEGS = 4        # kupondaki maç sayısı
-COUPON_MIN_ODDS = 5.0  # toplam oran en az bu kadar olmalı
+COUPON_LEGS = 3        # kupondaki maç sayısı
+COUPON_MIN_ODDS = 3.0  # toplam oran en az bu kadar olmalı
 COUPON_MIN_P = 0.60    # kupona girecek her seçeneğin model olasılığı en az bu kadar
 N_COUPONS = 4
 
@@ -623,7 +623,7 @@ def _legs(r, p):
 
 
 def build_coupons(out_rows):
-    """Günün maçlarından, toplam oranı >= 5 olan ve modele göre en çok tutması
+    """Günün maçlarından, toplam oranı COUPON_MIN_ODDS ve üzeri olan ve modele göre en çok tutması
     beklenen kupon; her kupon farklı maçlardan oluşur. Maçlar birbirinden bağımsız varsayılır."""
     today = pd.Timestamp(date.today())
     by_day = {}
@@ -645,8 +645,8 @@ def build_coupons(out_rows):
 
 
 def _best_combo(items):
-    """Verilen maçlar arasından, toplam oranı >= 5 olan en yüksek ortak olasılıklı 4'lü."""
-    cands = sorted(items, key=lambda t: -t[2][0][1])[:16]
+    """Verilen maçlar arasından, toplam oranı COUPON_MIN_ODDS ve üzeri olan, en yüksek ortak olasılıklı kupon."""
+    cands = sorted(items, key=lambda t: -t[2][0][1])[:20]
     best = None
     for combo in itertools.combinations(cands, COUPON_LEGS):
         for pick in itertools.product(*[c[2] for c in combo]):
@@ -859,6 +859,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None):
             "markets": build_markets(p, r)})
     return {"generated": datetime.now().strftime("%d.%m.%Y %H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
+            "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS,
             "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
             "coupons": build_coupons(out_rows), "performance": perf}
 
