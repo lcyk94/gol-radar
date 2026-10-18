@@ -327,8 +327,8 @@ function renderCoupons(){
     const mx = c && c.max_odds ? ` ${fmtLong(c.date)} için ${NUMW} farklı maçtan bu seçeneklerle ulaşılabilen en yüksek toplam oran ${c.max_odds.toFixed(2).replace('.',',')}.` : '';
     el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Modelin %'+pct(D.green)+
       ' ve üzeri gördüğü seçeneklerle toplam oranı en az '+fo(MIN_ODDS)+' olan kupon çıkmadı.'+mx+
-      ' Riskli seçenek ekleyip kupon doldurmuyorum.'+
-      (D.odds_source==='nesine' ? ' Nesine oranlarındaki bahisçi payı yüzünden güvenilir seçeneklerin oranları düşük kalıyor.' : '')+'</div>'+marginNote();
+      ' Riskli seçenek ekleyip kupon doldurmuyorum.'+diagNote(c)+
+      (D.odds_source==='nesine' && c && c.max_odds ? ' Nesine oranlarındaki bahisçi payı yüzünden güvenilir seçeneklerin oranları düşük kalıyor.' : '')+'</div>'+marginNote();
     return;
   }
   const notToday = new Date(c.date+'T12:00:00').toDateString() !== new Date().toDateString();
@@ -387,6 +387,14 @@ function renderYesterday(){
       `</ul></article>`).join('')+
     `<p class="ytot">Bugüne kadar kayıtlı ${t.days} günde: ${t.won} kupon tuttu, ${t.lost} tutmadı`+
     (t.pending?`, ${t.pending} sonuç bekleniyor`:'')+`. Örnek sayısı az olduğu sürece bu rakama güvenme.</p>`;
+}
+
+function diagNote(c){
+  const g = c && c.diag; if(!g) return '';
+  const days = Object.keys(g.days||{}).sort().map(k=>fmtLong(k)+': '+g.days[k]).join(', ');
+  return ` <br><small>Bakılan ${g.matches} maçın `+(D.odds_source==='nesine' ? `${g.nesine} tanesi Nesine'de bulundu, ${g.mbs} tanesi MBS değeri ${LEGS}'ten büyük olduğu için elendi, `:'')+
+    `${g.eligible} tanesinde kupona girebilecek (%${pct(D.green)} ve üzeri) seçenek var`+(days?` (${esc(days)})`:'')+
+    `. Kupon için aynı güne ait en az ${LEGS} maç gerekir.</small>`;
 }
 
 function nesTime(){
