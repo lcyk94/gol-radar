@@ -183,6 +183,9 @@ const LS = {
   set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
+const LEGS = D.coupon_legs || 4, MIN_ODDS = D.min_odds || 5, N_CP = D.n_coupons || 4;
+const NUMW = ({2:'iki',3:'üç',4:'dört',5:'beş'})[LEGS] || String(LEGS);
+const fo = x => String(x).replace('.',',');
 const okey = (c,l) => `ov|${c.date}|${l.home}|${l.away}|${l.sel}`;
 const parseOdds = v => { const x = parseFloat(String(v).replace(',','.')); return isFinite(x) && x > 1 ? x : null; };
 
@@ -292,20 +295,20 @@ function render(){
 function renderCoupons(){
   const c = D.coupons, el = $('#coupons');
   if(!c || !c.list.length){
-    const mx = c && c.max_odds ? ` ${fmtLong(c.date)} için dört farklı maçtan bu seçeneklerle ulaşılabilen en yüksek toplam oran ${c.max_odds.toFixed(2).replace('.',',')}.` : '';
+    const mx = c && c.max_odds ? ` ${fmtLong(c.date)} için ${NUMW} farklı maçtan bu seçeneklerle ulaşılabilen en yüksek toplam oran ${c.max_odds.toFixed(2).replace('.',',')}.` : '';
     el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Modelin %'+pct(D.green)+
-      ' ve üzeri gördüğü seçeneklerle toplam oranı 5\'e ulaşan kupon çıkmadı.'+mx+
+      ' ve üzeri gördüğü seçeneklerle toplam oranı en az '+fo(MIN_ODDS)+' olan kupon çıkmadı.'+mx+
       ' Riskli seçenek ekleyip kupon doldurmuyorum.'+
       (D.odds_source==='nesine' ? ' Nesine oranlarındaki bahisçi payı yüzünden güvenilir seçeneklerin oranları düşük kalıyor.' : '')+'</div>'+marginNote();
     return;
   }
   const notToday = new Date(c.date+'T12:00:00').toDateString() !== new Date().toDateString();
   el.innerHTML = `<h2>Günün kuponları</h2>`+
-    `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az 5 olan kuponlar. `+
+    `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az ${fo(MIN_ODDS)} olan kuponlar. `+
     (notToday ? 'Bugün uygun kupon çıkmadığı için bu güne bakıldı. ' : '')+
     `Kuponlara sadece modelin %${pct(D.green)} ve üzeri gördüğü seçenekler girer, riskli ya da önerilmeyen seçenek yok. `+
-    `Her kuponda 4 maç var ve dördü de tutmalı. Her kupon farklı maçlardan oluşur, bir maç yalnızca bir kuponda yer alır. `+
-    (c.list.length<4 ? `Bu gün yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
+    `Her kuponda ${LEGS} maç var ve hepsi tutmalı. Her kupon farklı maçlardan oluşur, bir maç yalnızca bir kuponda yer alır. `+
+    (c.list.length<N_CP ? `Bu gün yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
     `Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
     `<div class="cps">`+ c.list.map((k,i)=>
       `<article class="cp" data-p="${k.p}"><h3>Kupon ${i+1}</h3><ul>`+
@@ -322,17 +325,17 @@ function renderCoupons(){
       `<div><dt>Toplam oran</dt><dd class="to">${k.odds.toFixed(2)}</dd></div>`+
       `<div><dt>Tutma olasılığı</dt><dd>%${(k.p*100).toFixed(k.p<0.1?1:0)}</dd></div>`+
       `<div><dt>Beklenen değer</dt><dd class="te">${k.ev.toFixed(2)}</dd></div></dl>`+
-      `<p class="cw" hidden>Bu oranlarla toplam 5'in altında kaldı.</p>`+
+      `<p class="cw" hidden>Bu oranlarla toplam oran ${fo(MIN_ODDS)}'in altında kaldı.</p>`+
       `<button class="rst" hidden>Bot oranlarına dön</button></article>`).join('')+
     `</div>`+
     `<p class="cnote">`+(D.odds_source==='nesine'
       ? `Kuponlardaki oranlar Nesine bülteninden alındı (${esc(nesTime())}). Bahis oynamadan önce sitede oranın değişmediğini kontrol et. `+
         `Farklı bir oran görürsen kutuya yaz, toplam oran ve beklenen değer buna göre güncellenir. Yazdıkların sadece bu tarayıcıda saklanır. `+
-        `Kuponlara yalnızca Nesine'de bulunan, MBS'i 4'ü geçmeyen maçlar girer. `
+        `Kuponlara yalnızca Nesine'de bulunan ve MBS değeri ${LEGS} ya da daha küçük olan maçlar girer. `
       : `Kuponlardaki oranlar Avrupa'daki bahis sitelerinden alındı (piyasa ortalaması ya da Bet365), Türk sitelerindeki oranlar farklı olabilir. `+
         `Oran kutusuna oynayacağın sitede gördüğün oranı yaz, toplam oran ve beklenen değer buna göre güncellenir. Yazdıkların sadece bu tarayıcıda saklanır. `+
         `Kuponlara yalnızca MS 1/X/2 ve Alt/Üst 2.5 girer. `)+
-    `Dört maçı birden tutturmak zordur: tutma olasılığı toplam oran 5 ve üzeri olduğu için çoğu zaman %20'yi geçmez. `+
+    `${NUMW[0].toLocaleUpperCase('tr')+NUMW.slice(1)} maçı birden tutturmak zordur: kuponun tutma olasılığı, tek tek olasılıkların çarpımıdır ve her zaman en düşük olandan küçüktür. `+
     `Beklenen değer 1'in altındaysa, model doğru olsa bile bu kuponu uzun vadede oynayan kaybeder.</p>`+marginNote();
   el.querySelectorAll('.cp').forEach(recalc);
 }
@@ -349,7 +352,7 @@ function marginNote(){
   const f = x => (x*100).toFixed(1).replace('.',',');
   return `<p class="cnote">Bu maçlarda Nesine 1/X/2 oranlarındaki bahisçi payı (oranların terslerinin toplamının 1'den fazlası) ortalama %${f(n.margin_nes)}`+
     (n.margin_euro!=null ? `, Avrupa sitelerinde aynı maçlarda %${f(n.margin_euro)}` : '')+
-    `. Pay yüksek olduğu için aynı seçenek daha düşük oranla gelir, dört seçeneği çarpınca fark büyür. `+
+    `. Pay yüksek olduğu için aynı seçenek daha düşük oranla gelir, seçenekleri çarpınca fark büyür. `+
     `Nesine eşleşmesi: ${n.matched} / ${n.total} maç.</p>`;
 }
 
@@ -361,7 +364,7 @@ function recalc(art){
   });
   art.querySelector('.to').textContent = od.toFixed(2);
   art.querySelector('.te').textContent = (+art.dataset.p * od).toFixed(2);
-  art.querySelector('.cw').hidden = od >= 5;
+  art.querySelector('.cw').hidden = od >= MIN_ODDS - 1e-9;
   art.querySelector('.rst').hidden = !edited;
 }
 
