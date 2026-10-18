@@ -359,10 +359,52 @@ def fetch(url=URL, out=OUT):
     return 0
 
 
+def probe(url):
+    """Başka bir bülten sayfasının yapısını görmek için: sayfa metninin başını ve sonunu yazdırır."""
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        kw = {}
+        if os.environ.get("CHROMIUM_PATH"):
+            kw["executable_path"] = os.environ["CHROMIUM_PATH"]
+        browser = p.chromium.launch(**kw)
+        try:
+            ctx = browser.new_context(locale="tr-TR", timezone_id="Europe/Istanbul",
+                                      viewport={"width": 1400, "height": 2400})
+            page = ctx.new_page()
+            resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            status = resp.status if resp else None
+            try:
+                page.wait_for_load_state("networkidle", timeout=30000)
+            except Exception:                            # noqa: BLE001
+                pass
+            page.wait_for_timeout(6000)
+            text = page.inner_text("body")
+            print(f"HTTP {status} | başlık: {page.title()} | metin uzunluğu: {len(text)}")
+            if (status and status >= 400) or any(w in text.lower() for w in BLOCK_WORDS):
+                print("Site isteği engelledi. Devam edilmiyor.")
+                return 2
+            lines = [l.strip() for l in text.splitlines() if l.strip()]
+            print(f"Satır sayısı: {len(lines)}")
+            print("---- İlk 150 satır ----")
+            for l in lines[:150]:
+                print("  ", l[:120])
+            print("---- Son 30 satır ----")
+            for l in lines[-30:]:
+                print("  ", l[:120])
+        except Exception as e:                           # noqa: BLE001
+            print(f"Sayfa açılamadı: {e}")
+            return 1
+        finally:
+            browser.close()
+    return 0
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "fetch"
     if cmd == "fetch":
         sys.exit(fetch())
+    elif cmd == "probe" and len(sys.argv) > 2:
+        sys.exit(probe(sys.argv[2]))
     elif cmd == "parse" and len(sys.argv) > 2:
         ms, bd = parse_bulletin(Path(sys.argv[2]).read_text(encoding="utf-8"))
         summarize(ms, bd)
