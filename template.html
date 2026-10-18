@@ -143,6 +143,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .ys b{display:block;font-size:13px}
 .lg{display:block;font-size:11.5px;color:var(--mut);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ytot{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--mut)}
+.nesbar{margin:14px 0 0;background:#fff3cf;border:1px solid #e8cf86;color:#4a3600;border-radius:8px;padding:10px 12px;font-size:14px}
 #perf{padding:22px 0 4px}
 #perf h2{margin:0 0 4px;font-size:18px}
 .pv{margin:0 0 12px;font-size:15px;max-width:76ch}
@@ -181,6 +182,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 <div id="demo" class="demo" hidden><div class="wrap"><b>Örnek veri.</b> Takımlar ve oranlar kurgusaldır, gerçek bir maça ait değildir. Gerçek sayfa için <code>python bot.py site</code> çalıştır.</div></div>
 
 <main class="wrap">
+  <div id="nesbar" class="nesbar" hidden></div>
   <div class="cpgrid">
     <section id="coupons" aria-label="Günün kuponları"></section>
     <aside id="yday" aria-label="Dünün kuponlarının sonuçları"></aside>
@@ -397,6 +399,17 @@ function diagNote(c){
     `. Kupon için aynı güne ait en az ${LEGS} maç gerekir.</small>`;
 }
 
+function nesBanner(){
+  const n = D.nesine, el = $('#nesbar');
+  if(D.odds_source!=='nesine' || !n || !n.total || n.matched >= n.total*0.5) return;
+  const fmt = o => Object.keys(o||{}).sort().map(k=>fmtLong(k)+' ('+o[k]+')').join(', ') || 'yok';
+  el.hidden = false;
+  el.innerHTML = `<b>Nesine eşleşmesi düşük: ${n.matched} / ${n.total} maç.</b> `+
+    `Nesine bülteninde şu günlerin maçları var: ${esc(fmt(n.nes_days))}. `+
+    `Tahmin edilen maçların günleri: ${esc(fmt(n.fix_days))}. `+
+    `Nesine'de bulunmayan maçlar için oran gösterilmez ve bu maçlarla kupon kurulmaz.`;
+}
+
 function nesTime(){
   try{
     const f = new Date(D.nesine.fetched);
@@ -508,6 +521,7 @@ $('#q').addEventListener('input', e=>{ state.q = e.target.value; render(); });
 $('#lg').addEventListener('change', e=>{ state.lg = e.target.value; render(); });
 $('#rec').addEventListener('change', e=>{ state.rec = e.target.checked; render(); });
 
+nesBanner();
 renderCoupons();
 renderYesterday();
 renderPerf();
