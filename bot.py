@@ -39,6 +39,23 @@ from scipy.stats import poisson
 BASE = "https://www.football-data.co.uk"
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
+
+def _now_tr():
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("Europe/Istanbul"))
+    except Exception:  # noqa: BLE001
+        return datetime.utcnow() + timedelta(hours=3)
+
+
+def today_tr():
+    """Bugünün tarihi, Türkiye saatiyle (Actions sunucusu UTC'dedir, gece yarısı civarında gün kayar)."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("Europe/Istanbul")).date()
+    except Exception:  # noqa: BLE001
+        return (datetime.utcnow() + timedelta(hours=3)).date()
+
 LEAGUES = {
     "E0": "İngiltere Premier Lig", "E1": "İngiltere Championship",
     "E2": "İngiltere League One", "E3": "İngiltere League Two",
@@ -92,7 +109,7 @@ def fetch(url, dest, force):
 
 def update(leagues=None):
     DATA_DIR.mkdir(exist_ok=True)
-    seasons = season_codes(date.today())
+    seasons = season_codes(today_tr())
     current = seasons[-1]
     leagues = leagues or list(LEAGUES)
     ok = 0
@@ -350,7 +367,7 @@ def print_prediction(home, away, p, mkt=None):
 def collect(leagues, days):
     """Önümüzdeki günlerin maçları için (satır, tahmin, piyasa) listesi."""
     fx = load_fixtures()
-    today = pd.Timestamp(date.today())
+    today = pd.Timestamp(today_tr())
     fx = fx[(fx["Date"] >= today) & (fx["Date"] <= today + timedelta(days=days))]
     if leagues:
         fx = fx[fx["Div"].isin(leagues)]
@@ -545,7 +562,7 @@ DEMO_TEAMS = {
 def demo_rows(days=3):
     """Kurgusal takımlarla örnek veri (gerçek maç değildir)."""
     rng = np.random.default_rng(11)
-    today = pd.Timestamp(date.today())
+    today = pd.Timestamp(today_tr())
     rows = []
     for div, names in DEMO_TEAMS.items():
         n = len(names)
@@ -625,7 +642,7 @@ def _legs(r, p):
 def build_coupons(out_rows):
     """Günün maçlarından, toplam oranı COUPON_MIN_ODDS ve üzeri olan ve modele göre en çok tutması
     beklenen kupon; her kupon farklı maçlardan oluşur. Maçlar birbirinden bağımsız varsayılır."""
-    today = pd.Timestamp(date.today())
+    today = pd.Timestamp(today_tr())
     by_day = {}
     for k, (r, p, _) in enumerate(out_rows):
         legs = _legs(r, p)
@@ -641,7 +658,32 @@ def build_coupons(out_rows):
         if nearest is None:           # çıkmadıysa: güvenilir seçeneklerle ulaşılabilen en yüksek toplam oran
             best = sorted((max(l[2] for l in t[2]) for t in by_day[day]), reverse=True)[:COUPON_LEGS]
             nearest = {"date": day.strftime("%Y-%m-%d"), "list": [], "max_odds": round(math.prod(best), 2)}
+    nearest = nearest or {"date": today.strftime("%Y-%m-%d"), "list": []}
+    nearest["diag"] = _coupon_diag(out_rows, today)
     return nearest
+
+
+def _coupon_diag(out_rows, today):
+    """Kupon çıkmadığında nedenini göstermek için: kaç maç elendi, nerede."""
+    d = {"matches": 0, "nesine": 0, "mbs": 0, "eligible": 0, "days": {}}
+    for r, p, _ in out_rows:
+        day = r["Date"].normalize()
+        if day < today:
+            continue
+        d["matches"] += 1
+        nes, act = _nes_of(r)
+        if act:
+            if not nes:
+                continue
+            d["nesine"] += 1
+            if (nes.get("mbs") or 1) > COUPON_LEGS:
+                d["mbs"] += 1
+                continue
+        if _legs(r, p):
+            d["eligible"] += 1
+            k = day.strftime("%Y-%m-%d")
+            d["days"][k] = d["days"].get(k, 0) + 1
+    return d
 
 
 def _best_combo(items):
@@ -749,7 +791,7 @@ def _grade_day(day, entry, idx):
 def yesterday_report(hist, today=None):
     """En son geçmiş kupon gününün sonuçları ve tüm kayıtlı günlerin toplam tutma sayısı."""
     log = _load_log()
-    today = today or date.today().strftime("%Y-%m-%d")
+    today = today or today_tr().strftime("%Y-%m-%d")
     days = sorted(d for d in log if d < today)
     if not days or hist is None or not len(hist):
         return None
@@ -898,7 +940,7 @@ def _poisson_probs(lh, la):
 def demo_history():
     """Kurgusal geçmiş sonuçlar ve piyasa oranları (sadece demo için)."""
     rng = np.random.default_rng(5)
-    today = pd.Timestamp(date.today())
+    today = pd.Timestamp(today_tr())
     rows = []
     for div, names in DEMO_TEAMS.items():
         n = len(names)
@@ -934,7 +976,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None):
             "xg": [round(p["xg_h"], 2), round(p["xg_a"], 2)],
             "nes": bool(nes), "mbs": (nes or {}).get("mbs"),
             "markets": build_markets(p, r)})
-    return {"generated": datetime.now().strftime("%d.%m.%Y %H:%M"), "demo": demo,
+    return {"generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
             "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS,
             "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
