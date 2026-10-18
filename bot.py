@@ -452,7 +452,7 @@ def cmd_predict(leagues, days):
 # --------------------------------------------------------------------------
 # Marketler ve renk sınıflaması (web sayfası için)
 # --------------------------------------------------------------------------
-GREEN_P = 0.60        # bu olasılık ve üstü: önerilir (yeşil)
+GREEN_P = 0.55        # bu olasılık ve üstü: önerilir (yeşil)
 ORANGE_P = 0.35       # bunun altı: önerilmez (kırmızı), arası riskli (turuncu)
 
 
@@ -584,7 +584,7 @@ def demo_rows(days=3):
 
 COUPON_LEGS = 3        # kupondaki maç sayısı
 COUPON_MIN_ODDS = 3.0  # toplam oran en az bu kadar olmalı
-COUPON_MIN_P = 0.60    # kupona girecek her seçeneğin model olasılığı en az bu kadar
+COUPON_MIN_P = 0.55    # kupona girecek her seçeneğin model olasılığı en az bu kadar
 N_COUPONS = 4
 
 
