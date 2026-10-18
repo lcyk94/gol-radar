@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gol Radar</title>
+<style>
+:root{
+  --bg:#edf0f4; --card:#fff; --ink:#13202f; --mut:#586878; --line:#d8dfe7;
+  --navy:#0e2339; --band:#dde4ec; --soft:#f7f9fc;
+  --g:#16864a; --gt:#fff;      /* önerilen */
+  --o:#f2a33a; --ot:#2a1800;   /* riskli */
+  --r:#c9474d; --rt:#fff;      /* önerilmez */
+  --cell:56px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+
+.top{background:var(--navy);color:#fff;padding:14px 0}
+.top .wrap{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+h1{margin:0;font-size:22px;font-weight:800;letter-spacing:.2px}
+.sub{margin:0;color:#9db2c8;font-size:14px}
+#gen{margin-left:auto;color:#9db2c8;font-size:13px}
+.demo{background:#fff3cf;color:#4a3600;border-bottom:1px solid #e8cf86;padding:8px 0;font-size:14px}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px 10px;padding:14px 0 8px;align-items:center}
+input[type=search],select{height:38px;border:1px solid var(--line);border-radius:6px;
+  padding:0 10px;background:#fff;font:inherit;color:inherit}
+input[type=search]{flex:1 1 200px;min-width:0}
+.dates{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;flex:1 1 100%}
+.dchip{border:1px solid var(--line);background:#fff;border-radius:999px;height:32px;
+  padding:0 13px;font:inherit;cursor:pointer;white-space:nowrap;color:inherit}
+.dchip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
+label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut);cursor:pointer}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;padding:6px 0 12px;font-size:13px;color:var(--mut)}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:14px;height:14px;border-radius:3px;flex:none}
+
+.t-g{background:var(--g);color:var(--gt)}
+.t-o{background:var(--o);color:var(--ot)}
+.t-r{background:var(--r);color:var(--rt)}
+
+.cols{display:grid;grid-template-columns:54px minmax(0,1fr) repeat(6,var(--cell)) 40px;
+  gap:0 4px;align-items:center}
+.band{background:var(--band);padding:6px 10px;font-size:13px;font-weight:600;border-top:1px solid var(--line)}
+.band .bt{grid-column:1 / 3}
+.band .hd{text-align:center;color:var(--mut);font-size:12px}
+.row{padding:8px 10px;background:var(--card);border-top:1px solid var(--line);cursor:pointer}
+.row:hover{background:#f4f8fc}
+.row[aria-expanded=true]{background:#eef4fb}
+.row:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px}
+.time{color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
+.teams b,.teams span.tn{display:block;font-weight:600}
+.teams span.tn{font-weight:400}
+.pill{display:inline-block;margin-top:3px;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600}
+.q{display:flex;align-items:center;justify-content:center;height:36px;border-radius:5px;
+  font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
+.q.fair{font-style:italic;font-weight:600}
+.more{text-align:center;color:var(--mut);font-size:13px;font-weight:600}
+
+.panel{background:var(--soft);border-top:1px solid var(--line);padding:12px 10px 14px;
+  animation:open .14s ease-out}
+@keyframes open{from{opacity:0;transform:translateY(-4px)}}
+.panel h3,.mk h4{margin:0 0 6px;font-size:14px}
+.rcs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.rc{border-radius:6px;padding:5px 9px;font-size:13px;font-variant-numeric:tabular-nums}
+.rc em{font-style:normal;opacity:.88;margin-right:5px}
+.none{margin:0 0 6px;color:var(--mut);font-size:14px}
+.xg{color:var(--mut);font-size:13px;margin:0 0 12px}
+.mks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.mk{background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px}
+.sels{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:5px}
+.sel{border-radius:5px;padding:5px 6px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;min-height:58px;font-variant-numeric:tabular-nums}
+.sel .sl{font-size:12px;opacity:.92;text-align:center}
+.sel b{font-size:16px;line-height:1.25}
+.sel i{font-style:normal;font-size:12px;opacity:.92}
+.sel.fair b{font-style:italic;font-weight:600}
+.warn{font-size:11px;text-align:center;line-height:1.2;margin-top:2px}
+.fine{color:var(--mut);font-size:12.5px;margin:12px 0 0}
+
+#coupons{padding:16px 0 4px}
+#coupons h2{margin:0 0 4px;font-size:18px}
+.cn{margin:0 0 12px;color:var(--mut);font-size:14px;max-width:76ch}
+.cps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.cp{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.cp h3{margin:0;padding:8px 12px;background:var(--navy);color:#fff;font-size:14px}
+.cp ul{list-style:none;margin:0;padding:0}
+.lgb{display:grid;grid-template-columns:42px minmax(0,1fr) 78px;gap:0 8px;align-items:center;
+  width:100%;text-align:left;border:0;border-top:1px solid var(--line);background:#fff;
+  padding:8px 12px;font:inherit;color:inherit;cursor:pointer}
+.cp li:first-child .lgb{border-top:0}
+.lgb:hover{background:#f4f8fc}
+.lgb:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px}
+.lgb .lt{color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
+.lgb .ln{min-width:0;font-size:14px}
+.lgb .ln b,.lgb .ln span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lgb .ln span{font-weight:400}
+.lgb .ls{border-radius:5px;padding:3px 0;text-align:center;font-size:12px;
+  font-variant-numeric:tabular-nums}
+.lgb .ls b{display:block;font-size:15px;line-height:1.2}
+.tot{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:2px solid var(--line);
+  background:var(--soft)}
+.tot div{padding:8px 6px;text-align:center}
+.tot dt{font-size:11.5px;color:var(--mut)}
+.tot dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.cnote{color:var(--mut);font-size:12.5px;margin:10px 0 0;max-width:80ch}
+.empty{background:#fff;border:1px dashed var(--line);border-radius:6px;padding:28px 16px;
+  text-align:center;color:var(--mut)}
+.foot{padding:22px 0 44px;color:var(--mut);font-size:13px;max-width:72ch}
+
+@media (max-width:760px){
+  .cols{grid-template-columns:44px minmax(0,1fr) repeat(3,50px) 30px}
+  .x{display:none}
+  :root{--cell:50px}
+}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>Gol Radar</h1>
+  <p class="sub">İstatistik modelinin maç tahminleri</p>
+  <span id="gen"></span>
+</div></header>
+<div id="demo" class="demo" hidden><div class="wrap"><b>Örnek veri.</b> Takımlar ve oranlar kurgusaldır, gerçek bir maça ait değildir. Gerçek sayfa için <code>python bot.py site</code> çalıştır.</div></div>
+
+<main class="wrap">
+  <section id="coupons" aria-label="Günün kuponları"></section>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Takım ya da lig ara" aria-label="Takım ya da lig ara">
+    <select id="lg" aria-label="Lig"></select>
+    <label class="tg"><input id="rec" type="checkbox"> Sadece önerisi olan maçlar</label>
+    <div class="dates" id="dates" role="group" aria-label="Tarih"></div>
+  </div>
+  <div class="legend" id="legend"></div>
+  <div id="list"></div>
+  <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Hiçbir tahmin kazanç garantisi vermez. <i>~</i> ile başlayan oranlar bahis sitesinin değil, modelin olasılığından hesaplanan adil orandır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
+</main>
+
+<script>
+(function(){
+const D = /*__DATA__*/null;
+if(!D){document.body.innerHTML='<p style="padding:24px">Veri bulunamadı. Sayfayı <code>python bot.py site</code> ile üret.</p>';return;}
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct = p => Math.round(p*100);
+const state = {q:'', lg:'', date:'', rec:false, open:new Set()};
+
+$('#gen').textContent = 'Güncelleme: ' + D.generated;
+if(D.demo) $('#demo').hidden = false;
+
+const G = pct(D.green), O = pct(D.orange);
+$('#legend').innerHTML =
+  `<span><i class="sw t-g"></i>Önerilen: model %${G} ve üzeri görüyor, ya da %50 üzeri görüp oran değerli</span>`+
+  `<span><i class="sw t-o"></i>Riskli: %${O} ile %${G} arası, ya da oran olasılığa göre düşük</span>`+
+  `<span><i class="sw t-r"></i>Önerilmez: %${O} altı</span>`;
+
+const fmtLong = iso => new Date(iso+'T12:00:00').toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long'});
+const fmtChip = iso => {
+  const d = new Date(iso+'T12:00:00');
+  return d.toDateString()===new Date().toDateString() ? 'Bugün'
+    : d.toLocaleDateString('tr-TR',{weekday:'short',day:'numeric',month:'short'});
+};
+
+const leagues = [...new Set(D.matches.map(m=>m.league))].sort((a,b)=>a.localeCompare(b,'tr'));
+$('#lg').innerHTML = '<option value="">Tüm ligler</option>' + leagues.map(l=>`<option>${esc(l)}</option>`).join('');
+const dates = [...new Set(D.matches.map(m=>m.date))].sort();
+
+const mk = (m,n) => m.markets.find(x=>x.name===n);
+const oddsText = s => {
+  if(s.o) return s.o.toFixed(2);
+  const f = 1/Math.max(s.p,0.0001);
+  return '~' + (f>=100 ? '99+' : f.toFixed(2));
+};
+const tip = s => `${s.l}: model olasılığı %${pct(s.p)}` +
+  (s.o ? `, oran ${s.o.toFixed(2)}` : `, adil oran ~${(1/Math.max(s.p,0.0001)).toFixed(2)} (model hesabı)`) +
+  (s.n ? `. ${s.n}` : '');
+const qcell = (s,x) => `<span class="q t-${s.t}${s.o?'':' fair'}${x?' x':''}" title="${esc(tip(s))}">${oddsText(s)}</span>`;
+
+function recs(m){
+  const out = [];
+  m.markets.forEach(k=>{
+    if(k.name==='Çifte Şans') return;
+    k.sels.forEach(s=>{ if(s.t==='g') out.push({k:k.name,s}); });
+  });
+  return out.sort((a,b)=>b.s.p-a.s.p);
+}
+
+function panel(m){
+  const r = recs(m);
+  const top = r.slice(0,5).map(x=>
+    `<span class="rc t-g"><em>${esc(x.k)}</em>${esc(x.s.l)} <b>%${pct(x.s.p)}</b></span>`).join('');
+  const cards = m.markets.map(k=>`<section class="mk"><h4>${esc(k.name)}</h4><div class="sels">`+
+    k.sels.map(s=>`<div class="sel t-${s.t}${s.o?'':' fair'}" title="${esc(tip(s))}">`+
+      `<span class="sl">${esc(s.l)}</span><b>${oddsText(s)}</b><i>%${pct(s.p)}</i>`+
+      (s.n?`<span class="warn">${esc(s.n)}</span>`:'')+`</div>`).join('')+
+    `</div></section>`).join('');
+  return `<div class="panel">`+
+    `<h3>Botun önerileri</h3>`+
+    (r.length ? `<div class="rcs">${top}</div>` :
+      `<p class="none">Bu maçta güçlü bir öneri yok. Oynamamak da bir karardır.</p>`)+
+    `<p class="xg">Beklenen gol: ${esc(m.home)} ${m.xg[0].toFixed(2)}, ${esc(m.away)} ${m.xg[1].toFixed(2)}</p>`+
+    `<div class="mks">${cards}</div>`+
+    `<p class="fine">İlk yarı ve oyuncu bahisleri bu modelde yok.</p></div>`;
+}
+
+function render(){
+  const q = state.q.toLocaleLowerCase('tr');
+  const list = D.matches.filter(m=>
+    (!state.lg || m.league===state.lg) &&
+    (!state.date || m.date===state.date) &&
+    (!q || (m.home+' '+m.away+' '+m.league).toLocaleLowerCase('tr').includes(q)) &&
+    (!state.rec || recs(m).length>0))
+    .sort((a,b)=> a.date.localeCompare(b.date) || a.league.localeCompare(b.league,'tr') || a.time.localeCompare(b.time));
+
+  $('#dates').innerHTML = [['','Tümü'],...dates.map(d=>[d,fmtChip(d)])].map(([v,t])=>
+    `<button class="dchip" data-d="${v}" aria-pressed="${state.date===v}">${esc(t)}</button>`).join('');
+
+  if(!list.length){
+    $('#list').innerHTML = `<div class="empty">${D.matches.length ? 'Filtreye uyan maç yok. Aramayı ya da lig seçimini temizle.' : 'Bu aralıkta maç bulunamadı.'}</div>`;
+    return;
+  }
+  let html = '', last = '';
+  list.forEach(m=>{
+    const key = m.date+'|'+m.league;
+    if(key!==last){
+      html += `<div class="band cols"><span class="bt">${esc(fmtLong(m.date))}, ${esc(m.league)}</span>`+
+        `<span class="hd">1</span><span class="hd">X</span><span class="hd">2</span>`+
+        `<span class="hd x">Alt</span><span class="hd x">Üst</span><span class="hd x">KG Var</span><span></span></div>`;
+      last = key;
+    }
+    const ms = mk(m,'Maç Sonucu').sels, ou = mk(m,'Alt/Üst 2.5').sels, kg = mk(m,'Karşılıklı Gol').sels;
+    const total = m.markets.reduce((a,k)=>a+k.sels.length,0) - 6;
+    const open = state.open.has(m.id), nr = recs(m).length;
+    html += `<div class="m"><div class="row cols" role="button" tabindex="0" data-id="${m.id}" aria-expanded="${open}">`+
+      `<span class="time">${esc(m.time)}</span>`+
+      `<span class="teams"><b>${esc(m.home)}</b><span class="tn">${esc(m.away)}</span>`+
+        (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+`</span>`+
+      ms.map(s=>qcell(s)).join('')+qcell(ou[0],1)+qcell(ou[1],1)+qcell(kg[0],1)+
+      `<span class="more">${open?'Kapat':'+'+total}</span></div>`+
+      (open?panel(m):'')+`</div>`;
+  });
+  $('#list').innerHTML = html;
+}
+
+function renderCoupons(){
+  const c = D.coupons, el = $('#coupons');
+  if(!c || !c.list.length){
+    el.innerHTML = '<h2>Günün kuponları</h2><div class="empty">Kupon için oranı olan en az 4 maç bulunamadı.</div>';
+    return;
+  }
+  el.innerHTML = `<h2>Günün kuponları</h2>`+
+    `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az 5 olan kuponlar. `+
+    `Her kuponda 4 maç var ve dördü de tutmalı. Model bu kuponları, hepsinin birden tutma olasılığı en yüksek olacak şekilde seçti.</p>`+
+    `<div class="cps">`+ c.list.map((k,i)=>
+      `<article class="cp"><h3>Kupon ${i+1}</h3><ul>`+
+      k.legs.map(l=>
+        `<li><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
+        `<span class="lt">${esc(l.time)}</span>`+
+        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span></span>`+
+        `<span class="ls t-${l.t}">${esc(l.sel)}<b>${l.o.toFixed(2)}</b></span></button></li>`).join('')+
+      `</ul><dl class="tot">`+
+      `<div><dt>Toplam oran</dt><dd>${k.odds.toFixed(2)}</dd></div>`+
+      `<div><dt>Tutma olasılığı</dt><dd>%${(k.p*100).toFixed(k.p<0.1?1:0)}</dd></div>`+
+      `<div><dt>Beklenen değer</dt><dd>${k.ev.toFixed(2)}</dd></div></dl></article>`).join('')+
+    `</div>`+
+    `<p class="cnote">Kuponlara sadece bahis sitesi oranı olan seçenekler (MS 1/X/2 ve Alt/Üst 2.5) girer. `+
+    `Dört maçı birden tutturmak zordur: tutma olasılığı toplam oran 5 ve üzeri olduğu için çoğu zaman %20'yi geçmez.`+
+    `Beklenen değer 1'in altındaysa, model doğru olsa bile bu kuponu uzun vadede oynayan kaybeder.</p>`;
+}
+
+function toggle(id){
+  state.open.has(id) ? state.open.delete(id) : state.open.add(id);
+  render();
+  const el = document.querySelector(`.row[data-id="${id}"]`);
+  if(el) el.focus({preventScroll:true});
+}
+
+$('#list').addEventListener('click', e=>{
+  const r = e.target.closest('.row'); if(r) toggle(+r.dataset.id);
+});
+$('#list').addEventListener('keydown', e=>{
+  if(e.key!=='Enter' && e.key!==' ') return;
+  const r = e.target.closest('.row'); if(r){ e.preventDefault(); toggle(+r.dataset.id); }
+});
+$('#coupons').addEventListener('click', e=>{
+  const b = e.target.closest('.lgb'); if(!b) return;
+  const id = +b.dataset.id;
+  Object.assign(state,{q:'',lg:'',date:'',rec:false});
+  $('#q').value=''; $('#lg').value=''; $('#rec').checked=false;
+  state.open.add(id); render();
+  const el = document.querySelector(`.row[data-id="${id}"]`);
+  if(el){ el.scrollIntoView({block:'start'}); el.focus({preventScroll:true}); }
+});
+$('#dates').addEventListener('click', e=>{
+  const b = e.target.closest('.dchip'); if(b){ state.date = b.dataset.d; render(); }
+});
+$('#q').addEventListener('input', e=>{ state.q = e.target.value; render(); });
+$('#lg').addEventListener('change', e=>{ state.lg = e.target.value; render(); });
+$('#rec').addEventListener('change', e=>{ state.rec = e.target.checked; render(); });
+
+renderCoupons();
+render();
+})();
+</script>
+</body>
+</html>
