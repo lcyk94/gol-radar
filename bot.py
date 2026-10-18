@@ -90,21 +90,34 @@ def season_codes(today, n=3):
             for k in range(n - 1, -1, -1)]
 
 
-def fetch(url, dest, force):
+_FAILS = {"n": 0}      # üst üste başarısız indirme sayısı (sunucu yanıt vermiyorsa vakit kaybetme)
+
+
+def fetch(url, dest, force, tries=2, timeout=45):
+    """İndirir. Başarısız olursa daha önce indirilmiş kopya varsa onu kullanır (True döner)."""
     if dest.exists() and not force:
         return True
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = r.read()
-        if data.lstrip()[:5].lower() in (b"<html", b"<!doc"):
-            print(f"  ! veri yerine web sayfası geldi: {url}")
-            return False
-        dest.write_bytes(data)
+    if _FAILS["n"] >= 6:
+        print(f"  ! atlandı (sunucu yanıt vermiyor): {url}")
+        return dest.exists()
+    for k in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = r.read()
+            if data.lstrip()[:5].lower() in (b"<html", b"<!doc"):
+                print(f"  ! veri yerine web sayfası geldi: {url}")
+                break
+            dest.write_bytes(data)
+            _FAILS["n"] = 0
+            return True
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! indirilemedi ({k + 1}/{tries}): {url} ({e})")
+    _FAILS["n"] += 1
+    if dest.exists():
+        print(f"    eski kopya kullanılıyor: {dest.name}")
         return True
-    except Exception as e:  # noqa: BLE001
-        print(f"  ! indirilemedi: {url} ({e})")
-        return False
+    return False
 
 
 def update(leagues=None):
@@ -118,7 +131,8 @@ def update(leagues=None):
             dest = DATA_DIR / f"{div}_{s}.csv"
             if fetch(f"{BASE}/mmz4281/{s}/{div}.csv", dest, force=(s == current)):
                 ok += 1
-    fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True)
+    _FAILS["n"] = 0
+    fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True, tries=4, timeout=60)
     print(f"{ok} sonuç dosyası hazır, fikstür: {'tamam' if fx_ok else 'İNDİRİLEMEDİ'}. "
           f"Veri klasörü: {DATA_DIR}")
     if ok == 0 or not fx_ok:
@@ -436,7 +450,13 @@ def attach_nesine(rows):
     if un:
         print("  Nesine'de olup eşleşmeyen büyük lig maçları:",
               "; ".join(f"{m['date']} {m['home']} - {m['away']} ({m['league']})" for m in un[:30]))
-    info = {"fetched": data["fetched"], "matched": n_ok, "total": len(rows),
+    from collections import Counter
+    nd = Counter(m["date"] for m in data["matches"] if not m.get("skip"))
+    fd = Counter(r["Date"].strftime("%Y-%m-%d") for r, _, _ in rows)
+    print("  Nesine bülteninde günlere göre maç:", dict(sorted(nd.items())))
+    print("  Fikstürde günlere göre maç:", dict(sorted(fd.items())))
+    info = {"nes_days": dict(sorted(nd.items())), "fix_days": dict(sorted(fd.items())),
+            "fetched": data["fetched"], "matched": n_ok, "total": len(rows),
             "margin_nes": float(np.mean(m_nes)) if m_nes else None,
             "margin_euro": float(np.mean(m_eur)) if m_eur else None}
     return out, info
