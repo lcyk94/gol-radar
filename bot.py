@@ -397,21 +397,16 @@ def cmd_predict(leagues, days):
 # --------------------------------------------------------------------------
 # Marketler ve renk sınıflaması (web sayfası için)
 # --------------------------------------------------------------------------
-GREEN_P = 0.60        # bu olasılık ve üstü: öner (oran düşük değilse)
-GREEN_VALUE_P = 0.50  # oran biliniyorsa: bu olasılık + değerli oran: öner
-ORANGE_P = 0.35       # bunun altı: önerilmez (kırmızı)
+GREEN_P = 0.60        # bu olasılık ve üstü: önerilir (yeşil)
+ORANGE_P = 0.35       # bunun altı: önerilmez (kırmızı), arası riskli (turuncu)
 
 
 def tier(p, odds=None):
-    """g = önerilir (yeşil), o = riskli (turuncu), r = önerilmez (kırmızı)."""
-    value = p * odds if odds else None
-    if p >= GREEN_P or (value is not None and p >= GREEN_VALUE_P and value >= 1.05):
-        if value is not None and value < 0.97:
-            return "o", "oran düşük, değer yok"
-        return "g", ""
-    if p >= ORANGE_P:
-        return "o", ""
-    return "r", ""
+    """g = önerilir (yeşil), o = riskli (turuncu), r = önerilmez (kırmızı).
+    Renk sadece model olasılığına bağlı. Oran düşükse renk değişmez, uyarı notu eklenir."""
+    t = "g" if p >= GREEN_P else ("o" if p >= ORANGE_P else "r")
+    note = "oran düşük, değer yok" if (odds and t == "g" and p * odds < 0.97) else ""
+    return t, note
 
 
 def _num(row, *keys):
@@ -523,6 +518,7 @@ def demo_rows(days=3):
 
 COUPON_LEGS = 4        # kupondaki maç sayısı
 COUPON_MIN_ODDS = 5.0  # toplam oran en az bu kadar olmalı
+COUPON_MIN_P = 0.60    # kupona girecek her seçeneğin model olasılığı en az bu kadar
 N_COUPONS = 4
 
 
@@ -539,6 +535,8 @@ def _legs(r, p):
         legs.append(("Üst 2.5", p["over25"], ov))
     if un:
         legs.append(("Alt 2.5", 1 - p["over25"], un))
+    # sadece listede de yeşil görünen seçenekler girer (turuncu/kırmızı girmez)
+    legs = [l for l in legs if l[1] >= COUPON_MIN_P and tier(l[1], l[2])[0] == "g"]
     return sorted(legs, key=lambda x: -x[1])[:3]
 
 
@@ -551,11 +549,17 @@ def build_coupons(out_rows):
         legs = _legs(r, p)
         if legs:
             by_day.setdefault(r["Date"].normalize(), []).append((k, r, legs))
-    day = next((d for d in sorted(by_day)
-                if d >= today and len(by_day[d]) >= COUPON_LEGS), None)
-    if day is None:
-        return None
-    cands = sorted(by_day[day], key=lambda t: -t[2][0][1])[:24]
+    for day in sorted(d for d in by_day if d >= today):
+        if len(by_day[day]) < COUPON_LEGS:
+            continue
+        res = _coupons_for_day(day, by_day[day])
+        if res["list"]:               # kupon çıkan ilk günü göster
+            return res
+    return None
+
+
+def _coupons_for_day(day, items):
+    cands = sorted(items, key=lambda t: -t[2][0][1])[:24]
 
     def gen():
         for combo in itertools.combinations(cands, COUPON_LEGS):
