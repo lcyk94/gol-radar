@@ -98,7 +98,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .lgb:focus-visible,.oi:focus-visible,.rst:focus-visible{outline:3px solid #2f6fd6;outline-offset:-1px}
 .lgb .lt{color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
 .lgb .ln{min-width:0;font-size:14px}
-.lgb .ln b,.lgb .ln span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lgb .ln b,.lgb .ln span,.lgb .ln small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lgb .ln span{font-weight:400}
 .ls{border-radius:5px;padding:3px 4px 4px;display:flex;flex-direction:column;align-items:center;
   font-size:12px;font-variant-numeric:tabular-nums}
@@ -110,6 +110,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .rst{display:block;width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);
   padding:7px 12px;font:inherit;font-size:13px;color:#1f4f9c;cursor:pointer;text-align:left}
 .rst:hover{text-decoration:underline}
+.rst[hidden],.cw[hidden]{display:none}
 .tot{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:2px solid var(--line);
   background:var(--soft)}
 .tot div{padding:8px 6px;text-align:center}
@@ -117,6 +118,31 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .tot dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
 .cnote{color:var(--mut);font-size:12.5px;margin:10px 0 0;max-width:80ch}
 .pill.np{background:#e3e8ee;color:#44546a}
+
+.cpgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:0 18px;align-items:start}
+@media (min-width:900px){
+  .cpgrid{grid-template-columns:300px minmax(0,1fr);grid-template-areas:"y c"}
+  #yday{grid-area:y}#coupons{grid-area:c}
+  .cpgrid .cps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+#yday{padding:16px 0 4px}
+#yday h2{margin:0 0 4px;font-size:18px}
+.yn{margin:0 0 10px;color:var(--mut);font-size:13.5px}
+.yc{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:10px}
+.yc h3{margin:0;padding:7px 10px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px;color:#fff}
+.yc.won h3{background:var(--g)}.yc.lost h3{background:var(--r)}.yc.pending h3{background:#6b7b8e}
+.yc ul{list-style:none;margin:0;padding:0}
+.yc li{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:0 7px;align-items:center;
+  padding:6px 10px;border-top:1px solid var(--line);font-size:13px}
+.yc li:first-child{border-top:0}
+.yk{font-weight:800;text-align:center}
+.yk.y{color:var(--g)}.yk.n{color:var(--r)}.yk.u{color:var(--mut)}
+.ym{min-width:0}.ym b,.ym span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ym span{font-weight:400;color:var(--mut);font-size:12px}
+.ys{text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
+.ys b{display:block;font-size:13px}
+.lg{display:block;font-size:11.5px;color:var(--mut);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ytot{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--mut)}
 #perf{padding:22px 0 4px}
 #perf h2{margin:0 0 4px;font-size:18px}
 .pv{margin:0 0 12px;font-size:15px;max-width:76ch}
@@ -155,7 +181,10 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 <div id="demo" class="demo" hidden><div class="wrap"><b>Örnek veri.</b> Takımlar ve oranlar kurgusaldır, gerçek bir maça ait değildir. Gerçek sayfa için <code>python bot.py site</code> çalıştır.</div></div>
 
 <main class="wrap">
-  <section id="coupons" aria-label="Günün kuponları"></section>
+  <div class="cpgrid">
+    <section id="coupons" aria-label="Günün kuponları"></section>
+    <aside id="yday" aria-label="Dünün kuponlarının sonuçları"></aside>
+  </div>
   <div class="tools">
     <input id="q" type="search" placeholder="Takım ya da lig ara" aria-label="Takım ya da lig ara">
     <select id="lg" aria-label="Lig"></select>
@@ -316,7 +345,7 @@ function renderCoupons(){
         const ov = parseOdds(LS.get(okey(c,l))), cur = ov || l.o;
         return `<li class="lgr"><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
         `<span class="lt">${esc(l.time)}</span>`+
-        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span></span></button>`+
+        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span><small class="lg">${esc(l.league||'')}</small></span></button>`+
         `<label class="ls t-${l.t}">${esc(l.sel)}`+
         `<input class="oi" type="text" inputmode="decimal" autocomplete="off" value="${cur.toFixed(2)}" `+
         `data-key="${esc(okey(c,l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label></li>`;
@@ -338,6 +367,26 @@ function renderCoupons(){
     `${NUMW[0].toLocaleUpperCase('tr')+NUMW.slice(1)} maçı birden tutturmak zordur: kuponun tutma olasılığı, tek tek olasılıkların çarpımıdır ve her zaman en düşük olandan küçüktür. `+
     `Beklenen değer 1'in altındaysa, model doğru olsa bile bu kuponu uzun vadede oynayan kaybeder.</p>`+marginNote();
   el.querySelectorAll('.cp').forEach(recalc);
+}
+
+function renderYesterday(){
+  const y = D.yesterday, el = $('#yday');
+  if(!y || !y.list || !y.list.length){
+    el.innerHTML = '<h2>Dünün kuponları</h2><div class="empty">Henüz sonucu görülecek önceki gün kuponu yok. Bot kuponları her gün kaydeder, ertesi gün sonuçları burada görünür.</div>';
+    return;
+  }
+  const W = {won:'Tuttu', lost:'Tutmadı', pending:'Bekleniyor'}, t = y.total || {};
+  el.innerHTML = '<h2>Dünün kuponları</h2>'+
+    `<p class="yn">${esc(fmtLong(y.date))} için önerilen kuponlar ve gerçekleşen sonuçlar.</p>`+
+    y.list.map((k,i)=>
+      `<article class="yc ${k.status}"><h3><span>Kupon ${i+1}</span><span>${W[k.status]} · ${k.odds.toFixed(2)}</span></h3><ul>`+
+      k.legs.map(l=>
+        `<li><span class="yk ${l.ok===true?'y':l.ok===false?'n':'u'}" title="${l.ok===true?'Tuttu':l.ok===false?'Tutmadı':'Sonuç yok'}">${l.ok===true?'✓':l.ok===false?'✗':'?'}</span>`+
+        `<span class="ym"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.league||'')}</span></span>`+
+        `<span class="ys"><b>${esc(l.sel)}</b>${l.score?esc(l.score):'sonuç yok'}</span></li>`).join('')+
+      `</ul></article>`).join('')+
+    `<p class="ytot">Bugüne kadar kayıtlı ${t.days} günde: ${t.won} kupon tuttu, ${t.lost} tutmadı`+
+    (t.pending?`, ${t.pending} sonuç bekleniyor`:'')+`. Örnek sayısı az olduğu sürece bu rakama güvenme.</p>`;
 }
 
 function nesTime(){
@@ -452,6 +501,7 @@ $('#lg').addEventListener('change', e=>{ state.lg = e.target.value; render(); })
 $('#rec').addEventListener('change', e=>{ state.rec = e.target.checked; render(); });
 
 renderCoupons();
+renderYesterday();
 renderPerf();
 render();
 })();
