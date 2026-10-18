@@ -131,7 +131,8 @@ def _clean(df):
         df[c] = pd.to_numeric(df[c], errors="coerce")
     df = df.dropna(subset=["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"])
     cols = [c for c in KEEP + ODDS_COLS if c in df.columns]
-    return df[cols].sort_values("Date").reset_index(drop=True)
+    df = df[cols].drop_duplicates(subset=["Div", "Date", "HomeTeam", "AwayTeam"])
+    return df.sort_values("Date").reset_index(drop=True)
 
 
 def load_results(leagues=None):
@@ -157,7 +158,8 @@ def load_fixtures():
     df = _read(p)
     df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed",
                                 errors="coerce")
-    return df.dropna(subset=["Date", "HomeTeam", "AwayTeam"])
+    df = df.dropna(subset=["Date", "HomeTeam", "AwayTeam"])
+    return df.drop_duplicates(subset=["Div", "Date", "HomeTeam", "AwayTeam"])
 
 
 def raw_odds(row):
@@ -574,14 +576,27 @@ def _best_combo(items):
 
 def _coupons_for_day(day, items):
     """Her kupon farklı maçlardan oluşur: bir kupon seçilince o maçlar havuzdan çıkar."""
-    chosen, pool = [], list(items)
+    def key(t):                       # maçın kimliği: tarih + iki takım (sıra numarası değil)
+        r = t[1]
+        return (str(r["Date"])[:10], str(r["HomeTeam"]).strip().lower(),
+                str(r["AwayTeam"]).strip().lower())
+
+    chosen, pool, seen = [], [], set()
+    for t in items:                   # aynı maç iki satır olarak gelmişse biri atılır
+        if key(t) not in seen:
+            seen.add(key(t))
+            pool.append(t)
+    used_all = set()
     while len(chosen) < N_COUPONS and len(pool) >= COUPON_LEGS:
         best = _best_combo(pool)
         if best is None:
             break
         pr, od, combo, pick = best
-        used = {c[0] for c in combo}
-        pool = [t for t in pool if t[0] not in used]
+        used = {key(c) for c in combo}
+        if len(used) != COUPON_LEGS or (used & used_all):
+            break                     # tekrar eden maç olamaz; olursa kuponu eklemeden dur
+        used_all |= used
+        pool = [t for t in pool if key(t) not in used]
         legs = []
         for c, x in zip(combo, pick):
             r = c[1]
