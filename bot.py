@@ -698,6 +698,76 @@ def _coupons_for_day(day, items):
 
 
 # --------------------------------------------------------------------------
+# Önerilen kuponların kaydı ve ertesi gün sonuçlarının kontrolü
+# --------------------------------------------------------------------------
+COUPON_LOG = DATA_DIR / "kupon_gecmisi.json"
+
+
+def _load_log():
+    try:
+        return json.loads(COUPON_LOG.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001  dosya yok ya da bozuk: boş başla
+        return {}
+
+
+def save_coupons(coupons, keep_days=120):
+    """Sitede gösterilen kuponları gün adıyla kaydeder (aynı gün tekrar çalışırsa üzerine yazar)."""
+    if not coupons or not coupons.get("list"):
+        return
+    log = _load_log()
+    log[coupons["date"]] = {"list": [
+        {"odds": k["odds"], "p": k["p"],
+         "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p")}
+                  for l in k["legs"]]} for k in coupons["list"]]}
+    for d in sorted(log)[:-keep_days]:
+        del log[d]
+    COUPON_LOG.parent.mkdir(parents=True, exist_ok=True)
+    COUPON_LOG.write_text(json.dumps(log, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def _grade_day(day, entry, idx):
+    """Bir günün kuponlarını gerçek sonuçlarla değerlendirir. Maç ±1 gün toleransla aranır."""
+    d0 = pd.Timestamp(day)
+    out = []
+    for k in entry["list"]:
+        legs, bad, pend = [], False, False
+        for l in k["legs"]:
+            res = None
+            for dt, hg, ag in idx.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), []):
+                if abs((dt - d0).days) <= 1:
+                    res = (int(hg), int(ag))
+                    break
+            ok = None if res is None else _hit(l["sel"], *res)
+            bad |= ok is False
+            pend |= ok is None
+            legs.append({**l, "score": None if res is None else f"{res[0]}-{res[1]}", "ok": ok})
+        out.append({"odds": k["odds"], "p": k["p"], "legs": legs,
+                    "status": "lost" if bad else ("pending" if pend else "won")})
+    return out
+
+
+def yesterday_report(hist, today=None):
+    """En son geçmiş kupon gününün sonuçları ve tüm kayıtlı günlerin toplam tutma sayısı."""
+    log = _load_log()
+    today = today or date.today().strftime("%Y-%m-%d")
+    days = sorted(d for d in log if d < today)
+    if not days or hist is None or not len(hist):
+        return None
+    idx = {}
+    for dt, h, a, hg, ag in zip(hist["Date"], hist["HomeTeam"], hist["AwayTeam"], hist["FTHG"], hist["FTAG"]):
+        if pd.notna(hg) and pd.notna(ag):
+            idx.setdefault((str(h).strip().lower(), str(a).strip().lower()), []).append((dt, hg, ag))
+    tot = {"won": 0, "lost": 0, "pending": 0, "days": len(days)}
+    graded = {}
+    for d in days:
+        graded[d] = _grade_day(d, log[d], idx)
+        for k in graded[d]:
+            tot[k["status"]] += 1
+    last = days[-1]
+    return {"date": last, "list": graded[last], "total": tot}
+
+
+# --------------------------------------------------------------------------
 # Geriye dönük başarı ölçümü
 # --------------------------------------------------------------------------
 def _sel_list(p, hg, ag):
@@ -718,10 +788,17 @@ def _sel_list(p, hg, ag):
     return out
 
 
-def _leg_hit(r, sel):
-    hg, ag = r["FTHG"], r["FTAG"]
+def _hit(sel, hg, ag):
+    """Seçenek (kupondaki etiketiyle) skora göre tuttu mu; bilinmeyen etiket için None."""
+    t = hg + ag
     return {"MS 1": hg > ag, "MS X": hg == ag, "MS 2": hg < ag,
-            "Üst 2.5": hg + ag >= 3, "Alt 2.5": hg + ag < 3}[sel]
+            "1-X": hg >= ag, "1-2": hg != ag, "X-2": hg <= ag,
+            "Üst 2.5": t >= 3, "Alt 2.5": t < 3,
+            "KG Var": hg > 0 and ag > 0, "KG Yok": hg == 0 or ag == 0}.get(sel)
+
+
+def _leg_hit(r, sel):
+    return _hit(sel, r["FTHG"], r["FTAG"])
 
 
 def performance(hist, days=120, step=7):
@@ -843,7 +920,7 @@ def demo_history():
     return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
 
 
-def site_payload(out_rows, demo=False, perf=None, nes_info=None):
+def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None):
     matches = []
     for k, (r, p, _) in enumerate(out_rows):
         t = str(r.get("Time", "") or "")
@@ -861,7 +938,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None):
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
             "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS,
             "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
-            "coupons": build_coupons(out_rows), "performance": perf}
+            "coupons": build_coupons(out_rows), "yesterday": yday, "performance": perf}
 
 
 def write_site(payload, out="tahminler.html"):
@@ -895,7 +972,19 @@ def cmd_site(leagues, days, out, open_it, demo=False):
         except Exception as e:  # noqa: BLE001  Nesine kısmı sayfayı bozmasın
             print(f"  ! Nesine verisi kullanılamadı, Avrupa oranlarıyla devam: {e}")
             rows, nes_info = [(r, p, mk) for r, p, mk in rows], None
-    path = write_site(site_payload(rows, demo, perf, nes_info), out)
+    yday = None
+    if not demo:
+        try:
+            yday = yesterday_report(load_results())
+        except Exception as e:  # noqa: BLE001  dünkü kuponlar sayfayı bozmasın
+            print(f"  ! dünkü kupon sonuçları atlandı: {e}")
+    payload = site_payload(rows, demo, perf, nes_info, yday)
+    if not demo:
+        try:
+            save_coupons(payload["coupons"])
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! kupon kaydı yazılamadı: {e}")
+    path = write_site(payload, out)
     print(f"{len(rows)} maç yazıldı → {path}")
     if skipped:
         print(f"({skipped} maç atlandı: takımın yeterli geçmiş verisi yok)")
