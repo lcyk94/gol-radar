@@ -21,6 +21,7 @@ Kullanım:
 """
 import argparse
 import heapq
+import io
 import itertools
 import json
 import math
@@ -78,7 +79,11 @@ def fetch(url, dest, force):
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=30) as r:
-            dest.write_bytes(r.read())
+            data = r.read()
+        if data.lstrip()[:5].lower() in (b"<html", b"<!doc"):
+            print(f"  ! veri yerine web sayfası geldi: {url}")
+            return False
+        dest.write_bytes(data)
         return True
     except Exception as e:  # noqa: BLE001
         print(f"  ! indirilemedi: {url} ({e})")
@@ -96,13 +101,24 @@ def update(leagues=None):
             dest = DATA_DIR / f"{div}_{s}.csv"
             if fetch(f"{BASE}/mmz4281/{s}/{div}.csv", dest, force=(s == current)):
                 ok += 1
-    fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True)
-    print(f"{ok} dosya hazır. Veri klasörü: {DATA_DIR}")
+    fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True)
+    print(f"{ok} sonuç dosyası hazır, fikstür: {'tamam' if fx_ok else 'İNDİRİLEMEDİ'}. "
+          f"Veri klasörü: {DATA_DIR}")
+    if ok == 0 or not fx_ok:
+        sys.exit("Veri indirilemedi, yukarıdaki '!' satırlarına bak.")
 
 
 def _read(path):
-    df = pd.read_csv(path, encoding="latin-1", on_bad_lines="skip")
+    raw = path.read_bytes()
+    try:
+        text = raw.decode("utf-8-sig")      # BOM'u temizler
+    except UnicodeDecodeError:
+        text = raw.decode("latin-1")
+    df = pd.read_csv(io.StringIO(text), on_bad_lines="skip")
+    df.columns = [str(c).strip().lstrip("﻿") for c in df.columns]
     if "Div" not in df.columns:
+        if path.stem.startswith("fixtures"):
+            raise ValueError("fixtures dosyasında 'Div' sütunu yok")
         df["Div"] = path.stem.split("_")[0]
     return df
 
@@ -129,7 +145,8 @@ def load_results(leagues=None):
         except Exception as e:  # noqa: BLE001
             print(f"  ! okunamadı: {p.name} ({e})")
     if not frames:
-        sys.exit("Veri yok. Önce çalıştır:  python bot.py update")
+        sys.exit(f"Sonuç dosyası bulunamadı (ligler: {leagues or 'hepsi'}, klasör: {DATA_DIR}). "
+                 "Önce çalıştır:  python bot.py update")
     return _clean(pd.concat(frames, ignore_index=True))
 
 
@@ -340,10 +357,12 @@ def collect(leagues, days):
     hist = load_results(list(fx["Div"].unique()))
     models, out_rows, skipped = {}, [], 0
     for div in fx["Div"].unique():
-        models[div] = Model().fit(hist[hist["Div"] == div], ref_date=today)
+        h = hist[hist["Div"] == div]
+        if len(h) >= 50:                      # çok az veri olan ligi atla
+            models[div] = Model().fit(h, ref_date=today)
     for _, r in fx.sort_values(["Date", "Div"]).iterrows():
-        m = models[r["Div"]]
-        if not m.knows(r["HomeTeam"], r["AwayTeam"]):
+        m = models.get(r["Div"])
+        if m is None or not m.knows(r["HomeTeam"], r["AwayTeam"]):
             skipped += 1
             continue
         p = m.predict(r["HomeTeam"], r["AwayTeam"])
