@@ -55,7 +55,7 @@ LEAGUES = {
 
 ODDS_SETS = [("AvgH", "AvgD", "AvgA"), ("B365H", "B365D", "B365A"),
              ("PSH", "PSD", "PSA")]
-ODDS_COLS = [c for s in ODDS_SETS for c in s]
+ODDS_COLS = [c for s in ODDS_SETS for c in s] + ["Avg>2.5", "Avg<2.5", "B365>2.5", "B365<2.5"]
 KEEP = ["Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]
 
 MAX_GOALS = 10
@@ -542,7 +542,7 @@ def _legs(r, p):
 
 def build_coupons(out_rows):
     """Günün maçlarından, toplam oranı >= 5 olan ve modele göre en çok tutması
-    beklenen 4 farklı 4'lü kupon. Maçlar birbirinden bağımsız varsayılır."""
+    beklenen kupon; her kupon farklı maçlardan oluşur. Maçlar birbirinden bağımsız varsayılır."""
     today = pd.Timestamp(date.today())
     by_day = {}
     for k, (r, p, _) in enumerate(out_rows):
@@ -558,42 +558,192 @@ def build_coupons(out_rows):
     return None
 
 
+def _best_combo(items):
+    """Verilen maçlar arasından, toplam oranı >= 5 olan en yüksek ortak olasılıklı 4'lü."""
+    cands = sorted(items, key=lambda t: -t[2][0][1])[:16]
+    best = None
+    for combo in itertools.combinations(cands, COUPON_LEGS):
+        for pick in itertools.product(*[c[2] for c in combo]):
+            od = math.prod(x[2] for x in pick)
+            if od >= COUPON_MIN_ODDS:
+                pr = math.prod(x[1] for x in pick)
+                if best is None or pr > best[0]:
+                    best = (pr, od, combo, pick)
+    return best
+
+
 def _coupons_for_day(day, items):
-    cands = sorted(items, key=lambda t: -t[2][0][1])[:24]
-
-    def gen():
-        for combo in itertools.combinations(cands, COUPON_LEGS):
-            for pick in itertools.product(*[c[2] for c in combo]):
-                od = math.prod(x[2] for x in pick)
-                if od >= COUPON_MIN_ODDS:
-                    yield (math.prod(x[1] for x in pick), od, combo, pick)
-
-    best = heapq.nlargest(4000, gen(), key=lambda t: t[0])
-    chosen, ids_list = [], []
-    for max_shared in (2, 3):          # kuponlar birbirinden farklı olsun
-        for pr, od, combo, pick in best:
-            if len(chosen) >= N_COUPONS:
-                break
-            ids = {(c[0], x[0]) for c, x in zip(combo, pick)}
-            if ids in ids_list or any(len(ids & q) > max_shared for q in ids_list):
-                continue
-            ids_list.append(ids)
-            legs = []
-            for c, x in zip(combo, pick):
-                r = c[1]
-                t = str(r.get("Time", "") or "")
-                legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
-                             "home": r["HomeTeam"], "away": r["AwayTeam"],
-                             "league": LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
-                             "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
-                             "t": tier(x[1], x[2])[0]})
-            legs.sort(key=lambda l: l["time"])
-            chosen.append({"legs": legs, "odds": round(od, 2),
-                           "p": round(pr, 4), "ev": round(pr * od, 2)})
+    """Her kupon farklı maçlardan oluşur: bir kupon seçilince o maçlar havuzdan çıkar."""
+    chosen, pool = [], list(items)
+    while len(chosen) < N_COUPONS and len(pool) >= COUPON_LEGS:
+        best = _best_combo(pool)
+        if best is None:
+            break
+        pr, od, combo, pick = best
+        used = {c[0] for c in combo}
+        pool = [t for t in pool if t[0] not in used]
+        legs = []
+        for c, x in zip(combo, pick):
+            r = c[1]
+            t = str(r.get("Time", "") or "")
+            legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
+                         "home": r["HomeTeam"], "away": r["AwayTeam"],
+                         "league": LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
+                         "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
+                         "t": tier(x[1], x[2])[0]})
+        legs.sort(key=lambda l: l["time"])
+        chosen.append({"legs": legs, "odds": round(od, 2),
+                       "p": round(pr, 4), "ev": round(pr * od, 2)})
     return {"date": day.strftime("%Y-%m-%d"), "list": chosen}
 
 
-def site_payload(out_rows, demo=False):
+# --------------------------------------------------------------------------
+# Geriye dönük başarı ölçümü
+# --------------------------------------------------------------------------
+def _sel_list(p, hg, ag):
+    """Ana marketlerdeki seçenekler için (modelin olasılığı, gerçekleşti mi)."""
+    m = p["matrix"]
+    i, j = np.indices(m.shape)
+    g = i + j
+    tot = hg + ag
+    both = hg > 0 and ag > 0
+    out = [(p["p1"], hg > ag), (p["px"], hg == ag), (p["p2"], hg < ag),
+           (p["p1"] + p["px"], hg >= ag), (p["p1"] + p["p2"], hg != ag),
+           (p["px"] + p["p2"], hg <= ag)]
+    for line in (1.5, 2.5, 3.5):
+        over = float(m[g > line].sum())
+        out += [(over, tot > line), (1 - over, tot < line)]
+    yes = float(m[1:, 1:].sum())
+    out += [(yes, both), (1 - yes, not both)]
+    return out
+
+
+def _leg_hit(r, sel):
+    hg, ag = r["FTHG"], r["FTAG"]
+    return {"MS 1": hg > ag, "MS X": hg == ag, "MS 2": hg < ag,
+            "Üst 2.5": hg + ag >= 3, "Alt 2.5": hg + ag < 3}[sel]
+
+
+def performance(hist, days=120, step=7):
+    """Son `days` günü, her maçtan önceki veriyle tahmin edip gerçek sonuçla kıyaslar.
+    Model her hafta sadece o güne kadarki maçlarla yeniden kurulur (geleceği görmez)."""
+    end = hist["Date"].max()
+    start = end - timedelta(days=days)
+    recs = []
+    for div, df in hist.groupby("Div"):
+        df = df.sort_values("Date")
+        d = start
+        while d <= end:
+            train = df[df["Date"] < d]
+            test = df[(df["Date"] >= d) & (df["Date"] < d + timedelta(days=step))]
+            d += timedelta(days=step)
+            if test.empty or len(train) < 100:
+                continue
+            model = Model().fit(train, ref_date=test["Date"].min())
+            base = np.array([(train["FTHG"] > train["FTAG"]).mean(),
+                             (train["FTHG"] == train["FTAG"]).mean(),
+                             (train["FTHG"] < train["FTAG"]).mean()])
+            for _, r in test.iterrows():
+                if model.knows(r["HomeTeam"], r["AwayTeam"]):
+                    recs.append({"r": r, "base": base,
+                                 "p": model.predict(r["HomeTeam"], r["AwayTeam"])})
+    if len(recs) < 30:
+        return None
+
+    ys = np.array([0 if x["r"]["FTHG"] > x["r"]["FTAG"]
+                   else (1 if x["r"]["FTHG"] == x["r"]["FTAG"] else 2) for x in recs])
+    P = np.array([[x["p"]["p1"], x["p"]["px"], x["p"]["p2"]] for x in recs])
+    B = np.array([x["base"] for x in recs])
+
+    def ll(Pm, y):
+        return float(-np.mean(np.log(np.clip(Pm[np.arange(len(y)), y], 1e-9, 1))))
+
+    def acc(Pm, y):
+        return float((Pm.argmax(1) == y).mean())
+
+    perf = {"days": days, "matches": len(recs),
+            "from": start.strftime("%d.%m.%Y"), "to": end.strftime("%d.%m.%Y"),
+            "ms": {"acc": acc(P, ys), "ll": ll(P, ys), "base_ll": ll(B, ys)}}
+    mk_idx = [k for k, x in enumerate(recs) if market_probs(x["r"]) is not None]
+    if len(mk_idx) >= 30:
+        MK = np.array([market_probs(recs[k]["r"]) for k in mk_idx])
+        yk = ys[mk_idx]
+        perf["ms"].update({"n_mkt": len(mk_idx), "mkt_acc": acc(MK, yk), "mkt_ll": ll(MK, yk),
+                           "model_acc_same": acc(P[mk_idx], yk), "model_ll_same": ll(P[mk_idx], yk)})
+
+    over_hit = np.array([(x["r"]["FTHG"] + x["r"]["FTAG"]) >= 3 for x in recs])
+    over_p = np.array([x["p"]["over25"] for x in recs])
+    perf["ou"] = {"acc": float(((over_p > .5) == over_hit).mean()),
+                  "over_rate": float(over_hit.mean()), "model_over": float(over_p.mean())}
+
+    sels = [s for x in recs for s in _sel_list(x["p"], x["r"]["FTHG"], x["r"]["FTAG"])]
+    ps = np.array([s[0] for s in sels])
+    hs = np.array([s[1] for s in sels], dtype=float)
+    cal = []
+    for lo, hi in ((0, ORANGE_P), (ORANGE_P, GREEN_P), (GREEN_P, .70), (.70, .80), (.80, 1.01)):
+        mask = (ps >= lo) & (ps < hi)
+        if mask.sum() >= 10:
+            cal.append({"label": f"%{round(lo*100)}-{min(round(hi*100), 100)}" if lo else f"%{round(hi*100)} altı",
+                        "t": tier(lo + 1e-9)[0], "n": int(mask.sum()),
+                        "p": float(ps[mask].mean()), "hit": float(hs[mask].mean())})
+    perf["cal"] = cal
+
+    by_day = {}
+    for k, x in enumerate(recs):
+        legs = _legs(x["r"], x["p"])
+        if legs:
+            by_day.setdefault(x["r"]["Date"].normalize(), []).append((k, x["r"], legs))
+    n_cp = hits = 0
+    ret, exp_p, odds_l = 0.0, [], []
+    for day, items in by_day.items():
+        if len(items) < COUPON_LEGS:
+            continue
+        for cp in _coupons_for_day(day, items)["list"]:
+            n_cp += 1
+            exp_p.append(cp["p"])
+            odds_l.append(cp["odds"])
+            if all(_leg_hit(recs[l["id"]]["r"], l["sel"]) for l in cp["legs"]):
+                hits += 1
+                ret += cp["odds"]
+    perf["coupons"] = ({"n": n_cp, "hit": hits, "exp": float(np.mean(exp_p)),
+                        "avg_odds": float(np.mean(odds_l)), "roi": (ret - n_cp) / n_cp}
+                       if n_cp else {"n": 0})
+    return perf
+
+
+def _poisson_probs(lh, la):
+    g = np.arange(MAX_GOALS + 1)
+    m = np.outer(poisson.pmf(g, lh), poisson.pmf(g, la))
+    i, j = np.indices(m.shape)
+    return np.tril(m, -1).sum(), np.trace(m), np.triu(m, 1).sum(), m[(i + j) >= 3].sum()
+
+
+def demo_history():
+    """Kurgusal geçmiş sonuçlar ve piyasa oranları (sadece demo için)."""
+    rng = np.random.default_rng(5)
+    today = pd.Timestamp(date.today())
+    rows = []
+    for div, names in DEMO_TEAMS.items():
+        n = len(names)
+        att, dfn = rng.normal(0, .3, n), rng.normal(0, .3, n)
+        for rnd in range(1, 101):
+            day = today - timedelta(days=7 * rnd)
+            order = rng.permutation(n)
+            for q in range(0, n, 2):
+                a, b = order[q], order[q + 1]
+                lh, la = np.exp(.55 + att[a] - dfn[b]), np.exp(.25 + att[b] - dfn[a])
+                p1, px, p2, po = _poisson_probs(lh, la)
+                pr = np.array([p1, px, p2]) * rng.normal(1, .03, 3)
+                o = np.round(1 / (pr * 1.06), 2)
+                rows.append({"Div": div, "Date": day, "HomeTeam": names[a], "AwayTeam": names[b],
+                             "FTHG": int(rng.poisson(lh)), "FTAG": int(rng.poisson(la)),
+                             "B365H": o[0], "B365D": o[1], "B365A": o[2],
+                             "B365>2.5": round(1 / (po * 1.06), 2),
+                             "B365<2.5": round(1 / ((1 - po) * 1.06), 2)})
+    return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
+
+
+def site_payload(out_rows, demo=False, perf=None):
     matches = []
     for k, (r, p, _) in enumerate(out_rows):
         t = str(r.get("Time", "") or "")
@@ -607,7 +757,7 @@ def site_payload(out_rows, demo=False):
             "markets": build_markets(p, r)})
     return {"generated": datetime.now().strftime("%d.%m.%Y %H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
-            "coupons": build_coupons(out_rows)}
+            "coupons": build_coupons(out_rows), "performance": perf}
 
 
 def write_site(payload, out="tahminler.html"):
@@ -626,7 +776,15 @@ def cmd_site(leagues, days, out, open_it, demo=False):
         rows, skipped = collect(leagues, days)
     if not rows:
         sys.exit("Bu aralıkta maç bulunamadı. Önce:  python bot.py update")
-    path = write_site(site_payload(rows, demo), out)
+    perf = None
+    try:
+        print("Geçmiş başarı hesaplanıyor...")
+        perf = performance(demo_history() if demo else load_results())
+        if perf is None:
+            print("  (başarı hesabı için yeterli geçmiş maç yok)")
+    except Exception as e:  # noqa: BLE001  başarı hesabı sayfayı bozmasın
+        print(f"  ! başarı hesabı atlandı: {e}")
+    path = write_site(site_payload(rows, demo, perf), out)
     print(f"{len(rows)} maç yazıldı → {path}")
     if skipped:
         print(f"({skipped} maç atlandı: takımın yeterli geçmiş verisi yok)")
