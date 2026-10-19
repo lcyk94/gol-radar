@@ -49,8 +49,10 @@ jobs:
         run: |
           git config user.name "gol-radar-bot"
           git config user.email "gol-radar-bot@users.noreply.github.com"
-          git add data/kupon_gecmisi.json
-          git diff --cached --quiet || (git commit -m "Kupon kaydı güncellendi" && git push)
+          if [ -f data/kupon_gecmisi.json ]; then
+            git add data/kupon_gecmisi.json
+            git diff --cached --quiet || (git commit -m "Kupon kaydı güncellendi" && git push)
+          fi
 
       - uses: actions/upload-pages-artifact@v3
         with:
