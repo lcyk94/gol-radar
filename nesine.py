@@ -433,7 +433,7 @@ def _ev_names(e):
 
 
 def _market_table(e):
-    """Maçın pazarları: {(tip, no, ad, çizgi): (MBS, [oranlar, seçenek sırasına göre])}.
+    """Maçın pazarları: {(pazar türü MTID, çizgi): (MBS, [oranlar, seçenek sırasına göre])}.
     Aynı kimlikle birden fazla pazar varsa o kimlik belirsiz sayılıp tabloya konmaz."""
     out, dup = {}, set()
     for mk in e.get("MA") or []:
@@ -445,7 +445,8 @@ def _market_table(e):
         for o in oca:
             v = o.get("O")
             odds.append(float(v) if isinstance(v, (int, float)) and v > 1.0 else None)
-        key = (mk.get("MT"), mk.get("NO"), mk.get("MN"), float(mk.get("SOV") or 0))
+        # Pazar türü MTID'dir (1=Maç Sonucu, 3=Çifte Şans, 38=KG, 12=Alt/Üst ...); 'NO' her maçta farklıdır.
+        key = (mk.get("MTID", mk.get("MT")), float(mk.get("SOV") or 0))
         if key in out:
             dup.add(key)
         out[key] = (mk.get("MBS"), odds)
