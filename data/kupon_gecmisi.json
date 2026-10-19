@@ -2,35 +2,68 @@
  "2026-10-19": {
   "list": [
    {
-    "odds": 3.86,
-    "p": 0.2357,
+    "odds": 3.54,
+    "p": 0.3594,
     "legs": [
      {
-      "time": "18:00",
-      "home": "Trabzonspor",
-      "away": "Besiktas",
-      "league": "Türkiye Süper Lig",
-      "sel": "KG Var",
-      "o": 3.09,
-      "p": 0.587
+      "time": "19:30",
+      "home": "Celta B",
+      "away": "Tenerife",
+      "league": "İspanya Segunda",
+      "sel": "1-X",
+      "o": 1.32,
+      "p": 0.762
+     },
+     {
+      "time": "19:45",
+      "home": "Rodez",
+      "away": "Montpellier",
+      "league": "Fransa Ligue 2",
+      "sel": "Alt 2.5",
+      "o": 2.13,
+      "p": 0.61
      },
      {
       "time": "20:00",
       "home": "Getafe",
       "away": "Vallecano",
       "league": "İspanya La Liga",
-      "sel": "KG Yok",
-      "o": 1.06,
-      "p": 0.68
+      "sel": "Alt 2.5",
+      "o": 1.26,
+      "p": 0.772
+     }
+    ]
+   },
+   {
+    "odds": 3.4,
+    "p": 0.3059,
+    "legs": [
+     {
+      "time": "18:00",
+      "home": "Trabzonspor",
+      "away": "Besiktas",
+      "league": "Türkiye Süper Lig",
+      "sel": "1-X",
+      "o": 1.36,
+      "p": 0.727
+     },
+     {
+      "time": "20:00",
+      "home": "Tottenham",
+      "away": "Coventry",
+      "league": "İngiltere Premier Lig",
+      "sel": "X-2",
+      "o": 2.23,
+      "p": 0.586
      },
      {
       "time": "20:15",
       "home": "Sp Braga",
       "away": "Gil Vicente",
       "league": "Portekiz Primeira Liga",
-      "sel": "Alt 2.5",
-      "o": 1.18,
-      "p": 0.591
+      "sel": "1-2",
+      "o": 1.12,
+      "p": 0.718
      }
     ]
    }
