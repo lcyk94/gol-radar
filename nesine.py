@@ -375,6 +375,50 @@ def _day_tabs(page, store, state):
             print(f"  '{t}' tıklanamadı: {str(e)[:80]}")
 
 
+def _find_events(obj):
+    """JSON içinde en uzun 'takım - takım' adlı kayıt listesini bulur."""
+    best = []
+    stack = [obj]
+    while stack:
+        x = stack.pop()
+        if isinstance(x, dict):
+            stack.extend(x.values())
+        elif isinstance(x, list):
+            if len(x) > len(best) and x and all(isinstance(i, dict) for i in x[:20]):
+                hit = sum(any(isinstance(v, str) and " - " in v for v in i.values()) for i in x[:50])
+                if hit >= min(len(x), 50) * 0.8:
+                    best = x
+            stack.extend(i for i in x[:200] if isinstance(i, (dict, list)))
+    return best
+
+
+def _explain_prebulten(body, needles):
+    """Tam bülten JSON'unun yapısını logla gösterir (ayrıştırıcıyı bu yapıya göre yazmak için)."""
+    if not body:
+        print("getprebultenfull yanıtı yakalanamadı.")
+        return
+    obj = json.loads(body)
+    print(f"getprebultenfull: {len(body)} bayt, üst düzey tür: {type(obj).__name__}")
+    if isinstance(obj, dict):
+        print("  üst düzey anahtarlar:", {k: (type(v).__name__, len(v) if hasattr(v, '__len__') else v)
+                                         for k, v in list(obj.items())[:15]})
+        for k, v in obj.items():
+            if isinstance(v, dict):
+                print(f"  '{k}' anahtarları:", {kk: (type(vv).__name__, len(vv) if hasattr(vv, '__len__') else vv)
+                                                 for kk, vv in list(v.items())[:15]})
+    ev = _find_events(obj)
+    print(f"  bulunan maç kaydı sayısı: {len(ev)}")
+    if ev:
+        print("  ilk kaydın alanları:", {k: (type(v).__name__ if isinstance(v, (list, dict)) else v)
+                                         for k, v in ev[0].items()})
+    for nd in needles:
+        for e in ev:
+            if nd.lower() in json.dumps(e, ensure_ascii=False).lower():
+                print(f"  --- '{nd}' içeren kayıt ---")
+                print("  ", json.dumps(e, ensure_ascii=False)[:3500])
+                break
+
+
 def fetch(url=URL, out=OUT):
     from playwright.sync_api import sync_playwright
     store, bad_all = {}, []
@@ -388,11 +432,16 @@ def fetch(url=URL, out=OUT):
         page = ctx.new_page()
         api = []                                         # sayfanın kendi veri istekleri (sadece teşhis için)
 
+        raw = {}                                         # sayfanın indirdiği tam bülten verisi
+
         def _on_resp(r):
             try:
                 ct = r.headers.get("content-type", "")
                 if "json" in ct and "nesine" in r.url:
-                    api.append((r.status, r.url[:140], len(r.body())))
+                    body = r.body()
+                    api.append((r.status, r.url[:140], len(body)))
+                    if "getprebultenfull" in r.url.lower():
+                        raw["prebulten"] = body
             except Exception:                            # noqa: BLE001
                 pass
         page.on("response", _on_resp)
@@ -441,6 +490,10 @@ def fetch(url=URL, out=OUT):
             print("Sayfanın JSON istekleri (durum, adres, bayt):")
             for a_ in sorted(set(api), key=lambda x: -x[2])[:15]:
                 print("  ", a_)
+            try:
+                _explain_prebulten(raw.get("prebulten"), ["Mara Sugar", "Trabzonspor", "Tottenham"])
+            except Exception as e:                       # noqa: BLE001
+                print("Bülten verisi incelenemedi:", e)
             _day_tabs(page, store, state)
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
