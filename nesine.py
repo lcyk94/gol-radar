@@ -433,8 +433,9 @@ def _ev_names(e):
 
 
 def _market_table(e):
-    """Maçın pazarları: {(pazar tipi, çizgi): (MBS, [oranlar, seçenek sırasına göre])}."""
-    out = {}
+    """Maçın pazarları: {(tip, no, ad, çizgi): (MBS, [oranlar, seçenek sırasına göre])}.
+    Aynı kimlikle birden fazla pazar varsa o kimlik belirsiz sayılıp tabloya konmaz."""
+    out, dup = {}, set()
     for mk in e.get("MA") or []:
         if not isinstance(mk, dict):
             continue
@@ -444,8 +445,22 @@ def _market_table(e):
         for o in oca:
             v = o.get("O")
             odds.append(float(v) if isinstance(v, (int, float)) and v > 1.0 else None)
-        out.setdefault((mk.get("MT"), float(mk.get("SOV") or 0)), (mk.get("MBS"), odds))
+        key = (mk.get("MT"), mk.get("NO"), mk.get("MN"), float(mk.get("SOV") or 0))
+        if key in out:
+            dup.add(key)
+        out[key] = (mk.get("MBS"), odds)
+    for k in dup:
+        out.pop(k, None)
     return out
+
+
+def _sane(role, vals):
+    """Oranlar mantıklı mı? (oranların terslerinin toplamı bahisçi payı kadar 1'den büyük olmalı)"""
+    if any(v is None for v in vals):
+        return True
+    t = sum(1 / v for v in vals)
+    lo, hi = {"ms": (0.97, 1.6), "ou25": (0.97, 1.6), "kg": (0.97, 1.6), "cs": (1.8, 3.3)}[role]
+    return lo <= t <= hi
 
 
 _ROLES = (("ms", 3), ("ou25", 2), ("kg", 2), ("cs", 3))
@@ -523,7 +538,8 @@ def matches_from_prebulten(body, dom_matches):
             if role in sig:
                 key, perm = sig[role]
                 odds = tab.get(key, (None, []))[1]
-                vals[role] = [odds[p] if len(odds) == n else None for p in perm]
+                v = [odds[p] if len(odds) == n else None for p in perm]
+                vals[role] = v if _sane(role, v) else [None] * n
             else:
                 vals[role] = [None] * n
         if all(v is None for v in vals["ms"]):
