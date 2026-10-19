@@ -332,6 +332,51 @@ def _header_count(text):
     return None
 
 
+_DAY_TXT = re.compile(
+    r"^(yarın|"
+    r"(pzt|sal|çar|per|cum|cmt|paz|pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar)\.?(\s+\d{1,2})?|"
+    r"\d{1,2}\s+(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)"
+    r"(\s+(pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar))?|"
+    r"\d{1,2}\.\d{1,2}\.\d{4})$", re.I)
+
+_CLICKABLES_JS = """() => [...new Set([...document.querySelectorAll('button, a, li, [role=tab], [role=button], span, div')]
+  .filter(e => e.children.length <= 1 && e.offsetParent !== null)
+  .map(e => (e.innerText || '').trim().replace(/\\s+/g, ' ')).filter(t => t && t.length <= 24))]"""
+
+
+def _day_tabs(page, store, state):
+    """Gün sekmeleri (Yarın, 20 Ekim, Salı ...) varsa tek tek tıklayıp o günün maçlarını da toplar."""
+    try:
+        texts = page.evaluate(_CLICKABLES_JS)
+    except Exception as e:                                   # noqa: BLE001
+        print("Gün sekmeleri aranamadı:", e)
+        return
+    cands = [t for t in texts if _DAY_TXT.match(t) and t.lower() != "bugün"][:8]
+    print("Tıklanabilir görünen kısa metinler (ilk 60):", texts[:60])
+    print("Gün sekmesi adayları:", cands)
+    for t in cands:
+        try:
+            before = len(store)
+            page.get_by_text(t, exact=True).first.click(timeout=4000)
+            page.wait_for_timeout(2500)
+            idle = 0
+            for _ in range(40):
+                n0 = len(store)
+                text = page.inner_text("body")
+                ms, _bad = parse_bulletin(text, state=state)
+                _merge(store, ms)
+                idle = idle + 1 if len(store) == n0 else 0
+                if idle >= 3:
+                    break
+                page.mouse.move(700, 1200)
+                page.mouse.wheel(0, 1400)
+                page.evaluate(_SCROLL_ALL_JS)
+                page.wait_for_timeout(900)
+            print(f"  '{t}' tıklandı: {len(store) - before} yeni maç")
+        except Exception as e:                               # noqa: BLE001
+            print(f"  '{t}' tıklanamadı: {str(e)[:80]}")
+
+
 def fetch(url=URL, out=OUT):
     from playwright.sync_api import sync_playwright
     store, bad_all = {}, []
@@ -375,9 +420,12 @@ def fetch(url=URL, out=OUT):
                 _merge(store, ms)
                 bad_all = bad or bad_all
                 idle = idle + 1 if len(store) == before else 0
-                if idle >= 8 or (total_hint and len(store) >= total_hint):
+                if idle >= 8:
                     break
             print(f"Kaydırma adımı: {step + 1} | toplam benzersiz maç: {len(store)}")
+            tail = [l.strip() for l in text.splitlines() if l.strip()][-25:]
+            print("Sayfa metninin son satırları:", tail)
+            _day_tabs(page, store, state)
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
             return 1
