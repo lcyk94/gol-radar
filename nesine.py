@@ -147,13 +147,15 @@ def _row(lines, i):
     }, j + 15)
 
 
-def parse_bulletin(text, today=None):
-    """Sayfa metninden maç listesi çıkarır. (maçlar, ayrıştırılamayan örnekler) döner."""
+def parse_bulletin(text, today=None, state=None):
+    """Sayfa metninden maç listesi çıkarır. (maçlar, ayrıştırılamayan örnekler) döner.
+    `state` verilirse (sözlük), önceki kaydırma adımından kalan lig/tarih bilgisiyle başlar
+    ve sonunda güncellenir; böylece listenin ortasından başlayan metin parçaları da okunur."""
     today = today or istanbul_today()
     lines = [l.strip() for l in text.splitlines() if l.strip()]
     out, bad = [], []
-    league = label = None
-    in_block = False
+    st = state if state is not None else {}
+    league, label, in_block = st.get("league"), st.get("label"), st.get("in_block", False)
     i, n = 0, len(lines)
     while i < n:
         if lines[i:i + 15] == HEADER:
@@ -173,6 +175,7 @@ def parse_bulletin(text, today=None):
                 continue
             bad.append(" | ".join(lines[i:i + 8]))
         i += 1
+    st.update(league=league, label=label, in_block=in_block)
     return out, bad
 
 
@@ -305,6 +308,30 @@ def _merge(store, matches):
         store[(m["date"], m["home"], m["away"])] = m
 
 
+_SCROLLABLES_JS = """() => [...document.querySelectorAll('*')].filter(e => e.scrollHeight > e.clientHeight + 200 &&
+  /(auto|scroll)/.test(getComputedStyle(e).overflowY)).slice(0, 6)
+  .map(e => e.tagName + '.' + String(e.className).slice(0, 40) + ' ' + e.scrollHeight + '/' + e.clientHeight)"""
+
+_SCROLL_ALL_JS = """() => {
+  window.scrollBy(0, 1400);
+  for (const e of document.querySelectorAll('*')) {
+    if (e.scrollHeight > e.clientHeight + 200 && /(auto|scroll)/.test(getComputedStyle(e).overflowY))
+      e.scrollTop += Math.max(600, e.clientHeight * 0.8);
+  }
+}"""
+
+
+def _header_count(text):
+    """Sayfa üstündeki 'FUTBOL <sayı>' sekmesinden toplam maç sayısı (bulunamazsa None)."""
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    for k in range(len(lines) - 1):
+        if lines[k].upper() == "FUTBOL" and lines[k + 1].isdigit():
+            return int(lines[k + 1])
+        if lines[k].isdigit() and lines[k + 1].upper() == "FUTBOL":
+            return int(lines[k])
+    return None
+
+
 def fetch(url=URL, out=OUT):
     from playwright.sync_api import sync_playwright
     store, bad_all = {}, []
@@ -329,17 +356,28 @@ def fetch(url=URL, out=OUT):
             if (status and status >= 400) or any(w in text.lower() for w in BLOCK_WORDS):
                 print(f"Site isteği engelledi (HTTP {status}). Devam edilmiyor.")
                 return 2
-            prev = -1
-            for _ in range(15):                          # listenin devamı kaydırınca yükleniyorsa
-                ms, bad = parse_bulletin(text)
-                _merge(store, ms)
-                bad_all = bad
-                if len(text) == prev:
-                    break
-                prev = len(text)
-                page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-                page.wait_for_timeout(1500)
+            total_hint = _header_count(text)
+            print(f"Sayfanın başlığındaki futbol maçı sayısı: {total_hint}")
+            print("Kaydırılabilir alanlar:", page.evaluate(_SCROLLABLES_JS))
+            state = {}
+            ms, bad = parse_bulletin(text, state=state)
+            _merge(store, ms)
+            bad_all = bad
+            idle = 0
+            for step in range(120):                      # liste kaydırdıkça yükleniyor
+                before = len(store)
+                page.mouse.move(700, 1200)
+                page.mouse.wheel(0, 1400)
+                page.evaluate(_SCROLL_ALL_JS)
+                page.wait_for_timeout(900)
                 text = page.inner_text("body")
+                ms, bad = parse_bulletin(text, state=state)
+                _merge(store, ms)
+                bad_all = bad or bad_all
+                idle = idle + 1 if len(store) == before else 0
+                if idle >= 8 or (total_hint and len(store) >= total_hint):
+                    break
+            print(f"Kaydırma adımı: {step + 1} | toplam benzersiz maç: {len(store)}")
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
             return 1
