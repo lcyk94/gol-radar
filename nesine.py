@@ -14,6 +14,7 @@ Engel (captcha, 403) çıkarsa durur, engeli aşmaya çalışmaz.
 import difflib
 import json
 import os
+import time
 import re
 import sys
 import unicodedata
@@ -327,8 +328,6 @@ def _header_count(text):
     for k in range(len(lines) - 1):
         if lines[k].upper() == "FUTBOL" and lines[k + 1].isdigit():
             return int(lines[k + 1])
-        if lines[k].isdigit() and lines[k + 1].upper() == "FUTBOL":
-            return int(lines[k])
     return None
 
 
@@ -336,8 +335,7 @@ _DAY_TXT = re.compile(
     r"^(yarın|"
     r"(pzt|sal|çar|per|cum|cmt|paz|pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar)\.?(\s+\d{1,2})?|"
     r"\d{1,2}\s+(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)"
-    r"(\s+(pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar))?|"
-    r"\d{1,2}\.\d{1,2}\.\d{4})$", re.I)
+    r"(\s+(pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar))?)$", re.I)
 
 _CLICKABLES_JS = """() => [...new Set([...document.querySelectorAll('button, a, li, [role=tab], [role=button], span, div')]
   .filter(e => e.children.length <= 1 && e.offsetParent !== null)
@@ -386,8 +384,18 @@ def fetch(url=URL, out=OUT):
             kw["executable_path"] = os.environ["CHROMIUM_PATH"]
         browser = p.chromium.launch(**kw)
         ctx = browser.new_context(locale="tr-TR", timezone_id="Europe/Istanbul",
-                                  viewport={"width": 1400, "height": 2400})
+                                  viewport={"width": 1280, "height": 800})
         page = ctx.new_page()
+        api = []                                         # sayfanın kendi veri istekleri (sadece teşhis için)
+
+        def _on_resp(r):
+            try:
+                ct = r.headers.get("content-type", "")
+                if "json" in ct and "nesine" in r.url:
+                    api.append((r.status, r.url[:140], len(r.body())))
+            except Exception:                            # noqa: BLE001
+                pass
+        page.on("response", _on_resp)
         try:
             resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             status = resp.status if resp else None
@@ -401,30 +409,38 @@ def fetch(url=URL, out=OUT):
             if (status and status >= 400) or any(w in text.lower() for w in BLOCK_WORDS):
                 print(f"Site isteği engelledi (HTTP {status}). Devam edilmiyor.")
                 return 2
-            total_hint = _header_count(text)
-            print(f"Sayfanın başlığındaki futbol maçı sayısı: {total_hint}")
-            print("Kaydırılabilir alanlar:", page.evaluate(_SCROLLABLES_JS))
+            print("Sayfa üstündeki sayılar (CANLI / FUTBOL ...):", _header_count(text))
             state = {}
             ms, bad = parse_bulletin(text, state=state)
             _merge(store, ms)
             bad_all = bad
-            idle = 0
-            for step in range(120):                      # liste kaydırdıkça yükleniyor
+            # Gerçek bir kullanıcı gibi yavaş yavaş aşağı kaydır; liste kaydırdıkça yükleniyor.
+            t0, idle, step = time.time(), 0, 0
+            for step in range(1, 701):
+                pos = page.evaluate("[Math.round(window.scrollY), document.documentElement.scrollHeight, innerHeight]")
                 before = len(store)
-                page.mouse.move(700, 1200)
-                page.mouse.wheel(0, 1400)
+                page.mouse.move(640, 400)
+                page.mouse.wheel(0, 450)
                 page.evaluate(_SCROLL_ALL_JS)
-                page.wait_for_timeout(900)
+                page.wait_for_timeout(700)
                 text = page.inner_text("body")
                 ms, bad = parse_bulletin(text, state=state)
                 _merge(store, ms)
                 bad_all = bad or bad_all
-                idle = idle + 1 if len(store) == before else 0
-                if idle >= 8:
+                at_bottom = pos[0] + pos[2] >= pos[1] - 5
+                idle = idle + 1 if (len(store) == before and at_bottom) else 0
+                if step % 25 == 1:
+                    print(f"  adım {step}: kaydırma {pos[0]}/{pos[1]} px, toplam maç {len(store)}")
+                if at_bottom and len(store) == before:   # dipte yeni içerik gelsin diye biraz bekle
+                    page.wait_for_timeout(1500)
+                if idle >= 6 or time.time() - t0 > 360:
                     break
-            print(f"Kaydırma adımı: {step + 1} | toplam benzersiz maç: {len(store)}")
-            tail = [l.strip() for l in text.splitlines() if l.strip()][-25:]
+            print(f"Kaydırma adımı: {step} | toplam benzersiz maç: {len(store)} | süre: {int(time.time() - t0)} sn")
+            tail = [l.strip() for l in text.splitlines() if l.strip()][-12:]
             print("Sayfa metninin son satırları:", tail)
+            print("Sayfanın JSON istekleri (durum, adres, bayt):")
+            for a_ in sorted(set(api), key=lambda x: -x[2])[:15]:
+                print("  ", a_)
             _day_tabs(page, store, state)
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
