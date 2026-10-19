@@ -419,6 +419,126 @@ def _explain_prebulten(body, needles):
                 break
 
 
+# --------------------------------------------------------------------------
+# Tam bülten verisi (sayfanın kendi indirdiği JSON) -> maç listesi
+# --------------------------------------------------------------------------
+def _ev_names(e):
+    if isinstance(e.get("HN"), str) and isinstance(e.get("AN"), str):
+        return e["HN"].strip(), e["AN"].strip()
+    for k in ("ENN", "N", "EN", "NM"):
+        v = e.get(k)
+        if isinstance(v, str) and " - " in v:
+            return split_name(v)
+    return None
+
+
+def _market_table(e):
+    """Maçın pazarları: {(pazar tipi, çizgi): (MBS, [oranlar, seçenek sırasına göre])}."""
+    out = {}
+    for mk in e.get("MA") or []:
+        if not isinstance(mk, dict):
+            continue
+        oca = [o for o in (mk.get("OCA") or []) if isinstance(o, dict)]
+        oca.sort(key=lambda o: o.get("N", 0))
+        odds = []
+        for o in oca:
+            v = o.get("O")
+            odds.append(float(v) if isinstance(v, (int, float)) and v > 1.0 else None)
+        out.setdefault((mk.get("MT"), float(mk.get("SOV") or 0)), (mk.get("MBS"), odds))
+    return out
+
+
+_ROLES = (("ms", 3), ("ou25", 2), ("kg", 2), ("cs", 3))
+
+
+def _calibrate(events, dom):
+    """Ekrandaki (doğru bildiğimiz) oranlarla JSON'u karşılaştırıp hangi pazarın MS, Alt/Üst 2.5, KG, ÇŞ
+    olduğunu ve seçenek sırasını öğrenir. Böylece pazar numaralarını tahmin etmemiz gerekmez."""
+    import itertools
+    from collections import Counter
+    by_name = {}
+    for e in events:
+        nm = _ev_names(e)
+        if nm:
+            by_name.setdefault((nm[0].lower(), nm[1].lower(), e.get("T")), e)
+    pairs = []
+    for m in dom:
+        e = by_name.get((m["home"].lower(), m["away"].lower(), m["time"]))
+        if e is not None:
+            pairs.append((m, e))
+    sig, types = {}, Counter(e.get("TYPE") for _, e in pairs)
+    for role, n in _ROLES:
+        votes, elig = Counter(), 0
+        for m, e in pairs:
+            ref = m[role] if role != "ou25" else m["ou25"]
+            ref = list(ref)
+            if sum(v is not None for v in ref) < (n - 1 if n == 3 else 1):
+                continue
+            elig += 1
+            for key, (_, odds) in _market_table(e).items():
+                if len(odds) != n:
+                    continue
+                for perm in itertools.permutations(range(n)):
+                    cand = [odds[p] for p in perm]
+                    if all(r is None or (c is not None and abs(r - c) < 0.02) for r, c in zip(ref, cand)):
+                        votes[(key, perm)] += 1
+        if votes:
+            (key, perm), v = votes.most_common(1)[0]
+            if v >= 3 and v >= elig * 0.3:
+                sig[role] = (key, perm)
+                print(f"  kalibrasyon {role}: pazar {key}, sıra {perm}, uyum {v}/{elig}")
+                continue
+        print(f"  kalibrasyon {role}: bulunamadı (en iyi {votes.most_common(1)[:1]}, uygun {elig})")
+    return sig, (types.most_common(1)[0][0] if types else None), len(pairs)
+
+
+def matches_from_prebulten(body, dom_matches):
+    """Sayfanın indirdiği tam bülten JSON'undan tüm futbol maçlarını çıkarır. Hata olursa [] döner."""
+    obj = json.loads(body)
+    sg = obj.get("sg") if isinstance(obj, dict) else None
+    events = sg.get("EA") if isinstance(sg, dict) and isinstance(sg.get("EA"), list) else _find_events(obj)
+    events = [e for e in events if isinstance(e, dict)]
+    league_of = {}
+    for L in (sg.get("LA") if isinstance(sg, dict) else None) or []:
+        if isinstance(L, dict):
+            nm = [v for k, v in L.items() if isinstance(v, str) and len(v) > 3 and k not in ("BC",)]
+            if nm:
+                league_of[L.get("LC", L.get("C"))] = max(nm, key=len)
+    sig, ftype, npairs = _calibrate(events, dom_matches)
+    print(f"  JSON'da {len(events)} kayıt; ekranla eşleşen {npairs}; futbol TYPE değeri: {ftype}")
+    if "ms" not in sig or ftype is None:
+        print("  Kalibrasyon yapılamadı (MS pazarı bulunamadı), JSON kullanılmadı.")
+        return []
+    out = []
+    for e in events:
+        if e.get("TYPE") != ftype:
+            continue
+        nm = _ev_names(e)
+        d = str(e.get("D") or "")
+        if not nm or not re.match(r"^\d{2}\.\d{2}\.\d{4}$", d):
+            continue
+        tab = _market_table(e)
+        vals = {}
+        for role, n in _ROLES:
+            if role in sig:
+                key, perm = sig[role]
+                odds = tab.get(key, (None, []))[1]
+                vals[role] = [odds[p] if len(odds) == n else None for p in perm]
+            else:
+                vals[role] = [None] * n
+        if all(v is None for v in vals["ms"]):
+            continue
+        ms_key = sig["ms"][0]
+        iso = f"{d[6:]}-{d[3:5]}-{d[:2]}"
+        low = _ascii(nm[0] + " | " + nm[1])
+        out.append({"time": e.get("T"), "home": nm[0], "away": nm[1], "mbs": tab[ms_key][0] if ms_key in tab else None,
+                    "skip": bool(SKIP_RE.search(low)), "ms": vals["ms"], "ou25": vals["ou25"],
+                    "hnd": {"line": None, "odds": [None, None, None]}, "cs": vals["cs"], "kg": vals["kg"],
+                    "n_markets": len(e.get("MA") or []), "league": league_of.get(e.get("LC")),
+                    "label": "JSON", "date": iso})
+    return out
+
+
 def fetch(url=URL, out=OUT):
     from playwright.sync_api import sync_playwright
     store, bad_all = {}, []
@@ -491,9 +611,18 @@ def fetch(url=URL, out=OUT):
             for a_ in sorted(set(api), key=lambda x: -x[2])[:15]:
                 print("  ", a_)
             try:
-                _explain_prebulten(raw.get("prebulten"), ["Mara Sugar", "Trabzonspor", "Tottenham"])
+                if raw.get("prebulten"):
+                    dom = list(store.values())
+                    js = matches_from_prebulten(raw["prebulten"], dom)
+                    print(f"Tam bülten JSON'undan okunan futbol maçı: {len(js)} (ekrandan: {len(dom)})")
+                    if not js and dom:                   # çalışmadıysa yapıyı ayrıntılı logla
+                        _explain_prebulten(raw["prebulten"], [dom[0]["home"], dom[-1]["home"]])
+                    for m in js:                         # ekrandaki (en güncel) kayıt varsa onu koru
+                        store.setdefault((m["date"], m["home"], m["away"]), m)
+                else:
+                    print("getprebultenfull yanıtı yakalanamadı.")
             except Exception as e:                       # noqa: BLE001
-                print("Bülten verisi incelenemedi:", e)
+                print("Tam bülten JSON'u okunamadı:", e)
             _day_tabs(page, store, state)
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
