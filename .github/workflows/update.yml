@@ -42,12 +42,6 @@ jobs:
           playwright install --with-deps chromium
           python nesine.py fetch
 
-      # Geçici: Maçkolik iddaa sayfasının yapısını görmek için (sadece log yazar, hiçbir şeyi değiştirmez).
-      - name: Maçkolik sayfasını incele
-        continue-on-error: true
-        timeout-minutes: 5
-        run: python nesine.py probe https://www.mackolik.com/iddaa
-
       - run: python bot.py site --days 4 --out site/index.html
       # Bugünün kuponlarını kaydet; yarın "dünün kuponları" bölümü bundan okunur.
       - name: Kupon kaydını depoya yaz
