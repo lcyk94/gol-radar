@@ -264,6 +264,16 @@ function recs(m){
   return out.sort((a,b)=>b.s.p-a.s.p);
 }
 
+function ctxHtml(m){
+  const c = m.ctx;
+  if(!c) return '';
+  const f = (name,a)=> a.length ? `<p class="xg"><b>${esc(name)}</b> son maçlar: `+
+    a.map(x=>`<span title="${esc((x.ev?'Ev':'Dep')+' · '+x.d+' · '+x.o)}">${x.r} ${esc(x.s)}</span>`).join(' · ')+`</p>` : '';
+  return f(m.home,c.fh)+f(m.away,c.fa)+(c.h2h.length ?
+    `<p class="xg"><b>Aralarındaki son maçlar:</b> `+c.h2h.map(x=>`${esc(x.d)} ${esc(x.h)} ${esc(x.s)} ${esc(x.a)}`).join(' · ')+`</p>` : '')+
+    `<p class="fine">Form ve ikili maçlar bilgi içindir, olasılıkları değiştirmez. Sakat/cezalı oyuncu verisi yok.</p>`;
+}
+
 function panel(m){
   const r = recs(m);
   const top = r.slice(0,5).map(x=>
@@ -279,6 +289,7 @@ function panel(m){
       `<p class="none">Bu maçta güçlü bir öneri yok. Oynamamak da bir karardır.</p>`)+
     `<p class="xg">Beklenen gol: ${esc(m.home)} ${m.xg[0].toFixed(2)}, ${esc(m.away)} ${m.xg[1].toFixed(2)}`+
       (m.mbs ? `. MBS ${m.mbs}: bu maçı içeren kuponda en az ${m.mbs} maç olmalı.` : '')+`</p>`+
+    ctxHtml(m)+
     `<div class="mks">${cards}</div>`+
     `<p class="fine">İlk yarı ve oyuncu bahisleri bu modelde yok.</p></div>`;
 }
@@ -315,6 +326,8 @@ function render(){
       `<span class="time">${esc(m.time)}</span>`+
       `<span class="teams"><b>${esc(m.home)}</b><span class="tn">${esc(m.away)}</span>`+
         (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+
+        (m.src==='cross'?` <span class="pill np">Avrupa kupası: tahmini</span>`:'')+
+        (m.src==='market'?` <span class="pill np">Model yok: piyasa olasılığı</span>`:'')+
         (D.odds_source==='nesine' && !m.nes ? ` <span class="pill np">Nesine'de bulunamadı</span>` : '')+`</span>`+
       ms.map(s=>qcell(s)).join('')+qcell(ou[0],1)+qcell(ou[1],1)+qcell(kg[0],1)+
       `<span class="more">${open?'Kapat':'+'+total}</span></div>`+
