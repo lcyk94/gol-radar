@@ -483,12 +483,32 @@ def _fit_lambdas(target, x0=(1.4, 1.1)):
     return predict_lambdas(lh, la, RHO)
 
 
+MARKET_MARGIN = 1.20      # Nesine'nin tipik bahisçi payı (eksik oranı tamamlamak için)
+
+
 def _market_targets(nm):
-    ms = nm.get("ms") or []
-    if len(ms) != 3 or any(not x for x in ms):
+    """Nesine oranlarından (hedef 1-X-2 olasılıkları, Üst 2.5 olasılığı). Bir MS oranı eksikse (çok net favori
+    ya da kapalı seçenek) kalan olasılık ona verilir; MS yoksa Çifte Şans oranlarından 1-X-2 çıkarılır."""
+    ms = list(nm.get("ms") or [])
+    pm = None
+    if len(ms) == 3 and all(ms):
+        inv = 1 / np.array(ms, float)
+        pm = inv / inv.sum()
+    elif len(ms) == 3 and sum(1 for x in ms if x) == 2:
+        q = [(1 / x / MARKET_MARGIN) if x else None for x in ms]
+        rest = max(0.02, min(0.96, 1 - sum(v for v in q if v)))
+        pm = np.array([v if v else rest for v in q], float)
+        pm /= pm.sum()
+    if pm is None:
+        cs = list(nm.get("cs") or [])
+        if len(cs) == 3 and all(cs):
+            a, b, c = (1 / np.array(cs, float))          # P(1X), P(12), P(X2) (paylı)
+            k = 2 / (a + b + c)
+            a, b, c = a * k, b * k, c * k
+            v = np.clip(np.array([(a + b - c) / 2, (a + c - b) / 2, (b + c - a) / 2]), 0.02, 0.96)
+            pm = v / v.sum()
+    if pm is None:
         return None
-    inv = 1 / np.array(ms, float)
-    pm = inv / inv.sum()
     ou = nm.get("ou25") or []
     po = None
     if len(ou) == 2 and all(ou):
@@ -536,7 +556,8 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
     if not data or leagues:
         return []
     lo, hi = today.date(), (today + timedelta(days=days)).date()
-    nes = [m for m in data["matches"] if not m.get("skip") and m.get("date")
+    # kadın / genç / yedek takım maçları dahil: onlar modele sokulmaz (isim karışmasın), yalnızca piyasa olasılığı gösterilir
+    nes = [m for m in data["matches"] if m.get("date")
            and lo <= date.fromisoformat(m["date"]) <= hi]
     keys = [(r["Date"].date(), r["HomeTeam"], r["AwayTeam"]) for r, _, _ in out_rows]
     taken = {id(m) for m in nesine.match_rows(keys, nes) if m}
@@ -583,7 +604,7 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
     for m in nes:
         if id(m) in taken:
             continue
-        hh, aa = find(m["home"]), find(m["away"])
+        hh, aa = (None, None) if m.get("skip") else (find(m["home"]), find(m["away"]))
         src, p, hn, an = None, None, m["home"], m["away"]
         if book is not None:
             eh = book.lookup(hh[1] if hh else m["home"], DIV_COUNTRY.get(hh[0]) if hh else None)
@@ -683,6 +704,12 @@ def attach_nesine(rows):
         return rows, None
     keys = [(r["Date"].date(), r["HomeTeam"], r["AwayTeam"]) for r, _, _ in rows]
     found = nesine.match_rows(keys, data["matches"])
+    miss_idx = [i for i, (f, (r, _, _)) in enumerate(zip(found, rows)) if f is None and r.get("SRC") == "market"]
+    if miss_idx:                          # genç/kadın/yedek maçlar yalnızca piyasa satırlarına bağlanır
+        f2 = nesine.match_rows([keys[i] for i in miss_idx], [m for m in data["matches"] if m.get("skip")],
+                               include_skip=True)
+        for i, m2 in zip(miss_idx, f2):
+            found[i] = m2
     out, n_ok, m_nes, m_eur = [], 0, [], []
     for (r, p, mk), m in zip(rows, found):
         r = r.copy()
@@ -779,8 +806,6 @@ def build_markets(p, row=None):
 
     def S(label, prob, odds=None):
         t, note = tier(float(prob), odds)
-        if (src == "cross" or (src == "market" and not (row.get("EURO") if row is not None else False))) and t == "g":               # model yok ya da ligler arası tahmin: güvenilir (yeşil) denmez
-            t, note = "o", "tahmini: model yok" if src == "market" else "tahmini: lig farkı belirsiz"
         return {"l": label, "p": round(float(prob), 4),
                 "o": round(float(odds), 2) if odds else None, "t": t, "n": note}
 
@@ -828,13 +853,13 @@ def build_markets(p, row=None):
     M.append(("Doğru Skor", [S(f"{a}-{b}", m[a, b])
                              for a, b in (np.unravel_index(k, m.shape) for k in top)]))
     res = [{"name": n, "sels": s} for n, s in M]
-    if src == "elo" or (src == "market" and row is not None and row.get("EURO")):
-        # yalnızca 1-X-2 bilgisi var; gol sayısına bağlı marketler tahmini sayılır
+    if src in ("elo", "market", "cross"):
+        # yalnızca 1-X-2 (ve Alt/Üst) bilgisi var; gol sayısına bağlı diğer marketler tahmini sayılır
         for k in res:
             if k["name"] not in ("Maç Sonucu", "Çifte Şans"):
                 for x in k["sels"]:
                     if x["t"] == "g":
-                        x["t"], x["n"] = "o", "tahmini: gol sayısı Elo'dan türetilmedi"
+                        x["t"], x["n"] = "o", "tahmini: yalnızca 1-X-2 verisi var"
     return res
 
 
@@ -888,6 +913,7 @@ def demo_rows(days=3):
 
 
 COUPON_LEGS = 3        # kupondaki maç sayısı
+COUPON_MIN_LEG_ODDS = 1.20   # kupondaki tek bir seçeneğin en düşük oranı (daha düşüğü gereksiz risk)
 COUPON_MIN_ODDS = 3.0  # toplam oran en az bu kadar olmalı
 COUPON_MIN_P = 0.55    # kupona girecek her seçeneğin model olasılığı en az bu kadar
 N_COUPONS = 4
@@ -927,6 +953,7 @@ def _legs(r, p):
             legs.append(("Alt 2.5", 1 - p["over25"], un))
         top_n = 3
     legs = [l for l in legs if not l[0].startswith("Alt")]      # kullanıcı isteği: kuponlarda Alt seçimi olmaz
+    legs = [l for l in legs if l[2] >= COUPON_MIN_LEG_ODDS]     # 1.20'nin altındaki oranlar kupona girmez
     if src == "elo":                       # Elo tabanlı maçlarda yalnızca MS/ÇŞ ve daha yüksek eşik
         legs = [l for l in legs if l[0] in ("MS 1", "MS X", "MS 2", "1-X", "1-2", "X-2") and l[1] >= 0.60]
     if src == "blend":                     # model + piyasa karışımı: daha yüksek eşik
@@ -1138,7 +1165,24 @@ def _http_json(url, timeout=10):
         return json.loads(r.read().decode("utf-8", "replace"))
 
 
-def espn_scores(pending, max_calls=24):
+def _espn_slug(league):
+    """Kupon bacağının lig adından ESPN lig kodu."""
+    div = _NAME2DIV.get(league)
+    if div in ESPN:
+        return ESPN[div]
+    n = str(league or "").upper().translate(str.maketrans("İŞÇĞÜÖ", "ISCGUO"))
+    if "GENC" in n or "KADIN" in n:
+        return None
+    if "SAMPIYONLAR LIGI" in n:
+        return "uefa.champions"
+    if "AVRUPA LIGI" in n:
+        return "uefa.europa"
+    if "KONFERANS" in n:
+        return "uefa.europa.conf"
+    return None
+
+
+def espn_scores(pending, max_calls=48):
     """pending: [(gün 'YYYY-MM-DD', kupon bacağı)]. Biten maçlar için {(ev, dep): (tarih, ev golü, dep golü)}."""
     try:
         import nesine
@@ -1146,15 +1190,15 @@ def espn_scores(pending, max_calls=24):
         return {}
     wanted = {}
     for day, l in pending:
-        div = _NAME2DIV.get(l.get("league"))
-        if div in ESPN:
-            wanted.setdefault((ESPN[div], day), []).append(l)
-    out, calls, fails = {}, 0, 0
+        slug = _espn_slug(l.get("league"))
+        if slug:
+            wanted.setdefault((slug, day), []).append(l)
+    out, calls, fails, seen = {}, 0, 0, {}
     for (slug, day), legs in wanted.items():
         d0 = pd.Timestamp(day)
-        for dd in (d0, d0 + timedelta(days=1)):
-            if calls >= max_calls or fails >= 3:
-                return out
+        for dd in (d0 - timedelta(days=1), d0, d0 + timedelta(days=1)):
+            if calls >= max_calls or fails >= 4:
+                break
             calls += 1
             url = (f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard"
                    f"?dates={dd:%Y%m%d}")
@@ -1167,21 +1211,33 @@ def espn_scores(pending, max_calls=24):
             for ev in data.get("events", []):
                 try:
                     comp = ev["competitions"][0]
-                    if not comp["status"]["type"].get("completed"):
-                        continue
                     teams = {c["homeAway"]: c for c in comp["competitors"]}
-                    hg, ag = int(teams["home"]["score"]), int(teams["away"]["score"])
                     names = {}
                     for side in ("home", "away"):
                         t = teams[side]["team"]
                         names[side] = [t.get(k) for k in ("displayName", "shortDisplayName", "name", "location")
                                        if t.get(k)]
+                    done = bool(comp["status"]["type"].get("completed"))
+                    seen.setdefault((slug, day), []).append(
+                        f"{names['home'][0]} - {names['away'][0]}" + ("" if done else " (bitmedi)"))
+                    if not done:
+                        continue
+                    hg, ag = int(teams["home"]["score"]), int(teams["away"]["score"])
                 except (KeyError, ValueError, TypeError, IndexError):
                     continue
                 for l in legs:
                     if (any(nesine.same_team(l["home"], n) for n in names["home"]) and
                             any(nesine.same_team(l["away"], n) for n in names["away"])):
                         out[(str(l["home"]).strip().lower(), str(l["away"]).strip().lower())] = (d0, hg, ag)
+    for (slug, day), legs in wanted.items():       # bulunamayanlar için neden görülebilsin
+        for l in legs:
+            if (str(l["home"]).strip().lower(), str(l["away"]).strip().lower()) not in out:
+                names = seen.get((slug, day), [])
+                print(f"  ESPN'de sonuç bulunamadı: {l['home']} - {l['away']} ({slug}, {day}). "
+                      f"ESPN'deki maçlar ({len(names)}): " + "; ".join(names[:14]))
+    skipped = [(d, l) for d, l in pending if not _espn_slug(l.get("league"))]
+    if skipped:
+        print("  ESPN lig kodu bilinmeyen kupon maçları:", "; ".join(f"{l['home']} - {l['away']} ({l.get('league')})" for _, l in skipped[:10]))
     return out
 
 
