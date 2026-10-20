@@ -878,7 +878,71 @@ def _grade_day(day, entry, idx):
     return out
 
 
-def yesterday_report(hist, today=None):
+# football-data sonuçları 1-2 gün geç yayımlar; bekleyen maçlar için ESPN'in herkese açık skor
+# listesine bakılır (resmi olmayan bir uç nokta; ulaşılamazsa sessizce atlanır).
+ESPN = {"E0": "eng.1", "E1": "eng.2", "E2": "eng.3", "E3": "eng.4", "SC0": "sco.1", "SC1": "sco.2",
+        "D1": "ger.1", "D2": "ger.2", "I1": "ita.1", "I2": "ita.2", "SP1": "esp.1", "SP2": "esp.2",
+        "F1": "fra.1", "F2": "fra.2", "N1": "ned.1", "B1": "bel.1", "P1": "por.1", "T1": "tur.1",
+        "G1": "gre.1", "DEN": "den.1", "SWE": "swe.1", "NOR": "nor.1", "FIN": "fin.1", "AUT": "aut.1",
+        "SWZ": "sui.1", "POL": "pol.1", "ROU": "rou.1", "RUS": "rus.1", "IRL": "irl.1", "BRA": "bra.1",
+        "ARG": "arg.1", "MEX": "mex.1", "USA": "usa.1", "JPN": "jpn.1", "CHN": "chn.1"}
+_NAME2DIV = {v: k for k, v in LEAGUES.items()}
+
+
+def _http_json(url, timeout=10):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read().decode("utf-8", "replace"))
+
+
+def espn_scores(pending, max_calls=24):
+    """pending: [(gün 'YYYY-MM-DD', kupon bacağı)]. Biten maçlar için {(ev, dep): (tarih, ev golü, dep golü)}."""
+    try:
+        import nesine
+    except ImportError:
+        return {}
+    wanted = {}
+    for day, l in pending:
+        div = _NAME2DIV.get(l.get("league"))
+        if div in ESPN:
+            wanted.setdefault((ESPN[div], day), []).append(l)
+    out, calls, fails = {}, 0, 0
+    for (slug, day), legs in wanted.items():
+        d0 = pd.Timestamp(day)
+        for dd in (d0, d0 + timedelta(days=1)):
+            if calls >= max_calls or fails >= 3:
+                return out
+            calls += 1
+            url = (f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard"
+                   f"?dates={dd:%Y%m%d}")
+            try:
+                data = _http_json(url)
+            except Exception as e:  # noqa: BLE001
+                fails += 1
+                print(f"  ! ESPN okunamadı ({slug} {dd:%d.%m}): {e}")
+                continue
+            for ev in data.get("events", []):
+                try:
+                    comp = ev["competitions"][0]
+                    if not comp["status"]["type"].get("completed"):
+                        continue
+                    teams = {c["homeAway"]: c for c in comp["competitors"]}
+                    hg, ag = int(teams["home"]["score"]), int(teams["away"]["score"])
+                    names = {}
+                    for side in ("home", "away"):
+                        t = teams[side]["team"]
+                        names[side] = [t.get(k) for k in ("displayName", "shortDisplayName", "name", "location")
+                                       if t.get(k)]
+                except (KeyError, ValueError, TypeError, IndexError):
+                    continue
+                for l in legs:
+                    if (any(nesine.same_team(l["home"], n) for n in names["home"]) and
+                            any(nesine.same_team(l["away"], n) for n in names["away"])):
+                        out[(str(l["home"]).strip().lower(), str(l["away"]).strip().lower())] = (d0, hg, ag)
+    return out
+
+
+def yesterday_report(hist, today=None, online=False):
     """En son geçmiş kupon gününün sonuçları ve tüm kayıtlı günlerin toplam tutma sayısı."""
     log = _load_log()
     today = today or today_tr().strftime("%Y-%m-%d")
@@ -889,10 +953,18 @@ def yesterday_report(hist, today=None):
     for dt, h, a, hg, ag in zip(hist["Date"], hist["HomeTeam"], hist["AwayTeam"], hist["FTHG"], hist["FTAG"]):
         if pd.notna(hg) and pd.notna(ag):
             idx.setdefault((str(h).strip().lower(), str(a).strip().lower()), []).append((dt, hg, ag))
+    graded = {d: _grade_day(d, log[d], idx) for d in days}
+    if online:
+        pend = [(d, l) for d in days[-3:] for k, g in zip(log[d]["list"], graded[d])
+                for l, gl in zip(k["legs"], g["legs"]) if gl["ok"] is None]
+        if pend:
+            found = espn_scores(pend)
+            print(f"Sonucu bekleyen {len(pend)} kupon maçından ESPN'de bulunan: {len(found)}")
+            for key, (d0, hg, ag) in found.items():
+                idx.setdefault(key, []).append((d0, hg, ag))
+            graded = {d: _grade_day(d, log[d], idx) for d in days}
     tot = {"won": 0, "lost": 0, "pending": 0, "days": len(days)}
-    graded = {}
     for d in days:
-        graded[d] = _grade_day(d, log[d], idx)
         for k in graded[d]:
             tot[k["status"]] += 1
     last = days[-1]
@@ -1107,7 +1179,7 @@ def cmd_site(leagues, days, out, open_it, demo=False):
     yday = None
     if not demo:
         try:
-            yday = yesterday_report(load_results())
+            yday = yesterday_report(load_results(), online=True)
         except Exception as e:  # noqa: BLE001  dünkü kuponlar sayfayı bozmasın
             print(f"  ! dünkü kupon sonuçları atlandı: {e}")
     payload = site_payload(rows, demo, perf, nes_info, yday)
