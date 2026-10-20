@@ -269,9 +269,11 @@ function ctxHtml(m){
   if(!c) return '';
   const f = (name,a)=> a.length ? `<p class="xg"><b>${esc(name)}</b> son maçlar: `+
     a.map(x=>`<span title="${esc((x.ev?'Ev':'Dep')+' · '+x.d+' · '+x.o)}">${x.r} ${esc(x.s)}</span>`).join(' · ')+`</p>` : '';
-  return f(m.home,c.fh)+f(m.away,c.fa)+(c.h2h.length ?
+  const st = (name,x)=> x ? `<p class="xg"><b>${esc(name)}</b> oyun tarzı (son ${x.n} maç): <b>${esc(x.lab)}</b>. `+
+    `Attığı ${x.gf.toFixed(1)}, yediği ${x.ga.toFixed(1)} gol; maçların %${Math.round(x.ov*100)}'i 2.5 üst, %${Math.round(x.bt*100)}'inde iki takım da gol atmış.</p>` : '';
+  return st(m.home,c.sh)+st(m.away,c.sa)+f(m.home,c.fh)+f(m.away,c.fa)+(c.h2h.length ?
     `<p class="xg"><b>Aralarındaki son maçlar:</b> `+c.h2h.map(x=>`${esc(x.d)} ${esc(x.h)} ${esc(x.s)} ${esc(x.a)}`).join(' · ')+`</p>` : '')+
-    `<p class="fine">Form ve ikili maçlar bilgi içindir, olasılıkları değiştirmez. Sakat/cezalı oyuncu verisi yok.</p>`;
+    `<p class="fine">Tarz, form ve ikili maçlar bilgi içindir. Formasyon ve sakat/cezalı verisi yok.</p>`;
 }
 
 function panel(m){
@@ -327,6 +329,7 @@ function render(){
       `<span class="teams"><b>${esc(m.home)}</b><span class="tn">${esc(m.away)}</span>`+
         (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+
         (m.src==='cross'?` <span class="pill np">Avrupa kupası: tahmini</span>`:'')+
+        (m.src==='elo'?` <span class="pill np">Elo tabanlı tahmin</span>`:'')+
         (m.src==='market'?` <span class="pill np">Model yok: piyasa olasılığı</span>`:'')+
         (D.odds_source==='nesine' && !m.nes ? ` <span class="pill np">Nesine'de bulunamadı</span>` : '')+`</span>`+
       ms.map(s=>qcell(s)).join('')+qcell(ou[0],1)+qcell(ou[1],1)+qcell(kg[0],1)+
