@@ -24,6 +24,7 @@ import heapq
 import io
 import itertools
 import json
+import time
 import math
 import sys
 import urllib.request
@@ -72,7 +73,7 @@ LEAGUES = {
 
 # football-data.co.uk "new" biçimindeki ek ligler (tek dosyada tüm sezonlar)
 EXTRA = {
-    "DEN": "Danimarka Süper Lig", "SWE": "İsveç Allsvenskan", "NOR": "Norveç Eliteserien",
+    "DNK": "Danimarka Süper Lig", "SWE": "İsveç Allsvenskan", "NOR": "Norveç Eliteserien",
     "FIN": "Finlandiya Veikkausliiga", "AUT": "Avusturya Bundesliga", "SWZ": "İsviçre Super League",
     "POL": "Polonya Ekstraklasa", "ROU": "Romanya Liga 1", "RUS": "Rusya Premier Lig",
     "IRL": "İrlanda Premier Lig", "BRA": "Brezilya Serie A", "ARG": "Arjantin Primera",
@@ -148,7 +149,18 @@ def update(leagues=None):
             fetch(f"{BASE}/new/{code}.csv", DATA_DIR / f"{code}_new.csv", force=True, tries=2, timeout=45)
         _FAILS["n"] = 0
     # ClubElo: Avrupa kulüplerinin ligler arası karşılaştırılabilir güç puanı (herkese açık, indirilmek üzere sunuluyor)
-    fetch(f"http://api.clubelo.com/{today_tr():%Y-%m-%d}", DATA_DIR / "elo.csv", force=True, tries=3, timeout=45)
+    elo_ok = False
+    for back in (0, 1, 2):                       # sunucu hata verirse bir iki gün öncesinin tablosu da olur
+        day = today_tr() - timedelta(days=back)
+        for scheme in ("http", "https"):
+            _FAILS["n"] = 0
+            if fetch(f"{scheme}://api.clubelo.com/{day:%Y-%m-%d}", DATA_DIR / "elo.csv", force=True, tries=2, timeout=40):
+                elo_ok = True
+                break
+        if elo_ok:
+            break
+        time.sleep(3)
+    print(f"ClubElo tablosu: {'tamam' if elo_ok else 'İNDİRİLEMEDİ (Avrupa maçları için yedek yöntem kullanılacak)'}")
     _FAILS["n"] = 0
     fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True, tries=4, timeout=60)
     print(f"{ok} sonuç dosyası hazır, fikstür: {'tamam' if fx_ok else 'İNDİRİLEMEDİ'}. "
@@ -456,7 +468,7 @@ def nesine_fixtures(fx, hist, today, days, leagues=None):
 # Veriden ölçülemez (ligler arası maç yok), kaba bir tahmindir; bu maçlar "tahmini" etiketlenir ve kupona girmez.
 LEAGUE_STRENGTH = {"E0": 0.0, "SP1": -0.02, "D1": -0.05, "I1": -0.05, "F1": -0.12, "P1": -0.20,
                    "N1": -0.22, "B1": -0.27, "T1": -0.30, "SC0": -0.38, "G1": -0.38, "E1": -0.30,
-                   "AUT": -0.38, "SWZ": -0.40, "DEN": -0.38, "NOR": -0.42, "SWE": -0.42, "POL": -0.48,
+                   "AUT": -0.38, "SWZ": -0.40, "DNK": -0.38, "NOR": -0.42, "SWE": -0.42, "POL": -0.48,
                    "RUS": -0.40, "ROU": -0.48, "FIN": -0.55, "IRL": -0.60}
 _DEFAULT_STRENGTH = -0.50
 
@@ -497,7 +509,7 @@ def market_predict(nm):
 
 DIV_COUNTRY = {"E0": "ENG", "E1": "ENG", "E2": "ENG", "E3": "ENG", "EC": "ENG", "SC0": "SCO", "SC1": "SCO",
                "D1": "GER", "D2": "GER", "I1": "ITA", "I2": "ITA", "SP1": "ESP", "SP2": "ESP", "F1": "FRA",
-               "F2": "FRA", "N1": "NED", "B1": "BEL", "P1": "POR", "T1": "TUR", "G1": "GRE", "DEN": "DEN",
+               "F2": "FRA", "N1": "NED", "B1": "BEL", "P1": "POR", "T1": "TUR", "G1": "GRE", "DNK": "DEN",
                "SWE": "SWE", "NOR": "NOR", "FIN": "FIN", "AUT": "AUT", "SWZ": "SUI", "POL": "POL",
                "ROU": "ROU", "RUS": "RUS", "IRL": "IRL"}
 ELO_HFA = 80          # ev sahibi avantajı (Elo puanı)
@@ -507,9 +519,13 @@ def load_elo():
     """ClubElo tablosu (data/elo.csv) ya da None. Sütunlar: Rank, Club, Country, Level, Elo, From, To."""
     p = DATA_DIR / "elo.csv"
     if not p.exists():
+        print("  ! data/elo.csv yok (ClubElo indirilemedi; 'python bot.py update' adımının logunda '!' satırlarına bak).")
         return None
     try:
         df = pd.read_csv(p)
+        if "Club" not in df.columns:
+            print(f"  ! Elo dosyası beklenen biçimde değil. Sütunlar: {list(df.columns)[:8]}; ilk satırlar: {p.read_text(errors='replace')[:200]!r}")
+            return None
         df = df[["Club", "Country", "Level", "Elo"]].dropna()
         df["Level"] = pd.to_numeric(df["Level"], errors="coerce")
         df["Elo"] = pd.to_numeric(df["Elo"], errors="coerce")
@@ -731,7 +747,8 @@ def attach_nesine(rows):
         if m:
             n_ok += 1
             ro = raw_odds(r)
-            m_nes.append(sum(1 / x for x in m["ms"]) - 1)
+            if all(m["ms"]):
+                m_nes.append(sum(1 / x for x in m["ms"]) - 1)
             if ro is not None:
                 m_eur.append(float((1 / ro).sum()) - 1)
     used = {id(m) for m in found if m}
@@ -1144,7 +1161,7 @@ def _grade_day(day, entry, idx):
 ESPN = {"E0": "eng.1", "E1": "eng.2", "E2": "eng.3", "E3": "eng.4", "SC0": "sco.1", "SC1": "sco.2",
         "D1": "ger.1", "D2": "ger.2", "I1": "ita.1", "I2": "ita.2", "SP1": "esp.1", "SP2": "esp.2",
         "F1": "fra.1", "F2": "fra.2", "N1": "ned.1", "B1": "bel.1", "P1": "por.1", "T1": "tur.1",
-        "G1": "gre.1", "DEN": "den.1", "SWE": "swe.1", "NOR": "nor.1", "FIN": "fin.1", "AUT": "aut.1",
+        "G1": "gre.1", "DNK": "den.1", "SWE": "swe.1", "NOR": "nor.1", "FIN": "fin.1", "AUT": "aut.1",
         "SWZ": "sui.1", "POL": "pol.1", "ROU": "rou.1", "RUS": "rus.1", "IRL": "irl.1", "BRA": "bra.1",
         "ARG": "arg.1", "MEX": "mex.1", "USA": "usa.1", "JPN": "jpn.1", "CHN": "chn.1"}
 _NAME2DIV = {v: k for k, v in LEAGUES.items()}
