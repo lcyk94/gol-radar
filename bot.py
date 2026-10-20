@@ -148,19 +148,6 @@ def update(leagues=None):
         for code in EXTRA:
             fetch(f"{BASE}/new/{code}.csv", DATA_DIR / f"{code}_new.csv", force=True, tries=2, timeout=45)
         _FAILS["n"] = 0
-    # ClubElo: Avrupa kulüplerinin ligler arası karşılaştırılabilir güç puanı (herkese açık, indirilmek üzere sunuluyor)
-    elo_ok = False
-    for back in (0, 1, 2):                       # sunucu hata verirse bir iki gün öncesinin tablosu da olur
-        day = today_tr() - timedelta(days=back)
-        for scheme in ("http", "https"):
-            _FAILS["n"] = 0
-            if fetch(f"{scheme}://api.clubelo.com/{day:%Y-%m-%d}", DATA_DIR / "elo.csv", force=True, tries=2, timeout=40):
-                elo_ok = True
-                break
-        if elo_ok:
-            break
-        time.sleep(3)
-    print(f"ClubElo tablosu: {'tamam' if elo_ok else 'İNDİRİLEMEDİ (Avrupa maçları için yedek yöntem kullanılacak)'}")
     _FAILS["n"] = 0
     fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True, tries=4, timeout=60)
     print(f"{ok} sonuç dosyası hazır, fikstür: {'tamam' if fx_ok else 'İNDİRİLEMEDİ'}. "
@@ -482,9 +469,21 @@ def cross_predict(mh, ma, dh, da, h, a):
     return predict_lambdas(lh, la, RHO)
 
 
-def market_predict(nm):
-    """Modeli olmayan maç: Nesine MS (ve varsa Alt/Üst 2.5) oranlarından bahisçi payı temizlenerek
-    gol beklentisi çıkarılır. Bu bir piyasa olasılığıdır, modelin kendi tahmini değildir."""
+def _fit_lambdas(target, x0=(1.4, 1.1)):
+    """Hedef olasılıklara (1, X, 2 ve varsa Üst 2.5) en yakın Poisson gol beklentilerini bulur."""
+    def loss(x):
+        q = predict_lambdas(np.exp(x[0]), np.exp(x[1]), RHO)
+        e = (q["p1"] - target[0]) ** 2 + (q["px"] - target[1]) ** 2 + (q["p2"] - target[2]) ** 2
+        if target[3] is not None:
+            e += (q["over25"] - target[3]) ** 2
+        return e
+
+    res = minimize(loss, np.log(x0), method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-8})
+    lh, la = np.exp(np.clip(res.x, -2.5, 1.8))
+    return predict_lambdas(lh, la, RHO)
+
+
+def _market_targets(nm):
     ms = nm.get("ms") or []
     if len(ms) != 3 or any(not x for x in ms):
         return None
@@ -494,93 +493,35 @@ def market_predict(nm):
     po = None
     if len(ou) == 2 and all(ou):
         po = (1 / ou[1]) / (1 / ou[0] + 1 / ou[1])
-
-    def loss(x):
-        q = predict_lambdas(np.exp(x[0]), np.exp(x[1]), RHO)
-        e = (q["p1"] - pm[0]) ** 2 + (q["px"] - pm[1]) ** 2 + (q["p2"] - pm[2]) ** 2
-        if po is not None:
-            e += (q["over25"] - po) ** 2
-        return e
-
-    res = minimize(loss, np.log([1.4, 1.1]), method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-8})
-    lh, la = np.exp(np.clip(res.x, -2.5, 1.8))
-    return predict_lambdas(lh, la, RHO)
+    return pm, po
 
 
-DIV_COUNTRY = {"E0": "ENG", "E1": "ENG", "E2": "ENG", "E3": "ENG", "EC": "ENG", "SC0": "SCO", "SC1": "SCO",
-               "D1": "GER", "D2": "GER", "I1": "ITA", "I2": "ITA", "SP1": "ESP", "SP2": "ESP", "F1": "FRA",
-               "F2": "FRA", "N1": "NED", "B1": "BEL", "P1": "POR", "T1": "TUR", "G1": "GRE", "DNK": "DEN",
-               "SWE": "SWE", "NOR": "NOR", "FIN": "FIN", "AUT": "AUT", "SWZ": "SUI", "POL": "POL",
-               "ROU": "ROU", "RUS": "RUS", "IRL": "IRL"}
-ELO_HFA = 80          # ev sahibi avantajı (Elo puanı)
-
-
-def load_elo():
-    """ClubElo tablosu (data/elo.csv) ya da None. Sütunlar: Rank, Club, Country, Level, Elo, From, To."""
-    p = DATA_DIR / "elo.csv"
-    if not p.exists():
-        print("  ! data/elo.csv yok (ClubElo indirilemedi; 'python bot.py update' adımının logunda '!' satırlarına bak).")
+def market_predict(nm):
+    """Modeli olmayan maç: Nesine MS (ve varsa Alt/Üst 2.5) oranlarından bahisçi payı temizlenerek
+    gol beklentisi çıkarılır. Bu bir piyasa olasılığıdır, modelin kendi tahmini değildir."""
+    t = _market_targets(nm)
+    if t is None:
         return None
-    try:
-        df = pd.read_csv(p)
-        if "Club" not in df.columns:
-            print(f"  ! Elo dosyası beklenen biçimde değil. Sütunlar: {list(df.columns)[:8]}; ilk satırlar: {p.read_text(errors='replace')[:200]!r}")
-            return None
-        df = df[["Club", "Country", "Level", "Elo"]].dropna()
-        df["Level"] = pd.to_numeric(df["Level"], errors="coerce")
-        df["Elo"] = pd.to_numeric(df["Elo"], errors="coerce")
-        df = df.dropna()
-    except Exception as e:  # noqa: BLE001
-        print(f"  ! Elo dosyası okunamadı: {e}")
+    pm, po = t
+    return _fit_lambdas([pm[0], pm[1], pm[2], po])
+
+
+def blend_predict(pmodel, nm, w=0.5):
+    """İki takımın da kendi liginde modeli varsa (Avrupa kupaları): ligler arası gücü ölçemediğimiz için
+    modelin tahmini ile piyasa olasılığı yarı yarıya karıştırılır (piyasa lig farkını, kadro ve motivasyonu bilir)."""
+    t = _market_targets(nm)
+    if t is None:
         return None
-    return df if len(df) > 100 else None
+    pm, po = t
+    tgt = [w * pmodel["p1"] + (1 - w) * pm[0], w * pmodel["px"] + (1 - w) * pm[1],
+           w * pmodel["p2"] + (1 - w) * pm[2],
+           w * pmodel["over25"] + (1 - w) * po if po is not None else pmodel["over25"]]
+    return _fit_lambdas(tgt, (max(pmodel["xg_h"], .3), max(pmodel["xg_a"], .3)))
 
 
-class EloBook:
-    def __init__(self, df):
-        import nesine
-        self.n = nesine
-        self.rows = [(c, k, int(l), float(e), nesine.canon(c)) for c, k, l, e in
-                     zip(df["Club"], df["Country"], df["Level"], df["Elo"])]
-        self.by_canon = {}
-        for r in self.rows:
-            self.by_canon.setdefault(r[4], []).append(r)
-        self.memo = {}
-
-    def lookup(self, name, country=None):
-        """(kulüp, ülke, seviye, elo) ya da None. Ülke ipucu varsa sadece o ülkede aranır;
-        yoksa yalnızca 1-2. seviye kulüpler (yanlış eşleşmeyi azaltmak için)."""
-        key = (name, country)
-        if key in self.memo:
-            return self.memo[key]
-        n = self.n
-        pool = [r for r in self.rows if r[1] == country] if country else [r for r in self.rows if r[2] <= 2]
-        cn = n.canon(name)
-        hit = next((r for r in self.by_canon.get(cn, []) if r in pool), None)
-        if hit is None:
-            hit = next((r for r in pool if n.same_team(r[0], name)), None)
-        self.memo[key] = hit
-        return hit
-
-
-def elo_predict(eh, ea, total, hfa=ELO_HFA):
-    """Elo puanlarından beklenen skor (galibiyet + yarım beraberlik) bulunur; Poisson gol beklentileri,
-    toplam gol `total` sabit kalacak şekilde bu skoru verecek biçimde ayarlanır."""
-    e = 1 / (1 + 10 ** (-(eh - ea + hfa) / 400))
-
-    def score(d):
-        q = predict_lambdas(total / 2 * np.exp(d), total / 2 * np.exp(-d), RHO)
-        return q["p1"] + 0.5 * q["px"]
-
-    lo, hi = -2.0, 2.0
-    for _ in range(40):
-        mid = (lo + hi) / 2
-        if score(mid) < e:
-            lo = mid
-        else:
-            hi = mid
-    d = (lo + hi) / 2
-    return predict_lambdas(total / 2 * np.exp(d), total / 2 * np.exp(-d), RHO)
+def _is_euro_cup(name):
+    n = str(name or "").upper().translate(str.maketrans("İŞÇĞÜÖ", "ISCGUO"))
+    return any(k in n for k in ("SAMPIYONLAR LIGI", "AVRUPA LIGI", "KONFERANS LIGI")) and "GENC" not in n
 
 
 def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
@@ -637,10 +578,7 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
             models[div] = Model().fit(h, ref_date=today) if len(h) >= 50 else None
         return models[div]
 
-    edf = load_elo()
-    book = EloBook(edf) if edf is not None else None
-    if book is None:
-        print("  Elo tablosu yok: Avrupa maçları için ligler arası tahmin tablosu kullanılacak.")
+    book = None                       # ClubElo kullanılmıyor (otomatik indirmeye izin vermiyor)
     out, n_cross, n_mkt, n_elo, miss = [], 0, 0, 0, []
     for m in nes:
         if id(m) in taken:
@@ -665,7 +603,13 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
         if p is None and hh and aa and hh[1] != aa[1]:
             mh, ma = model(hh[0]), model(aa[0])
             if mh and ma and mh.knows(hh[1]) and ma.knows(aa[1]):
-                p, src, hn, an = cross_predict(mh, ma, hh[0], aa[0], hh[1], aa[1]), "cross", hh[1], aa[1]
+                pc = cross_predict(mh, ma, hh[0], aa[0], hh[1], aa[1])
+                pb = blend_predict(pc, m)
+                if pb is not None:
+                    p, src = pb, "blend"
+                else:
+                    p, src = pc, "cross"
+                hn, an = hh[1], aa[1]
         if p is None:
             p = market_predict(m)
             src = "market"
@@ -673,11 +617,12 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
             continue
         n_cross += src == "cross"
         n_mkt += src == "market"
-        n_elo += src == "elo"
+        n_elo += src == "blend"
         r = pd.Series({"Div": "NES", "Date": pd.Timestamp(m["date"]), "Time": m.get("time") or "",
-                       "HomeTeam": hn, "AwayTeam": an, "SRC": src, "LeagueName": m.get("league") or ""})
+                       "HomeTeam": hn, "AwayTeam": an, "SRC": src, "LeagueName": m.get("league") or "",
+                       "EURO": _is_euro_cup(m.get("league"))})
         out.append((r, p, None))
-    print(f"Nesine'den eklenen: Elo tabanlı {n_elo}, ligler arası (tablo) {n_cross}, yalnızca piyasa olasılığı {n_mkt} maç.")
+    print(f"Nesine'den eklenen: ligler arası model+piyasa {n_elo}, ligler arası yalnız model {n_cross}, yalnızca piyasa olasılığı {n_mkt} maç.")
     if miss:
         print("  Bir takımı Elo'da bulunan, diğeri bulunamayan maçlar:", "; ".join(miss))
     return out
@@ -834,7 +779,7 @@ def build_markets(p, row=None):
 
     def S(label, prob, odds=None):
         t, note = tier(float(prob), odds)
-        if src in ("market", "cross") and t == "g":               # model yok ya da ligler arası tahmin: güvenilir (yeşil) denmez
+        if (src == "cross" or (src == "market" and not (row.get("EURO") if row is not None else False))) and t == "g":               # model yok ya da ligler arası tahmin: güvenilir (yeşil) denmez
             t, note = "o", "tahmini: model yok" if src == "market" else "tahmini: lig farkı belirsiz"
         return {"l": label, "p": round(float(prob), 4),
                 "o": round(float(odds), 2) if odds else None, "t": t, "n": note}
@@ -883,7 +828,8 @@ def build_markets(p, row=None):
     M.append(("Doğru Skor", [S(f"{a}-{b}", m[a, b])
                              for a, b in (np.unravel_index(k, m.shape) for k in top)]))
     res = [{"name": n, "sels": s} for n, s in M]
-    if src == "elo":                       # Elo yalnızca güçleri verir; gol sayısına bağlı marketler tahmini sayılır
+    if src == "elo" or (src == "market" and row is not None and row.get("EURO")):
+        # yalnızca 1-X-2 bilgisi var; gol sayısına bağlı marketler tahmini sayılır
         for k in res:
             if k["name"] not in ("Maç Sonucu", "Çifte Şans"):
                 for x in k["sels"]:
@@ -953,7 +899,8 @@ def _legs(r, p):
     nes, act = _nes_of(r)
     legs = []
     src = r.get("SRC")
-    if src in ("market", "cross"):         # tahmini maçlar kupona girmez
+    euro = bool(r.get("EURO"))
+    if src == "cross" or (src == "market" and not euro):   # modeli/tahmini olmayan maçlar kupona girmez
         return []
     if act:
         # Nesine modu: yalnızca Nesine'de bulunan maçlar, oranlar Nesine'den.
@@ -981,6 +928,10 @@ def _legs(r, p):
         top_n = 3
     legs = [l for l in legs if not l[0].startswith("Alt")]      # kullanıcı isteği: kuponlarda Alt seçimi olmaz
     if src == "elo":                       # Elo tabanlı maçlarda yalnızca MS/ÇŞ ve daha yüksek eşik
+        legs = [l for l in legs if l[0] in ("MS 1", "MS X", "MS 2", "1-X", "1-2", "X-2") and l[1] >= 0.60]
+    if src == "blend":                     # model + piyasa karışımı: daha yüksek eşik
+        legs = [l for l in legs if l[1] >= 0.60]
+    if src == "market":                    # Avrupa kupası, yalnızca piyasa olasılığı: yalnızca MS/ÇŞ, yüksek eşik
         legs = [l for l in legs if l[0] in ("MS 1", "MS X", "MS 2", "1-X", "1-2", "X-2") and l[1] >= 0.60]
     # sadece listede de yeşil görünen seçenekler girer (turuncu/kırmızı girmez)
     legs = [l for l in legs if l[1] >= COUPON_MIN_P and tier(l[1], l[2])[0] == "g"]
@@ -1034,6 +985,9 @@ def _coupon_diag(out_rows, today):
     return d
 
 
+EURO_TOL = 0.6          # Avrupa kupası önceliğinde kabul edilen en düşük göreli tutma olasılığı
+
+
 def _pareto(legs):
     """Aynı maçta, hem oranı hem olasılığı başka bir seçenekten kötü olan seçenekleri eler."""
     out, best_p = [], 0.0
@@ -1049,23 +1003,34 @@ def _best_combo(items, pool_size=80):
     Her maçtan, başka bir seçeneğe üstün olmayan tüm seçenekler denenir. (Eskiden yalnızca en yüksek
     olasılıklı 20 maça bakılıyordu; onlar oranı çok düşük favoriler olunca kupon hiç bulunamıyordu.)"""
     cands = [(t, _pareto(t[2])) for t in items if t[2]]
+    euro = lambda t: t[1] is not None and t[1].get("EURO") == True  # noqa: E712
+    # havuzda Avrupa kupası maçları her zaman bulunur
+    eu = [c for c in cands if euro(c[0])]
+    cands = [c for c in cands if not euro(c[0])]
     cands.sort(key=lambda c: -max(x[1] for x in c[1]))
     # havuz: hem en güvenilir hem de oranı yüksek maçlardan oluşsun
     by_p = cands[:pool_size // 2]
     rest = sorted(cands[pool_size // 2:], key=lambda c: -max(x[2] for x in c[1]))[:pool_size - len(by_p)]
-    cands = by_p + rest
-    best = None
+    cands = by_p + rest + eu
+    best_by = {}                      # Avrupa kupası maçı sayısına göre en iyi kupon
     maxo = [max(x[2] for x in c[1]) for c in cands]
     for i, j, k in itertools.combinations(range(len(cands)), 3):
         if maxo[i] * maxo[j] * maxo[k] < COUPON_MIN_ODDS:
             continue
+        ne = euro(cands[i][0]) + euro(cands[j][0]) + euro(cands[k][0])
         for pick in itertools.product(cands[i][1], cands[j][1], cands[k][1]):
             od = pick[0][2] * pick[1][2] * pick[2][2]
             if od >= COUPON_MIN_ODDS:
                 pr = pick[0][1] * pick[1][1] * pick[2][1]
-                if best is None or pr > best[0]:
-                    best = (pr, od, (cands[i][0], cands[j][0], cands[k][0]), pick)
-    return best
+                cur = best_by.get(ne)
+                if cur is None or pr > cur[0]:
+                    best_by[ne] = (pr, od, (cands[i][0], cands[j][0], cands[k][0]), pick, ne)
+    if not best_by:
+        return None
+    top = max(v[0] for v in best_by.values())
+    # Avrupa kupası maçları ön planda: tutma olasılığı en iyinin %60'ından az düşmüyorsa en çok kupa maçı içeren seçilir
+    ok = [v for v in best_by.values() if v[0] >= EURO_TOL * top]
+    return max(ok, key=lambda v: (v[4], v[0]))
 
 
 def _coupons_for_day(day, items):
@@ -1085,7 +1050,7 @@ def _coupons_for_day(day, items):
         best = _best_combo(pool)
         if best is None:
             break
-        pr, od, combo, pick = best
+        pr, od, combo, pick = best[:4]
         used = {key(c) for c in combo}
         if len(used) != COUPON_LEGS or (used & used_all):
             break                     # tekrar eden maç olamaz; olursa kuponu eklemeden dur
@@ -1097,9 +1062,9 @@ def _coupons_for_day(day, items):
             t = str(r.get("Time", "") or "")
             legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
                          "home": r["HomeTeam"], "away": r["AwayTeam"],
-                         "league": LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
+                         "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
                          "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
-                         "t": tier(x[1], x[2])[0],
+                         "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model",
                          "mbs": (_nes_of(r)[0] or {}).get("mbs")})
         legs.sort(key=lambda l: l["time"])
         chosen.append({"legs": legs, "odds": round(od, 2),
@@ -1449,7 +1414,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
         matches.append({
             "id": k, "div": r["Div"],
             "league": (r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"]))),
-            "src": r.get("SRC") or "model",
+            "src": r.get("SRC") or "model", "euro": bool(r.get("EURO")),
             "date": r["Date"].strftime("%Y-%m-%d"),
             "time": "" if t in ("nan", "NaT") else t[:5],
             "home": r["HomeTeam"], "away": r["AwayTeam"],
