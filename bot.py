@@ -70,6 +70,16 @@ LEAGUES = {
     "G1": "Yunanistan Super League",
 }
 
+# football-data.co.uk "new" biçimindeki ek ligler (tek dosyada tüm sezonlar)
+EXTRA = {
+    "DEN": "Danimarka Süper Lig", "SWE": "İsveç Allsvenskan", "NOR": "Norveç Eliteserien",
+    "FIN": "Finlandiya Veikkausliiga", "AUT": "Avusturya Bundesliga", "SWZ": "İsviçre Super League",
+    "POL": "Polonya Ekstraklasa", "ROU": "Romanya Liga 1", "RUS": "Rusya Premier Lig",
+    "IRL": "İrlanda Premier Lig", "BRA": "Brezilya Serie A", "ARG": "Arjantin Primera",
+    "MEX": "Meksika Liga MX", "USA": "ABD MLS", "JPN": "Japonya J1 Lig", "CHN": "Çin Süper Lig",
+}
+LEAGUES.update(EXTRA)
+
 ODDS_SETS = [("AvgH", "AvgD", "AvgA"), ("B365H", "B365D", "B365A"),
              ("PSH", "PSD", "PSA")]
 ODDS_COLS = [c for s in ODDS_SETS for c in s] + ["Avg>2.5", "Avg<2.5", "B365>2.5", "B365<2.5"]
@@ -124,7 +134,8 @@ def update(leagues=None):
     DATA_DIR.mkdir(exist_ok=True)
     seasons = season_codes(today_tr())
     current = seasons[-1]
-    leagues = leagues or list(LEAGUES)
+    leagues_arg = leagues
+    leagues = leagues or [d for d in LEAGUES if d not in EXTRA]
     ok = 0
     for div in leagues:
         for s in seasons:
@@ -132,6 +143,10 @@ def update(leagues=None):
             if fetch(f"{BASE}/mmz4281/{s}/{div}.csv", dest, force=(s == current)):
                 ok += 1
     _FAILS["n"] = 0
+    if not leagues_arg:
+        for code in EXTRA:
+            fetch(f"{BASE}/new/{code}.csv", DATA_DIR / f"{code}_new.csv", force=True, tries=2, timeout=45)
+        _FAILS["n"] = 0
     fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True, tries=4, timeout=60)
     print(f"{ok} sonuç dosyası hazır, fikstür: {'tamam' if fx_ok else 'İNDİRİLEMEDİ'}. "
           f"Veri klasörü: {DATA_DIR}")
@@ -147,6 +162,8 @@ def _read(path):
         text = raw.decode("latin-1")
     df = pd.read_csv(io.StringIO(text), on_bad_lines="skip")
     df.columns = [str(c).strip().lstrip("﻿") for c in df.columns]
+    if "HomeTeam" not in df.columns and "Home" in df.columns:      # "new" biçim
+        df = df.rename(columns={"Home": "HomeTeam", "Away": "AwayTeam", "HG": "FTHG", "AG": "FTAG"})
     if "Div" not in df.columns:
         if path.stem.startswith("fixtures"):
             raise ValueError("fixtures dosyasında 'Div' sütunu yok")
@@ -378,6 +395,56 @@ def print_prediction(home, away, p, mkt=None):
     print(line)
 
 
+_SAME = {}
+
+
+def _same(a, b):
+    k = (a, b)
+    if k not in _SAME:
+        import nesine
+        _SAME[k] = nesine.same_team(a, b)
+    return _SAME[k]
+
+
+def nesine_fixtures(fx, hist, today, days, leagues=None):
+    """Nesine bülteninde olup fikstür dosyasında bulunmayan maçları, iki takımı da geçmiş verilerde
+    tanınan liglerden fikstür satırı olarak ekler. (fikstür tablosu, eklenen sayı) döner."""
+    try:
+        import nesine
+    except ImportError:
+        return fx, 0
+    data = nesine.load(DATA_DIR / "nesine.json")
+    if not data:
+        return fx, 0
+    nes = [m for m in data["matches"] if not m.get("skip") and m.get("date")]
+    nes = [m for m in nes if today.date() <= date.fromisoformat(m["date"]) <= (today + timedelta(days=days)).date()]
+    keys = [(r["Date"].date(), r["HomeTeam"], r["AwayTeam"]) for _, r in fx.iterrows()]
+    taken = {id(m) for m in nesine.match_rows(keys, nes) if m}
+    recent = hist[hist["Date"] >= today - timedelta(days=400)]
+    teams = {}
+    for div in [d for d in LEAGUES if d in set(recent["Div"])]:
+        if leagues and div not in leagues:
+            continue
+        h = recent[recent["Div"] == div]
+        teams[div] = sorted(set(h["HomeTeam"]) | set(h["AwayTeam"]))
+    add = []
+    for m in nes:
+        if id(m) in taken:
+            continue
+        for div, ts in teams.items():
+            hh = next((t for t in ts if _same(t, m["home"])), None)
+            if hh is None:
+                continue
+            aa = next((t for t in ts if t != hh and _same(t, m["away"])), None)
+            if aa is None:
+                continue
+            add.append({"Div": div, "Date": pd.Timestamp(m["date"]), "HomeTeam": hh, "AwayTeam": aa})
+            break
+    if add:
+        fx = pd.concat([fx, pd.DataFrame(add)], ignore_index=True)
+    return fx, len(add)
+
+
 def collect(leagues, days):
     """Önümüzdeki günlerin maçları için (satır, tahmin, piyasa) listesi."""
     fx = load_fixtures()
@@ -385,9 +452,12 @@ def collect(leagues, days):
     fx = fx[(fx["Date"] >= today) & (fx["Date"] <= today + timedelta(days=days))]
     if leagues:
         fx = fx[fx["Div"].isin(leagues)]
+    hist_all = load_results()
+    fx, n_add = nesine_fixtures(fx, hist_all, today, days, leagues)
+    print(f"Fikstür dosyasından {len(fx) - n_add} maç, Nesine bülteninden eklenen {n_add} maç.")
     if fx.empty:
         return [], 0
-    hist = load_results(list(fx["Div"].unique()))
+    hist = hist_all[hist_all["Div"].isin(list(fx["Div"].unique()))]
     models, out_rows, skipped = {}, [], 0
     for div in fx["Div"].unique():
         h = hist[hist["Div"] == div]
