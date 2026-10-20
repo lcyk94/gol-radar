@@ -289,26 +289,30 @@ class Model:
 
     def predict(self, home, away):
         lh, la = self.lambdas(home, away)
-        g = np.arange(MAX_GOALS + 1)
-        m = np.outer(poisson.pmf(g, lh), poisson.pmf(g, la))
-        r = self.rho
-        m[0, 0] *= 1 - lh * la * r
-        m[0, 1] *= 1 + lh * r
-        m[1, 0] *= 1 + la * r
-        m[1, 1] *= 1 - r
-        m /= m.sum()
-        i, j = np.indices(m.shape)
-        top = np.dstack(np.unravel_index(np.argsort(-m.ravel())[:3], m.shape))[0]
-        return {
-            "p1": float(np.tril(m, -1).sum()),
-            "px": float(np.trace(m)),
-            "p2": float(np.triu(m, 1).sum()),
-            "over25": float(m[(i + j) >= 3].sum()),
-            "btts": float(m[1:, 1:].sum()),
-            "xg_h": float(lh), "xg_a": float(la),
-            "scores": [(int(a), int(b), float(m[a, b])) for a, b in top],
-            "matrix": m,
-        }
+        return predict_lambdas(lh, la, self.rho)
+
+
+def predict_lambdas(lh, la, rho=RHO):
+    g = np.arange(MAX_GOALS + 1)
+    m = np.outer(poisson.pmf(g, lh), poisson.pmf(g, la))
+    r = rho
+    m[0, 0] *= 1 - lh * la * r
+    m[0, 1] *= 1 + lh * r
+    m[1, 0] *= 1 + la * r
+    m[1, 1] *= 1 - r
+    m /= m.sum()
+    i, j = np.indices(m.shape)
+    top = np.dstack(np.unravel_index(np.argsort(-m.ravel())[:3], m.shape))[0]
+    return {
+        "p1": float(np.tril(m, -1).sum()),
+        "px": float(np.trace(m)),
+        "p2": float(np.triu(m, 1).sum()),
+        "over25": float(m[(i + j) >= 3].sum()),
+        "btts": float(m[1:, 1:].sum()),
+        "xg_h": float(lh), "xg_a": float(la),
+        "scores": [(int(a), int(b), float(m[a, b])) for a, b in top],
+        "matrix": m,
+    }
 
 
 # --------------------------------------------------------------------------
@@ -445,6 +449,119 @@ def nesine_fixtures(fx, hist, today, days, leagues=None):
     return fx, len(add)
 
 
+# Ligler arası maçlar (Avrupa kupaları vb.) için lig gücü farkı: log-gol birimi, İngiltere Premier Lig = 0.
+# Veriden ölçülemez (ligler arası maç yok), kaba bir tahmindir; bu maçlar "tahmini" etiketlenir ve kupona girmez.
+LEAGUE_STRENGTH = {"E0": 0.0, "SP1": -0.02, "D1": -0.05, "I1": -0.05, "F1": -0.12, "P1": -0.20,
+                   "N1": -0.22, "B1": -0.27, "T1": -0.30, "SC0": -0.38, "G1": -0.38, "E1": -0.30,
+                   "AUT": -0.38, "SWZ": -0.40, "DEN": -0.38, "NOR": -0.42, "SWE": -0.42, "POL": -0.48,
+                   "RUS": -0.40, "ROU": -0.48, "FIN": -0.55, "IRL": -0.60}
+_DEFAULT_STRENGTH = -0.50
+
+
+def cross_predict(mh, ma, dh, da, h, a):
+    sh = LEAGUE_STRENGTH.get(dh, _DEFAULT_STRENGTH)
+    sa = LEAGUE_STRENGTH.get(da, _DEFAULT_STRENGTH)
+    mu, home = (mh.mu + ma.mu) / 2, (mh.home + ma.home) / 2
+    lh = np.exp(mu + home + mh.att[h] - ma.dfn[a] + sh - sa)
+    la = np.exp(mu + ma.att[a] - mh.dfn[h] + sa - sh)
+    return predict_lambdas(lh, la, RHO)
+
+
+def market_predict(nm):
+    """Modeli olmayan maç: Nesine MS (ve varsa Alt/Üst 2.5) oranlarından bahisçi payı temizlenerek
+    gol beklentisi çıkarılır. Bu bir piyasa olasılığıdır, modelin kendi tahmini değildir."""
+    ms = nm.get("ms") or []
+    if len(ms) != 3 or any(not x for x in ms):
+        return None
+    inv = 1 / np.array(ms, float)
+    pm = inv / inv.sum()
+    ou = nm.get("ou25") or []
+    po = None
+    if len(ou) == 2 and all(ou):
+        po = (1 / ou[1]) / (1 / ou[0] + 1 / ou[1])
+
+    def loss(x):
+        q = predict_lambdas(np.exp(x[0]), np.exp(x[1]), RHO)
+        e = (q["p1"] - pm[0]) ** 2 + (q["px"] - pm[1]) ** 2 + (q["p2"] - pm[2]) ** 2
+        if po is not None:
+            e += (q["over25"] - po) ** 2
+        return e
+
+    res = minimize(loss, np.log([1.4, 1.1]), method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-8})
+    lh, la = np.exp(np.clip(res.x, -2.5, 1.8))
+    return predict_lambdas(lh, la, RHO)
+
+
+def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
+    """Nesine'de olup henüz tahmini olmayan maçlar:
+       1) iki takım da farklı liglerde tanınıyorsa (Avrupa kupaları): ligler arası tahmin,
+       2) tanınmıyorsa: Nesine oranlarından piyasa olasılığı. İkisi de 'tahmini' etiketlenir."""
+    try:
+        import nesine
+    except ImportError:
+        return []
+    data = nesine.load(DATA_DIR / "nesine.json")
+    if not data or leagues:
+        return []
+    lo, hi = today.date(), (today + timedelta(days=days)).date()
+    nes = [m for m in data["matches"] if not m.get("skip") and m.get("date")
+           and lo <= date.fromisoformat(m["date"]) <= hi]
+    keys = [(r["Date"].date(), r["HomeTeam"], r["AwayTeam"]) for r, _, _ in out_rows]
+    taken = {id(m) for m in nesine.match_rows(keys, nes) if m}
+    recent = hist_all[hist_all["Date"] >= today - timedelta(days=400)].sort_values("Date")
+    latest = {}
+    for dv, h, a, dt in zip(recent["Div"], recent["HomeTeam"], recent["AwayTeam"], recent["Date"]):
+        if dv in LEAGUES:
+            latest[h] = (dv, dt)
+            latest[a] = (dv, dt)
+    by_canon = {}
+    for t, (dv, _) in latest.items():
+        by_canon.setdefault(nesine.canon(t), (dv, t))
+    names = list(latest)
+    memo = {}
+
+    def find(name):
+        if name in memo:
+            return memo[name]
+        hit = by_canon.get(nesine.canon(name))
+        if hit is None:
+            for t in names:
+                if _same(t, name):
+                    hit = (latest[t][0], t)
+                    break
+        memo[name] = hit
+        return hit
+
+    def model(div):
+        if div not in models:
+            h = hist_all[hist_all["Div"] == div]
+            models[div] = Model().fit(h, ref_date=today) if len(h) >= 50 else None
+        return models[div]
+
+    out, n_cross, n_mkt = [], 0, 0
+    for m in nes:
+        if id(m) in taken:
+            continue
+        hh, aa = find(m["home"]), find(m["away"])
+        src, p, hn, an = None, None, m["home"], m["away"]
+        if hh and aa and hh[1] != aa[1]:
+            mh, ma = model(hh[0]), model(aa[0])
+            if mh and ma and mh.knows(hh[1]) and ma.knows(aa[1]):
+                p, src, hn, an = cross_predict(mh, ma, hh[0], aa[0], hh[1], aa[1]), "cross", hh[1], aa[1]
+        if p is None:
+            p = market_predict(m)
+            src = "market"
+        if p is None:
+            continue
+        n_cross += src == "cross"
+        n_mkt += src == "market"
+        r = pd.Series({"Div": "NES", "Date": pd.Timestamp(m["date"]), "Time": m.get("time") or "",
+                       "HomeTeam": hn, "AwayTeam": an, "SRC": src, "LeagueName": m.get("league") or ""})
+        out.append((r, p, None))
+    print(f"Nesine'den eklenen: ligler arası tahmin {n_cross}, yalnızca piyasa olasılığı {n_mkt} maç.")
+    return out
+
+
 def collect(leagues, days):
     """Önümüzdeki günlerin maçları için (satır, tahmin, piyasa) listesi."""
     fx = load_fixtures()
@@ -455,8 +572,6 @@ def collect(leagues, days):
     hist_all = load_results()
     fx, n_add = nesine_fixtures(fx, hist_all, today, days, leagues)
     print(f"Fikstür dosyasından {len(fx) - n_add} maç, Nesine bülteninden eklenen {n_add} maç.")
-    if fx.empty:
-        return [], 0
     hist = hist_all[hist_all["Div"].isin(list(fx["Div"].unique()))]
     models, out_rows, skipped = {}, [], 0
     for div in fx["Div"].unique():
@@ -470,6 +585,10 @@ def collect(leagues, days):
             continue
         p = m.predict(r["HomeTeam"], r["AwayTeam"])
         out_rows.append((r, p, market_probs(r)))
+    try:
+        out_rows += extra_rows(out_rows, hist_all, models, today, days, leagues)
+    except Exception as e:  # noqa: BLE001  ek maçlar ana listeyi bozmasın
+        print(f"  ! Nesine'den ek maçlar eklenemedi: {e}")
     return out_rows, skipped
 
 
@@ -589,8 +708,12 @@ def build_markets(p, row=None):
     i, j = np.indices(m.shape)
     g, d = i + j, i - j
 
+    src = row.get("SRC") if row is not None else None
+
     def S(label, prob, odds=None):
         t, note = tier(float(prob), odds)
+        if src and t == "g":               # model yok ya da ligler arası tahmin: güvenilir (yeşil) denmez
+            t, note = "o", "tahmini: model yok" if src == "market" else "tahmini: lig farkı belirsiz"
         return {"l": label, "p": round(float(prob), 4),
                 "o": round(float(odds), 2) if odds else None, "t": t, "n": note}
 
@@ -700,6 +823,8 @@ def _legs(r, p):
     Diğer marketlerde gerçek oran yok, o yüzden kupona girmezler."""
     nes, act = _nes_of(r)
     legs = []
+    if r.get("SRC"):                       # tahmini maçlar kupona girmez
+        return []
     if act:
         # Nesine modu: yalnızca Nesine'de bulunan maçlar, oranlar Nesine'den.
         # MBS kupondaki en az maç sayısıdır; 4 maçlık kupona giremeyenler elenir.
@@ -1124,19 +1249,49 @@ def demo_history():
     return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
 
 
-def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None):
+def match_context(hist):
+    """Maç panelinde gösterilen bilgi: son 5 maç formu ve aralarındaki son karşılaşmalar.
+    Olasılıkları değiştirmez (form zaten modelde zaman ağırlığıyla yer alıyor)."""
+    if hist is None or not len(hist):
+        return lambda h, a: None
+    h2 = hist.sort_values("Date")
+    team, pair = {}, {}
+    for dt, h, a, hg, ag in zip(h2["Date"], h2["HomeTeam"], h2["AwayTeam"], h2["FTHG"], h2["FTAG"]):
+        hg, ag = int(hg), int(ag)
+        team.setdefault(h, []).append((dt, a, hg, ag, True))
+        team.setdefault(a, []).append((dt, h, ag, hg, False))
+        pair.setdefault(frozenset((h, a)), []).append((dt, h, a, hg, ag))
+
+    def ctx(h, a):
+        def form(t):
+            return [{"d": dt.strftime("%d.%m.%y"), "o": o, "s": f"{gf}-{ga}", "ev": ev,
+                     "r": "G" if gf > ga else ("B" if gf == ga else "M")}
+                    for dt, o, gf, ga, ev in team.get(t, [])[-5:]][::-1]
+        fh, fa = form(h), form(a)
+        m = [{"d": dt.strftime("%d.%m.%y"), "h": x, "a": y, "s": f"{hg}-{ag}"}
+             for dt, x, y, hg, ag in pair.get(frozenset((h, a)), [])[-5:]][::-1]
+        if not fh and not fa and not m:
+            return None
+        return {"fh": fh, "fa": fa, "h2h": m}
+    return ctx
+
+
+def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist=None):
+    ctxf = match_context(hist)
     matches = []
     for k, (r, p, _) in enumerate(out_rows):
         t = str(r.get("Time", "") or "")
         nes = _nes_of(r)[0]
         matches.append({
             "id": k, "div": r["Div"],
-            "league": LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
+            "league": (r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"]))),
+            "src": r.get("SRC") or "model",
             "date": r["Date"].strftime("%Y-%m-%d"),
             "time": "" if t in ("nan", "NaT") else t[:5],
             "home": r["HomeTeam"], "away": r["AwayTeam"],
             "xg": [round(p["xg_h"], 2), round(p["xg_a"], 2)],
             "nes": bool(nes), "mbs": (nes or {}).get("mbs"),
+            "ctx": ctxf(r["HomeTeam"], r["AwayTeam"]),
             "markets": build_markets(p, r)})
     return {"generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
@@ -1182,7 +1337,7 @@ def cmd_site(leagues, days, out, open_it, demo=False):
             yday = yesterday_report(load_results(), online=True)
         except Exception as e:  # noqa: BLE001  dünkü kuponlar sayfayı bozmasın
             print(f"  ! dünkü kupon sonuçları atlandı: {e}")
-    payload = site_payload(rows, demo, perf, nes_info, yday)
+    payload = site_payload(rows, demo, perf, nes_info, yday, None if demo else load_results())
     if not demo:
         try:
             save_coupons(payload["coupons"])
