@@ -250,14 +250,14 @@ def same_team(a, b):
     return difflib.SequenceMatcher(None, na, nb).ratio() >= 0.86
 
 
-def match_rows(rows, nes):
+def match_rows(rows, nes, include_skip=False):
     """rows: [(tarih(date), ev, deplasman)]. Her satır için eşleşen Nesine maçı (ya da None) döner.
     Ev ve deplasman takımı birlikte eşleşmeli, tarih en fazla 1 gün farklı olabilir."""
     used, out = set(), []
     for d, h, a in rows:
         hit = None
         for k, m in enumerate(nes):
-            if k in used or m.get("skip"):
+            if k in used or (m.get("skip") and not include_skip):
                 continue
             if d and m.get("date") and abs((date.fromisoformat(m["date"]) - d).days) > 1:
                 continue
