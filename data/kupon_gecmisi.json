@@ -72,50 +72,17 @@
  "2026-10-20": {
   "list": [
    {
-    "odds": 3.01,
-    "p": 0.4564,
+    "odds": 3.26,
+    "p": 0.3942,
     "legs": [
-     {
-      "time": "",
-      "home": "Oxford",
-      "away": "Wigan",
-      "league": "İngiltere League One",
-      "sel": "1-X",
-      "o": 1.1,
-      "p": 0.866
-     },
      {
       "time": "",
       "home": "Exeter",
       "away": "Crewe",
       "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.65,
+      "o": 1.6,
       "p": 0.777
-     },
-     {
-      "time": "",
-      "home": "Northampton",
-      "away": "Tranmere",
-      "league": "İngiltere League Two",
-      "sel": "KG Yok",
-      "o": 1.66,
-      "p": 0.678
-     }
-    ]
-   },
-   {
-    "odds": 3.02,
-    "p": 0.3249,
-    "legs": [
-     {
-      "time": "",
-      "home": "Rotherham",
-      "away": "Newport County",
-      "league": "İngiltere League Two",
-      "sel": "1-2",
-      "o": 1.13,
-      "p": 0.743
      },
      {
       "time": "",
@@ -123,8 +90,32 @@
       "away": "Boca Juniors",
       "league": "Arjantin Primera",
       "sel": "X-2",
-      "o": 1.61,
+      "o": 1.53,
       "p": 0.723
+     },
+     {
+      "time": "",
+      "home": "Gillingham",
+      "away": "Port Vale",
+      "league": "İngiltere League Two",
+      "sel": "1-X",
+      "o": 1.33,
+      "p": 0.702
+     }
+    ]
+   },
+   {
+    "odds": 3.02,
+    "p": 0.3551,
+    "legs": [
+     {
+      "time": "",
+      "home": "Oxford",
+      "away": "Wigan",
+      "league": "İngiltere League One",
+      "sel": "1-X",
+      "o": 1.11,
+      "p": 0.866
      },
      {
       "time": "",
@@ -134,21 +125,30 @@
       "sel": "KG Yok",
       "o": 1.66,
       "p": 0.605
+     },
+     {
+      "time": "",
+      "home": "Northampton",
+      "away": "Tranmere",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "o": 1.64,
+      "p": 0.678
      }
     ]
    },
    {
     "odds": 3.01,
-    "p": 0.2735,
+    "p": 0.2586,
     "legs": [
      {
       "time": "",
-      "home": "Wolves",
-      "away": "Portsmouth",
-      "league": "İngiltere Championship",
-      "sel": "KG Var",
-      "o": 1.63,
-      "p": 0.592
+      "home": "Rotherham",
+      "away": "Newport County",
+      "league": "İngiltere League Two",
+      "sel": "Üst 2.5",
+      "o": 1.65,
+      "p": 0.562
      },
      {
       "time": "",
@@ -161,12 +161,45 @@
      },
      {
       "time": "",
-      "home": "Gillingham",
-      "away": "Port Vale",
+      "home": "Crawley Town",
+      "away": "Shrewsbury",
       "league": "İngiltere League Two",
       "sel": "1-X",
+      "o": 1.32,
+      "p": 0.699
+     }
+    ]
+   },
+   {
+    "odds": 3.04,
+    "p": 0.2456,
+    "legs": [
+     {
+      "time": "",
+      "home": "Wolves",
+      "away": "Portsmouth",
+      "league": "İngiltere Championship",
+      "sel": "KG Var",
+      "o": 1.61,
+      "p": 0.592
+     },
+     {
+      "time": "",
+      "home": "Bromley",
+      "away": "Leicester",
+      "league": "İngiltere League One",
+      "sel": "KG Var",
       "o": 1.34,
-      "p": 0.702
+      "p": 0.669
+     },
+     {
+      "time": "",
+      "home": "Barnet",
+      "away": "Swindon",
+      "league": "İngiltere League Two",
+      "sel": "KG Var",
+      "o": 1.41,
+      "p": 0.62
      }
     ]
    }
