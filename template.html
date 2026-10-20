@@ -330,7 +330,8 @@ function render(){
         (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+
         (m.src==='cross'?` <span class="pill np">Avrupa kupası: tahmini</span>`:'')+
         (m.src==='elo'?` <span class="pill np">Elo tabanlı tahmin</span>`:'')+
-        (m.src==='market'?` <span class="pill np">Model yok: piyasa olasılığı</span>`:'')+
+        (m.src==='blend'?` <span class="pill np">Avrupa: model + piyasa</span>`:'')+
+        (m.src==='market'?(m.euro?` <span class="pill np">Avrupa kupası: takım verisi yok, piyasa olasılığı</span>`:` <span class="pill np">Model yok: piyasa olasılığı</span>`):'')+
         (D.odds_source==='nesine' && !m.nes ? ` <span class="pill np">Nesine'de bulunamadı</span>` : '')+`</span>`+
       ms.map(s=>qcell(s)).join('')+qcell(ou[0],1)+qcell(ou[1],1)+qcell(kg[0],1)+
       `<span class="more">${open?'Kapat':'+'+total}</span></div>`+
@@ -363,7 +364,7 @@ function renderCoupons(){
         const ov = parseOdds(LS.get(okey(c,l))), cur = ov || l.o;
         return `<li class="lgr"><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
         `<span class="lt">${esc(l.time)}</span>`+
-        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span><small class="lg">${esc(l.league||'')}</small></span></button>`+
+        `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span><small class="lg">${esc(l.league||'')}${l.src==='blend'?' · model + piyasa':(l.src==='market'?' · piyasa olasılığı':'')}</small></span></button>`+
         `<label class="ls t-${l.t}">${esc(l.sel)}`+
         `<input class="oi" type="text" inputmode="decimal" autocomplete="off" value="${cur.toFixed(2)}" `+
         `data-key="${esc(okey(c,l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label></li>`;
