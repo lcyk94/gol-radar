@@ -950,7 +950,7 @@ def _legs(r, p):
                 ("Alt 2.5", 1 - ov, alt), ("Üst 2.5", ov, ust),
                 ("KG Var", bt, kg[0]), ("KG Yok", 1 - bt, kg[1])]
         legs = [(l, pr, float(o)) for l, pr, o in cand if o]
-        top_n = 4
+        top_n = 8
     else:
         ro = raw_odds(r)
         if ro is not None:
@@ -1017,17 +1017,37 @@ def _coupon_diag(out_rows, today):
     return d
 
 
-def _best_combo(items):
-    """Verilen maçlar arasından, toplam oranı COUPON_MIN_ODDS ve üzeri olan, en yüksek ortak olasılıklı kupon."""
-    cands = sorted(items, key=lambda t: -t[2][0][1])[:20]
+def _pareto(legs):
+    """Aynı maçta, hem oranı hem olasılığı başka bir seçenekten kötü olan seçenekleri eler."""
+    out, best_p = [], 0.0
+    for x in sorted(legs, key=lambda x: -x[2]):          # orana göre azalan
+        if x[1] > best_p + 1e-12:
+            out.append(x)
+            best_p = x[1]
+    return out
+
+
+def _best_combo(items, pool_size=80):
+    """Verilen maçlar arasından, toplam oranı COUPON_MIN_ODDS ve üzeri olan, ortak olasılığı en yüksek kupon.
+    Her maçtan, başka bir seçeneğe üstün olmayan tüm seçenekler denenir. (Eskiden yalnızca en yüksek
+    olasılıklı 20 maça bakılıyordu; onlar oranı çok düşük favoriler olunca kupon hiç bulunamıyordu.)"""
+    cands = [(t, _pareto(t[2])) for t in items if t[2]]
+    cands.sort(key=lambda c: -max(x[1] for x in c[1]))
+    # havuz: hem en güvenilir hem de oranı yüksek maçlardan oluşsun
+    by_p = cands[:pool_size // 2]
+    rest = sorted(cands[pool_size // 2:], key=lambda c: -max(x[2] for x in c[1]))[:pool_size - len(by_p)]
+    cands = by_p + rest
     best = None
-    for combo in itertools.combinations(cands, COUPON_LEGS):
-        for pick in itertools.product(*[c[2] for c in combo]):
-            od = math.prod(x[2] for x in pick)
+    maxo = [max(x[2] for x in c[1]) for c in cands]
+    for i, j, k in itertools.combinations(range(len(cands)), 3):
+        if maxo[i] * maxo[j] * maxo[k] < COUPON_MIN_ODDS:
+            continue
+        for pick in itertools.product(cands[i][1], cands[j][1], cands[k][1]):
+            od = pick[0][2] * pick[1][2] * pick[2][2]
             if od >= COUPON_MIN_ODDS:
-                pr = math.prod(x[1] for x in pick)
+                pr = pick[0][1] * pick[1][1] * pick[2][1]
                 if best is None or pr > best[0]:
-                    best = (pr, od, combo, pick)
+                    best = (pr, od, (cands[i][0], cands[j][0], cands[k][0]), pick)
     return best
 
 
