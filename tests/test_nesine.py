@@ -126,3 +126,28 @@ def test_markets_use_defs_without_inventing():
     by = {m["mtid"]: m for m in mk}
     assert by[268]["name"].startswith("Handikaplı Maç Sonucu") and by[268]["labels"] == ["HMS 1", "HMS X", "HMS 2"]
     assert by[7777]["name"] is None
+
+
+def test_results_feed_and_store(tmp_path):
+    feed = json.dumps({"sc": 200, "d": [
+        {"C": 11, "S": 4, "ES": [{"H": 2, "A": 0, "T": 1}, {"H": 1, "A": 0, "T": 2}]},
+        {"C": 12, "S": 2, "ES": [{"H": 0, "A": 0, "T": 1}]}, {"C": None}, {"x": 1}]})
+    f = nesine.results_from_feed(feed)
+    assert f[11] == {"s": 4, "t": {1: [2, 0], 2: [1, 0]}} and 12 in f and len(f) == 2
+    js = [{"id": 11, "home": "A", "away": "B", "date": "2099-01-01", "league": "L"}]
+    p = tmp_path / "r.json"
+    ms, rs = nesine.update_result_store(js, f, p)
+    assert rs["11"]["t"]["1"] == [2, 0] and "12" not in rs
+    assert nesine.results_from_feed("bozuk") == {}
+
+
+def test_coupon_graded_by_nid(tmp_path, monkeypatch):
+    import pandas as pd
+    p = tmp_path / "r.json"
+    nesine.update_result_store([{"id": 5, "home": "Leipzig", "away": "X", "date": "2026-10-21", "league": "L"}],
+                               {5: {"s": 4, "t": {1: [2, 1]}}}, p)
+    monkeypatch.setattr(nesine, "RESULT_FILE", p)
+    entry = {"list": [{"odds": 3.0, "p": 0.3, "legs": [{"home": "RB Leipzig", "away": "X", "sel": "MS 1", "nid": 5}]}]}
+    byid, _ = bot.nesine_results()
+    out = bot._grade_day("2026-10-21", entry, {}, byid)
+    assert out[0]["legs"][0]["ok"] is True and out[0]["status"] == "won"
