@@ -24,6 +24,7 @@ import heapq
 import io
 import itertools
 import json
+import os
 import time
 import math
 import sys
@@ -83,7 +84,7 @@ LEAGUES.update(EXTRA)
 
 ODDS_SETS = [("AvgH", "AvgD", "AvgA"), ("B365H", "B365D", "B365A"),
              ("PSH", "PSD", "PSA")]
-ODDS_COLS = [c for s in ODDS_SETS for c in s] + ["Avg>2.5", "Avg<2.5", "B365>2.5", "B365<2.5"]
+ODDS_COLS = []        # yurtdışı oranları hiçbir yerde kullanılmaz; geçmiş dosyalardan yalnızca maç sonuçları alınır
 KEEP = ["Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]
 
 MAX_GOALS = 10
@@ -149,11 +150,9 @@ def update(leagues=None):
             fetch(f"{BASE}/new/{code}.csv", DATA_DIR / f"{code}_new.csv", force=True, tries=2, timeout=45)
         _FAILS["n"] = 0
     _FAILS["n"] = 0
-    fx_ok = fetch(f"{BASE}/fixtures.csv", DATA_DIR / "fixtures.csv", force=True, tries=4, timeout=60)
-    print(f"{ok} sonuç dosyası hazır, fikstür: {'tamam' if fx_ok else 'İNDİRİLEMEDİ'}. "
-          f"Veri klasörü: {DATA_DIR}")
-    if ok == 0 or not fx_ok:
-        sys.exit("Veri indirilemedi, yukarıdaki '!' satırlarına bak.")
+    print(f"{ok} sonuç dosyası hazır (yalnızca takım gücü için geçmiş sonuçlar). Veri klasörü: {DATA_DIR}")
+    if ok == 0:
+        sys.exit("Geçmiş sonuçlar indirilemedi, yukarıdaki '!' satırlarına bak.")
 
 
 def _read(path):
@@ -651,14 +650,13 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
 
 def collect(leagues, days):
     """Önümüzdeki günlerin maçları için (satır, tahmin, piyasa) listesi."""
-    fx = load_fixtures()
     today = pd.Timestamp(today_tr())
-    fx = fx[(fx["Date"] >= today) & (fx["Date"] <= today + timedelta(days=days))]
-    if leagues:
-        fx = fx[fx["Div"].isin(leagues)]
+    # Maç listesi YALNIZCA Nesine bülteninden gelir (fikstür dosyası kullanılmaz)
+    fx = pd.DataFrame({"Div": pd.Series(dtype=str), "Date": pd.Series(dtype="datetime64[ns]"),
+                       "HomeTeam": pd.Series(dtype=str), "AwayTeam": pd.Series(dtype=str)})
     hist_all = load_results()
     fx, n_add = nesine_fixtures(fx, hist_all, today, days, leagues)
-    print(f"Fikstür dosyasından {len(fx) - n_add} maç, Nesine bülteninden eklenen {n_add} maç.")
+    print(f"Nesine bülteninden, geçmiş verisi olan liglerde modelle eşleşen maç: {n_add}.")
     hist = hist_all[hist_all["Div"].isin(list(fx["Div"].unique()))]
     models, out_rows, skipped = {}, [], 0
     for div in fx["Div"].unique():
@@ -1423,6 +1421,38 @@ def demo_history():
     return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
 
 
+def _model_ps(mk, p):
+    """Nesine pazarı için modelin olasılıkları (seçenek sırasıyla) ya da None. Yalnızca pazar türü, çizgisi ve
+    seçenek sırası doğrulanmış pazarlar eşlenir; başka pazar için olasılık uydurulmaz."""
+    key = f"{mk.get('mtid')}|{mk.get('line', 0):g}"
+    if key == "1|0":
+        return [p["p1"], p["px"], p["p2"]]
+    if key == "3|0":
+        return [p["p1"] + p["px"], p["p1"] + p["p2"], p["px"] + p["p2"]]
+    if key == "38|0":
+        return [p["btts"], 1 - p["btts"]]
+    if key == "12|2.5":
+        return [1 - p["over25"], p["over25"]]
+    return None
+
+
+_NM_ORDER = {"1|0": 0, "3|0": 1, "12|2.5": 2, "38|0": 3}
+
+
+def nes_markets(nes, p, src=None):
+    """Nesine'de bu maç için açık olan bütün pazarlar (sitede listelenir)."""
+    if not nes or not nes.get("markets"):
+        return None
+    out = []
+    for mk in nes["markets"]:
+        ps = None if src == "market" else _model_ps(mk, p)
+        out.append({"name": mk.get("name"), "mtid": mk.get("mtid"), "line": mk.get("line", 0), "mbs": mk.get("mbs"),
+                    "main": mk.get("main"), "labels": mk.get("labels"), "outs": mk.get("outs"),
+                    "ps": [round(float(x), 4) for x in ps] if ps else None})
+    out.sort(key=lambda k: (_NM_ORDER.get(f"{k['mtid']}|{k['line']:g}", 9), k["mtid"] or 0, k["line"] or 0))
+    return out
+
+
 def match_context(hist):
     """Maç panelinde gösterilen bilgi: son 5 maç formu ve aralarındaki son karşılaşmalar.
     Olasılıkları değiştirmez (form zaten modelde zaman ağırlığıyla yer alıyor)."""
@@ -1477,6 +1507,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
             "xg": [round(p["xg_h"], 2), round(p["xg_a"], 2)],
             "nes": bool(nes), "mbs": (nes or {}).get("mbs"),
             "ctx": ctxf(r["HomeTeam"], r["AwayTeam"]),
+            "nm": nes_markets(nes, p, r.get("SRC")),
             "markets": build_markets(p, r)})
     return {"generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
@@ -1500,7 +1531,8 @@ def cmd_site(leagues, days, out, open_it, demo=False):
     else:
         rows, skipped = collect(leagues, days)
     if not rows:
-        sys.exit("Bu aralıkta maç bulunamadı. Önce:  python bot.py update")
+        sys.exit("Nesine maç listesi yok ya da 36 saatten eski (ya da maçlar aralığın dışında). "
+                 "Site güncellenmedi; önceki başarılı sürüm yayında kalır. Önce:  python nesine.py fetch")
     perf = None
     try:
         print("Geçmiş başarı hesaplanıyor...")
@@ -1511,15 +1543,13 @@ def cmd_site(leagues, days, out, open_it, demo=False):
         print(f"  ! başarı hesabı atlandı: {e}")
     nes_info = None
     if not demo:
-        try:
-            rows, nes_info = attach_nesine(rows)
-        except Exception as e:  # noqa: BLE001  Nesine kısmı sayfayı bozmasın
-            print(f"  ! Nesine verisi kullanılamadı, Avrupa oranlarıyla devam: {e}")
-            rows, nes_info = [(r, p, mk) for r, p, mk in rows], None
+        rows, nes_info = attach_nesine(rows)           # hata olursa site güncellenmez; yurtdışı oranına dönülmez
+        if nes_info is None:
+            sys.exit("Nesine verisi kullanılamadı; site güncellenmedi (yurtdışı oranlarına dönülmüyor).")
     yday = None
     if not demo:
         try:
-            yday = yesterday_report(load_results(), online=True)
+            yday = yesterday_report(load_results(), online=bool(os.environ.get("GOLRADAR_ESPN")))
         except Exception as e:  # noqa: BLE001  dünkü kuponlar sayfayı bozmasın
             print(f"  ! dünkü kupon sonuçları atlandı: {e}")
     payload = site_payload(rows, demo, perf, nes_info, yday, None if demo else load_results())
