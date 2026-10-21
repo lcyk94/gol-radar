@@ -1,0 +1,1604 @@
+{
+ "def|1": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|10": {
+  "labels": {
+   "1": "1-X",
+   "2": "1-2",
+   "3": "X-2"
+  },
+  "name": "2. Yarı Çifte Şans"
+ },
+ "def|109": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "Tek/Çift"
+ },
+ "def|11": {
+  "labels": {
+   "1": "1,5 Alt",
+   "2": "1,5 Üst"
+  },
+  "name": "1,5"
+ },
+ "def|12": {
+  "labels": {
+   "1": "2,5 Alt",
+   "2": "2,5 Üst"
+  },
+  "name": "2,5 Alt / Üst"
+ },
+ "def|13": {
+  "labels": {
+   "1": "3,5 Alt",
+   "2": "3,5 Üst"
+  },
+  "name": "3,5"
+ },
+ "def|14": {
+  "labels": {
+   "1": "1.Y 1,5 Alt",
+   "2": "1.Y 1,5 Üst"
+  },
+  "name": "1.Y 1,5 Alt / Üst"
+ },
+ "def|142": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|143": {
+  "labels": {
+   "1": "1/1",
+   "2": "1/X",
+   "3": "1/2",
+   "4": "X/1",
+   "5": "X/X",
+   "6": "X/2",
+   "7": "2/1",
+   "8": "2/X",
+   "9": "2/2"
+  },
+  "name": "İY/MS"
+ },
+ "def|144": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS 2"
+  },
+  "name": "HMS"
+ },
+ "def|147": {
+  "labels": {
+   "1": "1.Y 1",
+   "2": "1.Y X",
+   "3": "1.Y 2"
+  },
+  "name": "1. Yarı Sonucu"
+ },
+ "def|148": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "H1. YARI"
+ },
+ "def|149": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Alt/Üst"
+ },
+ "def|150": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Ev Sahibi Alt/Üst"
+ },
+ "def|151": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Deplasman Alt/Üst"
+ },
+ "def|152": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1. Yarı Alt/Üst"
+ },
+ "def|155": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "{{handicap}} Gol Alt/Üst"
+ },
+ "def|174": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS X",
+   "3": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|175": {
+  "labels": {
+   "1": "ÇŞ 1-X",
+   "2": "ÇŞ 1-2",
+   "3": "ÇŞ X-2"
+  },
+  "name": "Çifte Şans"
+ },
+ "def|182": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|183": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "1. Set Sonucu"
+ },
+ "def|185": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "1.Oyuncu Herhangi Bir Seti Alır"
+ },
+ "def|189": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Oyun Alt/Üst"
+ },
+ "def|190": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1.Oyuncu Oyun Alt/Üst"
+ },
+ "def|191": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "2.Oyuncu Oyun Alt/Üst"
+ },
+ "def|192": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|196": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Alt/Üst"
+ },
+ "def|20": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Ev Sahibi 1,5 Gol Alt/Üst"
+ },
+ "def|204": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Uzatma Sonucu"
+ },
+ "def|205": {
+  "labels": {
+   "1": "1-0",
+   "2": "2-0",
+   "3": "2-1",
+   "4": "3-0",
+   "5": "3-1",
+   "6": "3-2",
+   "7": "4-0",
+   "8": "4-1",
+   "9": "4-2",
+   "10": "5-0",
+   "11": "5-1",
+   "12": "6-0",
+   "13": "0-0",
+   "14": "1-1",
+   "15": "2-2",
+   "16": "3-3",
+   "17": "0-1",
+   "18": "0-2",
+   "19": "1-2",
+   "20": "0-3",
+   "21": "1-3",
+   "22": "2-3",
+   "23": "0-4",
+   "24": "1-4",
+   "25": "2-4",
+   "26": "0-5",
+   "27": "1-5",
+   "28": "0-6",
+   "29": "Diğer"
+  },
+  "name": "Maç Skoru"
+ },
+ "def|206": {
+  "labels": {
+   "1": "1-0",
+   "2": "2-0",
+   "3": "2-1",
+   "4": "3-0",
+   "5": "3-1",
+   "6": "3-2",
+   "7": "0-0",
+   "8": "1-1",
+   "9": "2-2",
+   "10": "3-3",
+   "11": "0-1",
+   "12": "0-2",
+   "13": "1-2",
+   "14": "0-3",
+   "15": "1-3",
+   "16": "2-3",
+   "17": "Diğer"
+  },
+  "name": "Maç Skoru"
+ },
+ "def|209": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1. Yarı 0,5 Gol Alt/Üst"
+ },
+ "def|210": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Uzt. 0,5 Gol Alt/Üst"
+ },
+ "def|211": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Uzt. 1,5 Gol Alt/Üst"
+ },
+ "def|214": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Ev Sahibi Gol Yemez"
+ },
+ "def|215": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Deplasman Gol Yemez"
+ },
+ "def|216": {
+  "labels": {
+   "1": "Ev.",
+   "2": "X",
+   "3": "Dep."
+  },
+  "name": "{{handicap}} Korner Alt/Üst"
+ },
+ "def|218": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1. Yarı Korner Alt/Üst"
+ },
+ "def|220": {
+  "labels": {
+   "1": "Ev.",
+   "2": "X",
+   "3": "Dep."
+  },
+  "name": "En Çok Korner"
+ },
+ "def|221": {
+  "labels": {
+   "1": "Ev.",
+   "2": "X",
+   "3": "Dep."
+  },
+  "name": "En Çok Korner"
+ },
+ "def|222": {
+  "labels": {
+   "1": "Ev.",
+   "2": "X",
+   "3": "Dep."
+  },
+  "name": "1. Yarı En Çok Korner"
+ },
+ "def|223": {
+  "labels": {
+   "1": "Ev.",
+   "2": "X",
+   "3": "Dep."
+  },
+  "name": "1. Yarı En Çok Korner"
+ },
+ "def|224": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "İlk Korner"
+ },
+ "def|225": {
+  "labels": {
+   "1": "Var",
+   "2": "Yok"
+  },
+  "name": "Kırmızı Kart"
+ },
+ "def|231": {
+  "labels": {
+   "1": "1.P",
+   "2": "2.P",
+   "3": "3.P",
+   "4": "4.P",
+   "5": "Eşit"
+  },
+  "name": "Daha Çok Sayı Olacak Periyot"
+ },
+ "def|237": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "2.Oyuncu Herhangi Bir Seti Alır"
+ },
+ "def|248": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS 2"
+  },
+  "name": "Handikaplı Sayı Sonucu"
+ },
+ "def|249": {
+  "labels": {
+   "1": "3-0",
+   "2": "3-1",
+   "3": "3-2",
+   "4": "0-3",
+   "5": "1-3",
+   "6": "2-3"
+  },
+  "name": "Maç Skoru"
+ },
+ "def|251": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|253": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS 2"
+  },
+  "name": "Handikaplı Maç Sonucu"
+ },
+ "def|258": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Gol Alt/Üst"
+ },
+ "def|259": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Uzt. {{handicap}} Alt/Üst"
+ },
+ "def|262": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS 2"
+  },
+  "name": "Handikaplı Maç Sonucu"
+ },
+ "def|264": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Şampiyon Kim Olur?"
+ },
+ "def|265": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Turu Kim Geçer?"
+ },
+ "def|266": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Turu Kim Geçer?"
+ },
+ "def|267": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Uzatmalarda Kalan Süreyi Kim Kazanır?"
+ },
+ "def|268": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS X",
+   "3": "HMS 2"
+  },
+  "name": "HMS"
+ },
+ "def|272": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır",
+   "3": "MS2 & Alt",
+   "4": "MS1 & Üst",
+   "5": "MSX & Üst",
+   "6": "MS2 & Üst"
+  },
+  "name": "Maç Sonucu ve {{handicap}} Alt/Üst"
+ },
+ "def|275": {
+  "labels": {
+   "1": "1-0",
+   "2": "2-0",
+   "3": "2-1",
+   "4": "3-0",
+   "5": "3-1",
+   "6": "3-2",
+   "7": "4-0",
+   "8": "4-1",
+   "9": "4-2",
+   "10": "5-0",
+   "11": "5-1",
+   "12": "6-0",
+   "13": "0-0",
+   "14": "1-1",
+   "15": "2-2",
+   "16": "3-3",
+   "17": "0-1",
+   "18": "0-2",
+   "19": "1-2",
+   "20": "0-3",
+   "21": "1-3",
+   "22": "2-3",
+   "23": "0-4",
+   "24": "1-4",
+   "25": "2-4",
+   "26": "0-5",
+   "27": "1-5",
+   "28": "0-6"
+  },
+  "name": "Maç Skoru"
+ },
+ "def|276": {
+  "labels": {
+   "1": "1-0",
+   "2": "2-0",
+   "3": "2-1",
+   "4": "0-0",
+   "5": "1-1",
+   "6": "2-2",
+   "7": "0-1",
+   "8": "0-2",
+   "9": "1-2",
+   "10": "Diğer"
+  },
+  "name": "1. Yarı Skoru"
+ },
+ "def|277": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "{{handicap}} Gol Alt/Üst"
+ },
+ "def|279": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Her İki Yarıda da 1,5 Gol Alt"
+ },
+ "def|283": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "2. Yarı {{handicap}} Alt/Üst"
+ },
+ "def|285": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Ev Sahibi 1,5 Gol Alt/Üst"
+ },
+ "def|286": {
+  "labels": {
+   "1": "Var",
+   "2": "Yok"
+  },
+  "name": "Ev Sahibi {{handicap}} Gol Alt/Üst"
+ },
+ "def|29": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Deplasman 1,5 Gol Alt/Üst"
+ },
+ "def|291": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "İlk Golü Hangi Takım Atar?"
+ },
+ "def|292": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "{{handicap}}. Gol (Uzt.)"
+ },
+ "def|295": {
+  "labels": {
+   "1": "Atar",
+   "2": "Atamaz"
+  },
+  "name": "Ev Sahibi İki Yarıda da Gol"
+ },
+ "def|296": {
+  "labels": {
+   "1": "Atar",
+   "2": "Atamaz"
+  },
+  "name": "Deplasman İki Yarıda da Gol"
+ },
+ "def|297": {
+  "labels": {
+   "1": "0",
+   "2": "1",
+   "3": "2",
+   "4": "3",
+   "5": "4",
+   "6": "5",
+   "7": "6+"
+  },
+  "name": "Toplam Gol Sayısı"
+ },
+ "def|298": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "Son Korner"
+ },
+ "def|299": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "Korner Tek/Çift"
+ },
+ "def|3": {
+  "labels": {
+   "1": "1-X",
+   "2": "1-2",
+   "3": "X-2"
+  },
+  "name": "Çifte Şans"
+ },
+ "def|300": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "1. Yarı Korner Tek/Çift"
+ },
+ "def|301": {
+  "labels": {
+   "1": "Var",
+   "2": "Yok"
+  },
+  "name": "{{handicap}} Kart Puanı Alt/Üst"
+ },
+ "def|304": {
+  "labels": {
+   "1": "Var",
+   "2": "Yok"
+  },
+  "name": "Penaltı"
+ },
+ "def|312": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS 2"
+  },
+  "name": "Handikaplı Oyun Sonucu"
+ },
+ "def|324": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "1. Yarı Tek/Çift"
+ },
+ "def|331": {
+  "labels": {
+   "1": "1.P 1",
+   "2": "1.P X",
+   "3": "1.P 2"
+  },
+  "name": "1. Periyot Sonucu"
+ },
+ "def|332": {
+  "labels": {
+   "1": "0",
+   "2": "1",
+   "3": "2",
+   "4": "3",
+   "5": "4+"
+  },
+  "name": "1. Yarı Gol Sayısı"
+ },
+ "def|333": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Frame Alt/Üst"
+ },
+ "def|342": {
+  "labels": {
+   "1": "MS1 & Alt",
+   "2": "MSX & Alt",
+   "3": "MS2 & Alt",
+   "4": "MS1 & Üst",
+   "5": "MSX & Üst",
+   "6": "MS2 & Üst"
+  },
+  "name": "Maç Sonucu & 1,5 Alt/Üst"
+ },
+ "def|343": {
+  "labels": {
+   "1": "MS1 & Alt",
+   "2": "MSX & Alt",
+   "3": "MS2 & Alt",
+   "4": "MS1 & Üst",
+   "5": "MSX & Üst",
+   "6": "MS2 & Üst"
+  },
+  "name": "Maç Sonucu & 2,5 Alt/Üst"
+ },
+ "def|344": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|351": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS X",
+   "3": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|353": {
+  "labels": {
+   "1": "1.P 1",
+   "2": "1.P X",
+   "3": "1.P 2"
+  },
+  "name": "1. Periyot Sonucu"
+ },
+ "def|355": {
+  "labels": {
+   "1": "2.P 1",
+   "2": "2.P X",
+   "3": "2.P 2"
+  },
+  "name": "2. Periyot Sonucu"
+ },
+ "def|357": {
+  "labels": {
+   "1": "3.P 1",
+   "2": "3.P X",
+   "3": "3.P 2"
+  },
+  "name": "3. Periyot Sonucu"
+ },
+ "def|359": {
+  "labels": {
+   "1": "Var",
+   "2": "Yok"
+  },
+  "name": "Karşılıklı Gol"
+ },
+ "def|361": {
+  "labels": {
+   "1": "HMS 1",
+   "2": "HMS X",
+   "3": "HMS 2"
+  },
+  "name": "Handikaplı Maç Sonucu"
+ },
+ "def|362": {
+  "labels": {
+   "1": "1.P",
+   "2": "2.P",
+   "3": "3.P",
+   "4": "Eşit"
+  },
+  "name": "En Çok Gol Olacak Periyot"
+ },
+ "def|363": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "Tek/Çift"
+ },
+ "def|364": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Gol Alt/Üst"
+ },
+ "def|375": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|379": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|38": {
+  "labels": {
+   "1": "KG Var",
+   "2": "KG Yok"
+  },
+  "name": "KG"
+ },
+ "def|381": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Harita Alt/Üst"
+ },
+ "def|383": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "1. Harita Sonucu"
+ },
+ "def|386": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|388": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Harita Alt/Üst"
+ },
+ "def|390": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "1. Harita Sonucu"
+ },
+ "def|392": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|394": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Harita Alt/Üst"
+ },
+ "def|396": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "1. Harita Sonucu"
+ },
+ "def|398": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|399": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Harita Alt/Üst"
+ },
+ "def|400": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|401": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|402": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|41": {
+  "labels": {
+   "1": "Yalnız 1",
+   "2": "Yalnız 2",
+   "3": "Her İkisi",
+   "4": "Hiçbiri"
+  },
+  "name": "Gol Atacak Takım"
+ },
+ "def|413": {
+  "labels": {
+   "1": "1.Y 1",
+   "2": "1.Y X",
+   "3": "1.Y 2"
+  },
+  "name": "1.Y Kalan Süreyi Kim Kazanır?"
+ },
+ "def|414": {
+  "labels": {
+   "1": "MS1 & Var",
+   "2": "MS1 & Yok",
+   "3": "MSX & Var",
+   "4": "MSX & Yok",
+   "5": "MS2 & Var",
+   "6": "MS2 & Yok"
+  },
+  "name": "Maç Sonucu ve Karşılıklı Gol"
+ },
+ "def|415": {
+  "labels": {
+   "1": "MS1 & Var",
+   "2": "MS1 & Yok",
+   "3": "MSX & Var",
+   "4": "MSX & Yok",
+   "5": "MS2 & Var",
+   "6": "MS2 & Yok"
+  },
+  "name": "Maç Sonucu ve Karşılıklı Gol"
+ },
+ "def|416": {
+  "labels": {
+   "1": "1.Y 1 & Var",
+   "2": "1.Y 1 & Yok",
+   "3": "1.Y X & Var",
+   "4": "1.Y X & Yok",
+   "5": "1.Y 2 & Var",
+   "6": "1.Y 2 & Yok"
+  },
+  "name": "1. Yarı Sonucu ve 1. Yarı Karşılıklı Gol"
+ },
+ "def|417": {
+  "labels": {
+   "1": "1.Y 1 & Var",
+   "2": "1.Y 1 & Yok",
+   "3": "1.Y X & Var",
+   "4": "1.Y X & Yok",
+   "5": "1.Y 2 & Var",
+   "6": "1.Y 2 & Yok"
+  },
+  "name": "1. Yarı Sonucu ve 1. Yarı Karşılıklı Gol"
+ },
+ "def|43": {
+  "labels": {
+   "1": "0-1",
+   "2": "2-3",
+   "3": "4-5",
+   "4": "6+"
+  },
+  "name": "Toplam Gol Aralığı"
+ },
+ "def|438": {
+  "labels": {
+   "1": "3",
+   "2": "4",
+   "3": "5"
+  },
+  "name": "Toplam Set"
+ },
+ "def|44": {
+  "labels": {
+   "1": "0",
+   "2": "1",
+   "3": "2+"
+  },
+  "name": "1. Yarı Gol Sayısı"
+ },
+ "def|448": {
+  "labels": {
+   "1": "0-0",
+   "2": "1-1",
+   "3": "2-2",
+   "4": "1-0",
+   "5": "2-0",
+   "6": "2-1",
+   "7": "0-1",
+   "8": "0-2",
+   "9": "1-2",
+   "10": "Diğer"
+  },
+  "name": "1. Yarı Skoru"
+ },
+ "def|449": {
+  "labels": {
+   "1": "0-0",
+   "2": "1-1",
+   "3": "2-2",
+   "4": "1-0",
+   "5": "2-0",
+   "6": "2-1",
+   "7": "0-1",
+   "8": "0-2",
+   "9": "1-2",
+   "10": "Diğer"
+  },
+  "name": "1. Yarı Skoru"
+ },
+ "def|45": {
+  "labels": {
+   "1": "0",
+   "2": "1",
+   "3": "2+"
+  },
+  "name": "2. Yarı Gol Sayısı"
+ },
+ "def|450": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "1. Yarı Tek/Çift"
+ },
+ "def|451": {
+  "labels": {
+   "1": "1. Y",
+   "2": "Eşit",
+   "3": "2. Y",
+   "4": "Penaltı",
+   "5": "Frikik",
+   "6": "Olmaz"
+  },
+  "name": "{{handicap}}. Gol Nasıl Atılır?"
+ },
+ "def|461": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Turu Kim Geçer?"
+ },
+ "def|462": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Turu Kim Geçer?"
+ },
+ "def|48": {
+  "labels": {
+   "1": "1. Y",
+   "2": "Eşit",
+   "3": "2. Y"
+  },
+  "name": "En Çok Gol Olacak Yarı"
+ },
+ "def|49": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "Tek/Çift"
+ },
+ "def|5": {
+  "labels": {
+   "1": "1/1",
+   "2": "1/X",
+   "3": "1/2",
+   "4": "X/1",
+   "5": "X/X",
+   "6": "X/2",
+   "7": "2/1",
+   "8": "2/X",
+   "9": "2/2"
+  },
+  "name": "İlk Yarı/Maç Sonucu"
+ },
+ "def|523": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "Korner Tek/Çift"
+ },
+ "def|526": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Ev Sahibi {{handicap}} Kart Puanı Alt/Üst"
+ },
+ "def|53": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|55": {
+  "labels": {
+   "1": "1-X",
+   "2": "1-2",
+   "3": "X-2"
+  },
+  "name": "Çifte Şans"
+ },
+ "def|559": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "Golü Hangi Takım Atar?"
+ },
+ "def|56": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Kalan Süreyi Kim Kazanır?"
+ },
+ "def|560": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Golü Hangi Takım Atar?"
+ },
+ "def|561": {
+  "labels": {
+   "1": "1",
+   "2": "Eşit",
+   "3": "2"
+  },
+  "name": "Hangi Takım Daha Çok Korner Kullanır?"
+ },
+ "def|562": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Korner Alt/Üst"
+ },
+ "def|563": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Kart Puanı Alt/Üst"
+ },
+ "def|564": {
+  "labels": {
+   "1": "1",
+   "2": "Eşit",
+   "3": "2"
+  },
+  "name": "Hangi Takım Daha Çok Kart Puanı Toplar?"
+ },
+ "def|567": {
+  "labels": {
+   "1": "1-10",
+   "2": "11-20",
+   "3": "21-30",
+   "4": "31-40",
+   "5": "41-50",
+   "6": "51-60",
+   "7": "61-70",
+   "8": "71-80",
+   "9": "81-90",
+   "10": "Olmaz"
+  },
+  "name": "Gol Hangi Aralıkta Olur?"
+ },
+ "def|571": {
+  "labels": {
+   "1": "0:0 / 0:0",
+   "2": "0:0 / 0:1",
+   "3": "0:0 / 0:2",
+   "4": "0:0 / 0:3",
+   "5": "0:0 / 1:0",
+   "6": "0:0 / 1:1",
+   "7": "0:0 / 1:2",
+   "8": "0:0 / 2:0",
+   "9": "0:0 / 2:1",
+   "10": "0:0 / 3:0",
+   "11": "0:0 / 4+",
+   "12": "1:0 / 1:0",
+   "13": "1:0 / 1:1",
+   "14": "1:0 / 1:2",
+   "15": "1:0 / 2:0",
+   "16": "1:0 / 2:1",
+   "17": "1:0 / 3:0",
+   "18": "1:0 / 4+",
+   "19": "0:1 / 0:1",
+   "20": "0:1 / 0:2",
+   "21": "0:1 / 0:3",
+   "22": "0:1 / 1:1",
+   "23": "0:1 / 1:2",
+   "24": "0:1 / 2:1",
+   "25": "0:1 / 4+",
+   "26": "2:0 / 2:0",
+   "27": "2:0 / 2:1",
+   "28": "2:0 / 3:0",
+   "29": "2:0 / 4+",
+   "30": "1:1 / 1:1",
+   "31": "1:1 / 1:2",
+   "32": "1:1 / 2:1",
+   "33": "1:1 / 4+",
+   "34": "0:2 / 0:2",
+   "35": "0:2 / 0:3",
+   "36": "0:2 / 1:2",
+   "37": "0:2 / 4+",
+   "38": "3:0 / 3:0",
+   "39": "3:0 / 4+",
+   "40": "2:1 / 2:1",
+   "41": "2:1 / 4+",
+   "42": "1:2 / 1:2",
+   "43": "1:2 / 4+",
+   "44": "0:3 / 0:3",
+   "45": "0:3 / 4+",
+   "46": "4+ / 4+"
+  },
+  "name": "İlk Yarı / Maç Skoru"
+ },
+ "def|584": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Ev Sahibi Herhangi Bir Yarıyı Kazanır"
+ },
+ "def|585": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Deplasman Herhangi Bir Yarıyı Kazanır"
+ },
+ "def|586": {
+  "labels": {
+   "1": "1.",
+   "2": "Eşit",
+   "3": "2."
+  },
+  "name": "Ev Sahibi Hangi Yarıda Daha Çok Gol Atar?"
+ },
+ "def|587": {
+  "labels": {
+   "1": "1.",
+   "2": "Eşit",
+   "3": "2."
+  },
+  "name": "Deplasman Hangi Yarıda Daha Çok Gol Atar?"
+ },
+ "def|588": {
+  "labels": {
+   "1": "Ev. 3+",
+   "2": "Ev. 2",
+   "3": "Ev. 1",
+   "4": "Dep. 1",
+   "5": "Dep. 2",
+   "6": "Dep. 3+",
+   "7": "0"
+  },
+  "name": "Hangi Takım Kaç Farkla Kazanır?"
+ },
+ "def|589": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Ev Sahibi Gol Yemeden Kazanır"
+ },
+ "def|590": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Deplasman Gol Yemeden Kazanır"
+ },
+ "def|591": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Ev Sahibi Her İki Yarıyı da Kazanır"
+ },
+ "def|592": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Deplasman Her İki Yarıyı da Kazanır"
+ },
+ "def|593": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Penaltı Olur Mu?"
+ },
+ "def|601": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Ev Sahibi {{handicap}} Korner Alt/Üst"
+ },
+ "def|603": {
+  "labels": {
+   "1": "Ev.",
+   "2": "Eşit",
+   "3": "Dep."
+  },
+  "name": "Hangi Takım Daha Çok Kart Puanı Alır?"
+ },
+ "def|604": {
+  "labels": {
+   "1": "Ev.",
+   "2": "Eşit",
+   "3": "Dep."
+  },
+  "name": "Hangi Takım Daha Çok Kart Puanı Alır?"
+ },
+ "def|61": {
+  "labels": {
+   "1": "1-X",
+   "2": "1-2",
+   "3": "X-2"
+  },
+  "name": "1. Yarı Sonucu"
+ },
+ "def|64": {
+  "labels": {
+   "1": "1-X",
+   "2": "1-2",
+   "3": "X-2"
+  },
+  "name": "2. Yarı Sonucu"
+ },
+ "def|664": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Periyot Alt/Üst"
+ },
+ "def|671": {
+  "labels": {
+   "1": "1.P 1",
+   "2": "1.P X",
+   "3": "1.P 2"
+  },
+  "name": "1. Periyot Sonucu"
+ },
+ "def|675": {
+  "labels": {
+   "1": "1",
+   "2": "2"
+  },
+  "name": "Handikaplı Periyot Sonucu"
+ },
+ "def|678": {
+  "labels": {
+   "1": "2.P 1",
+   "2": "2.P X",
+   "3": "2.P 2"
+  },
+  "name": "2. Periyot Sonucu"
+ },
+ "def|679": {
+  "labels": {
+   "1": "3.P 1",
+   "2": "3.P X",
+   "3": "3.P 2"
+  },
+  "name": "3. Periyot Sonucu"
+ },
+ "def|680": {
+  "labels": {
+   "1": "Tek",
+   "2": "Çift"
+  },
+  "name": "Tek/Çift"
+ },
+ "def|681": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "Son Golü Hangi Takım Atar?"
+ },
+ "def|682": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "İlk Golü Hangi Takım Atar?"
+ },
+ "def|69": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1. Yarı 0,5 Alt/Üst"
+ },
+ "def|7": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "1. Yarı Sonucu"
+ },
+ "def|70": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1. Yarı 1,5 Alt/Üst"
+ },
+ "def|71": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "1. Yarı 2,5 Alt/Üst"
+ },
+ "def|745": {
+  "labels": {
+   "1": "{{SOV}}.P 1",
+   "2": "{{SOV}}.P X",
+   "3": "{{SOV}}.P 2"
+  },
+  "name": "{{SOV}}. Periyot Sonucu"
+ },
+ "def|751": {
+  "labels": {},
+  "name": "1. Yarı Gol Sayısı"
+ },
+ "def|752": {
+  "labels": {
+   "1": "0-2",
+   "2": "3-4",
+   "3": "5-6",
+   "4": "7+"
+  },
+  "name": "Maç Skoru"
+ },
+ "def|756": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "Hangi Takım Kazanır?"
+ },
+ "def|757": {
+  "labels": {
+   "1": "1",
+   "2": "Olmaz",
+   "3": "2"
+  },
+  "name": "Golü Hangi Takım Atar?"
+ },
+ "def|758": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Gol Olur mu?"
+ },
+ "def|759": {
+  "labels": {
+   "1": "1",
+   "2": "Eşit",
+   "3": "2"
+  },
+  "name": "Hangi Takım Daha Çok Korner Kullanır?"
+ },
+ "def|760": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Korner Olur mu?"
+ },
+ "def|761": {
+  "labels": {
+   "1": "1",
+   "2": "Eşit",
+   "3": "2"
+  },
+  "name": "Hangi Takım Daha Çok Kart Görür?"
+ },
+ "def|762": {
+  "labels": {
+   "1": "Evet",
+   "2": "Hayır"
+  },
+  "name": "Kart Olur mu?"
+ },
+ "def|774": {
+  "labels": {
+   "1": "Ev Sahibi Normal Sürede Tur Atlar",
+   "2": "Ev Sahibi Uzatmalarda Tur Atlar",
+   "3": "Ev Sahibi Seri Penaltı Atışlarıyla Tur Atlar",
+   "4": "Deplasman Normal Sürede Tur Atlar",
+   "5": "Deplasman Uzatmalarda Tur Atlar",
+   "6": "Deplasman Seri Penaltı Atışlarıyla Tur Atlar"
+  },
+  "name": "Tur Atlama Yöntemi"
+ },
+ "def|784": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|788": {
+  "labels": {
+   "1": "MS 1",
+   "2": "MS X",
+   "3": "MS 2"
+  },
+  "name": "Maç Sonucu"
+ },
+ "def|790": {
+  "labels": {
+   "1": "ÇŞ 1-X",
+   "2": "ÇŞ 1-2",
+   "3": "ÇŞ X-2"
+  },
+  "name": "Handikaplı Maç Sonucu"
+ },
+ "def|798": {
+  "labels": {
+   "1": "Hayır/Hayır",
+   "2": "Evet/Hayır",
+   "3": "Evet/Evet",
+   "4": "Hayır/Evet"
+  },
+  "name": "Korner Handikap ({{handicap}})"
+ },
+ "def|8": {
+  "labels": {
+   "1": "1-X",
+   "2": "1-2",
+   "3": "X-2"
+  },
+  "name": "1. Yarı Çifte Şans"
+ },
+ "def|86": {
+  "labels": {
+   "1": "Alt",
+   "2": "Üst"
+  },
+  "name": "Deplasman 1,5 Gol Alt/Üst"
+ },
+ "def|9": {
+  "labels": {
+   "1": "1",
+   "2": "X",
+   "3": "2"
+  },
+  "name": "2. Yarı Sonucu"
+ },
+ "def|95": {
+  "labels": {
+   "1": "Ev.",
+   "2": "Dep.",
+   "3": "Olmaz"
+  },
+  "name": "Sıradaki Gol ({{handicap}}.Gol)"
+ }
+}
