@@ -839,7 +839,18 @@ def fetch(url=URL, out=OUT):
                     if not js and dom:                   # çalışmadıysa yapıyı ayrıntılı logla
                         _explain_prebulten(raw["prebulten"], [dom[0]["home"], dom[-1]["home"]])
                     for m in js:                         # JSON tam ve kayıpsız: ekrandaki aynı maçın yerine geçer
+                        old = store.get((m["date"], m["home"], m["away"]))
+                        if not m.get("league") and old and old.get("league"):
+                            m["league"] = old["league"]      # lig adı JSON'da yoksa ekrandaki bültenden
                         store[(m["date"], m["home"], m["away"])] = m
+                    lc_name = {}                         # aynı lig kodunu taşıyan maçlardan lig adı tamamlanır
+                    for m in js:
+                        if m.get("league") and m.get("league_id") is not None:
+                            lc_name.setdefault(m["league_id"], m["league"])
+                    for m in js:
+                        if not m.get("league") and m.get("league_id") in lc_name:
+                            m["league"] = lc_name[m["league_id"]]
+                    print("  lig adı bulunamayan maç:", sum(1 for m in js if not m.get("league")))
                     try:
                         _log_extras(raw)
                     except Exception as e:               # noqa: BLE001
