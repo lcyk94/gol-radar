@@ -196,7 +196,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   <div class="legend" id="legend"></div>
   <div id="list"></div>
   <section id="perf" aria-label="Model ne kadar tutuyor"></section>
-  <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Hiçbir tahmin kazanç garantisi vermez. <i>~</i> ile başlayan oranlar bahis sitesinin değil, modelin olasılığından hesaplanan adil orandır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
+  <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Maç listesi ve oranlar yalnızca Nesine bülteninden okunur (yurtdışı oran/maç kaynağı kullanılmaz); model, geçmiş maç sonuçlarındaki takım gücünden hesaplanır. Hiçbir tahmin kazanç garantisi vermez. <i>~</i> ile başlayan oranlar bahis sitesinin değil, modelin olasılığından hesaplanan adil orandır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
 </main>
 
 <script>
@@ -276,6 +276,25 @@ function ctxHtml(m){
     `<p class="fine">Tarz, form ve ikili maçlar bilgi içindir. Formasyon ve sakat/cezalı verisi yok.</p>`;
 }
 
+function nesPanel(m){
+  const L = m.nm;
+  if(!L || !L.length) return '';
+  const named = L.filter(x=>x.name).length;
+  const cards = L.map(k=>{
+    const title = k.name || ('Bahis türü '+k.mtid+(k.line?(' · çizgi '+String(k.line).replace('.',',')):''));
+    return `<section class="mk"><h4>${esc(title)}${k.mbs?` <small>MBS ${k.mbs}</small>`:''}</h4><div class="sels">`+
+      k.outs.map((o,i)=>{
+        const lab = (k.labels && k.labels[i]) || o.on || ('Seçenek '+o.n);
+        const p = k.ps ? k.ps[i] : null;
+        return `<div class="sel${o.o?'':' fair'}"><span class="sl">${esc(lab)}</span><b>${o.o?fo(o.o):'—'}</b>`+
+          (p!=null?`<i>model %${pct(p)}</i>`:'')+`</div>`;}).join('')+`</div></section>`;
+  }).join('');
+  return `<h3>Nesine'de açık bütün bahisler (${L.length})</h3>`+
+    `<p class="xg">Oranlar Nesine bülteninden olduğu gibi alınır. Adı henüz çözülemeyen bahis türleri "Bahis türü N" olarak gösterilir `+
+    `(ad uydurulmaz); ${named} bahis türünün adı bilinir. "Model" yalnızca doğrulanmış pazarlarda gösterilir.</p>`+
+    `<div class="mks">${cards}</div>`;
+}
+
 function panel(m){
   const r = recs(m);
   const top = r.slice(0,5).map(x=>
@@ -293,6 +312,7 @@ function panel(m){
       (m.mbs ? `. MBS ${m.mbs}: bu maçı içeren kuponda en az ${m.mbs} maç olmalı.` : '')+`</p>`+
     ctxHtml(m)+
     `<div class="mks">${cards}</div>`+
+    nesPanel(m)+
     `<p class="fine">İlk yarı ve oyuncu bahisleri bu modelde yok.</p></div>`;
 }
 
