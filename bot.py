@@ -1096,7 +1096,7 @@ def _coupons_for_day(day, items):
                          "home": r["HomeTeam"], "away": r["AwayTeam"],
                          "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"])),
                          "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
-                         "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model",
+                         "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model", "nid": _nid(r.get("NID")),
                          "mbs": (_nes_of(r)[0] or {}).get("mbs")})
         legs.sort(key=lambda l: l["time"])
         chosen.append({"legs": legs, "odds": round(od, 2),
@@ -1124,7 +1124,7 @@ def save_coupons(coupons, keep_days=120):
     log = _load_log()
     log[coupons["date"]] = {"list": [
         {"odds": k["odds"], "p": k["p"],
-         "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p")}
+         "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid")}
                   for l in k["legs"]]} for k in coupons["list"]]}
     for d in sorted(log)[:-keep_days]:
         del log[d]
@@ -1132,7 +1132,36 @@ def save_coupons(coupons, keep_days=120):
     COUPON_LOG.write_text(json.dumps(log, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
-def _grade_day(day, entry, idx):
+def _nid(v):
+    """Nesine maç numarası (pandas'ta NaN olabilir)."""
+    try:
+        return int(v) if v is not None and not pd.isna(v) else None
+    except (TypeError, ValueError):
+        return None
+
+
+def nesine_results():
+    """Nesine sonuç akışından ({maç no: (ev, dep)}, {(ev, dep adı): [(tarih, ev, dep)]}). Yalnızca 'bitti' (S=4) ve
+    maç skoru (T=1) olan kayıtlar; S/T anlamı logdan çıkarılan varsayımdır (nesine.py sonuç örneklerine bakın)."""
+    try:
+        import nesine
+        st = nesine.load_results_store()
+    except Exception:                                    # noqa: BLE001
+        return {}, {}
+    byid, byname = {}, {}
+    for k, r in (st.get("results") or {}).items():
+        sc = (r.get("t") or {}).get("1")
+        m = (st.get("matches") or {}).get(k)
+        if r.get("s") != 4 or not sc or not m:
+            continue
+        byid[int(k)] = (sc[0], sc[1])
+        if m.get("d"):
+            byname.setdefault((str(m["h"]).strip().lower(), str(m["a"]).strip().lower()), []).append(
+                (pd.Timestamp(m["d"]), sc[0], sc[1]))
+    return byid, byname
+
+
+def _grade_day(day, entry, idx, byid=None):
     """Bir günün kuponlarını gerçek sonuçlarla değerlendirir. Maç ±1 gün toleransla aranır."""
     d0 = pd.Timestamp(day)
     out = []
@@ -1140,7 +1169,10 @@ def _grade_day(day, entry, idx):
         legs, bad, pend = [], False, False
         for l in k["legs"]:
             res = None
-            for dt, hg, ag in idx.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), []):
+            nid = l.get("nid")
+            if byid and nid is not None and int(nid) in byid:      # Nesine maç numarasıyla kesin eşleşme
+                res = tuple(int(x) for x in byid[int(nid)])
+            for dt, hg, ag in ([] if res else idx.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), [])):
                 if abs((dt - d0).days) <= 1:
                     res = (int(hg), int(ag))
                     break
@@ -1257,7 +1289,10 @@ def yesterday_report(hist, today=None, online=False):
     for dt, h, a, hg, ag in zip(hist["Date"], hist["HomeTeam"], hist["AwayTeam"], hist["FTHG"], hist["FTAG"]):
         if pd.notna(hg) and pd.notna(ag):
             idx.setdefault((str(h).strip().lower(), str(a).strip().lower()), []).append((dt, hg, ag))
-    graded = {d: _grade_day(d, log[d], idx) for d in days}
+    byid, byname = nesine_results()
+    for key, v in byname.items():
+        idx.setdefault(key, []).extend(v)
+    graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
     if online:
         pend = [(d, l) for d in days[-3:] for k, g in zip(log[d]["list"], graded[d])
                 for l, gl in zip(k["legs"], g["legs"]) if gl["ok"] is None]
@@ -1266,7 +1301,7 @@ def yesterday_report(hist, today=None, online=False):
             print(f"Sonucu bekleyen {len(pend)} kupon maçından ESPN'de bulunan: {len(found)}")
             for key, (d0, hg, ag) in found.items():
                 idx.setdefault(key, []).append((d0, hg, ag))
-            graded = {d: _grade_day(d, log[d], idx) for d in days}
+            graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
     tot = {"won": 0, "lost": 0, "pending": 0, "days": len(days)}
     for d in days:
         for k in graded[d]:
