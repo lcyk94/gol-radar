@@ -196,7 +196,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   <div class="legend" id="legend"></div>
   <div id="list"></div>
   <section id="perf" aria-label="Model ne kadar tutuyor"></section>
-  <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Maç listesi ve oranlar yalnızca Nesine bülteninden okunur (yurtdışı oran/maç kaynağı kullanılmaz); model, geçmiş maç sonuçlarındaki takım gücünden hesaplanır. Hiçbir tahmin kazanç garantisi vermez. <i>~</i> ile başlayan oranlar bahis sitesinin değil, modelin olasılığından hesaplanan adil orandır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
+  <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Maç listesi ve oranlar yalnızca Nesine bülteninden okunur (yurtdışı oran/maç kaynağı kullanılmaz); model, geçmiş maç sonuçlarındaki takım gücünden hesaplanır. Hiçbir tahmin kazanç garantisi vermez.  "—" Nesine'nin o seçenek için oran açmadığı anlamına gelir; yüzde ise modelin olasılığıdır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
 </main>
 
 <script>
@@ -230,7 +230,7 @@ $('#legend').innerHTML =
   `<span><i class="sw t-r"></i>Önerilmez: %${O} altı</span>`+
   `<span>"Oran düşük" notu: seçenek olası ama bahis sitesi çok düşük oran veriyor</span>`+
   (D.odds_source==='nesine'
-    ? `<span>Oranlar Nesine bülteninden alınır. Nesine'de bulunamayan maçlarda oran yerine modelin adil oranı (~) görünür.</span>`
+    ? `<span>Oranlar Nesine bülteninden alınır. Nesine'nin açmadığı seçeneklerde oran yerine "—" görünür; oran uydurulmaz.</span>`
     : `<span>Listedeki oranlar Avrupa'daki bahis sitelerinden gelir, Türk sitelerinde farklı olabilir. Kupon kutularına kendi sitendeki oranı yazabilirsin.</span>`);
 
 const fmtLong = iso => new Date(iso+'T12:00:00').toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long'});
@@ -247,11 +247,10 @@ const dates = [...new Set(D.matches.map(m=>m.date))].sort();
 const mk = (m,n) => m.markets.find(x=>x.name===n);
 const oddsText = s => {
   if(s.o) return s.o.toFixed(2);
-  const f = 1/Math.max(s.p,0.0001);
-  return '~' + (f>=100 ? '99+' : f.toFixed(2));
+  return '—';                       // Nesine bu seçeneği açmamış: oran uydurulmaz
 };
 const tip = s => `${s.l}: model olasılığı %${pct(s.p)}` +
-  (s.o ? `, oran ${s.o.toFixed(2)}` : `, adil oran ~${(1/Math.max(s.p,0.0001)).toFixed(2)} (model hesabı)`) +
+  (s.o ? `, oran ${s.o.toFixed(2)}` : `, Nesine'de bu seçenek için oran açılmamış (oran yok)`) +
   (s.n ? `. ${s.n}` : '');
 const qcell = (s,x) => `<span class="q t-${s.t}${s.o?'':' fair'}${x?' x':''}" title="${esc(tip(s))}">${oddsText(s)}</span>`;
 
