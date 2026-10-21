@@ -208,8 +208,8 @@
  "2026-10-21": {
   "list": [
    {
-    "odds": 3.2,
-    "p": 0.3913,
+    "odds": 3.09,
+    "p": 0.3894,
     "legs": [
      {
       "time": "",
@@ -217,33 +217,9 @@
       "away": "FC Tokyo",
       "league": "Japonya J1 Lig",
       "sel": "X-2",
-      "o": 1.76,
+      "o": 1.66,
       "p": 0.793
      },
-     {
-      "time": "",
-      "home": "Levante",
-      "away": "Ath Bilbao",
-      "league": "İspanya La Liga",
-      "sel": "1-X",
-      "o": 1.49,
-      "p": 0.685
-     },
-     {
-      "time": "19:45",
-      "home": "Como",
-      "away": "Man United",
-      "league": "Lig adı Nesine'de yok",
-      "sel": "1-X",
-      "o": 1.22,
-      "p": 0.72
-     }
-    ]
-   },
-   {
-    "odds": 3.0,
-    "p": 0.2556,
-    "legs": [
      {
       "time": "",
       "home": "Nagoya Grampus",
@@ -253,6 +229,21 @@
       "o": 1.25,
       "p": 0.717
      },
+     {
+      "time": "",
+      "home": "Levante",
+      "away": "Ath Bilbao",
+      "league": "İspanya La Liga",
+      "sel": "1-X",
+      "o": 1.49,
+      "p": 0.685
+     }
+    ]
+   },
+   {
+    "odds": 3.04,
+    "p": 0.2541,
+    "legs": [
      {
       "time": "",
       "home": "FC Tokyo",
@@ -268,8 +259,50 @@
       "away": "Kashima Antlers",
       "league": "Japonya J1 Lig",
       "sel": "KG Var",
-      "o": 1.51,
+      "o": 1.53,
       "p": 0.598
+     },
+     {
+      "time": "19:45",
+      "home": "Como",
+      "away": "Man United",
+      "league": "Lig adı Nesine'de yok",
+      "sel": "1-X",
+      "o": 1.25,
+      "p": 0.713
+     }
+    ]
+   },
+   {
+    "odds": 3.0,
+    "p": 0.2119,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kawasaki Frontale",
+      "away": "Vissel Kobe",
+      "league": "Japonya J1 Lig",
+      "sel": "Üst 2.5",
+      "o": 1.47,
+      "p": 0.605
+     },
+     {
+      "time": "",
+      "home": "Reading",
+      "away": "Leyton Orient",
+      "league": "İngiltere League One",
+      "sel": "KG Var",
+      "o": 1.49,
+      "p": 0.582
+     },
+     {
+      "time": "22:00",
+      "home": "Bayern Munich",
+      "away": "Arsenal",
+      "league": "Lig adı Nesine'de yok",
+      "sel": "Üst 2.5",
+      "o": 1.37,
+      "p": 0.602
      }
     ]
    }
