@@ -208,7 +208,7 @@
  "2026-10-21": {
   "list": [
    {
-    "odds": 3.14,
+    "odds": 3.2,
     "p": 0.3913,
     "legs": [
      {
@@ -217,7 +217,7 @@
       "away": "FC Tokyo",
       "league": "Japonya J1 Lig",
       "sel": "X-2",
-      "o": 1.73,
+      "o": 1.76,
       "p": 0.793
      },
      {
@@ -233,7 +233,7 @@
       "time": "19:45",
       "home": "Como",
       "away": "Man United",
-      "league": "NES",
+      "league": "Lig adı Nesine'de yok",
       "sel": "1-X",
       "o": 1.22,
       "p": 0.72
