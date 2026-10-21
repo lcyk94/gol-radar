@@ -471,6 +471,35 @@ def load_market_names(path=None):
         return {}
 
 
+
+def parse_market_defs(ccall=None, bulletin=None):
+    """Nesine'nin kendi sayfa kodundaki bahis tablosunu okur. Anahtar: bahis numarası (MTID).
+    CCAll.min.js:  OutcomeGroups:{1:{<mtid>:{Title:"..",CouponTitle:"..",Value:[{id:1,title:".."}],BultenValue:[{id:1,title:".."}]}}}
+    Bulletin.min.js: {title:"..",key:"<mtid>",liveKey:"..",outcomeMasks:[{title:"..",outcomeID:"1"}]}
+    Dönen: {"def|<mtid>": {"name": başlık, "labels": {seçenek numarası: ad}}}. Bulunamayan numara için ad uydurulmaz."""
+    defs = {}
+    if ccall:
+        i = ccall.find("OutcomeGroups:{")
+        blk = ccall[i:] if i >= 0 else ""
+        # yalnızca ilk spor (futbol=1) bloğu: ikinci spor bloğu "},2:{" ile başlar
+        j = blk.find("}},2:{")
+        blk = blk[:j + 1] if j > 0 else blk
+        for m in re.finditer(r'(\d+):\{Title:"([^"]*)",CouponTitle:"[^"]*",Value:\[(.*?)\](?:,BultenValue:\[(.*?)\])?\}', blk):
+            mtid, title, val, bval = m.groups()
+            src = bval or val
+            labels = {int(a): b for a, b in re.findall(r'\{id:(\d+),title:"([^"]*)"', src)}
+            if title:
+                defs[f"def|{mtid}"] = {"name": title, "labels": labels}
+    if bulletin:
+        for m in re.finditer(r'\{title:"([^"]+)",key:"(\d+)"(?:,liveKey:"[^"]*")?(?:,specialSelector:"[^"]*")?,outcomeMasks:\[(.*?)\]\}', bulletin):
+            title, mtid, masks = m.groups()
+            if f"def|{mtid}" in defs:
+                continue
+            labels = {int(a): b for b, a in re.findall(r'\{title:"([^"]*)",outcomeID:"(\d+)"', masks)}
+            defs[f"def|{mtid}"] = {"name": title, "labels": labels}
+    return defs
+
+
 def _markets_full(e, names=None):
     """Maçta açık olan BÜTÜN pazarlar: sabit bir listeyle sınırlanmaz; yeni pazar türleri kendiliğinden gelir.
     Adı bilinmeyen pazar 'name': None kalır (ad uydurulmaz)."""
@@ -497,9 +526,18 @@ def _markets_full(e, names=None):
         key = f"{mtid}|{line:g}"
         known = KNOWN_MARKETS.get(key)
         labels = known[1] if known and len(known[1]) == len(outs) else None
+        nm_ = known[0] if known else names.get(key)
+        d_ = names.get(f"def|{mtid}")
+        if not known and isinstance(d_, dict) and d_.get("name"):    # Nesine'nin kendi tablosu
+            nm_ = d_["name"]
+            if line and not re.search(r"\b" + re.escape(f"{line:g}").replace("\\.", "[.,]") + r"\b", nm_.replace(",", ".")):
+                nm_ += f" ({str(f'{line:g}').replace('.', ',')})"
+            lab = [d_.get("labels", {}).get(o["n"]) for o in outs]
+            if all(lab):
+                labels = lab
         out.append({"id": mk.get("ID"), "mtid": mtid, "mst": mk.get("MST"), "line": line, "mbs": mk.get("MBS"),
                     "status": mk.get("MS"), "main": bool(mk.get("BM")),
-                    "name": (known[0] if known else names.get(key)), "labels": labels, "outs": outs})
+                    "name": nm_, "labels": labels, "outs": outs})
     return out
 
 
@@ -791,6 +829,10 @@ def fetch(url=URL, out=OUT):
                 if "nesine" not in r.url or not any(k in ct for k in ("javascript", "json", "text/plain")):
                     return
                 t = r.body().decode("utf-8", "replace")
+                if "OutcomeGroups:{" in t:
+                    raw["ccall"] = t
+                if 'outcomeMasks:[{title:' in t and 'key:"268"' in t:
+                    raw["bulletin"] = t
                 hits = [m_.start() for m_ in re.finditer(r"[ÇC]ifte [ŞS]ans", t)][:2]
                 if hits and len(raw.setdefault("scan", [])) < 6:
                     raw["scan"].append((r.url[:150], len(t), [t[max(i - 350, 0):i + 450] for i in hits]))
@@ -863,6 +905,17 @@ def fetch(url=URL, out=OUT):
                 if raw.get("prebulten"):
                     dom = list(store.values())
                     names = load_market_names()
+                    try:
+                        defs = parse_market_defs(raw.get("ccall"), raw.get("bulletin"))
+                        print(f"  Nesine bahis tablosu: {len(defs)} bahis tanımı (ccall {'var' if raw.get('ccall') else 'yok'}, bulletin {'var' if raw.get('bulletin') else 'yok'})")
+                        for k_, v_ in sorted(defs.items(), key=lambda kv: int(kv[0].split('|')[1]))[:400]:
+                            print(f"  TANIM {k_[4:]} -> {v_['name']} | {v_['labels']}")
+                        if defs:
+                            names.update(defs)
+                            NAMES_FILE.parent.mkdir(parents=True, exist_ok=True)
+                            NAMES_FILE.write_text(json.dumps(names, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+                    except Exception as e:               # noqa: BLE001
+                        print("  bahis tablosu okunamadı:", str(e)[:100])
                     js = matches_from_prebulten(raw["prebulten"], dom, names)
                     print(f"Tam bülten JSON'undan okunan futbol maçı: {len(js)} (ekrandan: {len(dom)})")
                     if not js and dom:                   # çalışmadıysa yapıyı ayrıntılı logla
