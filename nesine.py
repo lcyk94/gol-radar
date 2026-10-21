@@ -564,10 +564,8 @@ def matches_from_prebulten(body, dom_matches, names=None):
     events = [e for e in events if isinstance(e, dict)]
     league_of = {}
     for L in (sg.get("LA") if isinstance(sg, dict) else None) or []:
-        if isinstance(L, dict):
-            nm = [v for k, v in L.items() if isinstance(v, str) and len(v) > 3 and k not in ("BC",)]
-            if nm:
-                league_of[L.get("LC", L.get("C"))] = max(nm, key=len)
+        if isinstance(L, dict) and L.get("LID") is not None and isinstance(L.get("N"), str):
+            league_of[L["LID"]] = L["N"].strip()          # gerçek yapı: {"LID": 2, "N": "ABD Major Lig Playoff", "CC": "US"}
     sig, ftype, npairs = _calibrate(events, dom_matches)
     print(f"  JSON'da {len(events)} kayıt; ekranla eşleşen {npairs}; futbol TYPE değeri: {ftype}")
     if "ms" not in sig or ftype is None:
@@ -596,8 +594,6 @@ def matches_from_prebulten(body, dom_matches, names=None):
                 vals[role] = v if _sane(role, v) else [None] * n
             else:
                 vals[role] = [None] * n
-        if all(v is None for v in vals["ms"]):
-            continue
         ms_key = sig["ms"][0]
         iso = f"{d[6:]}-{d[3:5]}-{d[:2]}"
         low = _ascii(nm[0] + " | " + nm[1])
