@@ -100,3 +100,29 @@ def test_league_name_from_LA_and_no_ms_kept():
     out = nesine.matches_from_prebulten(body, dom)
     m = [x for x in out if x["id"] == 7]
     assert m and m[0]["league"] == "UEFA ŞAMPİYONLAR LİGİ"
+
+
+CC = ('x;OutcomeGroups:{1:{1:{Title:"Maç Sonucu",CouponTitle:"Maç Sonucu",Value:[{id:1,title:"MS 1",couponTitle:"1"},{id:2,title:"MS X",couponTitle:"X"},{id:3,title:"MS 2",couponTitle:"2"}],BultenValue:[{id:1,title:"1",couponTitle:"1"},{id:2,title:"X",couponTitle:"X"},{id:3,title:"2",couponTitle:"2"}]},'
+      '5:{Title:"İlk Yarı/Maç Sonucu",CouponTitle:"İY/MS",Value:[{id:1,title:"1/1",couponTitle:"1/1"},{id:2,title:"1/X",couponTitle:"1/X"}],BultenValue:[{id:1,title:"1/1",couponTitle:"1/1"},{id:2,title:"1/X",couponTitle:"1/X"}]}},2:{9:{Title:"Basket",CouponTitle:"B",Value:[{id:1,title:"a"}],BultenValue:[{id:1,title:"a"}]}}}')
+BL = ('{title:"Handikaplı Maç Sonucu",outcomeGroups:[{title:"Handikaplı Maç Sonucu",key:"268",liveKey:"60",specialSelector:"HM",'
+      'outcomeMasks:[{title:"HND",handicap:!0,handicapType:1},{title:"HMS 1",outcomeID:"1"},{title:"HMS X",outcomeID:"2"},{title:"HMS 2",outcomeID:"3"}]}]}')
+
+
+def test_parse_market_defs():
+    d = nesine.parse_market_defs(CC, BL)
+    assert d["def|1"]["name"] == "Maç Sonucu" and d["def|1"]["labels"] == {1: "1", 2: "X", 3: "2"}
+    assert d["def|5"]["name"] == "İlk Yarı/Maç Sonucu"
+    assert d["def|268"]["name"] == "Handikaplı Maç Sonucu" and d["def|268"]["labels"][2] == "HMS X"
+    assert "def|9" not in d                       # futbol dışı bloklar alınmaz
+
+
+def test_markets_use_defs_without_inventing():
+    d = nesine.parse_market_defs(CC, BL)
+    e = _ev(1)
+    e["MA"].append({"ID": 9, "NO": 9, "MTID": 268, "SOV": 1.0, "MBS": 1,
+                    "OCA": [{"N": 1, "O": 1.47}, {"N": 2, "O": 3.3}, {"N": 3, "O": 3.28}]})
+    e["MA"].append({"ID": 10, "NO": 10, "MTID": 7777, "SOV": 0, "MBS": 1, "OCA": [{"N": 1, "O": 2.0}, {"N": 2, "O": 2.0}]})
+    mk = nesine._markets_full(e, d)
+    by = {m["mtid"]: m for m in mk}
+    assert by[268]["name"].startswith("Handikaplı Maç Sonucu") and by[268]["labels"] == ["HMS 1", "HMS X", "HMS 2"]
+    assert by[7777]["name"] is None
