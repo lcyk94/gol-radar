@@ -704,8 +704,12 @@ def learn_market_names(page, js_matches, budget_s=75):
             break
         try:
             before = len(page.inner_text("body"))
-            loc = page.get_by_text(m["home"], exact=True).first
+            loc = page.get_by_text(f"{m['home']} - {m['away']}", exact=True).first
             if loc.count() == 0:
+                loc = page.get_by_text(m["home"], exact=True).first
+            if loc.count() == 0:
+                if not shown:
+                    print(f"  pazar adı öğrenme: satır bulunamadı ({m['home']} - {m['away']})")
                 continue
             loc.scroll_into_view_if_needed(timeout=3000)
             loc.click(timeout=3000)
@@ -740,6 +744,12 @@ def _log_extras(raw):
     print("  sg.LA örnek:", json.dumps(la, ensure_ascii=False)[:500])
     nb = ((obj.get("nsn") or {}).get("nsnBultenNames") or [])[:3]
     print("  nsnBultenNames örnek:", json.dumps(nb, ensure_ascii=False)[:400])
+    for u_, ln_, ctxs in raw.get("scan", []):
+        print(f"  PAZAR-ADI-TARAMASI {u_} ({ln_} karakter)")
+        for c_ in ctxs:
+            print("    ...", repr(c_))
+    if not raw.get("scan"):
+        print("  PAZAR-ADI-TARAMASI: 'Çifte Şans' yazan dosya yakalanmadı")
     seo = raw.get("seo")
     if seo:
         t = seo.decode("utf-8", "replace")
@@ -749,6 +759,16 @@ def _log_extras(raw):
     if res:
         t = res.decode("utf-8", "replace")
         print(f"  GetLiveBetResults ({len(t)} bayt) başı:", repr(t[:900]))
+
+def _log_sample_markets(js):
+    """En çok pazarı olan maçın ham pazarlarını loga yazar: ekran görüntüsüyle oran oran eşleştirip ad çıkarmak için."""
+    if not js:
+        return
+    m = max(js, key=lambda x: len(x.get("markets") or []))
+    print(f"  ÖRNEK-MAÇ: {m['home']} - {m['away']} ({m.get('league')}) {m.get('date')} {m.get('time')} | pazar: {len(m['markets'])}")
+    for mk in m["markets"]:
+        print(f"  PZ {mk['mtid']}|{mk['line']:g} -> {[o['o'] for o in mk['outs']]}")
+
 
 def fetch(url=URL, out=OUT):
     from playwright.sync_api import sync_playwright
@@ -765,9 +785,22 @@ def fetch(url=URL, out=OUT):
 
         raw = {}                                         # sayfanın indirdiği tam bülten verisi
 
+        def _scan(r, ct):
+            """Pazar adlarının sayfanın kendi dosyalarında (JS/JSON) durup durmadığını arar; yalnızca loglar."""
+            try:
+                if "nesine" not in r.url or not any(k in ct for k in ("javascript", "json", "text/plain")):
+                    return
+                t = r.body().decode("utf-8", "replace")
+                hits = [m_.start() for m_ in re.finditer(r"[ÇC]ifte [ŞS]ans", t)][:2]
+                if hits and len(raw.setdefault("scan", [])) < 6:
+                    raw["scan"].append((r.url[:150], len(t), [t[max(i - 350, 0):i + 450] for i in hits]))
+            except Exception:                            # noqa: BLE001
+                pass
+
         def _on_resp(r):
             try:
                 ct = r.headers.get("content-type", "")
+                _scan(r, ct)
                 if "json" in ct and "nesine" in r.url:
                     body = r.body()
                     api.append((r.status, r.url[:140], len(body)))
@@ -847,6 +880,10 @@ def fetch(url=URL, out=OUT):
                         if not m.get("league") and m.get("league_id") in lc_name:
                             m["league"] = lc_name[m["league_id"]]
                     print("  lig adı bulunamayan maç:", sum(1 for m in js if not m.get("league")))
+                    try:
+                        _log_sample_markets(js)
+                    except Exception as e:               # noqa: BLE001
+                        print("  örnek maç yazılamadı:", str(e)[:100])
                     try:
                         _log_extras(raw)
                     except Exception as e:               # noqa: BLE001
