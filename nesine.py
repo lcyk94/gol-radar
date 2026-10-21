@@ -489,14 +489,12 @@ def parse_market_defs(ccall=None, bulletin=None):
             src = bval or val
             labels = {int(a): b for a, b in re.findall(r'\{id:(\d+),title:"([^"]*)"', src)}
             if title:
-                defs[f"def|{mtid}"] = {"name": title, "labels": labels}
+                defs.setdefault(f"def|{mtid}", {"name": title, "labels": labels})   # ilk tanım futbola ait; sonrakiler başka spor
     if bulletin:
         for m in re.finditer(r'\{title:"([^"]+)",key:"(\d+)"(?:,liveKey:"[^"]*")?(?:,specialSelector:"[^"]*")?,outcomeMasks:\[(.*?)\]\}', bulletin):
             title, mtid, masks = m.groups()
-            if f"def|{mtid}" in defs:
-                continue
             labels = {int(a): b for b, a in re.findall(r'\{title:"([^"]*)",outcomeID:"(\d+)"', masks)}
-            defs[f"def|{mtid}"] = {"name": title, "labels": labels}
+            defs.setdefault(f"def|{mtid}", {"name": title, "labels": labels})
     return defs
 
 
@@ -530,11 +528,17 @@ def _markets_full(e, names=None):
         d_ = names.get(f"def|{mtid}")
         if not known and isinstance(d_, dict) and d_.get("name"):    # Nesine'nin kendi tablosu
             nm_ = d_["name"]
-            if line and not re.search(r"\b" + re.escape(f"{line:g}").replace("\\.", "[.,]") + r"\b", nm_.replace(",", ".")):
-                nm_ += f" ({str(f'{line:g}').replace('.', ',')})"
+            lt = f"{line:g}".replace(".", ",")
+            if "{{handicap}}" in nm_ or "{{SOV}}" in nm_:            # şablon: çizgi değeri adın içine girer
+                nm_ = nm_.replace("{{handicap}}", lt).replace("{{SOV}}", lt)
+            elif re.fullmatch(r"\d+,\d+", nm_.strip()) and any("Alt" in str(v) for v in d_.get("labels", {}).values()):
+                nm_ = nm_.strip() + " Alt/Üst"                       # "1,5" -> "1,5 Alt/Üst" (seçenek adları 'Alt/Üst' diyor)
+            elif line and lt not in nm_:
+                nm_ += f" ({lt})"
             lab = [d_.get("labels", {}).get(o["n"]) for o in outs]
-            if all(lab):
-                labels = lab
+            ok_ = all(lab) and len(set(lab)) == len(lab) and not ("Evet" in lab and len(lab) > 2)
+            if ok_:                                                  # tutarsız etiketler (ör. 'Evet' + 6 seçenek) kullanılmaz
+                labels = [re.sub(r"\{\{(handicap|SOV)\}\}", lt, x) for x in lab]
         out.append({"id": mk.get("ID"), "mtid": mtid, "mst": mk.get("MST"), "line": line, "mbs": mk.get("MBS"),
                     "status": mk.get("MS"), "main": bool(mk.get("BM")),
                     "name": nm_, "labels": labels, "outs": outs})
