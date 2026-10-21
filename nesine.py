@@ -906,6 +906,16 @@ def probe(url):
             ctx = browser.new_context(locale="tr-TR", timezone_id="Europe/Istanbul",
                                       viewport={"width": 1400, "height": 2400})
             page = ctx.new_page()
+            bodies = []
+
+            def _on(resp_):
+                try:
+                    ct = resp_.headers.get("content-type", "")
+                    if "json" in ct and resp_.status == 200:
+                        bodies.append((resp_.url, resp_.text()))
+                except Exception:                        # noqa: BLE001
+                    pass
+            page.on("response", _on)
             resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
             status = resp.status if resp else None
             try:
@@ -913,7 +923,16 @@ def probe(url):
             except Exception:                            # noqa: BLE001
                 pass
             page.wait_for_timeout(6000)
+            for _ in range(8):                           # tembel yüklenen maçlar için kaydır
+                page.mouse.wheel(0, 1500)
+                page.wait_for_timeout(500)
             text = page.inner_text("body")
+            print("---- JSON yanıtları (adres, bayt) ----")
+            for u_, b_ in sorted(bodies, key=lambda x: -len(x[1]))[:12]:
+                print("  ", len(b_), u_[:160])
+            for u_, b_ in sorted(bodies, key=lambda x: -len(x[1]))[:2]:
+                print("---- en büyük JSON örneği:", u_[:160])
+                print(b_[:2500])
             print(f"HTTP {status} | başlık: {page.title()} | metin uzunluğu: {len(text)}")
             if (status and status >= 400) or any(w in text.lower() for w in BLOCK_WORDS):
                 print("Site isteği engelledi. Devam edilmiyor.")
