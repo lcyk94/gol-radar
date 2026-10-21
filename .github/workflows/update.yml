@@ -33,7 +33,7 @@ jobs:
           restore-keys: fd-
       - run: python bot.py update
 
-      # Nesine oranları. Bu adım başarısız olursa site Avrupa oranlarıyla yine yayınlanır.
+      # Nesine bülteni (tek oran/maç kaynağı). Başarısız olursa site eski haliyle kalır, yabancı kaynağa dönülmez.
       - name: Nesine oranlarını oku
         continue-on-error: true
         timeout-minutes: 10
@@ -41,6 +41,12 @@ jobs:
           pip install playwright
           playwright install --with-deps chromium
           python nesine.py fetch
+
+      - name: Testler
+        continue-on-error: true
+        run: |
+          pip install pytest
+          python -m pytest -q tests
 
       - run: python bot.py site --days 4 --out site/index.html
       # Bugünün kuponlarını kaydet; yarın "dünün kuponları" bölümü bundan okunur.
@@ -51,6 +57,8 @@ jobs:
           git config user.email "gol-radar-bot@users.noreply.github.com"
           if [ -f data/kupon_gecmisi.json ]; then
             git add data/kupon_gecmisi.json
+            [ -f data/oran_gecmisi.jsonl ] && git add data/oran_gecmisi.jsonl
+            [ -f data/pazar_adlari.json ] && git add data/pazar_adlari.json
             git diff --cached --quiet || (git commit -m "Kupon kaydı güncellendi" && git push)
           fi
 
