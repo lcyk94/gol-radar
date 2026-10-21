@@ -204,5 +204,75 @@
     ]
    }
   ]
+ },
+ "2026-10-21": {
+  "list": [
+   {
+    "odds": 3.14,
+    "p": 0.3913,
+    "legs": [
+     {
+      "time": "",
+      "home": "Yokohama FC",
+      "away": "FC Tokyo",
+      "league": "Japonya J1 Lig",
+      "sel": "X-2",
+      "o": 1.73,
+      "p": 0.793
+     },
+     {
+      "time": "",
+      "home": "Levante",
+      "away": "Ath Bilbao",
+      "league": "İspanya La Liga",
+      "sel": "1-X",
+      "o": 1.49,
+      "p": 0.685
+     },
+     {
+      "time": "19:45",
+      "home": "Como",
+      "away": "Man United",
+      "league": "NES",
+      "sel": "1-X",
+      "o": 1.22,
+      "p": 0.72
+     }
+    ]
+   },
+   {
+    "odds": 3.0,
+    "p": 0.2556,
+    "legs": [
+     {
+      "time": "",
+      "home": "Nagoya Grampus",
+      "away": "Cerezo Osaka",
+      "league": "Japonya J1 Lig",
+      "sel": "1-X",
+      "o": 1.25,
+      "p": 0.717
+     },
+     {
+      "time": "",
+      "home": "FC Tokyo",
+      "away": "Kashiwa Reysol",
+      "league": "Japonya J1 Lig",
+      "sel": "Üst 2.5",
+      "o": 1.59,
+      "p": 0.596
+     },
+     {
+      "time": "",
+      "home": "Kyoto",
+      "away": "Kashima Antlers",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Var",
+      "o": 1.51,
+      "p": 0.598
+     }
+    ]
+   }
+  ]
  }
 }
