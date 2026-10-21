@@ -443,7 +443,7 @@ def nesine_fixtures(fx, hist, today, days, leagues=None):
             aa = next((t for t in ts if t != hh and _same(t, m["away"])), None)
             if aa is None:
                 continue
-            add.append({"Div": div, "Date": pd.Timestamp(m["date"]), "HomeTeam": hh, "AwayTeam": aa})
+            add.append({"Div": div, "Date": pd.Timestamp(m["date"]), "HomeTeam": hh, "AwayTeam": aa, "NID": m.get("id")})
             break
     if add:
         fx = pd.concat([fx, pd.DataFrame(add)], ignore_index=True)
@@ -633,13 +633,13 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
         if p is None:
             p = market_predict(m)
             src = "market"
-        if p is None:
-            continue
+        if p is None:                       # ne model ne MS oranı var: genel ortalama; maç bültende ise listede olmalı
+            p, src = predict_lambdas(1.45, 1.15, RHO), "prior"
         n_cross += src == "cross"
         n_mkt += src == "market"
         n_elo += src == "blend"
         r = pd.Series({"Div": "NES", "Date": pd.Timestamp(m["date"]), "Time": m.get("time") or "",
-                       "HomeTeam": hn, "AwayTeam": an, "SRC": src, "LeagueName": m.get("league") or "",
+                       "HomeTeam": hn, "AwayTeam": an, "SRC": src, "NID": m.get("id"), "LeagueName": m.get("league") or "",
                        "EURO": _is_euro_cup(m.get("league"))})
         out.append((r, p, None))
     print(f"Nesine'den eklenen: ligler arası model+piyasa {n_elo}, ligler arası yalnız model {n_cross}, yalnızca piyasa olasılığı {n_mkt} maç.")
@@ -702,6 +702,10 @@ def attach_nesine(rows):
         return rows, None
     keys = [(r["Date"].date(), r["HomeTeam"], r["AwayTeam"]) for r, _, _ in rows]
     found = nesine.match_rows(keys, data["matches"])
+    by_id = {m.get("id"): m for m in data["matches"] if m.get("id") is not None}
+    for i, (r, _, _) in enumerate(rows):          # önce Nesine maç numarası: takım adı farkı (Leipzig/RB Leipzig) önemsiz
+        if r.get("NID") in by_id:
+            found[i] = by_id[r["NID"]]
     miss_idx = [i for i, (f, (r, _, _)) in enumerate(zip(found, rows)) if f is None and r.get("SRC") == "market"]
     if miss_idx:                          # genç/kadın/yedek maçlar yalnızca piyasa satırlarına bağlanır
         f2 = nesine.match_rows([keys[i] for i in miss_idx], [m for m in data["matches"] if m.get("skip")],
@@ -851,7 +855,7 @@ def build_markets(p, row=None):
     M.append(("Doğru Skor", [S(f"{a}-{b}", m[a, b])
                              for a, b in (np.unravel_index(k, m.shape) for k in top)]))
     res = [{"name": n, "sels": s} for n, s in M]
-    if src in ("elo", "market", "cross"):
+    if src in ("elo", "market", "cross", "prior"):
         # yalnızca 1-X-2 (ve Alt/Üst) bilgisi var; gol sayısına bağlı diğer marketler tahmini sayılır
         for k in res:
             if k["name"] not in ("Maç Sonucu", "Çifte Şans"):
@@ -924,7 +928,7 @@ def _legs(r, p):
     legs = []
     src = r.get("SRC")
     euro = bool(r.get("EURO"))
-    if src == "cross" or (src == "market" and not euro):   # modeli/tahmini olmayan maçlar kupona girmez
+    if src in ("cross", "prior") or (src == "market" and not euro):   # modeli/tahmini olmayan maçlar kupona girmez
         return []
     if act:
         # Nesine modu: yalnızca Nesine'de bulunan maçlar, oranlar Nesine'den.
@@ -1436,7 +1440,7 @@ def nes_markets(nes, p, src=None):
         return None
     out = []
     for mk in nes["markets"]:
-        ps = None if src == "market" else _model_ps(mk, p)
+        ps = None if src in ("market", "prior") else _model_ps(mk, p)
         out.append({"name": mk.get("name"), "mtid": mk.get("mtid"), "line": mk.get("line", 0), "mbs": mk.get("mbs"),
                     "main": mk.get("main"), "labels": mk.get("labels"), "outs": mk.get("outs"),
                     "ps": [round(float(x), 4) for x in ps] if ps else None})
