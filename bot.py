@@ -940,16 +940,7 @@ def _legs(r, p):
         legs = [(l, pr, float(o)) for l, pr, o in cand if o]
         top_n = 8
     else:
-        ro = raw_odds(r)
-        if ro is not None:
-            legs += [("MS 1", p["p1"], float(ro[0])), ("MS X", p["px"], float(ro[1])),
-                     ("MS 2", p["p2"], float(ro[2]))]
-        ov, un = _num(r, "Avg>2.5", "B365>2.5"), _num(r, "Avg<2.5", "B365<2.5")
-        if ov:
-            legs.append(("Üst 2.5", p["over25"], ov))
-        if un:
-            legs.append(("Alt 2.5", 1 - p["over25"], un))
-        top_n = 3
+        return []                      # Nesine oranı yoksa kupon yok; yurtdışı oran kullanılmaz
     legs = [l for l in legs if not l[0].startswith("Alt")]      # kullanıcı isteği: kuponlarda Alt seçimi olmaz
     legs = [l for l in legs if l[2] >= COUPON_MIN_LEG_ODDS]     # 1.20'nin altındaki oranlar kupona girmez
     if src == "elo":                       # Elo tabanlı maçlarda yalnızca MS/ÇŞ ve daha yüksek eşik
@@ -1087,7 +1078,7 @@ def _coupons_for_day(day, items):
             t = str(r.get("Time", "") or "")
             legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
                          "home": r["HomeTeam"], "away": r["AwayTeam"],
-                         "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"])),
+                         "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"])),
                          "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
                          "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model",
                          "mbs": (_nes_of(r)[0] or {}).get("mbs")})
@@ -1499,7 +1490,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
         nes = _nes_of(r)[0]
         matches.append({
             "id": k, "div": r["Div"],
-            "league": (r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], r["Div"]))),
+            "league": (r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"]))),
             "src": r.get("SRC") or "model", "euro": bool(r.get("EURO")),
             "date": r["Date"].strftime("%Y-%m-%d"),
             "time": "" if t in ("nan", "NaT") else t[:5],
