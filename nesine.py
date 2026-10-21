@@ -651,6 +651,59 @@ def matches_from_prebulten(body, dom_matches, names=None):
 
 
 
+RESULT_FILE = DATA_DIR / "nesine_sonuc.json"
+
+
+def results_from_feed(body):
+    """GetLiveBetResultsWithVersion yanıtından {maç no: {"s": durum, "t": {tür: [ev, dep]}}}.
+    Yapı: {"d":[{"C": maç no, "S": durum, "ES":[{"T": tür, "H": ev, "A": dep}, ...]}]}. T=1'in 'maç skoru' olduğu
+    ve S=4'ün 'bitti' demek olduğu logdan ÇIKARILAN varsayımdır; doğrulama için fetch() örnekleri loga yazar."""
+    try:
+        obj = json.loads(body if isinstance(body, str) else body.decode("utf-8", "replace"))
+    except Exception:                                    # noqa: BLE001
+        return {}
+    out = {}
+    for r in (obj.get("d") if isinstance(obj, dict) else None) or []:
+        if not isinstance(r, dict) or r.get("C") is None:
+            continue
+        sc = {}
+        for e in r.get("ES") or []:
+            if isinstance(e, dict) and isinstance(e.get("H"), int) and isinstance(e.get("A"), int) and e.get("T") is not None:
+                sc.setdefault(e["T"], [e["H"], e["A"]])
+        out[r["C"]] = {"s": r.get("S"), "t": sc}
+    return out
+
+
+def update_result_store(js, feed, path=None, today=None):
+    """Bültendeki maçların adlarını (maç no ile) ve yayındaki sonuçları birikimli dosyada tutar: maç oynanınca bültenden
+    düşer, adı ancak burada kalır. 25 günden eski kayıtlar silinir."""
+    path = Path(path or RESULT_FILE)
+    try:
+        st = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:                                    # noqa: BLE001
+        st = {}
+    ms, rs = st.get("matches", {}), st.get("results", {})
+    for m in js:
+        if m.get("id") is not None:
+            ms[str(m["id"])] = {"h": m["home"], "a": m["away"], "d": m.get("date"), "lg": m.get("league")}
+    for k, v in (feed or {}).items():
+        if str(k) in ms:
+            rs[str(k)] = {"s": v["s"], "t": {str(t): x for t, x in v["t"].items()}}
+    cut = (date.today() - timedelta(days=25)).isoformat()
+    ms = {k: v for k, v in ms.items() if (v.get("d") or "9") >= cut}
+    rs = {k: v for k, v in rs.items() if k in ms}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"matches": ms, "results": rs}, ensure_ascii=False), encoding="utf-8")
+    return ms, rs
+
+
+def load_results_store(path=None):
+    try:
+        return json.loads(Path(path or RESULT_FILE).read_text(encoding="utf-8"))
+    except Exception:                                    # noqa: BLE001
+        return {"matches": {}, "results": {}}
+
+
 HIST_FILE = DATA_DIR / "oran_gecmisi.jsonl"
 _OUT_LABELS = {"1", "X", "2", "Alt", "Üst", "Var", "Yok", "1-X", "1-2", "X-2", "Evet", "Hayır", "Ev Sahibi", "Deplasman",
                "Beraberlik", "Tümü", "Daha fazla"}
@@ -937,6 +990,18 @@ def fetch(url=URL, out=OUT):
                         if not m.get("league") and m.get("league_id") in lc_name:
                             m["league"] = lc_name[m["league_id"]]
                     print("  lig adı bulunamayan maç:", sum(1 for m in js if not m.get("league")))
+                    try:
+                        feed = results_from_feed(raw["results"]) if raw.get("results") else {}
+                        ms_, rs_ = update_result_store(js, feed)
+                        known = [i for i in feed if str(i) in ms_]
+                        from collections import Counter as _C
+                        print(f"  SONUÇ-AKIŞI: akışta {len(feed)} maç, bizim bültenle eşleşen {len(known)}; kayıtlı maç {len(ms_)}, sonuçlu {len(rs_)}")
+                        print("  SONUÇ-AKIŞI durum dağılımı (S):", dict(_C(feed[i]["s"] for i in known)))
+                        for i in known[:6]:
+                            mm = ms_[str(i)]
+                            print(f"  SONUÇ-ÖRNEK {mm['d']} {mm['h']} - {mm['a']} | S={feed[i]['s']} | skorlar(T:[ev,dep])={feed[i]['t']}")
+                    except Exception as e:               # noqa: BLE001
+                        print("  sonuç akışı işlenemedi:", str(e)[:100])
                     try:
                         _log_sample_markets(js)
                     except Exception as e:               # noqa: BLE001
