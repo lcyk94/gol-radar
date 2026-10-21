@@ -59,6 +59,7 @@ jobs:
             git add data/kupon_gecmisi.json
             [ -f data/oran_gecmisi.jsonl ] && git add data/oran_gecmisi.jsonl
             [ -f data/pazar_adlari.json ] && git add data/pazar_adlari.json
+            [ -f data/nesine_sonuc.json ] && git add data/nesine_sonuc.json
             git diff --cached --quiet || (git commit -m "Kupon kaydı güncellendi" && git push)
           fi
 
