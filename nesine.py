@@ -455,6 +455,54 @@ def _market_table(e):
     return out
 
 
+KNOWN_MARKETS = {            # canlı veriyle ekrandaki oranlara karşı doğrulanmış pazarlar (anahtar: "MTID|çizgi")
+    "1|0": ("Maç Sonucu", ["1", "X", "2"]),
+    "3|0": ("Çifte Şans", ["1-X", "1-2", "X-2"]),
+    "38|0": ("Karşılıklı Gol", ["Var", "Yok"]),
+    "12|2.5": ("Alt/Üst 2,5", ["Alt", "Üst"]),
+}
+NAMES_FILE = DATA_DIR / "pazar_adlari.json"      # otomatik öğrenilen pazar adları (anahtar: "MTID|çizgi")
+
+
+def load_market_names(path=None):
+    try:
+        return json.loads(Path(path or NAMES_FILE).read_text(encoding="utf-8"))
+    except Exception:                                # noqa: BLE001
+        return {}
+
+
+def _markets_full(e, names=None):
+    """Maçta açık olan BÜTÜN pazarlar: sabit bir listeyle sınırlanmaz; yeni pazar türleri kendiliğinden gelir.
+    Adı bilinmeyen pazar 'name': None kalır (ad uydurulmaz)."""
+    names = names or {}
+    out = []
+    for mk in e.get("MA") or []:
+        if not isinstance(mk, dict):
+            continue
+        oca = sorted([o for o in (mk.get("OCA") or []) if isinstance(o, dict)], key=lambda o: o.get("N", 0))
+        outs = []
+        for o in oca:
+            v = o.get("O")
+            d = {"n": o.get("N"), "o": float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) and v > 1.0 else None}
+            if o.get("ON"):
+                d["on"] = str(o["ON"])
+            outs.append(d)
+        if not outs:
+            continue
+        mtid = mk.get("MTID", mk.get("MT"))
+        try:
+            line = float(mk.get("SOV") or 0)
+        except (TypeError, ValueError):
+            line = 0.0
+        key = f"{mtid}|{line:g}"
+        known = KNOWN_MARKETS.get(key)
+        labels = known[1] if known and len(known[1]) == len(outs) else None
+        out.append({"id": mk.get("ID"), "mtid": mtid, "mst": mk.get("MST"), "line": line, "mbs": mk.get("MBS"),
+                    "status": mk.get("MS"), "main": bool(mk.get("BM")),
+                    "name": (known[0] if known else names.get(key)), "labels": labels, "outs": outs})
+    return out
+
+
 def _sane(role, vals):
     """Oranlar mantıklı mı? (oranların terslerinin toplamı bahisçi payı kadar 1'den büyük olmalı)"""
     if any(v is None for v in vals):
@@ -508,7 +556,7 @@ def _calibrate(events, dom):
     return sig, (types.most_common(1)[0][0] if types else None), len(pairs)
 
 
-def matches_from_prebulten(body, dom_matches):
+def matches_from_prebulten(body, dom_matches, names=None):
     """Sayfanın indirdiği tam bülten JSON'undan tüm futbol maçlarını çıkarır. Hata olursa [] döner."""
     obj = json.loads(body)
     sg = obj.get("sg") if isinstance(obj, dict) else None
@@ -526,9 +574,14 @@ def matches_from_prebulten(body, dom_matches):
         print("  Kalibrasyon yapılamadı (MS pazarı bulunamadı), JSON kullanılmadı.")
         return []
     out = []
+    seen_ids = set()
     for e in events:
         if e.get("TYPE") != ftype:
             continue
+        if e.get("C") is not None:
+            if e.get("C") in seen_ids:                   # aynı maç iki kez gelirse tek kayıt
+                continue
+            seen_ids.add(e.get("C"))
         nm = _ev_names(e)
         d = str(e.get("D") or "")
         if not nm or not re.match(r"^\d{2}\.\d{2}\.\d{4}$", d):
@@ -548,13 +601,158 @@ def matches_from_prebulten(body, dom_matches):
         ms_key = sig["ms"][0]
         iso = f"{d[6:]}-{d[3:5]}-{d[:2]}"
         low = _ascii(nm[0] + " | " + nm[1])
-        out.append({"time": e.get("T"), "home": nm[0], "away": nm[1], "mbs": tab[ms_key][0] if ms_key in tab else None,
+        mk_full = _markets_full(e, names)
+        out.append({"id": e.get("C"), "ev": e.get("EV"), "start_ms": e.get("ESD"), "league_id": e.get("LC"),
+                    "source": "nesine.com/getprebultenfull", "markets": mk_full,
+                    "time": e.get("T"), "home": nm[0], "away": nm[1], "mbs": tab[ms_key][0] if ms_key in tab else None,
                     "skip": bool(SKIP_RE.search(low)), "ms": vals["ms"], "ou25": vals["ou25"],
                     "hnd": {"line": None, "odds": [None, None, None]}, "cs": vals["cs"], "kg": vals["kg"],
-                    "n_markets": len(e.get("MA") or []), "league": league_of.get(e.get("LC")),
+                    "n_markets": len(mk_full), "league": league_of.get(e.get("LC")),
                     "label": "JSON", "date": iso})
     return out
 
+
+
+HIST_FILE = DATA_DIR / "oran_gecmisi.jsonl"
+_OUT_LABELS = {"1", "X", "2", "Alt", "Üst", "Var", "Yok", "1-X", "1-2", "X-2", "Evet", "Hayır", "Ev Sahibi", "Deplasman",
+               "Beraberlik", "Tümü", "Daha fazla"}
+
+
+def append_history(matches, ts, path=None):
+    """Oranlar değiştikçe zaman damgalı kayıt ekler (eski kaydın üzerine yazılmaz): açılış oranı, son oran, değişim."""
+    path = Path(path or HIST_FILE)
+    last = {}
+    if path.exists():
+        for line in path.read_text(encoding="utf-8").splitlines()[-30000:]:
+            try:
+                r = json.loads(line)
+                last[r["id"]] = r["odds"]
+            except Exception:                            # noqa: BLE001  bozuk satır atlanır
+                continue
+    rows = []
+    for m in matches:
+        mid = m.get("id")
+        if mid is None:
+            continue
+        odds = {k: m.get(k) for k in ("ms", "ou25", "kg", "cs")}
+        if last.get(mid) != odds:
+            rows.append(json.dumps({"t": ts, "id": mid, "d": m.get("date"), "h": m.get("home"), "a": m.get("away"),
+                                    "odds": odds, "source": "nesine"}, ensure_ascii=False))
+    if rows:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as f:
+            f.write("\n".join(rows) + "\n")
+    return len(rows)
+
+
+def _num(t):
+    try:
+        return float(str(t).strip().replace(",", "."))
+    except ValueError:
+        return None
+
+
+def _seq_positions(flat, odds):
+    """Sayfa satırlarında, verilen oran dizisinin (sırayla, arada etiketlerle) geçtiği başlangıç satırları."""
+    for i, l in enumerate(flat):
+        v = _num(l)
+        if v is None or abs(v - odds[0]) > 1e-9:
+            continue
+        j, ok = i, True
+        for o in odds[1:]:
+            k, hit = j + 1, False
+            while k < min(j + 6, len(flat)):
+                w = _num(flat[k])
+                if w is not None and abs(w - o) < 1e-9:
+                    hit, j = True, k
+                    break
+                k += 1
+            if not hit:
+                ok = False
+                break
+        if ok:
+            yield i
+
+
+def _titles_from_text(text, ev):
+    """Bir maçın açılmış bahis paneli metninden {pazar anahtarı: başlık}. Başlık, oran dizisinin hemen öncesindeki
+    etiket olmayan satırdır. Kesin değildir; çağıran taraf birden fazla maçta tutarlılık arar."""
+    flat = [l.strip() for l in text.splitlines() if l.strip()]
+    got = {}
+    for mk in ev.get("markets") or []:
+        odds = [o["o"] for o in mk["outs"]]
+        if len(odds) < 2 or any(o is None for o in odds):
+            continue
+        key = f"{mk['mtid']}|{mk['line']:g}"
+        for i in _seq_positions(flat, odds):
+            for k in range(i - 1, max(i - 9, -1), -1):
+                t = flat[k]
+                if _num(t) is not None or t in _OUT_LABELS or len(t) < 4 or len(t) > 45:
+                    continue
+                got.setdefault(key, []).append(t)
+                break
+    return got
+
+
+def learn_market_names(page, js_matches, budget_s=75):
+    """Sayfadaki bazı maçların bahis panelini açıp pazar adlarını öğrenmeye çalışır. Bir ad ancak en az 3 maçta aynı
+    pazar için aynı başlıkla bulunursa kabul edilir. Başarısız olursa hiçbir şey eklenmez (ad uydurulmaz)."""
+    from collections import Counter
+    t0 = time.time()
+    votes = {}
+    cands = sorted([m for m in js_matches if len(m.get("markets") or []) >= 25 and not m.get("skip")],
+                   key=lambda m: -len(m["markets"]))[:8]
+    shown = False
+    for m in cands:
+        if time.time() - t0 > budget_s:
+            break
+        try:
+            before = len(page.inner_text("body"))
+            loc = page.get_by_text(m["home"], exact=True).first
+            if loc.count() == 0:
+                continue
+            loc.scroll_into_view_if_needed(timeout=3000)
+            loc.click(timeout=3000)
+            page.wait_for_timeout(1800)
+            text = page.inner_text("body")
+            if not shown:
+                shown = True
+                print(f"  pazar adı öğrenme: panel açıldı mı? sayfa metni {before} -> {len(text)} karakter")
+                i = text.find(m["home"])
+                print("  panel metni örneği:", repr(text[max(i, 0):max(i, 0) + 700]))
+            for key, ts in _titles_from_text(text, m).items():
+                votes.setdefault(key, Counter()).update(ts)
+            page.keyboard.press("Escape")
+        except Exception as e:                           # noqa: BLE001
+            print(f"  pazar adı öğrenme atlandı ({m['home']}): {str(e)[:80]}")
+    learned = {}
+    for key, c in votes.items():
+        title, n = c.most_common(1)[0]
+        if n >= 3 and n >= 0.7 * sum(c.values()):
+            learned[key] = title
+    print(f"  öğrenilen pazar adı: {len(learned)} (oy verilen pazar: {len(votes)})")
+    return learned
+
+
+
+def _log_extras(raw):
+    """Sonraki geliştirmeler için: pazar adlarının ve maç sonuçlarının nerede durduğunu loga yazar."""
+    obj = json.loads(raw["prebulten"])
+    sg = obj.get("sg", {})
+    print("  sg.BMV:", json.dumps(sg.get("BMV"), ensure_ascii=False)[:500])
+    la = [x for x in (sg.get("LA") or []) if isinstance(x, dict)][:2]
+    print("  sg.LA örnek:", json.dumps(la, ensure_ascii=False)[:500])
+    nb = ((obj.get("nsn") or {}).get("nsnBultenNames") or [])[:3]
+    print("  nsnBultenNames örnek:", json.dumps(nb, ensure_ascii=False)[:400])
+    seo = raw.get("seo")
+    if seo:
+        t = seo.decode("utf-8", "replace")
+        i = t.find("Maç Sonucu")
+        print(f"  GetSeoConfig ({len(t)} bayt): 'Maç Sonucu' konumu {i}; çevresi:", repr(t[max(i - 300, 0):i + 500]) if i >= 0 else "yok")
+    res = raw.get("results")
+    if res:
+        t = res.decode("utf-8", "replace")
+        print(f"  GetLiveBetResults ({len(t)} bayt) başı:", repr(t[:900]))
 
 def fetch(url=URL, out=OUT):
     from playwright.sync_api import sync_playwright
@@ -577,8 +775,13 @@ def fetch(url=URL, out=OUT):
                 if "json" in ct and "nesine" in r.url:
                     body = r.body()
                     api.append((r.status, r.url[:140], len(body)))
-                    if "getprebultenfull" in r.url.lower():
+                    low = r.url.lower()
+                    if "getprebultenfull" in low:
                         raw["prebulten"] = body
+                    elif "getseoconfig" in low:
+                        raw["seo"] = body
+                    elif "getlivebetresults" in low:
+                        raw["results"] = body
             except Exception:                            # noqa: BLE001
                 pass
         page.on("response", _on_resp)
@@ -630,12 +833,27 @@ def fetch(url=URL, out=OUT):
             try:
                 if raw.get("prebulten"):
                     dom = list(store.values())
-                    js = matches_from_prebulten(raw["prebulten"], dom)
+                    names = load_market_names()
+                    js = matches_from_prebulten(raw["prebulten"], dom, names)
                     print(f"Tam bülten JSON'undan okunan futbol maçı: {len(js)} (ekrandan: {len(dom)})")
                     if not js and dom:                   # çalışmadıysa yapıyı ayrıntılı logla
                         _explain_prebulten(raw["prebulten"], [dom[0]["home"], dom[-1]["home"]])
-                    for m in js:                         # ekrandaki (en güncel) kayıt varsa onu koru
-                        store.setdefault((m["date"], m["home"], m["away"]), m)
+                    for m in js:                         # JSON tam ve kayıpsız: ekrandaki aynı maçın yerine geçer
+                        store[(m["date"], m["home"], m["away"])] = m
+                    try:
+                        _log_extras(raw)
+                    except Exception as e:               # noqa: BLE001
+                        print("  ek tanı atlandı:", str(e)[:100])
+                    try:
+                        learned = learn_market_names(page, js)
+                        if learned:
+                            names.update(learned)
+                            NAMES_FILE.parent.mkdir(parents=True, exist_ok=True)
+                            NAMES_FILE.write_text(json.dumps(names, ensure_ascii=False, indent=1, sort_keys=True),
+                                                  encoding="utf-8")
+                            print("  öğrenilen adlar:", learned)
+                    except Exception as e:               # noqa: BLE001
+                        print("  pazar adı öğrenme hatası:", str(e)[:100])
                 else:
                     print("getprebultenfull yanıtı yakalanamadı.")
             except Exception as e:                       # noqa: BLE001
@@ -653,10 +871,15 @@ def fetch(url=URL, out=OUT):
         return 3
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     out.write_text(json.dumps({
-        "fetched": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "url": url, "matches": matches}, ensure_ascii=False), encoding="utf-8")
+        "fetched": ts, "url": url, "source": "nesine.com", "matches": matches}, ensure_ascii=False), encoding="utf-8")
     print(f"Yazıldı: {out}")
+    try:
+        n = append_history(matches, ts, out.parent / "oran_gecmisi.jsonl")
+        print(f"Oran geçmişine eklenen değişen/yeni kayıt: {n}")
+    except Exception as e:                               # noqa: BLE001
+        print("Oran geçmişi yazılamadı:", str(e)[:100])
     return 0
 
 
