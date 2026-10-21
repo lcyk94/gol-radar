@@ -88,3 +88,15 @@ def test_fitted_probabilities_valid():
     q = bot._fit_lambdas((0.45, 0.28, 0.27, 0.5))
     assert abs(q["p1"] + q["px"] + q["p2"] - 1) < 1e-6
     assert all(0 <= q[k] <= 1 for k in ("p1", "px", "p2", "over25"))
+
+
+def test_league_name_from_LA_and_no_ms_kept():
+    e = _ev(7); e["LC"] = 2
+    e["MA"][0]["OCA"] = [{"N": 1, "O": None}, {"N": 2, "O": None}, {"N": 3, "O": None}]
+    fill = [_ev(900 + i, f"F{i}", f"G{i}", ms=(2.0 + i / 10, 3.2, 3.5)) for i in range(4)]
+    allev = [e] + fill
+    body = json.dumps({"sg": {"EA": allev, "LA": [{"LID": 2, "N": "UEFA ŞAMPİYONLAR LİGİ", "CC": "EU"}]}})
+    dom = _dom(fill)
+    out = nesine.matches_from_prebulten(body, dom)
+    m = [x for x in out if x["id"] == 7]
+    assert m and m[0]["league"] == "UEFA ŞAMPİYONLAR LİGİ"
