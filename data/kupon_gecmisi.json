@@ -208,26 +208,26 @@
  "2026-10-21": {
   "list": [
    {
-    "odds": 3.33,
-    "p": 0.2494,
+    "odds": 3.06,
+    "p": 0.219,
     "legs": [
-     {
-      "time": "",
-      "home": "Levante",
-      "away": "Ath Bilbao",
-      "league": "İspanya La Liga",
-      "sel": "1-X",
-      "o": 1.52,
-      "p": 0.685
-     },
      {
       "time": "",
       "home": "Reading",
       "away": "Leyton Orient",
       "league": "İngiltere League One",
       "sel": "KG Var",
-      "o": 1.52,
+      "o": 1.55,
       "p": 0.582
+     },
+     {
+      "time": "22:00",
+      "home": "Bayern Munich",
+      "away": "Arsenal",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "Üst 2.5",
+      "o": 1.37,
+      "p": 0.601
      },
      {
       "time": "22:00",
