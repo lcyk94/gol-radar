@@ -350,6 +350,7 @@ function render(){
         (m.src==='cross'?` <span class="pill np">Avrupa kupası: tahmini</span>`:'')+
         (m.src==='elo'?` <span class="pill np">Elo tabanlı tahmin</span>`:'')+
         (m.src==='blend'?` <span class="pill np">Avrupa: model + piyasa</span>`:'')+
+        (m.src==='prior'?` <span class="pill np">Bu maçın MS oranı ve takım verisi yok: genel ortalamaya dayalı kaba tahmin</span>`:'')+
         (m.src==='market'?(m.euro?` <span class="pill np">Avrupa kupası: takım verisi yok, piyasa olasılığı</span>`:` <span class="pill np">Model yok: piyasa olasılığı</span>`):'')+
         (D.odds_source==='nesine' && !m.nes ? ` <span class="pill np">Nesine'de bulunamadı</span>` : '')+`</span>`+
       ms.map(s=>qcell(s)).join('')+qcell(ou[0],1)+qcell(ou[1],1)+qcell(kg[0],1)+
