@@ -600,6 +600,7 @@ def _calibrate(events, dom):
 
 FIXED_SIG = {                # logda 3 ayrı çalıştırmada ekranla birebir doğrulandı: (pazar, çizgi), seçenek sırası
     "ms": ((1, 0.0), (0, 1, 2)), "ou25": ((12, 2.5), (0, 1)), "kg": ((38, 0.0), (0, 1)), "cs": ((3, 0.0), (0, 1, 2))}
+FULL_SCAN = os.environ.get("NESINE_FULL") == "1"     # varsayılan hafif mod: Nesine'ye tek sayfa yüklemesi, tarama yok
 RAW_FILE = DATA_DIR / "nesine_ham.json"
 
 
@@ -1008,7 +1009,7 @@ def fetch(url=URL, out=OUT):
             bad_all = bad
             # Gerçek bir kullanıcı gibi yavaş yavaş aşağı kaydır; liste kaydırdıkça yükleniyor.
             t0, idle, step = time.time(), 0, 0
-            for step in range(1, 701):
+            for step in range(1, 701 if FULL_SCAN else 3):          # hafif mod: sayfa bir kez açılır, kaydırma yok
                 pos = page.evaluate("[Math.round(window.scrollY), document.documentElement.scrollHeight, innerHeight]")
                 before = len(store)
                 page.mouse.move(640, 400)
@@ -1086,7 +1087,7 @@ def fetch(url=URL, out=OUT):
                     except Exception as e:               # noqa: BLE001
                         print("  ek tanı atlandı:", str(e)[:100])
                     try:
-                        learned = learn_market_names(page, js)
+                        learned = learn_market_names(page, js) if FULL_SCAN else {}
                         if learned:
                             names.update(learned)
                             NAMES_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -1099,7 +1100,8 @@ def fetch(url=URL, out=OUT):
                     print("getprebultenfull yanıtı yakalanamadı.")
             except Exception as e:                       # noqa: BLE001
                 print("Tam bülten JSON'u okunamadı:", e)
-            _day_tabs(page, store, state)
+            if FULL_SCAN:
+                _day_tabs(page, store, state)
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
             return 1
