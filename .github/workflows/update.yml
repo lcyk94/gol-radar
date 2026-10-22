@@ -40,7 +40,7 @@ jobs:
         run: |
           pip install playwright
           playwright install --with-deps chromium
-          python nesine.py fetch
+          python nesine.py fetch || (echo 'ilk deneme başarısız, 60 sn sonra tekrar' && sleep 60 && python nesine.py fetch)
 
       - name: Testler
         continue-on-error: true
