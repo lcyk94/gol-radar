@@ -53,6 +53,14 @@ jobs:
           for i in 1 2 3 4; do playwright install --with-deps chromium && break || (echo "tarayıcı indirme $i. deneme başarısız"; sleep 45); done
           python nesine.py fetch || (echo 'ilk deneme başarısız, 60 sn sonra tekrar' && sleep 60 && python nesine.py fetch)
 
+      # GitHub'ın sunucusundan Nesine'ye erişilemezse: kullanıcının kendi tarayıcısından indirip depoya yüklediği
+      # data/nesine_ham.json kullanılır (en fazla 36 saatlik veri kabul edilir).
+      - name: Yedek - elle yüklenen Nesine verisi
+        if: hashFiles('data/nesine.json') == ''
+        continue-on-error: true
+        run: |
+          if [ -f data/nesine_ham.json ]; then python nesine.py import data/nesine_ham.json; else echo "data/nesine_ham.json yok"; fi
+
       - name: Testler
         continue-on-error: true
         run: |
