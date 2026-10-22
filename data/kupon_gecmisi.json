@@ -255,7 +255,8 @@
       "league": "UEFA Konferans Ligi",
       "sel": "1-X",
       "o": 2.05,
-      "p": 0.681
+      "p": 0.681,
+      "nid": 3230170
      },
      {
       "time": "22:00",
@@ -263,8 +264,9 @@
       "away": "Crystal Palace",
       "league": "UEFA Avrupa Ligi",
       "sel": "1-X",
-      "o": 1.21,
-      "p": 0.716
+      "o": 1.22,
+      "p": 0.712,
+      "nid": 3229910
      },
      {
       "time": "22:00",
@@ -272,74 +274,9 @@
       "away": "Freiburg",
       "league": "UEFA Konferans Ligi",
       "sel": "1-X",
-      "o": 1.22,
-      "p": 0.704
-     }
-    ]
-   },
-   {
-    "odds": 3.01,
-    "p": 0.226,
-    "legs": [
-     {
-      "time": "",
-      "home": "Puebla",
-      "away": "Monterrey",
-      "league": "Meksika Liga MX",
-      "sel": "1-X",
-      "o": 1.57,
-      "p": 0.557
-     },
-     {
-      "time": "22:00",
-      "home": "Celtic",
-      "away": "Celta",
-      "league": "UEFA Avrupa Ligi",
-      "sel": "1-X",
-      "o": 1.33,
-      "p": 0.671
-     },
-     {
-      "time": "22:00",
-      "home": "Midtjylland",
-      "away": "St Truiden",
-      "league": "UEFA Konferans Ligi",
-      "sel": "KG Var",
-      "o": 1.44,
-      "p": 0.606
-     }
-    ]
-   },
-   {
-    "odds": 3.0,
-    "p": 0.2157,
-    "legs": [
-     {
-      "time": "",
-      "home": "Santos Laguna",
-      "away": "UNAM Pumas",
-      "league": "Meksika Liga MX",
-      "sel": "Üst 2.5",
-      "o": 1.41,
-      "p": 0.587
-     },
-     {
-      "time": "",
-      "home": "Palmeiras",
-      "away": "Fluminense",
-      "league": "Brezilya Serie A",
-      "sel": "MS 1",
-      "o": 1.49,
-      "p": 0.603
-     },
-     {
-      "time": "22:00",
-      "home": "Lillestrom",
-      "away": "Sociedad",
-      "league": "UEFA Avrupa Ligi",
-      "sel": "Üst 2.5",
-      "o": 1.43,
-      "p": 0.609
+      "o": 1.21,
+      "p": 0.708,
+      "nid": 3230640
      }
     ]
    }
