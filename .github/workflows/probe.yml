@@ -32,5 +32,5 @@ jobs:
           python-version: "3.12"
       - run: |
           pip install playwright
-          playwright install --with-deps chromium
+          for i in 1 2 3 4; do playwright install --with-deps chromium && break || sleep 45; done
           python nesine.py probe "${{ matrix.url }}"
