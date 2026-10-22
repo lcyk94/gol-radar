@@ -151,3 +151,21 @@ def test_coupon_graded_by_nid(tmp_path, monkeypatch):
     byid, _ = bot.nesine_results()
     out = bot._grade_day("2026-10-21", entry, {}, byid)
     assert out[0]["legs"][0]["ok"] is True and out[0]["status"] == "won"
+
+
+def test_import_raw_without_screen(tmp_path):
+    evs = [_ev(i, f"H{i}", f"A{i}", ms=(2.0 + i / 10, 3.2, 3.5)) for i in range(1, 5)]
+    evs[0]["LC"] = 5
+    raw = {"fetched": "2026-10-22T05:00:00+00:00",
+           "prebulten": json.dumps({"sg": {"EA": evs, "LA": [{"LID": 5, "N": "Test Ligi 5", "CC": "TR"}]}})}
+    p, o = tmp_path / "ham.json", tmp_path / "n.json"
+    p.write_text(json.dumps(raw))
+    assert nesine.import_raw(p, o) == 0
+    d = json.loads(o.read_text())
+    assert len(d["matches"]) == 4 and d["matches"][0]["league"] == "Test Ligi 5"
+    assert d["matches"][0]["ms"] == [2.1, 3.2, 3.5] and d["fetched"] == raw["fetched"]
+
+
+def test_import_raw_bad_file(tmp_path):
+    p = tmp_path / "x.json"; p.write_text("bozuk")
+    assert nesine.import_raw(p, tmp_path / "o.json") == 1
