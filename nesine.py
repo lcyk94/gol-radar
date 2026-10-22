@@ -600,6 +600,7 @@ def _calibrate(events, dom):
 
 FIXED_SIG = {                # logda 3 ayrı çalıştırmada ekranla birebir doğrulandı: (pazar, çizgi), seçenek sırası
     "ms": ((1, 0.0), (0, 1, 2)), "ou25": ((12, 2.5), (0, 1)), "kg": ((38, 0.0), (0, 1)), "cs": ((3, 0.0), (0, 1, 2))}
+FULL_SCAN = os.environ.get("NESINE_FULL") == "1"     # varsayılan hafif mod: Nesine'ye tek sayfa yüklemesi, tarama yok
 RAW_FILE = DATA_DIR / "nesine_ham.json"
 
 
@@ -616,6 +617,12 @@ def import_raw(path=None, out=None):
         print("Ham dosya okunamadı:", str(e)[:120])
         return 1
     names = load_market_names()
+    print("  ham dosya alanları:", {k: (len(v) if hasattr(v, "__len__") else v) for k, v in raw.items()})
+    if raw.get("sayfa"):
+        print("  tarayıcı sayfasındaki sayılar (FUTBOL vb.):", raw["sayfa"])
+    if raw.get("delta"):
+        d_ = raw["delta"]
+        print("  delta yanıtı:", (d_[:300] if isinstance(d_, str) else d_))
     js = matches_from_prebulten(body, None, names)
     if not js:
         print("Ham dosyadan maç çıkmadı.")
@@ -662,16 +669,25 @@ def matches_from_prebulten(body, dom_matches, names=None):
         return []
     out = []
     seen_ids = set()
+    from collections import Counter as _Ct
+    drop = _Ct()
+    print("  kayıtların TYPE dağılımı:", dict(_Ct(e.get("TYPE") for e in events).most_common(8)),
+          "| sürümler:", {k: (sg or {}).get(k) for k in ("eventVersion", "marketVersion", "oddVersion")} if isinstance(sg, dict) else None)
     for e in events:
         if e.get("TYPE") != ftype:
             continue
         if e.get("C") is not None:
             if e.get("C") in seen_ids:                   # aynı maç iki kez gelirse tek kayıt
+                drop["tekrar"] += 1
                 continue
             seen_ids.add(e.get("C"))
         nm = _ev_names(e)
         d = str(e.get("D") or "")
-        if not nm or not re.match(r"^\d{2}\.\d{2}\.\d{4}$", d):
+        if not nm:
+            drop["takım adı yok"] += 1
+            continue
+        if not re.match(r"^\d{2}\.\d{2}\.\d{4}$", d):
+            drop["tarih okunamadı"] += 1
             continue
         tab = _market_table(e)
         vals = {}
@@ -694,6 +710,8 @@ def matches_from_prebulten(body, dom_matches, names=None):
                     "hnd": {"line": None, "odds": [None, None, None]}, "cs": vals["cs"], "kg": vals["kg"],
                     "n_markets": len(mk_full), "league": league_of.get(e.get("LC")),
                     "label": "JSON", "date": iso})
+    print(f"  futbol maçı: {len(out)} | atlananlar: {dict(drop)} | günlere göre: {dict(sorted(_Ct(m['date'] for m in out).items()))}"
+          f" | MS oranı hiç olmayan: {sum(1 for m in out if all(v is None for v in m['ms']))}")
     return out
 
 
@@ -991,7 +1009,7 @@ def fetch(url=URL, out=OUT):
             bad_all = bad
             # Gerçek bir kullanıcı gibi yavaş yavaş aşağı kaydır; liste kaydırdıkça yükleniyor.
             t0, idle, step = time.time(), 0, 0
-            for step in range(1, 701):
+            for step in range(1, 701 if FULL_SCAN else 3):          # hafif mod: sayfa bir kez açılır, kaydırma yok
                 pos = page.evaluate("[Math.round(window.scrollY), document.documentElement.scrollHeight, innerHeight]")
                 before = len(store)
                 page.mouse.move(640, 400)
@@ -1069,7 +1087,7 @@ def fetch(url=URL, out=OUT):
                     except Exception as e:               # noqa: BLE001
                         print("  ek tanı atlandı:", str(e)[:100])
                     try:
-                        learned = learn_market_names(page, js)
+                        learned = learn_market_names(page, js) if FULL_SCAN else {}
                         if learned:
                             names.update(learned)
                             NAMES_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -1082,7 +1100,8 @@ def fetch(url=URL, out=OUT):
                     print("getprebultenfull yanıtı yakalanamadı.")
             except Exception as e:                       # noqa: BLE001
                 print("Tam bülten JSON'u okunamadı:", e)
-            _day_tabs(page, store, state)
+            if FULL_SCAN:
+                _day_tabs(page, store, state)
         except Exception as e:                           # noqa: BLE001
             print(f"Sayfa açılamadı: {e}")
             return 1
