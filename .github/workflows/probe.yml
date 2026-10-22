@@ -1,0 +1,36 @@
+name: Kaynak keşfi (elle çalıştır)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  erisim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Erişim testi (sadece sayfanın açılıp açılmadığına bakar)
+        run: |
+          for u in https://www.nesine.com/iddaa https://www.oley.com/iddaa/futbol https://www.birebin.com/iddaa-programi-futbol; do
+            echo "== $u"
+            curl -sS -o /dev/null -m 25 -A "Mozilla/5.0" -w "HTTP %{http_code} | bağlantı %{time_connect}s | toplam %{time_total}s\n" "$u" || echo "ULAŞILAMADI (curl çıkış kodu $?)"
+          done
+  kesif:
+    needs: erisim
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        url:
+          - "https://www.birebin.com/iddaa-programi-futbol"
+          - "https://www.oley.com/iddaa/futbol"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install playwright
+          playwright install --with-deps chromium
+          python nesine.py probe "${{ matrix.url }}"
