@@ -599,7 +599,7 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
         return models[div]
 
     book = None                       # ClubElo kullanılmıyor (otomatik indirmeye izin vermiyor)
-    out, n_cross, n_mkt, n_elo, miss = [], 0, 0, 0, []
+    out, n_cross, n_mkt, n_elo, miss, unm = [], 0, 0, 0, [], []
     for m in nes:
         if id(m) in taken:
             continue
@@ -633,6 +633,8 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
         if p is None:
             p = market_predict(m)
             src = "market"
+            if len(unm) < 60 and not m.get("skip"):
+                unm.append(f"{m.get('league')} | {m['home']} - {m['away']} | ev {'var' if hh else 'YOK'}, dep {'var' if aa else 'YOK'}")
         if p is None:                       # ne model ne MS oranı var: genel ortalama; maç bültende ise listede olmalı
             p, src = predict_lambdas(1.45, 1.15, RHO), "prior"
         n_cross += src == "cross"
@@ -643,6 +645,10 @@ def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
                        "EURO": _is_euro_cup(m.get("league"))})
         out.append((r, p, None))
     print(f"Nesine'den eklenen: ligler arası model+piyasa {n_elo}, ligler arası yalnız model {n_cross}, yalnızca piyasa olasılığı {n_mkt} maç.")
+    if unm:
+        print("  Modeli kurulamayan (geçmiş verisinde takımı bulunamayan) maçlar:")
+        for u in unm:
+            print("   MODELSİZ", u)
     if miss:
         print("  Bir takımı Elo'da bulunan, diğeri bulunamayan maçlar:", "; ".join(miss))
     return out
@@ -940,7 +946,7 @@ def _legs(r, p):
     legs = []
     src = r.get("SRC")
     euro = bool(r.get("EURO"))
-    if src in ("cross", "prior") or (src == "market" and not euro):   # modeli/tahmini olmayan maçlar kupona girmez
+    if src in ("cross", "prior") or (src == "market" and not euro):   # botun kendi tahmini olmayan maçlar kupona girmez
         return []
     if act:
         # Nesine modu: yalnızca Nesine'de bulunan maçlar, oranlar Nesine'den.
@@ -980,10 +986,15 @@ def build_coupons(out_rows):
         if legs:
             by_day.setdefault(r["Date"].normalize(), []).append((k, r, legs))
     nearest = None
+    from collections import Counter as _Cn
+    for d_, its in sorted(by_day.items()):
+        if d_ >= today:
+            print(f"  Kupon adayı maç {d_:%Y-%m-%d}: {len(its)} (kaynak: {dict(_Cn(t[1].get('SRC') for t in its))}, avrupa kupası: {sum(bool(t[1].get('EURO')) for t in its)})")
     for day in sorted(d for d in by_day if d >= today):
         if len(by_day[day]) < COUPON_LEGS:
             continue
         res = _coupons_for_day(day, by_day[day])
+        print(f"  {day:%Y-%m-%d}: kurulan kupon {len(res['list'])}")
         if res["list"]:               # kupon çıkan ilk günü göster
             return res
         if nearest is None:           # çıkmadıysa: güvenilir seçeneklerle ulaşılabilen en yüksek toplam oran
