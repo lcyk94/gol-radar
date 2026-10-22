@@ -598,6 +598,49 @@ def _calibrate(events, dom):
     return sig, (types.most_common(1)[0][0] if types else None), len(pairs)
 
 
+FIXED_SIG = {                # logda 3 ayrı çalıştırmada ekranla birebir doğrulandı: (pazar, çizgi), seçenek sırası
+    "ms": ((1, 0.0), (0, 1, 2)), "ou25": ((12, 2.5), (0, 1)), "kg": ((38, 0.0), (0, 1)), "cs": ((3, 0.0), (0, 1, 2))}
+RAW_FILE = DATA_DIR / "nesine_ham.json"
+
+
+def import_raw(path=None, out=None):
+    """Tarayıcıdan elle indirilen ham bülten dosyasını (data/nesine_ham.json) data/nesine.json'a çevirir.
+    GitHub'ın sunucusundan Nesine'ye erişilemediğinde, kullanıcının kendi tarayıcısından alınan veri kullanılır."""
+    path, out = Path(path or RAW_FILE), Path(out or OUT)
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        body = raw["prebulten"]
+        body = body if isinstance(body, str) else json.dumps(body)
+        ts = raw.get("fetched") or datetime.now(timezone.utc).isoformat(timespec="seconds")
+    except Exception as e:                               # noqa: BLE001
+        print("Ham dosya okunamadı:", str(e)[:120])
+        return 1
+    names = load_market_names()
+    js = matches_from_prebulten(body, None, names)
+    if not js:
+        print("Ham dosyadan maç çıkmadı.")
+        return 3
+    lc = {m["league_id"]: m["league"] for m in js if m.get("league") and m.get("league_id") is not None}
+    for m in js:
+        if not m.get("league"):
+            m["league"] = lc.get(m.get("league_id"))
+    try:
+        res = raw.get("results")
+        if res:
+            update_result_store(js, results_from_feed(res if isinstance(res, (str, bytes)) else json.dumps(res)))
+    except Exception as e:                               # noqa: BLE001
+        print("  sonuç akışı işlenemedi:", str(e)[:100])
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({"fetched": ts, "url": "elle yüklenen tarayıcı verisi", "source": "nesine.com",
+                               "matches": js}, ensure_ascii=False), encoding="utf-8")
+    print(f"Ham dosyadan {len(js)} maç yazıldı → {out} (veri zamanı: {ts})")
+    try:
+        append_history(js, ts, out.parent / "oran_gecmisi.jsonl")
+    except Exception as e:                               # noqa: BLE001
+        print("  oran geçmişi yazılamadı:", str(e)[:100])
+    return 0
+
+
 def matches_from_prebulten(body, dom_matches, names=None):
     """Sayfanın indirdiği tam bülten JSON'undan tüm futbol maçlarını çıkarır. Hata olursa [] döner."""
     obj = json.loads(body)
@@ -608,8 +651,12 @@ def matches_from_prebulten(body, dom_matches, names=None):
     for L in (sg.get("LA") if isinstance(sg, dict) else None) or []:
         if isinstance(L, dict) and L.get("LID") is not None and isinstance(L.get("N"), str):
             league_of[L["LID"]] = L["N"].strip()          # gerçek yapı: {"LID": 2, "N": "ABD Major Lig Playoff", "CC": "US"}
-    sig, ftype, npairs = _calibrate(events, dom_matches)
-    print(f"  JSON'da {len(events)} kayıt; ekranla eşleşen {npairs}; futbol TYPE değeri: {ftype}")
+    if dom_matches is None:        # ekran okunamadı (elle yüklenen ham dosya): canlı verilerle doğrulanmış sabit eşleme
+        sig, ftype, npairs = dict(FIXED_SIG), 1, 0
+        print(f"  JSON'da {len(events)} kayıt; sabit pazar eşlemesi kullanıldı (MS=1, ÇŞ=3, KG=38, Alt/Üst 2,5=12)")
+    else:
+        sig, ftype, npairs = _calibrate(events, dom_matches)
+        print(f"  JSON'da {len(events)} kayıt; ekranla eşleşen {npairs}; futbol TYPE değeri: {ftype}")
     if "ms" not in sig or ftype is None:
         print("  Kalibrasyon yapılamadı (MS pazarı bulunamadı), JSON kullanılmadı.")
         return []
@@ -1123,6 +1170,8 @@ if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "fetch"
     if cmd == "fetch":
         sys.exit(fetch())
+    elif cmd == "import":
+        sys.exit(import_raw(sys.argv[2] if len(sys.argv) > 2 else None))
     elif cmd == "probe" and len(sys.argv) > 2:
         sys.exit(probe(sys.argv[2]))
     elif cmd == "parse" and len(sys.argv) > 2:
