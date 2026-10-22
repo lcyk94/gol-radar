@@ -39,13 +39,18 @@ jobs:
           restore-keys: fd-
       - run: python bot.py update
 
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-v1
       # Nesine bülteni (tek oran/maç kaynağı). Başarısız olursa site eski haliyle kalır, yabancı kaynağa dönülmez.
       - name: Nesine oranlarını oku
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 20
         run: |
           pip install playwright
-          playwright install --with-deps chromium
+          # Playwright'ın indirme sunucusu (cdn.playwright.dev) bazen sertifika hatası veriyor: yeniden denenir
+          for i in 1 2 3 4; do playwright install --with-deps chromium && break || (echo "tarayıcı indirme $i. deneme başarısız"; sleep 45); done
           python nesine.py fetch || (echo 'ilk deneme başarısız, 60 sn sonra tekrar' && sleep 60 && python nesine.py fetch)
 
       - name: Testler
