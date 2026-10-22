@@ -245,8 +245,8 @@
  "2026-10-22": {
   "list": [
    {
-    "odds": 3.1,
-    "p": 0.3388,
+    "odds": 3.38,
+    "p": 0.3326,
     "legs": [
      {
       "time": "19:45",
@@ -254,8 +254,8 @@
       "away": "Univ. Craiova",
       "league": "UEFA Konferans Ligi",
       "sel": "1-X",
-      "o": 2.05,
-      "p": 0.681,
+      "o": 2.25,
+      "p": 0.666,
       "nid": 3230170
      },
      {
@@ -264,8 +264,8 @@
       "away": "Crystal Palace",
       "league": "UEFA Avrupa Ligi",
       "sel": "1-X",
-      "o": 1.25,
-      "p": 0.703,
+      "o": 1.24,
+      "p": 0.707,
       "nid": 3229910
      },
      {
@@ -275,7 +275,7 @@
       "league": "UEFA Konferans Ligi",
       "sel": "1-X",
       "o": 1.21,
-      "p": 0.707,
+      "p": 0.706,
       "nid": 3230640
      }
     ]
