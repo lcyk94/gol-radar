@@ -914,9 +914,20 @@ def fetch(url=URL, out=OUT):
                 pass
         page.on("response", _on_resp)
         try:
-            resp = page.goto(url, wait_until="domcontentloaded", timeout=60000)
-            status = resp.status if resp else None
+            resp, last_err = None, None
+            for attempt in range(1, 4):                  # site bazen yavaş: 3 deneme, her seferinde daha uzun bekleme
+                try:
+                    resp = page.goto(url, wait_until="commit", timeout=45000 + attempt * 30000)
+                    break
+                except Exception as e:                   # noqa: BLE001
+                    last_err = e
+                    print(f"  sayfa açılışı {attempt}. deneme başarısız: {str(e)[:90]}")
+                    page.wait_for_timeout(5000 * attempt)
+            if resp is None:
+                raise last_err
+            status = resp.status
             try:
+                page.wait_for_load_state("domcontentloaded", timeout=60000)
                 page.wait_for_load_state("networkidle", timeout=30000)
             except Exception:                            # noqa: BLE001  sürekli istek atan sayfa
                 pass
