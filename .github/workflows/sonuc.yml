@@ -1,0 +1,51 @@
+name: Sonuç toplama
+
+# Nesine'nin sonuç akışı bitmiş maçları yalnızca birkaç saat tutuyor. Kuponların sonuçlarını sabah görebilmek için
+# akşam ve gece boyunca birkaç kez hafifçe (tek sayfa yüklemesi) okunur. Siteyi yeniden üretmez.
+on:
+  schedule:
+    - cron: "30 15 * * *"   # 18:30 Türkiye
+    - cron: "30 18 * * *"   # 21:30
+    - cron: "30 20 * * *"   # 23:30
+    - cron: "30 22 * * *"   # 01:30
+    - cron: "30 0 * * *"    # 03:30
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sonuc
+  cancel-in-progress: false
+
+jobs:
+  sonuc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-v1
+      - name: Nesine sonuç akışını oku
+        timeout-minutes: 15
+        run: |
+          pip install playwright
+          for i in 1 2 3 4; do playwright install --with-deps chromium && break || (echo "tarayıcı indirme $i. deneme başarısız"; sleep 45); done
+          python nesine.py fetch || (echo 'ilk deneme başarısız, 60 sn sonra tekrar' && sleep 60 && python nesine.py fetch)
+      - name: Sonuç kaydını depoya yaz
+        run: |
+          git config user.name "gol-radar-bot"
+          git config user.email "gol-radar-bot@users.noreply.github.com"
+          [ -f data/nesine_sonuc.json ] && git add data/nesine_sonuc.json
+          [ -f data/oran_gecmisi.jsonl ] && git add data/oran_gecmisi.jsonl
+          if ! git diff --cached --quiet; then
+            git commit -m "Sonuç kaydı güncellendi"
+            for i in 1 2 3; do git pull --rebase --autostash && git push && break || sleep 5; done
+          fi
