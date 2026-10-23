@@ -77,7 +77,7 @@ jobs:
             [ -f data/oran_gecmisi.jsonl ] && git add data/oran_gecmisi.jsonl
             [ -f data/pazar_adlari.json ] && git add data/pazar_adlari.json
             [ -f data/nesine_sonuc.json ] && git add data/nesine_sonuc.json
-            git diff --cached --quiet || (git commit -m "Kupon kaydı güncellendi" && git push)
+            git diff --cached --quiet || (git commit -m "Kupon kaydı güncellendi" && for i in 1 2 3; do git pull --rebase --autostash && git push && break || sleep 5; done)
           fi
 
       - uses: actions/upload-pages-artifact@v3
