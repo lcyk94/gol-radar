@@ -213,17 +213,28 @@ GROUPS = [
     ["rizespor", "caykur rizespor"], ["genclerbirligi", "genclerbirligi ankara"],
     ["karagumruk", "fatih karagumruk"], ["goztepe", "goztep"], ["eyupspor", "eyup"],
     ["alanyaspor", "alanya"], ["gaziantep", "gaziantep fk"], ["adana demirspor", "a demirspor"],
-    ["sporting cp", "sporting lisbon", "sporting lisboa", "sporting"],
+    ["sporting cp", "sporting lisbon", "sporting lisboa", "sporting", "lisbon"],
     ["psv", "psv eindhoven"], ["porto"], ["benfica", "sl benfica"],
     ["club brugge", "brugge", "club bruges"], ["anderlecht", "rsc anderlecht"],
 ]
+
+
+TOKEN_SYN = {                # Nesine'nin Türkçe/kısaltılmış şehir adları -> geçmiş verilerdeki yazılış
+    "marsilya": "marseille", "kopenhag": "copenhagen", "munih": "munchen", "prag": "praha", "lizbon": "lisbon",
+    "viyana": "wien", "varsova": "warszawa", "bukres": "bucuresti", "moskova": "moskva", "selanik": "thessaloniki",
+    "anvers": "antwerp", "sofya": "sofia", "belgrad": "beograd", "kiev": "kyiv", "brüksel": "brussels",
+    "bruksel": "brussels", "atina": "athens", "roma": "roma", "milano": "milan", "torino": "turin",
+}
 
 
 def norm(s):
     s = _ascii(s)
     s = re.sub(r"\(.*?\)", " ", s)
     s = re.sub(r"[^a-z0-9 ]+", " ", s)
-    return " ".join(t for t in s.split() if t not in STOP and not t.isdigit())
+    toks = [TOKEN_SYN.get(t, t) for t in s.split() if t not in STOP and not t.isdigit()]
+    if len(toks) > 1:                                  # "B. Leverkusen", "U. S. Gilloise": tek harflik baş harfler atılır
+        toks = [t for t in toks if len(t) > 1] or toks
+    return " ".join(toks)
 
 
 _CANON = {}
@@ -722,7 +733,7 @@ RESULT_FILE = DATA_DIR / "nesine_sonuc.json"
 def results_from_feed(body):
     """GetLiveBetResultsWithVersion yanıtından {maç no: {"s": durum, "t": {tür: [ev, dep]}}}.
     Yapı: {"d":[{"C": maç no, "S": durum, "ES":[{"T": tür, "H": ev, "A": dep}, ...]}]}. T=1'in 'maç skoru' olduğu
-    ve S=4'ün 'bitti' demek olduğu logdan ÇIKARILAN varsayımdır; doğrulama için fetch() örnekleri loga yazar."""
+    ve S=5'in 'bitti' demek olduğu (S=4 ikinci yarı, 3 devre arası, 2 ilk yarı) logdaki örneklerden ÇIKARILAN varsayımdır; doğrulama için fetch() örnekleri loga yazar."""
     try:
         obj = json.loads(body if isinstance(body, str) else body.decode("utf-8", "replace"))
     except Exception:                                    # noqa: BLE001
