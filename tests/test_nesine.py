@@ -145,7 +145,7 @@ def test_coupon_graded_by_nid(tmp_path, monkeypatch):
     import pandas as pd
     p = tmp_path / "r.json"
     nesine.update_result_store([{"id": 5, "home": "Leipzig", "away": "X", "date": "2026-10-21", "league": "L"}],
-                               {5: {"s": 4, "t": {1: [2, 1]}}}, p)
+                               {5: {"s": 5, "t": {1: [2, 1]}}}, p)
     monkeypatch.setattr(nesine, "RESULT_FILE", p)
     entry = {"list": [{"odds": 3.0, "p": 0.3, "legs": [{"home": "RB Leipzig", "away": "X", "sel": "MS 1", "nid": 5}]}]}
     byid, _ = bot.nesine_results()
