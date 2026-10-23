@@ -285,7 +285,7 @@
  "2026-10-23": {
   "list": [
    {
-    "odds": 3.22,
+    "odds": 3.19,
     "p": 0.411,
     "legs": [
      {
@@ -294,7 +294,7 @@
       "away": "Mechelen",
       "league": "Belçika Pro League",
       "sel": "X-2",
-      "o": 1.32,
+      "o": 1.31,
       "p": 0.795,
       "nid": 3230263
      },
@@ -357,9 +357,19 @@
     ]
    },
    {
-    "odds": 3.14,
-    "p": 0.3356,
+    "odds": 3.1,
+    "p": 0.3436,
     "legs": [
+     {
+      "time": "",
+      "home": "Granada",
+      "away": "Valladolid",
+      "league": "İspanya Segunda",
+      "sel": "1-X",
+      "o": 1.2,
+      "p": 0.762,
+      "nid": 3238859
+     },
      {
       "time": "",
       "home": "NAC Breda",
@@ -372,59 +382,49 @@
      },
      {
       "time": "",
-      "home": "Brest",
-      "away": "Nice",
-      "league": "Fransa Ligue 1",
-      "sel": "1-X",
-      "o": 1.21,
-      "p": 0.744,
-      "nid": 3230033
-     },
-     {
-      "time": "",
       "home": "Guimaraes",
       "away": "Maritimo",
       "league": "Portekiz Primeira Liga",
       "sel": "X-2",
-      "o": 2.06,
+      "o": 2.05,
       "p": 0.594,
       "nid": 3230849
      }
     ]
    },
    {
-    "odds": 3.05,
-    "p": 0.2952,
+    "odds": 3.25,
+    "p": 0.2946,
     "legs": [
      {
       "time": "",
-      "home": "Granada",
-      "away": "Valladolid",
-      "league": "İspanya Segunda",
-      "sel": "1-2",
-      "o": 1.2,
-      "p": 0.742,
-      "nid": 3238859
-     },
-     {
-      "time": "",
-      "home": "Ipswich",
-      "away": "Nott'm Forest",
-      "league": "İngiltere Premier Lig",
-      "sel": "X-2",
-      "o": 1.22,
-      "p": 0.687,
-      "nid": 3230295
-     },
-     {
-      "time": "",
-      "home": "Bolton",
-      "away": "Middlesbrough",
-      "league": "İngiltere Championship",
+      "home": "Brest",
+      "away": "Nice",
+      "league": "Fransa Ligue 1",
       "sel": "1-X",
-      "o": 2.08,
-      "p": 0.579,
-      "nid": 3230026
+      "o": 1.2,
+      "p": 0.744,
+      "nid": 3230033
+     },
+     {
+      "time": "",
+      "home": "Alaves",
+      "away": "Malaga",
+      "league": "İspanya La Liga",
+      "sel": "MS 1",
+      "o": 1.45,
+      "p": 0.672,
+      "nid": 3238694
+     },
+     {
+      "time": "",
+      "home": "Vasteras SK",
+      "away": "Halmstad",
+      "league": "İsveç Allsvenskan",
+      "sel": "KG Yok",
+      "o": 1.87,
+      "p": 0.589,
+      "nid": 3229888
      }
     ]
    }
