@@ -281,5 +281,153 @@
     ]
    }
   ]
+ },
+ "2026-10-23": {
+  "list": [
+   {
+    "odds": 3.35,
+    "p": 0.411,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kortrijk",
+      "away": "Mechelen",
+      "league": "Belçika Pro League",
+      "sel": "X-2",
+      "o": 1.32,
+      "p": 0.795,
+      "nid": 3230263
+     },
+     {
+      "time": "",
+      "home": "Sochaux",
+      "away": "Annecy",
+      "league": "Fransa Ligue 2",
+      "sel": "X-2",
+      "o": 1.41,
+      "p": 0.722,
+      "nid": 3230847
+     },
+     {
+      "time": "",
+      "home": "Volendam",
+      "away": "Utrecht",
+      "league": "Hollanda Eredivisie",
+      "sel": "X-2",
+      "o": 1.8,
+      "p": 0.716,
+      "nid": 3230418
+     }
+    ]
+   },
+   {
+    "odds": 3.27,
+    "p": 0.3481,
+    "legs": [
+     {
+      "time": "",
+      "home": "Empoli",
+      "away": "Vicenza",
+      "league": "İtalya Serie B",
+      "sel": "1-X",
+      "o": 1.24,
+      "p": 0.762,
+      "nid": 3230436
+     },
+     {
+      "time": "",
+      "home": "Torino",
+      "away": "Monza",
+      "league": "İtalya Serie A",
+      "sel": "Üst 2.5",
+      "o": 1.71,
+      "p": 0.678,
+      "nid": 3230541
+     },
+     {
+      "time": "",
+      "home": "Alanyaspor",
+      "away": "Kocaelispor",
+      "league": "Türkiye Süper Lig",
+      "sel": "KG Yok",
+      "o": 1.54,
+      "p": 0.673,
+      "nid": 3236602
+     }
+    ]
+   },
+   {
+    "odds": 3.14,
+    "p": 0.3272,
+    "legs": [
+     {
+      "time": "",
+      "home": "NAC Breda",
+      "away": "Heracles",
+      "league": "Hollanda Eredivisie",
+      "sel": "1-X",
+      "o": 1.24,
+      "p": 0.759,
+      "nid": 3230465
+     },
+     {
+      "time": "",
+      "home": "Brest",
+      "away": "Nice",
+      "league": "Fransa Ligue 1",
+      "sel": "1-X",
+      "o": 1.21,
+      "p": 0.744,
+      "nid": 3230033
+     },
+     {
+      "time": "",
+      "home": "Bolton",
+      "away": "Middlesbrough",
+      "league": "İngiltere Championship",
+      "sel": "1-X",
+      "o": 2.09,
+      "p": 0.579,
+      "nid": 3230026
+     }
+    ]
+   },
+   {
+    "odds": 3.35,
+    "p": 0.2964,
+    "legs": [
+     {
+      "time": "",
+      "home": "Granada",
+      "away": "Valladolid",
+      "league": "İspanya Segunda",
+      "sel": "1-2",
+      "o": 1.2,
+      "p": 0.742,
+      "nid": 3238859
+     },
+     {
+      "time": "",
+      "home": "Alaves",
+      "away": "Malaga",
+      "league": "İspanya La Liga",
+      "sel": "MS 1",
+      "o": 1.46,
+      "p": 0.672,
+      "nid": 3238694
+     },
+     {
+      "time": "",
+      "home": "Guimaraes",
+      "away": "Maritimo",
+      "league": "Portekiz Primeira Liga",
+      "sel": "X-2",
+      "o": 1.91,
+      "p": 0.594,
+      "nid": 3230849
+     }
+    ]
+   }
+  ]
  }
 }
