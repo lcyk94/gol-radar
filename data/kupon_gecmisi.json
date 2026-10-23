@@ -321,7 +321,7 @@
     ]
    },
    {
-    "odds": 3.32,
+    "odds": 3.36,
     "p": 0.3481,
     "legs": [
      {
@@ -350,14 +350,14 @@
       "away": "Kocaelispor",
       "league": "Türkiye Süper Lig",
       "sel": "KG Yok",
-      "o": 1.59,
+      "o": 1.61,
       "p": 0.673,
       "nid": 3236602
      }
     ]
    },
    {
-    "odds": 3.06,
+    "odds": 3.14,
     "p": 0.3356,
     "legs": [
      {
@@ -386,15 +386,15 @@
       "away": "Maritimo",
       "league": "Portekiz Primeira Liga",
       "sel": "X-2",
-      "o": 2.01,
+      "o": 2.06,
       "p": 0.594,
       "nid": 3230849
      }
     ]
    },
    {
-    "odds": 3.35,
-    "p": 0.2941,
+    "odds": 3.05,
+    "p": 0.2952,
     "legs": [
      {
       "time": "",
@@ -408,23 +408,23 @@
      },
      {
       "time": "",
-      "home": "Alaves",
-      "away": "Malaga",
-      "league": "İspanya La Liga",
-      "sel": "MS 1",
-      "o": 1.47,
-      "p": 0.672,
-      "nid": 3238694
+      "home": "Ipswich",
+      "away": "Nott'm Forest",
+      "league": "İngiltere Premier Lig",
+      "sel": "X-2",
+      "o": 1.22,
+      "p": 0.687,
+      "nid": 3230295
      },
      {
       "time": "",
-      "home": "Vasteras SK",
-      "away": "Halmstad",
-      "league": "İsveç Allsvenskan",
-      "sel": "KG Yok",
-      "o": 1.9,
-      "p": 0.589,
-      "nid": 3229888
+      "home": "Bolton",
+      "away": "Middlesbrough",
+      "league": "İngiltere Championship",
+      "sel": "1-X",
+      "o": 2.08,
+      "p": 0.579,
+      "nid": 3230026
      }
     ]
    }
