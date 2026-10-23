@@ -990,16 +990,20 @@ def build_coupons(out_rows):
     for d_, its in sorted(by_day.items()):
         if d_ >= today:
             print(f"  Kupon adayı maç {d_:%Y-%m-%d}: {len(its)} (kaynak: {dict(_Cn(t[1].get('SRC') for t in its))}, avrupa kupası: {sum(bool(t[1].get('EURO')) for t in its)})")
+    got = []                              # bugünden başlayarak, 4 kupon dolana kadar sonraki günlerin maçlarına bakılır
     for day in sorted(d for d in by_day if d >= today):
+        if len(got) >= N_COUPONS:
+            break
         if len(by_day[day]) < COUPON_LEGS:
             continue
-        res = _coupons_for_day(day, by_day[day])
+        res = _coupons_for_day(day, by_day[day], N_COUPONS - len(got))
         print(f"  {day:%Y-%m-%d}: kurulan kupon {len(res['list'])}")
-        if res["list"]:               # kupon çıkan ilk günü göster
-            return res
-        if nearest is None:           # çıkmadıysa: güvenilir seçeneklerle ulaşılabilen en yüksek toplam oran
+        got += res["list"]
+        if not res["list"] and nearest is None and not got:   # çıkmadıysa: ulaşılabilen en yüksek toplam oran
             best = sorted((max(l[2] for l in t[2]) for t in by_day[day]), reverse=True)[:COUPON_LEGS]
             nearest = {"date": day.strftime("%Y-%m-%d"), "list": [], "max_odds": round(math.prod(best), 2)}
+    if got:
+        return {"date": got[0]["date"], "list": got}
     nearest = nearest or {"date": today.strftime("%Y-%m-%d"), "list": []}
     nearest["diag"] = _coupon_diag(out_rows, today)
     return nearest
@@ -1076,7 +1080,7 @@ def _best_combo(items, pool_size=80):
     return max(ok, key=lambda v: (v[4], v[0]))
 
 
-def _coupons_for_day(day, items):
+def _coupons_for_day(day, items, limit=None):
     """Her kupon farklı maçlardan oluşur: bir kupon seçilince o maçlar havuzdan çıkar."""
     def key(t):                       # maçın kimliği: tarih + iki takım (sıra numarası değil)
         r = t[1]
@@ -1089,7 +1093,7 @@ def _coupons_for_day(day, items):
             seen.add(key(t))
             pool.append(t)
     used_all = set()
-    while len(chosen) < N_COUPONS and len(pool) >= COUPON_LEGS:
+    while len(chosen) < (limit or N_COUPONS) and len(pool) >= COUPON_LEGS:
         best = _best_combo(pool)
         if best is None:
             break
@@ -1110,7 +1114,7 @@ def _coupons_for_day(day, items):
                          "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model", "nid": _nid(r.get("NID")),
                          "mbs": (_nes_of(r)[0] or {}).get("mbs")})
         legs.sort(key=lambda l: l["time"])
-        chosen.append({"legs": legs, "odds": round(od, 2),
+        chosen.append({"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"),
                        "p": round(pr, 4), "ev": round(pr * od, 2)})
     return {"date": day.strftime("%Y-%m-%d"), "list": chosen}
 
@@ -1133,10 +1137,14 @@ def save_coupons(coupons, keep_days=120):
     if not coupons or not coupons.get("list"):
         return
     log = _load_log()
-    log[coupons["date"]] = {"list": [
-        {"odds": k["odds"], "p": k["p"],
-         "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid")}
-                  for l in k["legs"]]} for k in coupons["list"]]}
+    by_day = {}
+    for k in coupons["list"]:             # her kupon kendi maç gününün altına kaydedilir
+        by_day.setdefault(k.get("date") or coupons["date"], []).append(
+            {"odds": k["odds"], "p": k["p"],
+             "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid")}
+                      for l in k["legs"]]})
+    for d_, lst in by_day.items():
+        log[d_] = {"list": lst}
     for d in sorted(log)[:-keep_days]:
         del log[d]
     COUPON_LOG.parent.mkdir(parents=True, exist_ok=True)
@@ -1152,8 +1160,8 @@ def _nid(v):
 
 
 def nesine_results():
-    """Nesine sonuç akışından ({maç no: (ev, dep)}, {(ev, dep adı): [(tarih, ev, dep)]}). Yalnızca 'bitti' (S=4) ve
-    maç skoru (T=1) olan kayıtlar; S/T anlamı logdan çıkarılan varsayımdır (nesine.py sonuç örneklerine bakın)."""
+    """Nesine sonuç akışından ({maç no: (ev, dep)}, {(ev, dep adı): [(tarih, ev, dep)]}). Yalnızca 'bitti' (S=5) ve
+    maç skoru (T=1) olan kayıtlar; S/T anlamı logdaki canlı örneklerden çıkarılan varsayımdır (S: 2=1. yarı, 3=devre arası, 4=2. yarı, 5=bitti; T=1 toplam skor, T=2 ilk yarı, T=3 ikinci yarı) (nesine.py sonuç örneklerine bakın)."""
     try:
         import nesine
         st = nesine.load_results_store()
@@ -1163,7 +1171,7 @@ def nesine_results():
     for k, r in (st.get("results") or {}).items():
         sc = (r.get("t") or {}).get("1")
         m = (st.get("matches") or {}).get(k)
-        if r.get("s") != 4 or not sc or not m:
+        if r.get("s") != 5 or not sc or not m:
             continue
         byid[int(k)] = (sc[0], sc[1])
         if m.get("d"):
