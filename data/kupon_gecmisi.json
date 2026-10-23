@@ -285,7 +285,7 @@
  "2026-10-23": {
   "list": [
    {
-    "odds": 3.35,
+    "odds": 3.22,
     "p": 0.411,
     "legs": [
      {
@@ -304,7 +304,7 @@
       "away": "Annecy",
       "league": "Fransa Ligue 2",
       "sel": "X-2",
-      "o": 1.41,
+      "o": 1.4,
       "p": 0.722,
       "nid": 3230847
      },
@@ -314,14 +314,14 @@
       "away": "Utrecht",
       "league": "Hollanda Eredivisie",
       "sel": "X-2",
-      "o": 1.8,
+      "o": 1.74,
       "p": 0.716,
       "nid": 3230418
      }
     ]
    },
    {
-    "odds": 3.27,
+    "odds": 3.32,
     "p": 0.3481,
     "legs": [
      {
@@ -330,7 +330,7 @@
       "away": "Vicenza",
       "league": "İtalya Serie B",
       "sel": "1-X",
-      "o": 1.24,
+      "o": 1.25,
       "p": 0.762,
       "nid": 3230436
      },
@@ -340,7 +340,7 @@
       "away": "Monza",
       "league": "İtalya Serie A",
       "sel": "Üst 2.5",
-      "o": 1.71,
+      "o": 1.67,
       "p": 0.678,
       "nid": 3230541
      },
@@ -350,15 +350,15 @@
       "away": "Kocaelispor",
       "league": "Türkiye Süper Lig",
       "sel": "KG Yok",
-      "o": 1.54,
+      "o": 1.59,
       "p": 0.673,
       "nid": 3236602
      }
     ]
    },
    {
-    "odds": 3.14,
-    "p": 0.3272,
+    "odds": 3.06,
+    "p": 0.3356,
     "legs": [
      {
       "time": "",
@@ -366,7 +366,7 @@
       "away": "Heracles",
       "league": "Hollanda Eredivisie",
       "sel": "1-X",
-      "o": 1.24,
+      "o": 1.26,
       "p": 0.759,
       "nid": 3230465
      },
@@ -382,19 +382,19 @@
      },
      {
       "time": "",
-      "home": "Bolton",
-      "away": "Middlesbrough",
-      "league": "İngiltere Championship",
-      "sel": "1-X",
-      "o": 2.09,
-      "p": 0.579,
-      "nid": 3230026
+      "home": "Guimaraes",
+      "away": "Maritimo",
+      "league": "Portekiz Primeira Liga",
+      "sel": "X-2",
+      "o": 2.01,
+      "p": 0.594,
+      "nid": 3230849
      }
     ]
    },
    {
     "odds": 3.35,
-    "p": 0.2964,
+    "p": 0.2941,
     "legs": [
      {
       "time": "",
@@ -412,19 +412,19 @@
       "away": "Malaga",
       "league": "İspanya La Liga",
       "sel": "MS 1",
-      "o": 1.46,
+      "o": 1.47,
       "p": 0.672,
       "nid": 3238694
      },
      {
       "time": "",
-      "home": "Guimaraes",
-      "away": "Maritimo",
-      "league": "Portekiz Primeira Liga",
-      "sel": "X-2",
-      "o": 1.91,
-      "p": 0.594,
-      "nid": 3230849
+      "home": "Vasteras SK",
+      "away": "Halmstad",
+      "league": "İsveç Allsvenskan",
+      "sel": "KG Yok",
+      "o": 1.9,
+      "p": 0.589,
+      "nid": 3229888
      }
     ]
    }
