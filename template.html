@@ -374,20 +374,21 @@ function renderCoupons(){
   el.innerHTML = `<h2>Günün kuponları</h2>`+
     `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az ${fo(MIN_ODDS)} olan kuponlar. `+
     (notToday ? 'Bugün uygun kupon çıkmadığı için bu güne bakıldı. ' : '')+
+    (new Set(c.list.map(k=>k.date||c.date)).size>1 ? 'Bugünkü maçlardan yeterli güvenilir kupon çıkmadığı için eksik kalan kuponlar sonraki günlerin maçlarından seçildi (her kuponun gününü başlığında görebilirsin). ' : '')+
     `Kuponlara sadece modelin %${pct(D.green)} ve üzeri gördüğü seçenekler girer, riskli ya da önerilmeyen seçenek yok. `+
     `Her kuponda ${LEGS} maç var ve hepsi tutmalı. Her kupon farklı maçlardan oluşur, bir maç yalnızca bir kuponda yer alır. `+
-    (c.list.length<N_CP ? `Bu gün yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
+    (c.list.length<N_CP ? `Yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
     `Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
     `<div class="cps">`+ c.list.map((k,i)=>
-      `<article class="cp" data-p="${k.p}"><h3>Kupon ${i+1}</h3><ul>`+
+      `<article class="cp" data-p="${k.p}"><h3>Kupon ${i+1}${k.date&&k.date!==c.date?` <small>· ${esc(fmtLong(k.date))}</small>`:''}</h3><ul>`+
       k.legs.map(l=>{
-        const ov = parseOdds(LS.get(okey(c,l))), cur = ov || l.o;
+        const ov = parseOdds(LS.get(okey({date:k.date||c.date},l))), cur = ov || l.o;
         return `<li class="lgr"><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
         `<span class="lt">${esc(l.time)}</span>`+
         `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span><small class="lg">${esc(l.league||'')}${l.src==='blend'?' · model + piyasa':(l.src==='market'?' · piyasa olasılığı':'')}</small></span></button>`+
         `<label class="ls t-${l.t}">${esc(l.sel)}`+
         `<input class="oi" type="text" inputmode="decimal" autocomplete="off" value="${cur.toFixed(2)}" `+
-        `data-key="${esc(okey(c,l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label></li>`;
+        `data-key="${esc(okey({date:k.date||c.date},l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label></li>`;
       }).join('')+
       `</ul><dl class="tot">`+
       `<div><dt>Toplam oran</dt><dd class="to">${k.odds.toFixed(2)}</dd></div>`+
