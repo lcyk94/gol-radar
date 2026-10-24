@@ -469,18 +469,18 @@
     ]
    },
    {
-    "odds": 3.21,
-    "p": 0.4962,
+    "odds": 3.29,
+    "p": 0.4772,
     "legs": [
      {
       "time": "",
-      "home": "Leganes",
-      "away": "Mallorca",
-      "league": "İspanya Segunda",
-      "sel": "X-2",
-      "o": 1.2,
-      "p": 0.846,
-      "nid": 3238757
+      "home": "Iraklis",
+      "away": "Kifisia",
+      "league": "Yunanistan Super League",
+      "sel": "1-X",
+      "o": 1.23,
+      "p": 0.814,
+      "nid": 3237826
      },
      {
       "time": "",
@@ -505,18 +505,54 @@
     ]
    },
    {
-    "odds": 3.21,
-    "p": 0.4469,
+    "odds": 3.06,
+    "p": 0.4321,
     "legs": [
      {
       "time": "",
-      "home": "Iraklis",
-      "away": "Kifisia",
-      "league": "Yunanistan Super League",
+      "home": "Dijon",
+      "away": "Rodez",
+      "league": "Fransa Ligue 2",
+      "sel": "Üst 2.5",
+      "o": 1.41,
+      "p": 0.77,
+      "nid": 3235272
+     },
+     {
+      "time": "",
+      "home": "Lens",
+      "away": "Paris FC",
+      "league": "Fransa Ligue 1",
       "sel": "1-X",
-      "o": 1.24,
-      "p": 0.814,
-      "nid": 3237826
+      "o": 1.33,
+      "p": 0.751,
+      "nid": 3237541
+     },
+     {
+      "time": "",
+      "home": "Leganes",
+      "away": "Mallorca",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.63,
+      "p": 0.747,
+      "nid": 3238757
+     }
+    ]
+   },
+   {
+    "odds": 3.19,
+    "p": 0.4214,
+    "legs": [
+     {
+      "time": "",
+      "home": "Gaziantep",
+      "away": "Erzurumspor",
+      "league": "Türkiye Süper Lig",
+      "sel": "1-X",
+      "o": 1.23,
+      "p": 0.768,
+      "nid": 3235329
      },
      {
       "time": "",
@@ -537,42 +573,6 @@
       "o": 1.63,
       "p": 0.735,
       "nid": 3236746
-     }
-    ]
-   },
-   {
-    "odds": 4.5,
-    "p": 0.3982,
-    "legs": [
-     {
-      "time": "",
-      "home": "Las Palmas",
-      "away": "Sociedad B",
-      "league": "İspanya Segunda",
-      "sel": "1-X",
-      "o": 1.2,
-      "p": 0.786,
-      "nid": 3239014
-     },
-     {
-      "time": "",
-      "home": "Dijon",
-      "away": "Rodez",
-      "league": "Fransa Ligue 2",
-      "sel": "Üst 2.5",
-      "o": 1.39,
-      "p": 0.77,
-      "nid": 3235272
-     },
-     {
-      "time": "",
-      "home": "Girona",
-      "away": "Celta",
-      "league": "İspanya La Liga",
-      "sel": "X-2",
-      "o": 2.7,
-      "p": 0.657,
-      "nid": 3239149
      }
     ]
    }
