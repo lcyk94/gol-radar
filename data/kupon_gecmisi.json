@@ -429,5 +429,153 @@
     ]
    }
   ]
+ },
+ "2026-10-24": {
+  "list": [
+   {
+    "odds": 3.29,
+    "p": 0.5709,
+    "legs": [
+     {
+      "time": "",
+      "home": "Westerlo",
+      "away": "Beveren",
+      "league": "Belçika Pro League",
+      "sel": "1-X",
+      "o": 1.21,
+      "p": 0.853,
+      "nid": 3236331
+     },
+     {
+      "time": "",
+      "home": "FC Tokyo",
+      "away": "Avispa Fukuoka",
+      "league": "Japonya J1 Lig",
+      "sel": "1-X",
+      "o": 1.34,
+      "p": 0.844,
+      "nid": 3235282
+     },
+     {
+      "time": "",
+      "home": "Vejle",
+      "away": "Aarhus",
+      "league": "Danimarka Süper Lig",
+      "sel": "X-2",
+      "o": 2.03,
+      "p": 0.793,
+      "nid": 3238294
+     }
+    ]
+   },
+   {
+    "odds": 3.21,
+    "p": 0.4962,
+    "legs": [
+     {
+      "time": "",
+      "home": "Leganes",
+      "away": "Mallorca",
+      "league": "İspanya Segunda",
+      "sel": "X-2",
+      "o": 1.2,
+      "p": 0.846,
+      "nid": 3238757
+     },
+     {
+      "time": "",
+      "home": "Exeter",
+      "away": "Fleetwood Town",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "o": 1.67,
+      "p": 0.777,
+      "nid": 3238112
+     },
+     {
+      "time": "",
+      "home": "St Etienne",
+      "away": "Nantes",
+      "league": "Fransa Ligue 2",
+      "sel": "MS 1",
+      "o": 1.6,
+      "p": 0.754,
+      "nid": 3237987
+     }
+    ]
+   },
+   {
+    "odds": 3.01,
+    "p": 0.4472,
+    "legs": [
+     {
+      "time": "",
+      "home": "Sudtirol",
+      "away": "Sampdoria",
+      "league": "İtalya Serie B",
+      "sel": "1-X",
+      "o": 1.31,
+      "p": 0.79,
+      "nid": 3235600
+     },
+     {
+      "time": "",
+      "home": "Dijon",
+      "away": "Rodez",
+      "league": "Fransa Ligue 2",
+      "sel": "Üst 2.5",
+      "o": 1.41,
+      "p": 0.77,
+      "nid": 3235272
+     },
+     {
+      "time": "",
+      "home": "Oud-Heverlee Leuven",
+      "away": "Lommel SK",
+      "league": "Belçika Pro League",
+      "sel": "X-2",
+      "o": 1.63,
+      "p": 0.735,
+      "nid": 3236746
+     }
+    ]
+   },
+   {
+    "odds": 4.22,
+    "p": 0.4108,
+    "legs": [
+     {
+      "time": "",
+      "home": "Iraklis",
+      "away": "Kifisia",
+      "league": "Yunanistan Super League",
+      "sel": "1-X",
+      "o": 1.24,
+      "p": 0.814,
+      "nid": 3237826
+     },
+     {
+      "time": "",
+      "home": "Gaziantep",
+      "away": "Erzurumspor",
+      "league": "Türkiye Süper Lig",
+      "sel": "1-X",
+      "o": 1.23,
+      "p": 0.768,
+      "nid": 3235329
+     },
+     {
+      "time": "",
+      "home": "Girona",
+      "away": "Celta",
+      "league": "İspanya La Liga",
+      "sel": "X-2",
+      "o": 2.77,
+      "p": 0.657,
+      "nid": 3239149
+     }
+    ]
+   }
+  ]
  }
 }
