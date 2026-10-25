@@ -581,44 +581,8 @@
  "2026-10-25": {
   "list": [
    {
-    "odds": 3.05,
-    "p": 0.4425,
-    "legs": [
-     {
-      "time": "",
-      "home": "U. Cluj",
-      "away": "Din. Bucuresti",
-      "league": "Romanya Liga 1",
-      "sel": "1-X",
-      "o": 1.58,
-      "p": 0.77,
-      "nid": 3235562
-     },
-     {
-      "time": "",
-      "home": "Toulouse",
-      "away": "Troyes",
-      "league": "Fransa Ligue 1",
-      "sel": "MS 1",
-      "o": 1.34,
-      "p": 0.74,
-      "nid": 3237078
-     },
-     {
-      "time": "14:00",
-      "home": "Albacete",
-      "away": "Ath Madrid",
-      "league": "İspanya Segunda RFEF",
-      "sel": "X-2",
-      "o": 1.44,
-      "p": 0.777,
-      "nid": 3238703
-     }
-    ]
-   },
-   {
-    "odds": 3.07,
-    "p": 0.4032,
+    "odds": 3.33,
+    "p": 0.4451,
     "legs": [
      {
       "time": "",
@@ -632,28 +596,64 @@
      },
      {
       "time": "",
-      "home": "Goztep",
-      "away": "Corum",
-      "league": "Türkiye Süper Lig",
-      "sel": "Üst 2.5",
-      "o": 1.6,
-      "p": 0.734,
-      "nid": 3238901
+      "home": "U. Cluj",
+      "away": "Din. Bucuresti",
+      "league": "Romanya Liga 1",
+      "sel": "1-X",
+      "o": 1.58,
+      "p": 0.77,
+      "nid": 3235562
      },
      {
-      "time": "",
-      "home": "Zenit",
-      "away": "Dynamo Makhachkala",
-      "league": "Rusya Premier Lig",
-      "sel": "KG Yok",
-      "o": 1.51,
-      "p": 0.708,
-      "nid": 3238121
+      "time": "14:00",
+      "home": "Albacete",
+      "away": "Ath Madrid",
+      "league": "İspanya Segunda RFEF",
+      "sel": "X-2",
+      "o": 1.66,
+      "p": 0.745,
+      "nid": 3238703
      }
     ]
    },
    {
-    "odds": 4.2,
+    "odds": 3.08,
+    "p": 0.4011,
+    "legs": [
+     {
+      "time": "",
+      "home": "Toulouse",
+      "away": "Troyes",
+      "league": "Fransa Ligue 1",
+      "sel": "MS 1",
+      "o": 1.34,
+      "p": 0.74,
+      "nid": 3237078
+     },
+     {
+      "time": "",
+      "home": "Start",
+      "away": "Sandefjord",
+      "league": "Norveç Eliteserien",
+      "sel": "X-2",
+      "o": 1.4,
+      "p": 0.738,
+      "nid": 3236148
+     },
+     {
+      "time": "",
+      "home": "Goztep",
+      "away": "Corum",
+      "league": "Türkiye Süper Lig",
+      "sel": "Üst 2.5",
+      "o": 1.64,
+      "p": 0.734,
+      "nid": 3238901
+     }
+    ]
+   },
+   {
+    "odds": 4.16,
     "p": 0.3942,
     "legs": [
      {
@@ -672,7 +672,7 @@
       "away": "Fiorentina",
       "league": "İtalya Serie A",
       "sel": "MS 1",
-      "o": 1.21,
+      "o": 1.2,
       "p": 0.763,
       "nid": 3235977
      },
@@ -689,19 +689,9 @@
     ]
    },
    {
-    "odds": 3.08,
-    "p": 0.3604,
+    "odds": 3.0,
+    "p": 0.3514,
     "legs": [
-     {
-      "time": "",
-      "home": "Start",
-      "away": "Sandefjord",
-      "league": "Norveç Eliteserien",
-      "sel": "X-2",
-      "o": 1.45,
-      "p": 0.738,
-      "nid": 3236148
-     },
      {
       "time": "",
       "home": "Horsens",
@@ -714,13 +704,23 @@
      },
      {
       "time": "",
-      "home": "Ath Bilbao",
-      "away": "Getafe",
+      "home": "Sociedad",
+      "away": "Levante",
       "league": "İspanya La Liga",
+      "sel": "Üst 2.5",
+      "o": 1.3,
+      "p": 0.715,
+      "nid": 3238604
+     },
+     {
+      "time": "",
+      "home": "Zenit",
+      "away": "Dynamo Makhachkala",
+      "league": "Rusya Premier Lig",
       "sel": "KG Yok",
-      "o": 1.39,
-      "p": 0.703,
-      "nid": 3239070
+      "o": 1.51,
+      "p": 0.708,
+      "nid": 3238121
      }
     ]
    }
