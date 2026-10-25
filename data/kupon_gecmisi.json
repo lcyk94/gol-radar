@@ -577,5 +577,153 @@
     ]
    }
   ]
+ },
+ "2026-10-25": {
+  "list": [
+   {
+    "odds": 3.25,
+    "p": 0.4479,
+    "legs": [
+     {
+      "time": "",
+      "home": "U. Cluj",
+      "away": "Din. Bucuresti",
+      "league": "Romanya Liga 1",
+      "sel": "1-X",
+      "o": 1.58,
+      "p": 0.77,
+      "nid": 3235562
+     },
+     {
+      "time": "",
+      "home": "Start",
+      "away": "Sandefjord",
+      "league": "Norveç Eliteserien",
+      "sel": "X-2",
+      "o": 1.47,
+      "p": 0.738,
+      "nid": 3236148
+     },
+     {
+      "time": "14:00",
+      "home": "Albacete",
+      "away": "Ath Madrid",
+      "league": "İspanya Segunda RFEF",
+      "sel": "X-2",
+      "o": 1.4,
+      "p": 0.787,
+      "nid": 3238703
+     }
+    ]
+   },
+   {
+    "odds": 4.43,
+    "p": 0.4076,
+    "legs": [
+     {
+      "time": "",
+      "home": "GAIS",
+      "away": "Goteborg",
+      "league": "İsveç Allsvenskan",
+      "sel": "1-X",
+      "o": 1.27,
+      "p": 0.776,
+      "nid": 3237559
+     },
+     {
+      "time": "",
+      "home": "Cercle Brugge",
+      "away": "St Truiden",
+      "league": "Belçika Pro League",
+      "sel": "X-2",
+      "o": 2.66,
+      "p": 0.674,
+      "nid": 3230248
+     },
+     {
+      "time": "17:00",
+      "home": "Northampton",
+      "away": "Stoke",
+      "league": "İngiltere FA Kupası, Kadınlar",
+      "sel": "KG Yok",
+      "o": 1.31,
+      "p": 0.78,
+      "nid": 3300937
+     }
+    ]
+   },
+   {
+    "odds": 3.07,
+    "p": 0.391,
+    "legs": [
+     {
+      "time": "",
+      "home": "Midtjylland",
+      "away": "Lyngby",
+      "league": "Danimarka Süper Lig",
+      "sel": "MS 1",
+      "o": 1.27,
+      "p": 0.767,
+      "nid": 3237954
+     },
+     {
+      "time": "",
+      "home": "Goztep",
+      "away": "Corum",
+      "league": "Türkiye Süper Lig",
+      "sel": "Üst 2.5",
+      "o": 1.58,
+      "p": 0.734,
+      "nid": 3238901
+     },
+     {
+      "time": "",
+      "home": "Horsens",
+      "away": "Sonderjyske",
+      "league": "Danimarka Süper Lig",
+      "sel": "Üst 2.5",
+      "o": 1.53,
+      "p": 0.694,
+      "nid": 3237861
+     }
+    ]
+   },
+   {
+    "odds": 3.07,
+    "p": 0.3454,
+    "legs": [
+     {
+      "time": "",
+      "home": "Toulouse",
+      "away": "Troyes",
+      "league": "Fransa Ligue 1",
+      "sel": "MS 1",
+      "o": 1.34,
+      "p": 0.74,
+      "nid": 3237078
+     },
+     {
+      "time": "",
+      "home": "Zenit",
+      "away": "Dynamo Makhachkala",
+      "league": "Rusya Premier Lig",
+      "sel": "KG Yok",
+      "o": 1.48,
+      "p": 0.708,
+      "nid": 3238121
+     },
+     {
+      "time": "",
+      "home": "OFI Crete",
+      "away": "PAOK",
+      "league": "Yunanistan Super League",
+      "sel": "Üst 2.5",
+      "o": 1.55,
+      "p": 0.66,
+      "nid": 3238724
+     }
+    ]
+   }
+  ]
  }
 }
