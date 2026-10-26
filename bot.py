@@ -1805,7 +1805,7 @@ def setup_env(rows, hist, perf):
     samples = []
     for r, p, _ in rows:
         nes, act = _nes_of(r)
-        if act and nes and nes.get("markets") and r.get("SRC") == "model":
+        if act and nes and nes.get("markets") and r.get("SRC") in (None, "model"):   # gerçek veride model satırlarının SRC alanı boş olabilir
             samples.append((_ctx_of(p, r.get("Div")), nes["markets"]))
     if not samples:
         return None
