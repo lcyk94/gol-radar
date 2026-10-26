@@ -1471,6 +1471,24 @@ def yesterday_report(hist, today=None, online=False):
             for key, (d0, hg, ag) in found.items():
                 idx.setdefault(key, []).append((d0, hg, ag, None, None))
             graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
+    try:                                  # sonucu gelmeyen bacakların nedeni (log için)
+        import nesine
+        st = nesine.load_results_store()
+        for d in days[-2:]:
+            for k, g in zip(log[d]["list"], graded[d]):
+                for l, gl in zip(k["legs"], g["legs"]):
+                    if gl["ok"] is None:
+                        nid = l.get("nid")
+                        rec = (st.get("results") or {}).get(str(nid)) if nid is not None else None
+                        why = ("kupon kaydında maç no yok" if nid is None else
+                               "Nesine kaydında maç yok" if str(nid) not in (st.get("matches") or {}) else
+                               "akışta hiç görülmedi" if rec is None else
+                               f"akışta son durum S={rec.get('s')} skor={(rec.get('t') or {}).get('1')}")
+                        if l.get("mtid") in (None,) or not pz.SPECS.get(int(l["mtid"]), {}).get("half"):
+                            pass
+                        print(f"  SONUÇ-BEKLEYEN {d} {l['home']} - {l['away']} [{l['sel']}] nid={nid}: {why}")
+    except Exception as e:  # noqa: BLE001
+        print("  (bekleyen sonuç nedenleri yazılamadı:", e, ")")
     tot = {"won": 0, "lost": 0, "pending": 0, "days": len(days)}
     for d in days:
         for k in graded[d]:
