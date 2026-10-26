@@ -725,5 +725,117 @@
     ]
    }
   ]
+ },
+ "2026-10-26": {
+  "list": [
+   {
+    "odds": 3.98,
+    "p": 0.3563,
+    "legs": [
+     {
+      "time": "",
+      "home": "Montpellier",
+      "away": "Red Star",
+      "league": "Fransa Ligue 2",
+      "sel": "1-X",
+      "o": 1.22,
+      "p": 0.777,
+      "nid": 3337432
+     },
+     {
+      "time": "",
+      "home": "Boulogne",
+      "away": "Reims",
+      "league": "Fransa Ligue 2",
+      "sel": "1-2",
+      "o": 1.2,
+      "p": 0.718,
+      "nid": 3230473
+     },
+     {
+      "time": "",
+      "home": "Paris FC",
+      "away": "Lyon",
+      "league": "Fransa Ligue 1",
+      "sel": "X-2",
+      "o": 2.72,
+      "p": 0.638,
+      "nid": 3238586
+     }
+    ]
+   },
+   {
+    "odds": 3.27,
+    "p": 0.2791,
+    "legs": [
+     {
+      "time": "",
+      "home": "Galatasaray",
+      "away": "Fenerbahce",
+      "league": "Türkiye Süper Lig",
+      "sel": "Üst 2.5",
+      "o": 1.34,
+      "p": 0.709,
+      "nid": 3241596
+     },
+     {
+      "time": "",
+      "home": "Walsall",
+      "away": "Salford",
+      "league": "İngiltere League Two",
+      "sel": "1-X",
+      "o": 1.41,
+      "p": 0.688,
+      "nid": 3241651
+     },
+     {
+      "time": "",
+      "home": "Andorra",
+      "away": "Burgos",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.73,
+      "p": 0.572,
+      "nid": 3238748
+     }
+    ]
+   },
+   {
+    "odds": 3.38,
+    "p": 0.2238,
+    "legs": [
+     {
+      "time": "",
+      "home": "FC Copenhagen",
+      "away": "Odense",
+      "league": "Danimarka Süper Lig",
+      "sel": "MS 1",
+      "o": 1.3,
+      "p": 0.682,
+      "nid": 3241581
+     },
+     {
+      "time": "",
+      "home": "Besiktas",
+      "away": "Buyuksehyr",
+      "league": "Türkiye Süper Lig",
+      "sel": "KG Var",
+      "o": 1.46,
+      "p": 0.591,
+      "nid": 3241516
+     },
+     {
+      "time": "",
+      "home": "Sevilla",
+      "away": "Osasuna",
+      "league": "İspanya La Liga",
+      "sel": "KG Var",
+      "o": 1.78,
+      "p": 0.555,
+      "nid": 3238701
+     }
+    ]
+   }
+  ]
  }
 }
