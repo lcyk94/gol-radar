@@ -729,7 +729,7 @@
  "2026-10-26": {
   "list": [
    {
-    "odds": 3.98,
+    "odds": 3.91,
     "p": 0.3563,
     "legs": [
      {
@@ -738,7 +738,7 @@
       "away": "Red Star",
       "league": "Fransa Ligue 2",
       "sel": "1-X",
-      "o": 1.22,
+      "o": 1.23,
       "p": 0.777,
       "nid": 3337432
      },
@@ -758,14 +758,14 @@
       "away": "Lyon",
       "league": "Fransa Ligue 1",
       "sel": "X-2",
-      "o": 2.72,
+      "o": 2.65,
       "p": 0.638,
       "nid": 3238586
      }
     ]
    },
    {
-    "odds": 3.27,
+    "odds": 3.29,
     "p": 0.2791,
     "legs": [
      {
@@ -794,14 +794,14 @@
       "away": "Burgos",
       "league": "İspanya Segunda",
       "sel": "KG Yok",
-      "o": 1.73,
+      "o": 1.74,
       "p": 0.572,
       "nid": 3238748
      }
     ]
    },
    {
-    "odds": 3.38,
+    "odds": 3.42,
     "p": 0.2238,
     "legs": [
      {
@@ -810,7 +810,7 @@
       "away": "Odense",
       "league": "Danimarka Süper Lig",
       "sel": "MS 1",
-      "o": 1.3,
+      "o": 1.32,
       "p": 0.682,
       "nid": 3241581
      },
@@ -820,7 +820,7 @@
       "away": "Buyuksehyr",
       "league": "Türkiye Süper Lig",
       "sel": "KG Var",
-      "o": 1.46,
+      "o": 1.44,
       "p": 0.591,
       "nid": 3241516
      },
@@ -830,7 +830,7 @@
       "away": "Osasuna",
       "league": "İspanya La Liga",
       "sel": "KG Var",
-      "o": 1.78,
+      "o": 1.8,
       "p": 0.555,
       "nid": 3238701
      }
