@@ -106,6 +106,13 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   border-radius:4px;background:rgba(255,255,255,.94);color:#13202f;font:700 15px system-ui,sans-serif;
   text-align:center;font-variant-numeric:tabular-nums}
 .ls input.ed{outline:2px solid #2f6fd6;background:#fff}
+.lw{grid-column:1/-1;padding:3px 12px 2px;font-size:12.5px;color:var(--mut);line-height:1.4}
+.lw .mkn{color:#13202f;font-weight:600}
+.lw summary{cursor:pointer;color:#1f4f9c;margin-top:2px}
+.lw summary:focus-visible{outline:3px solid #2f6fd6;outline-offset:2px}
+.lw details p{margin:3px 0 0}
+.cal2 td:first-child{font-weight:600}
+.fh{margin:18px 0 6px;font-size:15px}
 .cw{margin:0;padding:6px 12px;background:#fdecec;color:#7a1f24;font-size:13px;border-top:1px solid #f1c4c6}
 .rst{display:block;width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);
   padding:7px 12px;font:inherit;font-size:13px;color:#1f4f9c;cursor:pointer;text-align:left}
@@ -290,7 +297,7 @@ function nesPanel(m){
   }).join('');
   return `<h3>Nesine'de açık bütün bahisler (${L.length})</h3>`+
     `<p class="xg">Oranlar Nesine bülteninden olduğu gibi alınır. Adı henüz çözülemeyen bahis türleri "Bahis türü N" olarak gösterilir `+
-    `(ad uydurulmaz); ${named} bahis türünün adı bilinir. "Model" yalnızca doğrulanmış pazarlarda gösterilir.</p>`+
+    `(ad uydurulmaz); ${named} bahis türünün adı bilinir. "Model" yalnızca adı ve seçenek sırası Nesine'nin kendi tablosundan doğrulanan ve her çalıştırmada oranlara karşı sınanan bahis türlerinde gösterilir.</p>`+
     `<div class="mks">${cards}</div>`;
 }
 
@@ -312,7 +319,7 @@ function panel(m){
     ctxHtml(m)+
     `<div class="mks">${cards}</div>`+
     nesPanel(m)+
-    `<p class="fine">İlk yarı ve oyuncu bahisleri bu modelde yok.</p></div>`;
+    `<p class="fine">Oyuncu, korner ve kart bahisleri için model yok: Nesine'de açıksa oranı gösterilir, model yorum yapmaz.</p></div>`;
 }
 
 function render(){
@@ -378,7 +385,7 @@ function renderCoupons(){
     `Kuponlara sadece modelin %${pct(D.green)} ve üzeri gördüğü seçenekler girer, riskli ya da önerilmeyen seçenek yok. `+
     `Her kuponda ${LEGS} maç var ve hepsi tutmalı. Her kupon farklı maçlardan oluşur, bir maç yalnızca bir kuponda yer alır. `+
     (c.list.length<N_CP ? `Yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
-    `Model, hepsinin birden tutma olasılığı en yüksek olanları seçti.</p>`+
+    `Seçenekleri oran değil botun analizi belirler: Nesine'nin açtığı bütün bahis türleri (ilk yarı, toplam gol, takım golleri, handikap, kombine vb.) için modelin olasılığı, o ligin sıradan bir maçındaki olasılığıyla kıyaslanır ve modelin en çok "fazla bilgi" gördüğü seçenekler öne geçer. Oran yalnızca kupon kuralları için süzgeçtir. Her seçeneğin altındaki "Neden bu seçenek?" gerekçeyi gösterir.</p>`+
     `<div class="cps">`+ c.list.map((k,i)=>
       `<article class="cp" data-p="${k.p}"><h3>Kupon ${i+1}${k.date&&k.date!==c.date?` <small>· ${esc(fmtLong(k.date))}</small>`:''}</h3><ul>`+
       k.legs.map(l=>{
@@ -388,7 +395,9 @@ function renderCoupons(){
         `<span class="ln"><b>${esc(l.home)}</b><span>${esc(l.away)}</span><small class="lg">${esc(l.league||'')}${l.src==='blend'?' · model + piyasa':(l.src==='market'?' · piyasa olasılığı':'')}</small></span></button>`+
         `<label class="ls t-${l.t}">${esc(l.sel)}`+
         `<input class="oi" type="text" inputmode="decimal" autocomplete="off" value="${cur.toFixed(2)}" `+
-        `data-key="${esc(okey({date:k.date||c.date},l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label></li>`;
+        `data-key="${esc(okey({date:k.date||c.date},l))}" data-bot="${l.o}" aria-label="${esc(l.home+' '+l.away+' '+l.sel+' oranı')}"></label>`+
+        (l.mk ? `<div class="lw"><span class="mkn">${esc(l.mk)}</span>: model %${pct(l.p)}, sıradan bir lig maçında %${pct(l.base)}`+
+          ((l.why&&l.why.length) ? `<details><summary>Neden bu seçenek?</summary>${l.why.map(w=>`<p>${esc(w)}</p>`).join('')}</details>` : '')+`</div>` : '')+`</li>`;
       }).join('')+
       `</ul><dl class="tot">`+
       `<div><dt>Toplam oran</dt><dd class="to">${k.odds.toFixed(2)}</dd></div>`+
@@ -476,6 +485,16 @@ function recalc(art){
   art.querySelector('.rst').hidden = !edited;
 }
 
+function famTable(P){
+  const F = P.fam; if(!F || !F.length) return '';
+  const p1 = x => (x*100).toFixed(1).replace('.',',');
+  const FN = {'YARI':'Yarı bazlı (hangi yarı, iki yarı)','TAKIM':'Takım golü','TG':'Toplam gol','AÜ':'Alt/Üst','HMS':'Handikaplı MS','İY':'İlk yarı sonucu','İY ÇŞ':'İlk yarı çifte şans','İY AÜ':'İlk yarı Alt/Üst','İY TG':'İlk yarı gol sayısı','İY/MS':'İlk yarı / maç sonucu','İY MS&KG':'İlk yarı sonucu & KG','2Y':'İkinci yarı sonucu','2Y ÇŞ':'İkinci yarı çifte şans','MS&AÜ':'MS & Alt/Üst','MS&KG':'MS & KG'};
+  const rows = F.map(f=>`<tr><td>${esc(FN[f.fam]||f.fam)}</td><td>${f.n}</td><td>%${p1(f.p)}</td><td>%${p1(f.hit)}</td><td>${f.ok?'kuponlara girebilir':(f.n<40?'veri az, girmez':'model aşırı güvenli, girmez')}</td></tr>`).join('');
+  return '<h3 class="fh">Bahis türüne göre sınav</h3>'+
+    '<table class="cal cal2"><thead><tr><th>Bahis türü</th><th>Yeşil seçenek</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Kupon kapısı</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    '<p class="pn">Bir bahis türü, geçmişte yeşil dediği seçeneklerde tutma oranı modelin verdiği olasılığın en fazla 5 puan altında kalırsa kuponlara girer. Yarı skoru gerektiren bahisler (ilk yarı, İY/MS vb.) football-data\'daki yarı skorlarıyla ölçülür.</p>';
+}
+
 function renderPerf(){
   const P = D.performance, el = $('#perf');
   if(!P){
@@ -510,7 +529,8 @@ function renderPerf(){
     `<p class="pv">${esc(P.from)} ile ${esc(P.to)} arasındaki ${P.matches} maç, model her maçı sadece o günden önceki sonuçlarla tahmin edecek şekilde geriye dönük sınandı. ${esc(verdict)}</p>`+
     '<dl class="pcs">'+cards.map(c=>`<div class="pc"><dt>${esc(c[0])}</dt><dd>${esc(c[1])}<small>${esc(c[2])}</small></dd></div>`).join('')+'</dl>'+
     (rows ? '<table class="cal"><thead><tr><th>Modelin verdiği olasılık</th><th>Seçenek sayısı</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Fark</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-    '<p class="pn">Model güvenilirse "Model ne dedi" ile "Gerçekte tuttu" sütunları birbirine yakın olur. Kırmızı çizgi modelin dediği, mavi çubuk gerçekte tutan orandır. Yeşil satırda gerçek oran modelin altında kalıyorsa, yeşil seçeneklere olduğundan fazla güveniliyor demektir.</p>' : '');
+    '<p class="pn">Model güvenilirse "Model ne dedi" ile "Gerçekte tuttu" sütunları birbirine yakın olur. Kırmızı çizgi modelin dediği, mavi çubuk gerçekte tutan orandır. Yeşil satırda gerçek oran modelin altında kalıyorsa, yeşil seçeneklere olduğundan fazla güveniliyor demektir.</p>' : '')+
+    famTable(P);
 }
 
 function toggle(id){
