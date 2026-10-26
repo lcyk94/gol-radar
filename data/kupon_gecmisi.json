@@ -729,45 +729,65 @@
  "2026-10-26": {
   "list": [
    {
-    "odds": 3.91,
-    "p": 0.3563,
+    "odds": 4.51,
+    "p": 0.2542,
     "legs": [
-     {
-      "time": "",
-      "home": "Montpellier",
-      "away": "Red Star",
-      "league": "Fransa Ligue 2",
-      "sel": "1-X",
-      "o": 1.23,
-      "p": 0.777,
-      "nid": 3337432
-     },
-     {
-      "time": "",
-      "home": "Boulogne",
-      "away": "Reims",
-      "league": "Fransa Ligue 2",
-      "sel": "1-2",
-      "o": 1.2,
-      "p": 0.718,
-      "nid": 3230473
-     },
      {
       "time": "",
       "home": "Paris FC",
       "away": "Lyon",
       "league": "Fransa Ligue 1",
       "sel": "X-2",
-      "o": 2.65,
+      "o": 2.76,
       "p": 0.638,
       "nid": 3238586
+     },
+     {
+      "time": "19:00",
+      "home": "AL Ain",
+      "away": "TS Tabriz",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "MS 1",
+      "o": 1.22,
+      "p": 0.661,
+      "nid": 3241513
+     },
+     {
+      "time": "21:15",
+      "home": "AL Qadisiyah",
+      "away": "AL Sadd",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "MS 1",
+      "o": 1.34,
+      "p": 0.603,
+      "nid": 3241710
      }
     ]
    },
    {
-    "odds": 3.29,
-    "p": 0.2791,
+    "odds": 3.28,
+    "p": 0.3281,
     "legs": [
+     {
+      "time": "",
+      "home": "Montpellier",
+      "away": "Red Star",
+      "league": "Fransa Ligue 2",
+      "sel": "KG Yok",
+      "o": 1.93,
+      "p": 0.624,
+      "nid": 3337432
+     },
+     {
+      "time": "",
+      "home": "Sandefjord",
+      "away": "Sarpsborg 08",
+      "league": "Norveç Eliteserien",
+      "sel": "1-X",
+      "o": 1.27,
+      "p": 0.742,
+      "nid": 3241666
+     },
      {
       "time": "",
       "home": "Galatasaray",
@@ -777,6 +797,22 @@
       "o": 1.34,
       "p": 0.709,
       "nid": 3241596
+     }
+    ]
+   },
+   {
+    "odds": 3.05,
+    "p": 0.2744,
+    "legs": [
+     {
+      "time": "",
+      "home": "Boulogne",
+      "away": "Reims",
+      "league": "Fransa Ligue 2",
+      "sel": "1-2",
+      "o": 1.2,
+      "p": 0.718,
+      "nid": 3230473
      },
      {
       "time": "",
@@ -790,42 +826,6 @@
      },
      {
       "time": "",
-      "home": "Andorra",
-      "away": "Burgos",
-      "league": "İspanya Segunda",
-      "sel": "KG Yok",
-      "o": 1.74,
-      "p": 0.572,
-      "nid": 3238748
-     }
-    ]
-   },
-   {
-    "odds": 3.42,
-    "p": 0.2238,
-    "legs": [
-     {
-      "time": "",
-      "home": "FC Copenhagen",
-      "away": "Odense",
-      "league": "Danimarka Süper Lig",
-      "sel": "MS 1",
-      "o": 1.32,
-      "p": 0.682,
-      "nid": 3241581
-     },
-     {
-      "time": "",
-      "home": "Besiktas",
-      "away": "Buyuksehyr",
-      "league": "Türkiye Süper Lig",
-      "sel": "KG Var",
-      "o": 1.44,
-      "p": 0.591,
-      "nid": 3241516
-     },
-     {
-      "time": "",
       "home": "Sevilla",
       "away": "Osasuna",
       "league": "İspanya La Liga",
@@ -833,6 +833,42 @@
       "o": 1.8,
       "p": 0.555,
       "nid": 3238701
+     }
+    ]
+   },
+   {
+    "odds": 3.02,
+    "p": 0.2414,
+    "legs": [
+     {
+      "time": "",
+      "home": "FC Copenhagen",
+      "away": "Odense",
+      "league": "Danimarka Süper Lig",
+      "sel": "Üst 2.5",
+      "o": 1.39,
+      "p": 0.632,
+      "nid": 3241581
+     },
+     {
+      "time": "",
+      "home": "Andorra",
+      "away": "Burgos",
+      "league": "İspanya Segunda",
+      "sel": "X-2",
+      "o": 1.49,
+      "p": 0.646,
+      "nid": 3238748
+     },
+     {
+      "time": "",
+      "home": "Besiktas",
+      "away": "Buyuksehyr",
+      "league": "Türkiye Süper Lig",
+      "sel": "KG Var",
+      "o": 1.46,
+      "p": 0.591,
+      "nid": 3241516
      }
     ]
    }
