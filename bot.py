@@ -25,6 +25,7 @@ import io
 import itertools
 import json
 import os
+import re
 import time
 import math
 import sys
@@ -35,6 +36,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import pazarlar as pz
 from scipy.optimize import minimize
 from scipy.stats import poisson
 
@@ -85,7 +87,7 @@ LEAGUES.update(EXTRA)
 ODDS_SETS = [("AvgH", "AvgD", "AvgA"), ("B365H", "B365D", "B365A"),
              ("PSH", "PSD", "PSA")]
 ODDS_COLS = []        # yurtdışı oranları hiçbir yerde kullanılmaz; geçmiş dosyalardan yalnızca maç sonuçları alınır
-KEEP = ["Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]
+KEEP = ["Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "HTHG", "HTAG"]
 
 MAX_GOALS = 10
 RHO = -0.06          # Dixon-Coles düşük skor düzeltmesi
@@ -176,8 +178,9 @@ def _clean(df):
     df = df.copy()
     df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed",
                                 errors="coerce")
-    for c in ("FTHG", "FTAG"):
-        df[c] = pd.to_numeric(df[c], errors="coerce")
+    for c in ("FTHG", "FTAG", "HTHG", "HTAG"):
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors="coerce")
     df = df.dropna(subset=["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"])
     cols = [c for c in KEEP + ODDS_COLS if c in df.columns]
     df = df[cols].drop_duplicates(subset=["Div", "Date", "HomeTeam", "AwayTeam"])
@@ -936,73 +939,143 @@ COUPON_LEGS = 3        # kupondaki maç sayısı
 COUPON_MIN_LEG_ODDS = 1.20   # kupondaki tek bir seçeneğin en düşük oranı (daha düşüğü gereksiz risk)
 COUPON_MIN_ODDS = 3.0  # toplam oran en az bu kadar olmalı
 COUPON_MIN_P = 0.55    # kupona girecek her seçeneğin model olasılığı en az bu kadar
+MIN_EDGE = 0.10        # modelin olasılığı sıradan bir lig maçındakinden en az 10 puan yüksek değilse seçenek kupona girmez
+FAM_PEN = 0.10         # aynı pazar ailesi önceki kuponlarda kullanıldıkça seçim puanından düşülen ceza (çeşitlilik)
+DUP_PEN = 0.30         # aynı kuponda aynı pazar ailesinin ikinci kez kullanılması cezası
 N_COUPONS = 4
+BASIC_FAMILIES = ("MS", "ÇŞ", "KG", "AÜ")   # başarı ölçümü yoksa yalnızca bunlar kullanılır
+
+# Kupon seçiminin bağlamı (site üretilirken cmd_site doldurur): ilk yarı gol payları, pazar doğrulaması, pazar ailesi
+# kapısı, maç bağlamı (form/tarz), lig ortalamaları.
+ENV = {"shares": {}, "valid": None, "gate": None, "ctxf": None, "avg": {}, "cx": {}, "bx": {}}
+
+
+def _league_avgs(hist):
+    """Lig başına ortalama ev/deplasman golü (kıyas tabanı: 'sıradan bir maç')."""
+    out = {}
+    if hist is None or not len(hist):
+        return out
+    out[None] = (float(hist["FTHG"].mean()), float(hist["FTAG"].mean()))
+    for div, x in hist.groupby("Div"):
+        if len(x) >= 100:
+            out[div] = (float(x["FTHG"].mean()), float(x["FTAG"].mean()))
+    return out
+
+
+def _ctx_of(p, div):
+    key = id(p)
+    if key not in ENV["cx"]:
+        ENV["cx"][key] = (p, pz.Ctx(p, pz.shares_for(ENV["shares"], div)))
+    return ENV["cx"][key][1]
+
+
+def _base_of(div):
+    """O ligin ortalama maçı için aynı olasılık hesabı: bir seçeneğin 'sıradan' olasılığı."""
+    key = div if div in ENV["avg"] else None
+    if key not in ENV["bx"]:
+        a = ENV["avg"].get(key) or ENV["avg"].get(None)
+        if not a:
+            return None
+        ENV["bx"][key] = pz.Ctx(predict_lambdas(a[0], a[1], RHO), pz.shares_for(ENV["shares"], div))
+    return ENV["bx"][key]
+
+
+_ALT = re.compile(r"\bAlt\b")
 
 
 def _legs(r, p):
-    """Gerçek bahis oranı olan seçenekler: MS 1/X/2 ve Alt/Üst 2.5.
-    Diğer marketlerde gerçek oran yok, o yüzden kupona girmezler."""
+    """Maçta Nesine'nin açtığı BÜTÜN bahis türlerinden (pazarlar.py'de adı ve seçenek sırası doğrulananlar) kupon adayları.
+    Sıralama oranla değil botun analiziyle yapılır: 'edge' = modelin olasılığının, o ligin sıradan bir maçındaki aynı
+    seçeneğin olasılığına göre kaç puan yukarıda olduğu, p - b (zaten neredeyse kesin olan sıradan seçenekler böylece öne geçmez). Oran yalnızca kupon kuralları için süzgeçtir
+    (1.20 altı elenir, toplam ≥3 aranır); hangi seçeneğin seçileceğini belirlemez.
+    Aday: (etiket, olasılık, oran, ayrıntı sözlüğü)."""
     nes, act = _nes_of(r)
-    legs = []
+    if not act or not nes or not nes.get("markets"):
+        return []                      # Nesine verisi yoksa kupon yok; yurtdışı oran kullanılmaz
+    if (nes.get("mbs") or 1) > COUPON_LEGS:
+        return []
     src = r.get("SRC")
     euro = bool(r.get("EURO"))
     if src in ("cross", "prior") or (src == "market" and not euro):   # botun kendi tahmini olmayan maçlar kupona girmez
         return []
-    if act:
-        # Nesine modu: yalnızca Nesine'de bulunan maçlar, oranlar Nesine'den.
-        # MBS kupondaki en az maç sayısıdır; 4 maçlık kupona giremeyenler elenir.
-        if not nes or (nes.get("mbs") or 1) > COUPON_LEGS:
-            return []
-        ms, (alt, ust), cs, kg = nes["ms"], nes["ou25"], nes["cs"], nes["kg"]
-        p1, px, p2, ov, bt = p["p1"], p["px"], p["p2"], p["over25"], p["btts"]
-        cand = [("MS 1", p1, ms[0]), ("MS X", px, ms[1]), ("MS 2", p2, ms[2]),
-                ("1-X", p1 + px, cs[0]), ("1-2", p1 + p2, cs[1]), ("X-2", px + p2, cs[2]),
-                ("Alt 2.5", 1 - ov, alt), ("Üst 2.5", ov, ust),
-                ("KG Var", bt, kg[0]), ("KG Yok", 1 - bt, kg[1])]
-        legs = [(l, pr, float(o)) for l, pr, o in cand if o]
-        top_n = 8
-    else:
-        return []                      # Nesine oranı yoksa kupon yok; yurtdışı oran kullanılmaz
-    legs = [l for l in legs if not l[0].startswith("Alt")]      # kullanıcı isteği: kuponlarda Alt seçimi olmaz
-    legs = [l for l in legs if l[2] >= COUPON_MIN_LEG_ODDS]     # 1.20'nin altındaki oranlar kupona girmez
-    if src == "elo":                       # Elo tabanlı maçlarda yalnızca MS/ÇŞ ve daha yüksek eşik
-        legs = [l for l in legs if l[0] in ("MS 1", "MS X", "MS 2", "1-X", "1-2", "X-2") and l[1] >= 0.60]
-    if src == "blend":                     # model + piyasa karışımı: daha yüksek eşik
-        legs = [l for l in legs if l[1] >= 0.60]
-    if src == "market":                    # Avrupa kupası, yalnızca piyasa olasılığı: yalnızca MS/ÇŞ, yüksek eşik
-        legs = [l for l in legs if l[0] in ("MS 1", "MS X", "MS 2", "1-X", "1-2", "X-2") and l[1] >= 0.60]
-    # sadece listede de yeşil görünen seçenekler girer (turuncu/kırmızı girmez)
-    legs = [l for l in legs if l[1] >= COUPON_MIN_P and tier(l[1], l[2])[0] == "g"]
-    return sorted(legs, key=lambda x: -x[1])[:top_n]
+    cx = _ctx_of(p, r.get("Div"))
+    bx = _base_of(r.get("Div"))
+    if bx is None:
+        return []
+    valid, gate = ENV["valid"], ENV["gate"]
+    legs = []
+    for mk in nes["markets"]:
+        try:
+            mtid = int(mk.get("mtid"))
+        except (TypeError, ValueError):
+            continue
+        if mtid not in pz.SPECS:
+            continue
+        if src == "market" and mtid not in (1, 3):      # yalnızca piyasa olasılığı olan maçta başka pazara girilmez
+            continue
+        if valid is not None and not (valid.get(mtid) or {}).get("ok"):
+            continue
+        if mk.get("mbs") and mk["mbs"] > COUPON_LEGS:
+            continue
+        line = float(mk.get("line") or 0)
+        name, labels, fam = pz.info(mtid, line)
+        if (gate is None and fam not in BASIC_FAMILIES) or (gate is not None and fam not in gate):
+            continue
+        outs = mk.get("outs") or []
+        ps = pz.probs(cx, mtid, line)
+        if ps is None or [o.get("n") for o in outs] != list(range(1, len(ps) + 1)):
+            continue                                   # seçenek sırası bilinenle uyuşmuyorsa pazar atlanır
+        bs = pz.probs(bx, mtid, line) or [None] * len(ps)
+        for i, o in enumerate(outs):
+            od, pr, b, lab = o.get("o"), ps[i], bs[i], labels[i]
+            if not od or od < COUPON_MIN_LEG_ODDS or _ALT.search(lab):   # Alt seçimi kuponlara girmez
+                continue
+            if pr < COUPON_MIN_P or tier(pr, od)[0] != "g" or b is None or b >= 0.97:
+                continue
+            if src in ("blend", "market") and pr < 0.60:
+                continue
+            edge = pr - b
+            if edge < MIN_EDGE:
+                continue
+            legs.append((lab, float(pr), float(od), {"mtid": mtid, "line": line, "idx": i, "mk": name, "fam": fam,
+                                                     "base": float(b), "edge": float(edge)}))
+    legs.sort(key=lambda x: -x[3]["edge"])
+    per, out = {}, []
+    for l in legs:                                      # bir pazar ailesinden en çok 3 seçenek tutulur
+        if per.get(l[3]["fam"], 0) < 3:
+            per[l[3]["fam"]] = per.get(l[3]["fam"], 0) + 1
+            out.append(l)
+    return out[:14]
 
 
 def build_coupons(out_rows):
-    """Günün maçlarından, toplam oranı COUPON_MIN_ODDS ve üzeri olan ve modele göre en çok tutması
-    beklenen kupon; her kupon farklı maçlardan oluşur. Maçlar birbirinden bağımsız varsayılır."""
+    """Günün maçlarından, toplam oranı COUPON_MIN_ODDS ve üzeri olan kuponlar. Her kupon farklı maçlardan oluşur;
+    seçimi botun analiz puanı (edge) belirler."""
     today = pd.Timestamp(today_tr())
     by_day = {}
     for k, (r, p, _) in enumerate(out_rows):
         legs = _legs(r, p)
         if legs:
-            by_day.setdefault(r["Date"].normalize(), []).append((k, r, legs))
+            by_day.setdefault(r["Date"].normalize(), []).append((k, r, legs, p))
     nearest = None
     from collections import Counter as _Cn
     for d_, its in sorted(by_day.items()):
         if d_ >= today:
             print(f"  Kupon adayı maç {d_:%Y-%m-%d}: {len(its)} (kaynak: {dict(_Cn(t[1].get('SRC') for t in its))}, avrupa kupası: {sum(bool(t[1].get('EURO')) for t in its)})")
-    got = []                              # bugünden başlayarak, 4 kupon dolana kadar sonraki günlerin maçlarına bakılır
+    got, fam_use = [], {}                 # bugünden başlayarak, 4 kupon dolana kadar sonraki günlerin maçlarına bakılır
     for day in sorted(d for d in by_day if d >= today):
         if len(got) >= N_COUPONS:
             break
         if len(by_day[day]) < COUPON_LEGS:
             continue
-        res = _coupons_for_day(day, by_day[day], N_COUPONS - len(got))
+        res = _coupons_for_day(day, by_day[day], N_COUPONS - len(got), fam_use)
         print(f"  {day:%Y-%m-%d}: kurulan kupon {len(res['list'])}")
         got += res["list"]
         if not res["list"] and nearest is None and not got:   # çıkmadıysa: ulaşılabilen en yüksek toplam oran
             best = sorted((max(l[2] for l in t[2]) for t in by_day[day]), reverse=True)[:COUPON_LEGS]
             nearest = {"date": day.strftime("%Y-%m-%d"), "list": [], "max_odds": round(math.prod(best), 2)}
     if got:
+        print("  Kuponlarda kullanılan pazar aileleri:", dict(sorted(fam_use.items(), key=lambda x: -x[1])))
         return {"date": got[0]["date"], "list": got}
     nearest = nearest or {"date": today.strftime("%Y-%m-%d"), "list": []}
     nearest["diag"] = _coupon_diag(out_rows, today)
@@ -1032,56 +1105,114 @@ def _coupon_diag(out_rows, today):
     return d
 
 
-EURO_TOL = 0.6          # Avrupa kupası önceliğinde kabul edilen en düşük göreli tutma olasılığı
+EURO_TOL = 0.6          # Avrupa kupası önceliğinde kabul edilen en düşük göreli puan
 
 
 def _pareto(legs):
-    """Aynı maçta, hem oranı hem olasılığı başka bir seçenekten kötü olan seçenekleri eler."""
-    out, best_p = [], 0.0
+    """Aynı maçta hem analiz puanı hem oranı başka bir seçenekten kötü olan seçenekleri eler; en çok 6 seçenek kalır."""
+    out, best_e = [], -1.0
     for x in sorted(legs, key=lambda x: -x[2]):          # orana göre azalan
-        if x[1] > best_p + 1e-12:
+        if x[3]["edge"] > best_e + 1e-12:
             out.append(x)
-            best_p = x[1]
+            best_e = x[3]["edge"]
+    if len(out) > 6:
+        out = sorted(out, key=lambda x: -x[3]["edge"])[:5] + [max(out, key=lambda x: x[2])]
+        out = list({id(x): x for x in out}.values())
     return out
 
 
-def _best_combo(items, pool_size=80):
-    """Verilen maçlar arasından, toplam oranı COUPON_MIN_ODDS ve üzeri olan, ortak olasılığı en yüksek kupon.
-    Her maçtan, başka bir seçeneğe üstün olmayan tüm seçenekler denenir. (Eskiden yalnızca en yüksek
-    olasılıklı 20 maça bakılıyordu; onlar oranı çok düşük favoriler olunca kupon hiç bulunamıyordu.)"""
+def _best_combo(items, pool_size=45, fam_use=None):
+    """Verilen maçlar arasından, toplam oranı COUPON_MIN_ODDS ve üzeri olan, analiz puanı (edge toplamı) en yüksek kupon.
+    Aynı pazar ailesi kuponlarda tekrarlandıkça puan düşer (çeşitlilik), böylece her kupon çifte şans olmaz."""
+    fam_use = fam_use or {}
     cands = [(t, _pareto(t[2])) for t in items if t[2]]
     euro = lambda t: t[1] is not None and t[1].get("EURO") == True  # noqa: E712
-    # havuzda Avrupa kupası maçları her zaman bulunur
     eu = [c for c in cands if euro(c[0])]
     cands = [c for c in cands if not euro(c[0])]
-    cands.sort(key=lambda c: -max(x[1] for x in c[1]))
-    # havuz: hem en güvenilir hem de oranı yüksek maçlardan oluşsun
-    by_p = cands[:pool_size // 2]
-    rest = sorted(cands[pool_size // 2:], key=lambda c: -max(x[2] for x in c[1]))[:pool_size - len(by_p)]
-    cands = by_p + rest + eu
+    cands.sort(key=lambda c: -max(x[3]["edge"] for x in c[1]))
+    by_e = cands[:pool_size - 10]
+    rest = sorted(cands[pool_size - 10:], key=lambda c: -max(x[2] for x in c[1]))[:10]
+    cands = by_e + rest + eu
     best_by = {}                      # Avrupa kupası maçı sayısına göre en iyi kupon
     maxo = [max(x[2] for x in c[1]) for c in cands]
+    maxe = [max(x[3]["edge"] for x in c[1]) for c in cands]
     for i, j, k in itertools.combinations(range(len(cands)), 3):
         if maxo[i] * maxo[j] * maxo[k] < COUPON_MIN_ODDS:
             continue
         ne = euro(cands[i][0]) + euro(cands[j][0]) + euro(cands[k][0])
+        cur = best_by.get(ne)
+        if cur is not None and maxe[i] + maxe[j] + maxe[k] <= cur[0]:
+            continue                  # bu üçlü en iyi puanı bile geçemez
         for pick in itertools.product(cands[i][1], cands[j][1], cands[k][1]):
             od = pick[0][2] * pick[1][2] * pick[2][2]
-            if od >= COUPON_MIN_ODDS:
-                pr = pick[0][1] * pick[1][1] * pick[2][1]
-                cur = best_by.get(ne)
-                if cur is None or pr > cur[0]:
-                    best_by[ne] = (pr, od, (cands[i][0], cands[j][0], cands[k][0]), pick, ne)
+            if od < COUPON_MIN_ODDS:
+                continue
+            fams = [x[3]["fam"] for x in pick]
+            sc = sum(x[3]["edge"] for x in pick) - FAM_PEN * sum(fam_use.get(f, 0) for f in fams) \
+                - DUP_PEN * (len(fams) - len(set(fams)))
+            cur = best_by.get(ne)
+            if cur is None or sc > cur[0]:
+                best_by[ne] = (sc, od, (cands[i][0], cands[j][0], cands[k][0]), pick, ne)
     if not best_by:
         return None
     top = max(v[0] for v in best_by.values())
-    # Avrupa kupası maçları ön planda: tutma olasılığı en iyinin %60'ından az düşmüyorsa en çok kupa maçı içeren seçilir
+    # Avrupa kupası maçları ön planda: puanı en iyinin %60'ından az düşmüyorsa en çok kupa maçı içeren seçilir
     ok = [v for v in best_by.values() if v[0] >= EURO_TOL * top]
     return max(ok, key=lambda v: (v[4], v[0]))
 
 
-def _coupons_for_day(day, items, limit=None):
+def _pct(x):
+    return f"%{round(100 * x)}"
+
+
+def _why(r, p, meta, lab, pr):
+    """Seçimin gerekçesi: yalnızca eldeki verilerden (model beklentisi, son maçlar, ikili maçlar) cümleler. Veri yoksa o
+    cümle yazılmaz; hiçbir şey uydurulmaz."""
+    home, away = r["HomeTeam"], r["AwayTeam"]
+    fam = meta["fam"]
+    out = [f"Model beklentisi: {home} {p['xg_h']:.2f}, {away} {p['xg_a']:.2f} gol. Bu seçenek {_pct(pr)} olasılıkla "
+           f"gerçekleşiyor; ligin sıradan bir maçında benzer seçenek {_pct(meta['base'])}."]
+    cf = ENV.get("ctxf")
+    c = cf(home, away) if cf else None
+    if c:
+        def form(name, f):
+            if not f:
+                return None
+            w, d, l = (sum(1 for x in f if x["r"] == k) for k in "GBM")
+            gf = sum(int(x["s"].split("-")[0]) for x in f)
+            ga = sum(int(x["s"].split("-")[1]) for x in f)
+            return f"{name} son {len(f)} maçta {w}G {d}B {l}M ({gf}-{ga} gol)"
+        fh, fa = form(home, c.get("fh")), form(away, c.get("fa"))
+        if fh or fa:
+            out.append("Form: " + "; ".join(x for x in (fh, fa) if x) + ".")
+        sh, sa = c.get("sh"), c.get("sa")
+        goal_fams = ("AÜ", "TG", "TAKIM", "MS&AÜ", "İY AÜ", "İY TG", "YARI", "KG", "MS&KG", "İY MS&KG")
+        if sh and sa:
+            if fam in goal_fams:
+                out.append(f"Gol temposu (son {min(sh['n'], sa['n'])}+ maç): {home} maçlarında ortalama {sh['gf'] + sh['ga']:.1f}, "
+                           f"{away} maçlarında {sa['gf'] + sa['ga']:.1f} gol; 2.5 üst oranı %{round(sh['ov'] * 100)} / %{round(sa['ov'] * 100)}, "
+                           f"iki takım da gol atma oranı %{round(sh['bt'] * 100)} / %{round(sa['bt'] * 100)}.")
+            else:
+                out.append(f"Hücum/savunma (son {min(sh['n'], sa['n'])}+ maç): {home} {sh['gf']:.1f} atıyor, {sh['ga']:.1f} yiyor; "
+                           f"{away} {sa['gf']:.1f} atıyor, {sa['ga']:.1f} yiyor.")
+        if c.get("h2h"):
+            out.append("Son ikili maçlar: " + ", ".join(f"{x['h']} {x['s']} {x['a']}" for x in c["h2h"][:3]) + ".")
+    if fam in ("İY", "İY ÇŞ", "İY AÜ", "İY TG", "İY/MS", "İY MS&KG", "YARI", "2Y", "2Y ÇŞ"):
+        sh = pz.shares_for(ENV["shares"], r.get("Div"))
+        if sh:
+            out.append(f"Yarı hesabı: ligde goller ilk yarıda ev sahibinde %{round(sh[0] * 100)}, deplasmanda %{round(sh[1] * 100)} "
+                       f"oranında atılıyor (geçmiş maçların yarı skorlarından).")
+    src = r.get("SRC")
+    if src == "blend":
+        out.append("Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi "
+                   "olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil.")
+    return out
+
+
+def _coupons_for_day(day, items, limit=None, fam_use=None):
     """Her kupon farklı maçlardan oluşur: bir kupon seçilince o maçlar havuzdan çıkar."""
+    fam_use = fam_use if fam_use is not None else {}
+
     def key(t):                       # maçın kimliği: tarih + iki takım (sıra numarası değil)
         r = t[1]
         return (str(r["Date"])[:10], str(r["HomeTeam"]).strip().lower(),
@@ -1094,28 +1225,33 @@ def _coupons_for_day(day, items, limit=None):
             pool.append(t)
     used_all = set()
     while len(chosen) < (limit or N_COUPONS) and len(pool) >= COUPON_LEGS:
-        best = _best_combo(pool)
+        best = _best_combo(pool, fam_use=fam_use)
         if best is None:
             break
-        pr, od, combo, pick = best[:4]
+        sc, od, combo, pick = best[:4]
         used = {key(c) for c in combo}
         if len(used) != COUPON_LEGS or (used & used_all):
             break                     # tekrar eden maç olamaz; olursa kuponu eklemeden dur
         used_all |= used
         pool = [t for t in pool if key(t) not in used]
-        legs = []
+        legs, pr = [], 1.0
         for c, x in zip(combo, pick):
             r = c[1]
             t = str(r.get("Time", "") or "")
+            m = x[3]
+            pr *= x[1]
+            fam_use[m["fam"]] = fam_use.get(m["fam"], 0) + 1
             legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
                          "home": r["HomeTeam"], "away": r["AwayTeam"],
                          "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"])),
-                         "sel": x[0], "o": round(x[2], 2), "p": round(x[1], 3),
+                         "sel": x[0], "mk": m["mk"], "o": round(x[2], 2), "p": round(x[1], 3), "base": round(m["base"], 3),
+                         "edge": round(m["edge"], 3), "mtid": m["mtid"], "line": m["line"], "idx": m["idx"], "fam": m["fam"],
                          "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model", "nid": _nid(r.get("NID")),
-                         "mbs": (_nes_of(r)[0] or {}).get("mbs")})
+                         "mbs": (_nes_of(r)[0] or {}).get("mbs"),
+                         "why": _why(r, c[3], m, x[0], x[1]) if len(c) > 3 else []})
         legs.sort(key=lambda l: l["time"])
         chosen.append({"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"),
-                       "p": round(pr, 4), "ev": round(pr * od, 2)})
+                       "p": round(pr, 4), "ev": round(pr * od, 2), "score": round(sc, 3)})
     return {"date": day.strftime("%Y-%m-%d"), "list": chosen}
 
 
@@ -1141,7 +1277,8 @@ def save_coupons(coupons, keep_days=120):
     for k in coupons["list"]:             # her kupon kendi maç gününün altına kaydedilir
         by_day.setdefault(k.get("date") or coupons["date"], []).append(
             {"odds": k["odds"], "p": k["p"],
-             "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid")}
+             "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid", "mk", "mtid", "line", "idx", "fam", "base", "edge", "why")
+                              if x in l}
                       for l in k["legs"]]})
     for d_, lst in by_day.items():
         log[d_] = {"list": lst}
@@ -1160,8 +1297,10 @@ def _nid(v):
 
 
 def nesine_results():
-    """Nesine sonuç akışından ({maç no: (ev, dep)}, {(ev, dep adı): [(tarih, ev, dep)]}). Yalnızca 'bitti' (S=5) ve
-    maç skoru (T=1) olan kayıtlar; S/T anlamı logdaki canlı örneklerden çıkarılan varsayımdır (S: 2=1. yarı, 3=devre arası, 4=2. yarı, 5=bitti; T=1 toplam skor, T=2 ilk yarı, T=3 ikinci yarı) (nesine.py sonuç örneklerine bakın)."""
+    """Nesine sonuç akışından ({maç no: (ev, dep, ilk yarı ev, ilk yarı dep)}, {(ev, dep adı): [(tarih, ev, dep)]}).
+    Yalnızca 'bitti' (S=5) ve maç skoru (T=1) olan kayıtlar. İlk yarı skoru T=2'dir ve tutarlıysa (her iki takımda da
+    maç skorunu aşmıyorsa) alınır; yoksa None. S/T anlamı logdaki canlı örneklerden çıkarılan varsayımdır (S: 2=1. yarı,
+    3=devre arası, 4=2. yarı, 5=bitti); doğrulama için nesine.py sonuç örneklerine bakın."""
     try:
         import nesine
         st = nesine.load_results_store()
@@ -1169,11 +1308,15 @@ def nesine_results():
         return {}, {}
     byid, byname = {}, {}
     for k, r in (st.get("results") or {}).items():
-        sc = (r.get("t") or {}).get("1")
+        t = r.get("t") or {}
+        sc = t.get("1")
         m = (st.get("matches") or {}).get(k)
         if r.get("s") != 5 or not sc or not m:
             continue
-        byid[int(k)] = (sc[0], sc[1])
+        ht = t.get("2")
+        if not (ht and ht[0] <= sc[0] and ht[1] <= sc[1]):
+            ht = None
+        byid[int(k)] = (sc[0], sc[1], None if ht is None else ht[0], None if ht is None else ht[1])
         if m.get("d"):
             byname.setdefault((str(m["h"]).strip().lower(), str(m["a"]).strip().lower()), []).append(
                 (pd.Timestamp(m["d"]), sc[0], sc[1]))
@@ -1190,12 +1333,17 @@ def _grade_day(day, entry, idx, byid=None):
             res = None
             nid = l.get("nid")
             if byid and nid is not None and int(nid) in byid:      # Nesine maç numarasıyla kesin eşleşme
-                res = tuple(int(x) for x in byid[int(nid)])
-            for dt, hg, ag in ([] if res else idx.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), [])):
+                res = tuple(None if x is None else int(x) for x in byid[int(nid)])
+            for dt, hg, ag, h1, a1 in ([] if res else idx.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), [])):
                 if abs((dt - d0).days) <= 1:
-                    res = (int(hg), int(ag))
+                    res = (int(hg), int(ag), None if h1 is None or pd.isna(h1) else int(h1), None if a1 is None or pd.isna(a1) else int(a1))
                     break
-            ok = None if res is None else _hit(l["sel"], *res)
+            if res is None:
+                ok = None
+            elif l.get("mtid") is not None:                       # yeni kayıt: bahis türü ve seçenek sırasıyla
+                ok = pz.outcome(int(l["mtid"]), float(l.get("line") or 0), int(l["idx"]), res[0], res[1], res[2], res[3])
+            else:                                                 # eski kayıt: etiketle
+                ok = _hit(l["sel"], res[0], res[1])
             bad |= ok is False
             pend |= ok is None
             legs.append({**l, "score": None if res is None else f"{res[0]}-{res[1]}", "ok": ok})
@@ -1305,12 +1453,14 @@ def yesterday_report(hist, today=None, online=False):
     if not days or hist is None or not len(hist):
         return None
     idx = {}
-    for dt, h, a, hg, ag in zip(hist["Date"], hist["HomeTeam"], hist["AwayTeam"], hist["FTHG"], hist["FTAG"]):
+    hh = hist["HTHG"] if "HTHG" in hist.columns else [None] * len(hist)
+    ha = hist["HTAG"] if "HTAG" in hist.columns else [None] * len(hist)
+    for dt, h, a, hg, ag, h1, a1 in zip(hist["Date"], hist["HomeTeam"], hist["AwayTeam"], hist["FTHG"], hist["FTAG"], hh, ha):
         if pd.notna(hg) and pd.notna(ag):
-            idx.setdefault((str(h).strip().lower(), str(a).strip().lower()), []).append((dt, hg, ag))
+            idx.setdefault((str(h).strip().lower(), str(a).strip().lower()), []).append((dt, hg, ag, h1, a1))
     byid, byname = nesine_results()
     for key, v in byname.items():
-        idx.setdefault(key, []).extend(v)
+        idx.setdefault(key, []).extend((dt, hg, ag, None, None) for dt, hg, ag in v)
     graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
     if online:
         pend = [(d, l) for d in days[-3:] for k, g in zip(log[d]["list"], graded[d])
@@ -1319,7 +1469,7 @@ def yesterday_report(hist, today=None, online=False):
             found = espn_scores(pend)
             print(f"Sonucu bekleyen {len(pend)} kupon maçından ESPN'de bulunan: {len(found)}")
             for key, (d0, hg, ag) in found.items():
-                idx.setdefault(key, []).append((d0, hg, ag))
+                idx.setdefault(key, []).append((d0, hg, ag, None, None))
             graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
     tot = {"won": 0, "lost": 0, "pending": 0, "days": len(days)}
     for d in days:
@@ -1363,6 +1513,50 @@ def _leg_hit(r, sel):
     return _hit(sel, r["FTHG"], r["FTAG"])
 
 
+STD_MARKETS = [(1, 0), (3, 0), (38, 0), (11, 1.5), (12, 2.5), (13, 3.5), (155, 4.5), (14, 1.5), (209, 0.5), (20, 1.5), (29, 1.5),
+               (43, 0), (297, 0), (268, -1), (268, 1), (268, -2), (268, 2), (342, 1.5), (343, 2.5), (272, 3.5), (272, 4.5),
+               (414, 0), (7, 0), (8, 0), (9, 0), (10, 0), (5, 0), (48, 0), (332, 0), (416, 0), (295, 0), (296, 0), (586, 0),
+               (587, 0), (584, 0), (585, 0), (591, 0), (592, 0), (589, 0), (590, 0)]
+FAM_MIN_N = 40         # bir pazar ailesi kuponlara girebilmek için geçmişte en az bu kadar yeşil seçenek üretmiş olmalı
+FAM_TOL = 0.05         # ... ve gerçekleşme oranı, modelin verdiği ortalama olasılığın en fazla bu kadar altında kalmalı
+
+
+def family_calibration(recs):
+    """Yürüyen (geleceği görmeyen) geçmiş tahminlerde her pazar ailesinin yeşil (≥%55) seçeneklerinin gerçekte ne kadar
+    tuttuğu. Model bir aileyi aşırı güvenle öngörüyorsa (tutma oranı verdiği olasılığın FAM_TOL'dan fazla altında) o aile
+    kuponlara girmez; yeterince veri yoksa da girmez."""
+    acc = {}
+    for x in recs:
+        r = x["r"]
+        hg, ag = int(r["FTHG"]), int(r["FTAG"])
+        h1 = r["HTHG"] if "HTHG" in r.index and pd.notna(r["HTHG"]) else None
+        a1 = r["HTAG"] if "HTAG" in r.index and pd.notna(r["HTAG"]) else None
+        if h1 is not None and a1 is not None and (h1 > hg or a1 > ag):
+            h1 = a1 = None
+        cx = pz.Ctx(x["p"], x.get("sh"))
+        for mtid, line in STD_MARKETS:
+            ps = pz.probs(cx, mtid, line)
+            if ps is None:
+                continue
+            fam = pz.info(mtid, line)[2]
+            for i, pi in enumerate(ps):
+                if pi < GREEN_P:
+                    continue
+                ok = pz.outcome(mtid, line, i, hg, ag, None if h1 is None else int(h1), None if a1 is None else int(a1))
+                if ok is None:
+                    continue
+                a = acc.setdefault(fam, [0, 0.0, 0])
+                a[0] += 1
+                a[1] += pi
+                a[2] += bool(ok)
+    out = []
+    for fam, (n, sp, h) in sorted(acc.items()):
+        pm, hit = sp / n, h / n
+        out.append({"fam": fam, "n": n, "p": round(pm, 3), "hit": round(hit, 3),
+                    "ok": bool(n >= FAM_MIN_N and hit >= pm - FAM_TOL)})
+    return out
+
+
 def performance(hist, days=120, step=7):
     """Son `days` günü, her maçtan önceki veriyle tahmin edip gerçek sonuçla kıyaslar.
     Model her hafta sadece o güne kadarki maçlarla yeniden kurulur (geleceği görmez)."""
@@ -1382,9 +1576,10 @@ def performance(hist, days=120, step=7):
             base = np.array([(train["FTHG"] > train["FTAG"]).mean(),
                              (train["FTHG"] == train["FTAG"]).mean(),
                              (train["FTHG"] < train["FTAG"]).mean()])
+            sh = pz.shares_for(pz.half_shares(train, min_n=150), None)
             for _, r in test.iterrows():
                 if model.knows(r["HomeTeam"], r["AwayTeam"]):
-                    recs.append({"r": r, "base": base,
+                    recs.append({"r": r, "base": base, "sh": sh,
                                  "p": model.predict(r["HomeTeam"], r["AwayTeam"])})
     if len(recs) < 30:
         return None
@@ -1426,6 +1621,11 @@ def performance(hist, days=120, step=7):
                         "t": tier(lo + 1e-9)[0], "n": int(mask.sum()),
                         "p": float(ps[mask].mean()), "hit": float(hs[mask].mean())})
     perf["cal"] = cal
+    try:
+        perf["fam"] = family_calibration(recs)
+    except Exception as e:  # noqa: BLE001  pazar ailesi ölçümü sayfayı bozmasın
+        print(f"  ! pazar ailesi ölçümü atlandı: {e}")
+        perf["fam"] = None
 
     by_day = {}
     for k, x in enumerate(recs):
@@ -1482,35 +1682,39 @@ def demo_history():
     return pd.DataFrame(rows).sort_values("Date").reset_index(drop=True)
 
 
-def _model_ps(mk, p):
-    """Nesine pazarı için modelin olasılıkları (seçenek sırasıyla) ya da None. Yalnızca pazar türü, çizgisi ve
-    seçenek sırası doğrulanmış pazarlar eşlenir; başka pazar için olasılık uydurulmaz."""
-    key = f"{mk.get('mtid')}|{mk.get('line', 0):g}"
-    if key == "1|0":
-        return [p["p1"], p["px"], p["p2"]]
-    if key == "3|0":
-        return [p["p1"] + p["px"], p["p1"] + p["p2"], p["px"] + p["p2"]]
-    if key == "38|0":
-        return [p["btts"], 1 - p["btts"]]
-    if key == "12|2.5":
-        return [1 - p["over25"], p["over25"]]
-    return None
+def _valid_ok(mtid):
+    v = ENV.get("valid")
+    return v is None or bool((v.get(mtid) or {}).get("ok"))
 
 
-_NM_ORDER = {"1|0": 0, "3|0": 1, "12|2.5": 2, "38|0": 3}
-
-
-def nes_markets(nes, p, src=None):
-    """Nesine'de bu maç için açık olan bütün pazarlar (sitede listelenir)."""
+def nes_markets(nes, p, src=None, div=None):
+    """Nesine'de bu maç için açık olan bütün pazarlar (sitede listelenir). Modelin olasılığı yalnızca pazarlar.py'de
+    adı/seçenek sırası Nesine tablosundan doğrulanan ve çalıştırma sırasında oranlara karşı sınavı geçen pazarlarda gösterilir."""
     if not nes or not nes.get("markets"):
         return None
     out = []
+    cx = _ctx_of(p, div)
     for mk in nes["markets"]:
-        ps = None if src in ("market", "prior") else _model_ps(mk, p)
-        out.append({"name": mk.get("name"), "mtid": mk.get("mtid"), "line": mk.get("line", 0), "mbs": mk.get("mbs"),
-                    "main": mk.get("main"), "labels": mk.get("labels"), "outs": mk.get("outs"),
+        ps = None
+        name, labels = mk.get("name"), mk.get("labels")
+        try:
+            mtid = int(mk.get("mtid"))
+        except (TypeError, ValueError):
+            mtid = None
+        if mtid in pz.SPECS and src not in ("market", "prior") and _valid_ok(mtid):
+            line = float(mk.get("line") or 0)
+            ps = pz.probs(cx, mtid, line)
+            outs = mk.get("outs") or []
+            if ps is None or [o.get("n") for o in outs] != list(range(1, len(ps) + 1)):
+                ps = None
+            else:
+                pn, pl, _ = pz.info(mtid, line)
+                name = name or pn
+                labels = labels or pl
+        out.append({"name": name, "mtid": mk.get("mtid"), "line": mk.get("line", 0), "mbs": mk.get("mbs"),
+                    "main": mk.get("main"), "labels": labels, "outs": mk.get("outs"),
                     "ps": [round(float(x), 4) for x in ps] if ps else None})
-    out.sort(key=lambda k: (_NM_ORDER.get(f"{k['mtid']}|{k['line']:g}", 9), k["mtid"] or 0, k["line"] or 0))
+    out.sort(key=lambda k: (0 if k["ps"] else 1, k["mtid"] or 0, k["line"] or 0))
     return out
 
 
@@ -1568,7 +1772,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
             "xg": [round(p["xg_h"], 2), round(p["xg_a"], 2)],
             "nes": bool(nes), "mbs": (nes or {}).get("mbs"),
             "ctx": ctxf(r["HomeTeam"], r["AwayTeam"]),
-            "nm": nes_markets(nes, p, r.get("SRC")),
+            "nm": nes_markets(nes, p, r.get("SRC"), r.get("Div")),
             "markets": build_markets(p, r)})
     return {"generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
@@ -1586,6 +1790,35 @@ def write_site(payload, out="tahminler.html"):
     return path
 
 
+def setup_env(rows, hist, perf):
+    """Kupon seçimi ve pazar paneli için bağlamı kurar: yarı gol payları, lig ortalamaları, form bilgisi, pazar eşlemesinin
+    doğrulaması ve pazar ailesi kapısı. Döner: doğrulama sonucu (sayfada gösterilir)."""
+    ENV.update({"shares": pz.half_shares(hist), "avg": _league_avgs(hist), "ctxf": match_context(hist),
+                "cx": {}, "bx": {}, "valid": None, "gate": None})
+    fam = (perf or {}).get("fam")
+    if fam:
+        ENV["gate"] = {f["fam"] for f in fam if f["ok"]}
+        print("  Pazar ailesi kapısı (geçmişte yeşil seçeneklerin tutma oranı):",
+              "; ".join(f"{f['fam']} n={f['n']} p={f['p']:.2f} tuttu={f['hit']:.2f} {'✓' if f['ok'] else '✗'}" for f in fam))
+    else:
+        print("  Pazar ailesi ölçümü yok; kuponlarda yalnızca temel pazarlar:", ", ".join(BASIC_FAMILIES))
+    samples = []
+    for r, p, _ in rows:
+        nes, act = _nes_of(r)
+        if act and nes and nes.get("markets") and r.get("SRC") == "model":
+            samples.append((_ctx_of(p, r.get("Div")), nes["markets"]))
+    if not samples:
+        return None
+    v = pz.validate(samples)
+    ENV["valid"] = v
+    good = sorted(k for k, x in v.items() if x["ok"])
+    bad = {k: x for k, x in v.items() if not x["ok"]}
+    print(f"  Pazar doğrulaması ({len(samples)} model maçı): geçen {len(good)} bahis türü {good}")
+    if bad:
+        print("  Doğrulanamayan (kuponlara girmez):", "; ".join(f"{k} r={x['r']} n={x['n']} fark={x['mad']}" for k, x in sorted(bad.items())))
+    return v
+
+
 def cmd_site(leagues, days, out, open_it, demo=False):
     if demo:
         rows, skipped = demo_rows(), 0
@@ -1595,9 +1828,10 @@ def cmd_site(leagues, days, out, open_it, demo=False):
         sys.exit("Nesine maç listesi yok ya da 36 saatten eski (ya da maçlar aralığın dışında). "
                  "Site güncellenmedi; önceki başarılı sürüm yayında kalır. Önce:  python nesine.py fetch")
     perf = None
+    hist_all = demo_history() if demo else load_results()
     try:
         print("Geçmiş başarı hesaplanıyor...")
-        perf = performance(demo_history() if demo else load_results())
+        perf = performance(hist_all)
         if perf is None:
             print("  (başarı hesabı için yeterli geçmiş maç yok)")
     except Exception as e:  # noqa: BLE001  başarı hesabı sayfayı bozmasın
@@ -1607,13 +1841,19 @@ def cmd_site(leagues, days, out, open_it, demo=False):
         rows, nes_info = attach_nesine(rows)           # hata olursa site güncellenmez; yurtdışı oranına dönülmez
         if nes_info is None:
             sys.exit("Nesine verisi kullanılamadı; site güncellenmedi (yurtdışı oranlarına dönülmüyor).")
+    valid = None
+    try:
+        valid = setup_env(rows, hist_all, perf)
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! pazar bağlamı kurulamadı, kuponlar yalnızca temel pazarlarla: {e}")
     yday = None
     if not demo:
         try:
-            yday = yesterday_report(load_results(), online=bool(os.environ.get("GOLRADAR_ESPN")))
+            yday = yesterday_report(hist_all, online=bool(os.environ.get("GOLRADAR_ESPN")))
         except Exception as e:  # noqa: BLE001  dünkü kuponlar sayfayı bozmasın
             print(f"  ! dünkü kupon sonuçları atlandı: {e}")
-    payload = site_payload(rows, demo, perf, nes_info, yday, None if demo else load_results())
+    payload = site_payload(rows, demo, perf, nes_info, yday, None if demo else hist_all)
+    payload["pazar_dogrulama"] = None if not valid else {str(k): x for k, x in valid.items()}
     if not demo:
         try:
             save_coupons(payload["coupons"])
