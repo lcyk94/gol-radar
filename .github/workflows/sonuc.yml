@@ -1,14 +1,10 @@
 name: Sonuç toplama
 
-# Nesine'nin sonuç akışı bitmiş maçları yalnızca birkaç saat tutuyor. Kuponların sonuçlarını sabah görebilmek için
-# akşam ve gece boyunca birkaç kez hafifçe (tek sayfa yüklemesi) okunur. Siteyi yeniden üretmez.
+# Nesine'nin sonuç akışı maçı bitince kısa süre tutuyor (kayıtlı olmayan maçın sonucu sonradan alınamaz). Bu yüzden öğleden
+# sonra gece yarısından sonrasına kadar 20 dakikada bir hafifçe (tek sayfa yüklemesi) okunur. Siteyi yeniden üretmez.
 on:
   schedule:
-    - cron: "30 15 * * *"   # 18:30 Türkiye
-    - cron: "30 18 * * *"   # 21:30
-    - cron: "30 20 * * *"   # 23:30
-    - cron: "30 22 * * *"   # 01:30
-    - cron: "30 0 * * *"    # 03:30
+    - cron: "*/20 11-23,0 * * *"   # her 20 dakikada bir, 14:00-03:59 Türkiye saati
   workflow_dispatch:
 
 permissions:
