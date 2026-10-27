@@ -1157,7 +1157,7 @@ def _best_combo(items, pool_size=45, fam_use=None):
         return None
     top = max(v[0] for v in best_by.values())
     # Avrupa kupası maçları ön planda: puanı en iyinin %60'ından az düşmüyorsa en çok kupa maçı içeren seçilir
-    ok = [v for v in best_by.values() if v[0] >= EURO_TOL * top]
+    ok = [v for v in best_by.values() if v[0] >= top - (1 - EURO_TOL) * abs(top)]   # puan eksiye düşebilir (çeşitlilik cezası); en iyi her zaman kalır
     return max(ok, key=lambda v: (v[4], v[0]))
 
 
