@@ -877,8 +877,8 @@
  "2026-10-27": {
   "list": [
    {
-    "odds": 3.65,
-    "p": 0.2547,
+    "odds": 3.62,
+    "p": 0.2538,
     "legs": [
      {
       "time": "",
@@ -908,8 +908,8 @@
       "away": "Newcastle",
       "league": "AFC Asya Şampiyonlar Ligi Doğu",
       "sel": "2,5 Üst",
-      "o": 1.25,
-      "p": 0.664,
+      "o": 1.23,
+      "p": 0.669,
       "nid": 3243645,
       "mk": "Alt/Üst 2,5",
       "mtid": 12,
@@ -917,9 +917,9 @@
       "idx": 1,
       "fam": "AÜ",
       "base": 0.5,
-      "edge": 0.164,
+      "edge": 0.169,
       "why": [
-       "Model beklentisi: Kyoto 1.68, Newcastle 1.74 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Model beklentisi: Kyoto 1.71, Newcastle 1.74 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
        "Form: Kyoto son 5 maçta 1G 1B 3M (6-10 gol); Newcastle son 5 maçta 2G 0B 3M (6-10 gol).",
        "Gol temposu (son 10+ maç): Kyoto maçlarında ortalama 3.1, Newcastle maçlarında 3.2 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %70 / %60.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -931,8 +931,8 @@
       "away": "Al Hilal",
       "league": "AFC Asya Şampiyonlar Ligi Batı",
       "sel": "MS 2",
-      "o": 1.21,
-      "p": 0.67,
+      "o": 1.22,
+      "p": 0.663,
       "nid": 3243754,
       "mk": "Maç Sonucu",
       "mtid": 1,
@@ -940,16 +940,16 @@
       "idx": 2,
       "fam": "MS",
       "base": 0.29,
-      "edge": 0.381,
+      "edge": 0.374,
       "why": [
-       "Model beklentisi: AL Shamal 1.10, Al Hilal 2.48 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29."
+       "Model beklentisi: AL Shamal 1.10, Al Hilal 2.44 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29."
       ]
      }
     ]
    },
    {
-    "odds": 3.21,
-    "p": 0.2442,
+    "odds": 3.24,
+    "p": 0.2445,
     "legs": [
      {
       "time": "",
@@ -957,7 +957,7 @@
       "away": "Dunfermline",
       "league": "İskoçya Championship",
       "sel": "Dep: yarılar eşit",
-      "o": 2.19,
+      "o": 2.21,
       "p": 0.572,
       "nid": 3245963,
       "mk": "Deplasman Hangi Yarıda Daha Çok Gol Atar",
@@ -1002,7 +1002,7 @@
       "league": "İngiltere Lig Kupası",
       "sel": "İY 2",
       "o": 1.21,
-      "p": 0.639,
+      "p": 0.64,
       "nid": 3243777,
       "mk": "1. Yarı Sonucu",
       "mtid": 7,
@@ -1012,7 +1012,7 @@
       "base": 0.24,
       "edge": 0.399,
       "why": [
-       "Model beklentisi: Fleetwood Town 0.50, Arsenal 2.85 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %24.",
+       "Model beklentisi: Fleetwood Town 0.50, Arsenal 2.86 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %24.",
        "Form: Fleetwood Town son 5 maçta 1G 1B 3M (6-8 gol); Arsenal son 5 maçta 4G 0B 1M (7-4 gol).",
        "Hücum/savunma (son 10+ maç): Fleetwood Town 1.2 atıyor, 1.5 yiyor; Arsenal 1.6 atıyor, 0.6 yiyor.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
@@ -1022,8 +1022,8 @@
     ]
    },
    {
-    "odds": 3.17,
-    "p": 0.2465,
+    "odds": 3.01,
+    "p": 0.2512,
     "legs": [
      {
       "time": "",
@@ -1053,8 +1053,8 @@
       "away": "Mainz",
       "league": "Almanya Kupası",
       "sel": "MS 2",
-      "o": 1.38,
-      "p": 0.604,
+      "o": 1.35,
+      "p": 0.609,
       "nid": 3243857,
       "mk": "Maç Sonucu",
       "mtid": 1,
@@ -1062,9 +1062,9 @@
       "idx": 2,
       "fam": "MS",
       "base": 0.29,
-      "edge": 0.314,
+      "edge": 0.319,
       "why": [
-       "Model beklentisi: Bochum 0.97, Mainz 1.98 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Model beklentisi: Bochum 0.96, Mainz 2.00 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
        "Form: Bochum son 5 maçta 0G 2B 3M (3-7 gol); Mainz son 5 maçta 2G 0B 3M (11-13 gol).",
        "Hücum/savunma (son 10+ maç): Bochum 0.8 atıyor, 1.1 yiyor; Mainz 2.1 atıyor, 1.7 yiyor.",
        "Son ikili maçlar: Bochum 1-4 Mainz, Mainz 2-0 Bochum.",
@@ -1077,8 +1077,8 @@
       "away": "Karlsruhe",
       "league": "Almanya Kupası",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.27,
-      "p": 0.698,
+      "o": 1.23,
+      "p": 0.705,
       "nid": 3243612,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
       "mtid": 342,
@@ -1086,9 +1086,9 @@
       "idx": 3,
       "fam": "MS&AÜ",
       "base": 0.344,
-      "edge": 0.354,
+      "edge": 0.361,
       "why": [
-       "Model beklentisi: M'gladbach 2.85, Karlsruhe 0.97 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Model beklentisi: M'gladbach 2.88, Karlsruhe 0.95 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
        "Form: M'gladbach son 5 maçta 1G 0B 4M (8-15 gol); Karlsruhe son 5 maçta 1G 0B 4M (5-12 gol).",
        "Gol temposu (son 10+ maç): M'gladbach maçlarında ortalama 4.2, Karlsruhe maçlarında 3.4 gol; 2.5 üst oranı %90 / %70, iki takım da gol atma oranı %60 / %50.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -1097,7 +1097,7 @@
     ]
    },
    {
-    "odds": 3.33,
+    "odds": 3.37,
     "p": 0.1941,
     "legs": [
      {
@@ -1106,7 +1106,7 @@
       "away": "Como",
       "league": "İtalya Serie A",
       "sel": "MS 2",
-      "o": 1.47,
+      "o": 1.53,
       "p": 0.575,
       "nid": 3243801,
       "mk": "Maç Sonucu",
@@ -1129,7 +1129,7 @@
       "away": "Boreham Wood",
       "league": "İngiltere Conference",
       "sel": "Dep 1,5 Üst",
-      "o": 1.46,
+      "o": 1.42,
       "p": 0.573,
       "nid": 3243903,
       "mk": "Deplasman 1,5 Gol Alt/Üst",
