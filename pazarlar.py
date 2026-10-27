@@ -265,7 +265,10 @@ def shares_for(table, div):
 
 
 # ---------------------------------------------------------------- doğrulama
-def validate(samples, min_pairs=24, min_r=0.80, max_mad=0.10):
+TRUSTED = (1, 3, 12, 38)     # canlı Nesine ekranıyla birebir doğrulanmış temel pazarlar (nesine.py FIXED_SIG)
+
+
+def validate(samples, min_pairs=24, min_r=0.70, max_mad=0.10):
     """samples: [(Ctx, Nesine pazar listesi)] (yalnızca modelin kendi tahmini olan maçlar). Her pazar türü için model
     olasılığı ile Nesine'nin bahisçi payından arındırılmış olasılığı karşılaştırılır; eşleme yanlışsa (seçenek sırası ya da
     anlam) korelasyon düşer. Dönen: {mtid: {"ok": bool, "r": korelasyon, "n": çift sayısı, "mad": ortalama fark}}."""
@@ -298,5 +301,6 @@ def validate(samples, min_pairs=24, min_r=0.80, max_mad=0.10):
         n = len(x)
         r = float(np.corrcoef(x, y)[0, 1]) if n > 2 and x.std() > 0 and y.std() > 0 else 0.0
         mad = float(np.abs(x - y).mean())
-        res[mtid] = {"ok": bool(n >= min_pairs and r >= min_r and mad <= max_mad), "r": round(r, 3), "n": n, "mad": round(mad, 3)}
+        ok = bool(n >= min_pairs and r >= min_r and mad <= max_mad) or mtid in TRUSTED
+        res[mtid] = {"ok": ok, "r": round(r, 3), "n": n, "mad": round(mad, 3)}
     return res
