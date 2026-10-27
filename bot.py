@@ -1369,20 +1369,34 @@ def _http_json(url, timeout=10):
         return json.loads(r.read().decode("utf-8", "replace"))
 
 
+NES_SLUG = [("FRANSA LIGUE 1", "fra.1"), ("FRANSA LIGUE 2", "fra.2"), ("DANIMARKA SUPER", "den.1"), ("NORVEC ELITESERIEN", "nor.1"),
+            ("BELCIKA PRO", "bel.1"), ("ARJANTIN PRIMERA", "arg.1"), ("ISPANYA LA LIGA", "esp.1"), ("ISPANYA LALIGA", "esp.1"),
+            ("ISPANYA SEGUNDA", "esp.2"), ("INGILTERE PREMIER", "eng.1"), ("INGILTERE CHAMPIONSHIP", "eng.2"),
+            ("LEAGUE ONE", "eng.3"), ("LEAGUE TWO", "eng.4"), ("TURKIYE SUPER", "tur.1"), ("ALMANYA BUNDESLIGA", "ger.1"),
+            ("ITALYA SERIE A", "ita.1"), ("ITALYA SERIE B", "ita.2"), ("HOLLANDA EREDIVISIE", "ned.1"), ("PORTEKIZ", "por.1"),
+            ("RUSYA PREMIER", "rus.1"), ("ISVEC ALLSVENSKAN", "swe.1"), ("ISVICRE SUPER", "sui.1"), ("AVUSTURYA BUNDESLIGA", "aut.1"),
+            ("YUNANISTAN SUPER", "gre.1"), ("POLONYA EKSTRAKLASA", "pol.1"), ("ROMANYA LIGA 1", "rou.1"),
+            ("SKOCYA PREMIERSHIP", "sco.1"), ("AFC ASYA SAMPIYONLAR", "afc.champions"), ("LIBERTADORES", "conmebol.libertadores"),
+            ("SUDAMERIKA KUPASI", "conmebol.sudamericana"), ("MEKSIKA", "mex.1"), ("BREZILYA SERIE A", "bra.1"), ("ABD MLS", "usa.1")]
+
+
 def _espn_slug(league):
-    """Kupon bacağının lig adından ESPN lig kodu."""
+    """Kupon bacağının lig adından ESPN lig kodu (Nesine'nin Türkçe lig adları ve football-data adları)."""
     div = _NAME2DIV.get(league)
     if div in ESPN:
         return ESPN[div]
     n = str(league or "").upper().translate(str.maketrans("İŞÇĞÜÖ", "ISCGUO"))
-    if "GENC" in n or "KADIN" in n:
+    if "GENC" in n or "KADIN" in n or "RFEF" in n:
         return None
-    if "SAMPIYONLAR LIGI" in n:
+    if "SAMPIYONLAR LIGI" in n and "AFC" not in n:
         return "uefa.champions"
     if "AVRUPA LIGI" in n:
         return "uefa.europa"
     if "KONFERANS" in n:
         return "uefa.europa.conf"
+    for key, slug in NES_SLUG:
+        if key in n:
+            return slug
     return None
 
 
@@ -1469,7 +1483,14 @@ def espn_scores(pending, max_calls=60):
                         break
     for day, l in pending:
         if (str(l["home"]).strip().lower(), str(l["away"]).strip().lower()) not in out:
-            print(f"  ESPN'de sonuç bulunamadı: {l['home']} - {l['away']} ({l.get('league')}, {day})")
+            cand = []
+            for key, evs in cache.items():                    # takımlardan birine benzeyen ESPN maçları (ad farkını görmek için)
+                for h, a, hg, ag, h1, a1, label in evs:
+                    nm = (h or []) + (a or [])
+                    if any(nesine.same_team(l["home"], n) or nesine.same_team(l["away"], n) for n in nm) and label not in cand:
+                        cand.append(f"{label} [{key[0]} {key[1]}]")
+            print(f"  ESPN'de sonuç bulunamadı: {l['home']} - {l['away']} ({l.get('league')}, {day}, lig kodu: {_espn_slug(l.get('league'))}). "
+                  f"Benzer ESPN maçları: {'; '.join(cand[:5]) or 'yok'}")
     n_all = sum(len(v) for k, v in cache.items() if k[0] == "all")
     print(f"  ESPN: {calls} istek, günlük listelerde toplam {n_all} maç, bulunan sonuç {len(out)} / {len(pending)}")
     return out
