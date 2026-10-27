@@ -47,12 +47,12 @@ def test_wrong_option_order_is_rejected():
     hist, rows = synth()
     for r, p, _ in rows:                       # Alt/Üst seçeneklerinin sırasını boz
         for mk in r["NES"]["markets"]:
-            if mk["mtid"] == 12:
+            if mk["mtid"] == 13:
                 mk["outs"] = list(reversed([{**o} for o in mk["outs"]]))
                 for i, o in enumerate(mk["outs"]):
                     o["n"] = i + 1
     v = _env(hist, rows)
-    assert not v[12]["ok"] and v[1]["ok"]
+    assert not v[13]["ok"] and v[1]["ok"]
 
 
 def test_coupon_rules_and_variety():
@@ -130,3 +130,27 @@ def test_negative_scores_do_not_crash():
         assert best is not None and best[0] < 0
     finally:
         bot.FAM_PEN = old
+
+
+def _espn_payload():
+    def ev(h, a, hs, as_, done=True, ls=None):
+        mk = lambda side, name, sc, l: {"homeAway": side, "score": str(sc), "team": {"displayName": name, "shortDisplayName": name},
+                                        "linescores": [{"value": v} for v in (l or [])]}
+        return {"competitions": [{"status": {"type": {"completed": done}},
+                                  "competitors": [mk("home", h, hs, ls[0] if ls else None), mk("away", a, as_, ls[1] if ls else None)]}]}
+    return {"events": [ev("Sandefjord", "Sarpsborg 08", 2, 1, ls=([1, 1], [0, 1])),
+                       ev("FC Copenhagen", "OB Odense", 3, 0, ls=([2, 1], [0, 0])),
+                       ev("Baska", "Takim", 1, 1, done=False)]}
+
+
+def test_espn_fallback_finds_scores_and_half_scores(monkeypatch):
+    calls = []
+    monkeypatch.setattr(bot, "_http_json", lambda url, timeout=10: calls.append(url) or _espn_payload())
+    pend = [("2026-10-26", {"home": "Sandefjord", "away": "Sarpsborg 08", "league": "Norveç Eliteserien"}),
+            ("2026-10-26", {"home": "FC Copenhagen", "away": "Odense", "league": "Danimarka Süper Lig"}),
+            ("2026-10-26", {"home": "Yok", "away": "Maç", "league": "?"})]
+    out = bot.espn_scores(pend)
+    assert out[("sandefjord", "sarpsborg 08")][1:] == (2, 1, 1, 0)
+    assert out[("fc copenhagen", "odense")][1:] == (3, 0, 2, 0)
+    assert ("yok", "maç") not in out
+    assert any("soccer/all/scoreboard" in c for c in calls)
