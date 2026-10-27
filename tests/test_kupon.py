@@ -115,3 +115,18 @@ def test_grade_day_uses_market_and_half_scores():
     assert g[0]["status"] == "pending"
     g = bot._grade_day("2026-10-25", entry, {}, {7: (1, 0, 0, 0)})
     assert g[0]["status"] == "lost"
+
+
+def test_negative_scores_do_not_crash():
+    """Çeşitlilik cezası yüzünden en iyi puan eksiye düşse de kupon kurulur (sabah çalışması bu yüzden çökmüştü)."""
+    hist, rows = synth(days=3, seed=9)
+    _env(hist, rows)
+    old = bot.FAM_PEN
+    bot.FAM_PEN = 5.0
+    try:
+        fam_use = {f: 3 for f in {v["fam"] for v in pz.SPECS.values()}}
+        items = [(k, r, bot._legs(r, p), p) for k, (r, p, _) in enumerate(rows[:12]) if bot._legs(r, p)]
+        best = bot._best_combo(items, fam_use=fam_use)
+        assert best is not None and best[0] < 0
+    finally:
+        bot.FAM_PEN = old
