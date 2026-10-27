@@ -1386,63 +1386,110 @@ def _espn_slug(league):
     return None
 
 
-def espn_scores(pending, max_calls=48):
-    """pending: [(gün 'YYYY-MM-DD', kupon bacağı)]. Biten maçlar için {(ev, dep): (tarih, ev golü, dep golü)}."""
+def _espn_events(data):
+    """ESPN skor listesinden biten maçlar: [(ev adları, dep adları, ev golü, dep golü, ilk yarı ev, ilk yarı dep, ad metni)]."""
+    out = []
+    for ev in data.get("events", []):
+        try:
+            comp = ev["competitions"][0]
+            teams = {c["homeAway"]: c for c in comp["competitors"]}
+            names = {}
+            for side in ("home", "away"):
+                t = teams[side]["team"]
+                names[side] = [t.get(k) for k in ("displayName", "shortDisplayName", "name", "location") if t.get(k)]
+            label = f"{names['home'][0]} - {names['away'][0]}"
+            if not bool(comp["status"]["type"].get("completed")):
+                out.append((None, None, None, None, None, None, label + " (bitmedi)"))
+                continue
+            hg, ag = int(teams["home"]["score"]), int(teams["away"]["score"])
+            h1 = a1 = None
+            try:
+                lh, la = teams["home"].get("linescores") or [], teams["away"].get("linescores") or []
+                if len(lh) >= 2 and len(la) >= 2:           # periyot gollerinin toplamı maç skoruna eşitse ilk periyot ilk yarıdır
+                    x, y = int(float(lh[0]["value"])), int(float(la[0]["value"]))
+                    if sum(int(float(v["value"])) for v in lh) == hg and sum(int(float(v["value"])) for v in la) == ag and x <= hg and y <= ag:
+                        h1, a1 = x, y
+            except (KeyError, ValueError, TypeError):
+                pass
+            out.append((names["home"], names["away"], hg, ag, h1, a1, label))
+        except (KeyError, ValueError, TypeError, IndexError):
+            continue
+    return out
+
+
+def espn_scores(pending, max_calls=60):
+    """pending: [(gün 'YYYY-MM-DD', kupon bacağı)]. Biten maçlar için {(ev, dep): (tarih, ev golü, dep golü, İY ev, İY dep)}.
+    Önce ESPN'in o günün TÜM futbol maçlarını veren listesine bakılır (lig eşlemesi gerekmez, iki takım adı da tutmalı);
+    olmazsa lig kodu bilinenler için lig listesine. Yalnızca skor alınır; oran ya da fikstür alınmaz."""
     try:
         import nesine
     except ImportError:
         return {}
-    wanted = {}
-    for day, l in pending:
-        slug = _espn_slug(l.get("league"))
-        if slug:
-            wanted.setdefault((slug, day), []).append(l)
-    out, calls, fails, seen = {}, 0, 0, {}
-    for (slug, day), legs in wanted.items():
+    out, calls, fails, cache = {}, 0, 0, {}
+
+    def get(url, key):
+        nonlocal calls, fails
+        if key in cache:
+            return cache[key]
+        if calls >= max_calls or fails >= 5:
+            return []
+        calls += 1
+        try:
+            cache[key] = _espn_events(_http_json(url, timeout=20))
+        except Exception as e:  # noqa: BLE001
+            fails += 1
+            cache[key] = []
+            print(f"  ! ESPN okunamadı ({key[0]} {key[1]}): {e}")
+        return cache[key]
+
+    def match(day, l, events):
         d0 = pd.Timestamp(day)
-        for dd in (d0 - timedelta(days=1), d0, d0 + timedelta(days=1)):
-            if calls >= max_calls or fails >= 4:
-                break
-            calls += 1
-            url = (f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard"
-                   f"?dates={dd:%Y%m%d}")
-            try:
-                data = _http_json(url)
-            except Exception as e:  # noqa: BLE001
-                fails += 1
-                print(f"  ! ESPN okunamadı ({slug} {dd:%d.%m}): {e}")
+        for h, a, hg, ag, h1, a1, label in events:
+            if h is None:
                 continue
-            for ev in data.get("events", []):
-                try:
-                    comp = ev["competitions"][0]
-                    teams = {c["homeAway"]: c for c in comp["competitors"]}
-                    names = {}
-                    for side in ("home", "away"):
-                        t = teams[side]["team"]
-                        names[side] = [t.get(k) for k in ("displayName", "shortDisplayName", "name", "location")
-                                       if t.get(k)]
-                    done = bool(comp["status"]["type"].get("completed"))
-                    seen.setdefault((slug, day), []).append(
-                        f"{names['home'][0]} - {names['away'][0]}" + ("" if done else " (bitmedi)"))
-                    if not done:
-                        continue
-                    hg, ag = int(teams["home"]["score"]), int(teams["away"]["score"])
-                except (KeyError, ValueError, TypeError, IndexError):
-                    continue
-                for l in legs:
-                    if (any(nesine.same_team(l["home"], n) for n in names["home"]) and
-                            any(nesine.same_team(l["away"], n) for n in names["away"])):
-                        out[(str(l["home"]).strip().lower(), str(l["away"]).strip().lower())] = (d0, hg, ag)
-    for (slug, day), legs in wanted.items():       # bulunamayanlar için neden görülebilsin
-        for l in legs:
-            if (str(l["home"]).strip().lower(), str(l["away"]).strip().lower()) not in out:
-                names = seen.get((slug, day), [])
-                print(f"  ESPN'de sonuç bulunamadı: {l['home']} - {l['away']} ({slug}, {day}). "
-                      f"ESPN'deki maçlar ({len(names)}): " + "; ".join(names[:14]))
-    skipped = [(d, l) for d, l in pending if not _espn_slug(l.get("league"))]
-    if skipped:
-        print("  ESPN lig kodu bilinmeyen kupon maçları:", "; ".join(f"{l['home']} - {l['away']} ({l.get('league')})" for _, l in skipped[:10]))
+            if any(nesine.same_team(l["home"], n) for n in h) and any(nesine.same_team(l["away"], n) for n in a):
+                out[(str(l["home"]).strip().lower(), str(l["away"]).strip().lower())] = (d0, hg, ag, h1, a1)
+                return True
+        return False
+
+    for day, l in pending:
+        d0 = pd.Timestamp(day)
+        for dd in (d0, d0 - timedelta(days=1), d0 + timedelta(days=1)):
+            ev = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard?dates={dd:%Y%m%d}&limit=1000",
+                     ("all", f"{dd:%Y%m%d}"))
+            if match(day, l, ev):
+                break
+        else:
+            slug = _espn_slug(l.get("league"))
+            if slug:
+                for dd in (d0, d0 - timedelta(days=1), d0 + timedelta(days=1)):
+                    ev = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard?dates={dd:%Y%m%d}",
+                             (slug, f"{dd:%Y%m%d}"))
+                    if match(day, l, ev):
+                        break
+    for day, l in pending:
+        if (str(l["home"]).strip().lower(), str(l["away"]).strip().lower()) not in out:
+            print(f"  ESPN'de sonuç bulunamadı: {l['home']} - {l['away']} ({l.get('league')}, {day})")
+    n_all = sum(len(v) for k, v in cache.items() if k[0] == "all")
+    print(f"  ESPN: {calls} istek, günlük listelerde toplam {n_all} maç, bulunan sonuç {len(out)} / {len(pending)}")
     return out
+
+
+BACKUP_FILE = DATA_DIR / "skor_yedek.json"       # ESPN'den bulunan skorlar kalıcı tutulur (tekrar sorulmaz)
+
+
+def _load_backup():
+    try:
+        return json.loads(BACKUP_FILE.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def _save_backup(d):
+    BACKUP_FILE.parent.mkdir(parents=True, exist_ok=True)
+    cut = (date.today() - timedelta(days=60)).isoformat()
+    d = {k: v for k, v in d.items() if k.split("|")[0] >= cut}
+    BACKUP_FILE.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
 
 
 def yesterday_report(hist, today=None, online=False):
@@ -1461,15 +1508,29 @@ def yesterday_report(hist, today=None, online=False):
     byid, byname = nesine_results()
     for key, v in byname.items():
         idx.setdefault(key, []).extend((dt, hg, ag, None, None) for dt, hg, ag in v)
+    backup = _load_backup()
+    for k_, v in backup.items():                    # daha önce ESPN'den bulunan skorlar
+        day_, h_, a_ = k_.split("|", 2)
+        idx.setdefault((h_, a_), []).append((pd.Timestamp(day_), v[0], v[1], v[2], v[3]))
     graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
     if online:
-        pend = [(d, l) for d in days[-3:] for k, g in zip(log[d]["list"], graded[d])
+        pend = [(d, l) for d in days[-14:] for k, g in zip(log[d]["list"], graded[d])
                 for l, gl in zip(k["legs"], g["legs"]) if gl["ok"] is None]
         if pend:
-            found = espn_scores(pend)
+            try:
+                found = espn_scores(pend)
+            except Exception as e:  # noqa: BLE001  yedek kaynak sayfayı bozmasın
+                print(f"  ! ESPN yedeği atlandı: {e}")
+                found = {}
             print(f"Sonucu bekleyen {len(pend)} kupon maçından ESPN'de bulunan: {len(found)}")
-            for key, (d0, hg, ag) in found.items():
-                idx.setdefault(key, []).append((d0, hg, ag, None, None))
+            for (h_, a_), (d0, hg, ag, h1, a1) in found.items():
+                idx.setdefault((h_, a_), []).append((d0, hg, ag, h1, a1))
+                backup[f"{d0:%Y-%m-%d}|{h_}|{a_}"] = [hg, ag, h1, a1]
+            if found:
+                try:
+                    _save_backup(backup)
+                except Exception as e:  # noqa: BLE001
+                    print(f"  ! skor yedeği yazılamadı: {e}")
             graded = {d: _grade_day(d, log[d], idx, byid) for d in days}
     try:                                  # sonucu gelmeyen bacakların nedeni (log için)
         import nesine
@@ -1867,7 +1928,7 @@ def cmd_site(leagues, days, out, open_it, demo=False):
     yday = None
     if not demo:
         try:
-            yday = yesterday_report(hist_all, online=bool(os.environ.get("GOLRADAR_ESPN")))
+            yday = yesterday_report(hist_all, online=os.environ.get("GOLRADAR_ESPN") != "0")
         except Exception as e:  # noqa: BLE001  dünkü kuponlar sayfayı bozmasın
             print(f"  ! dünkü kupon sonuçları atlandı: {e}")
     payload = site_payload(rows, demo, perf, nes_info, yday, None if demo else hist_all)
