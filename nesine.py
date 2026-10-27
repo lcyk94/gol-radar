@@ -1169,7 +1169,23 @@ def probe(url):
             for _ in range(8):                           # tembel yüklenen maçlar için kaydır
                 page.mouse.wheel(0, 1500)
                 page.wait_for_timeout(500)
+            n0 = len(bodies)
+            for pat in ("Dün", "Biten", "Bitti", "Sonuçlar", "MS"):       # geçmiş/biten maçları gösteren düğmeleri dene
+                try:
+                    loc = page.get_by_text(pat, exact=True)
+                    if loc.count():
+                        print(f"  tıklanıyor: '{pat}' ({loc.count()} öge)")
+                        loc.first.click(timeout=3000)
+                        page.wait_for_timeout(2500)
+                except Exception as e:                   # noqa: BLE001
+                    print(f"  tıklanamadı '{pat}': {str(e)[:80]}")
+            print(f"  tıklamalardan sonra yeni JSON yanıtı: {len(bodies) - n0}")
             text = page.inner_text("body")
+            print("---- canlı skor / sonuç adresleri (ls.nesine.com, LiveScore, Result) ----")
+            for u_, b_ in bodies:
+                if any(k in u_ for k in ("ls.nesine.com", "LiveScore", "Result", "livescore")):
+                    print("  ADRES:", u_[:240], "|", len(b_), "bayt")
+                    print("  ÖRNEK:", b_[:1200].replace("\n", " "))
             print("---- JSON yanıtları (adres, bayt) ----")
             for u_, b_ in sorted(bodies, key=lambda x: -len(x[1]))[:12]:
                 print("  ", len(b_), u_[:160])
