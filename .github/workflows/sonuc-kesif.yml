@@ -1,0 +1,24 @@
+name: Nesine sonuç sayfası keşfi (elle çalıştır)
+
+# Nesine'nin bitmiş maç sonuçları sayfasının yapısını görmek için: sayfayı açar, sayfanın yüklediği JSON yanıtlarının
+# adreslerini ve örneklerini loga yazar. Hiçbir şeyi değiştirmez.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Nesine sonuçlar sayfasının adresi"
+        default: "https://www.nesine.com/iddaa/canli-skor/futbol"
+
+jobs:
+  kesif:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install playwright
+          for i in 1 2 3 4; do playwright install --with-deps chromium && break || sleep 45; done
+          python nesine.py probe "${{ github.event.inputs.url }}"
