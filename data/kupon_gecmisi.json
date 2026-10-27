@@ -877,8 +877,8 @@
  "2026-10-27": {
   "list": [
    {
-    "odds": 3.99,
-    "p": 0.2204,
+    "odds": 3.65,
+    "p": 0.2547,
     "legs": [
      {
       "time": "",
@@ -903,6 +903,151 @@
       ]
      },
      {
+      "time": "13:00",
+      "home": "Kyoto",
+      "away": "Newcastle",
+      "league": "AFC Asya Şampiyonlar Ligi Doğu",
+      "sel": "2,5 Üst",
+      "o": 1.25,
+      "p": 0.664,
+      "nid": 3243645,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.5,
+      "edge": 0.164,
+      "why": [
+       "Model beklentisi: Kyoto 1.68, Newcastle 1.74 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Kyoto son 5 maçta 1G 1B 3M (6-10 gol); Newcastle son 5 maçta 2G 0B 3M (6-10 gol).",
+       "Gol temposu (son 10+ maç): Kyoto maçlarında ortalama 3.1, Newcastle maçlarında 3.2 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %70 / %60.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "21:15",
+      "home": "AL Shamal",
+      "away": "Al Hilal",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "MS 2",
+      "o": 1.21,
+      "p": 0.67,
+      "nid": 3243754,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.381,
+      "why": [
+       "Model beklentisi: AL Shamal 1.10, Al Hilal 2.48 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.21,
+    "p": 0.2442,
+    "legs": [
+     {
+      "time": "",
+      "home": "Stenhousemuir",
+      "away": "Dunfermline",
+      "league": "İskoçya Championship",
+      "sel": "Dep: yarılar eşit",
+      "o": 2.19,
+      "p": 0.572,
+      "nid": 3245963,
+      "mk": "Deplasman Hangi Yarıda Daha Çok Gol Atar",
+      "mtid": 587,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.452,
+      "edge": 0.12,
+      "why": [
+       "Model beklentisi: Stenhousemuir 1.14, Dunfermline 0.67 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Stenhousemuir son 5 maçta 2G 1B 2M (3-6 gol); Dunfermline son 5 maçta 2G 3B 0M (4-2 gol).",
+       "Gol temposu (son 10+ maç): Stenhousemuir maçlarında ortalama 1.9, Dunfermline maçlarında 1.5 gol; 2.5 üst oranı %20 / %0, iki takım da gol atma oranı %20 / %40.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %48, deplasmanda %50 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "13:00",
+      "home": "Daejeon Citizen",
+      "away": "Vissel Kobe",
+      "league": "AFC Asya Şampiyonlar Ligi Doğu",
+      "sel": "ÇŞ X-2",
+      "o": 1.21,
+      "p": 0.668,
+      "nid": 3243609,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.56,
+      "edge": 0.108,
+      "why": [
+       "Model beklentisi: Daejeon Citizen 1.27, Vissel Kobe 1.40 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Vissel Kobe son 5 maçta 3G 0B 2M (9-7 gol)."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Fleetwood Town",
+      "away": "Arsenal",
+      "league": "İngiltere Lig Kupası",
+      "sel": "İY 2",
+      "o": 1.21,
+      "p": 0.639,
+      "nid": 3243777,
+      "mk": "1. Yarı Sonucu",
+      "mtid": 7,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "İY",
+      "base": 0.24,
+      "edge": 0.399,
+      "why": [
+       "Model beklentisi: Fleetwood Town 0.50, Arsenal 2.85 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %24.",
+       "Form: Fleetwood Town son 5 maçta 1G 1B 3M (6-8 gol); Arsenal son 5 maçta 4G 0B 1M (7-4 gol).",
+       "Hücum/savunma (son 10+ maç): Fleetwood Town 1.2 atıyor, 1.5 yiyor; Arsenal 1.6 atıyor, 0.6 yiyor.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.17,
+    "p": 0.2465,
+    "legs": [
+     {
+      "time": "",
+      "home": "Altrincham",
+      "away": "Kidderminster",
+      "league": "İngiltere Conference",
+      "sel": "KG Yok",
+      "o": 1.81,
+      "p": 0.585,
+      "nid": 3243901,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.421,
+      "edge": 0.164,
+      "why": [
+       "Model beklentisi: Altrincham 1.03, Kidderminster 1.00 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Altrincham son 5 maçta 4G 0B 1M (10-5 gol); Kidderminster son 5 maçta 0G 2B 3M (3-7 gol).",
+       "Gol temposu (son 10+ maç): Altrincham maçlarında ortalama 3.3, Kidderminster maçlarında 2.0 gol; 2.5 üst oranı %90 / %30, iki takım da gol atma oranı %80 / %50."
+      ]
+     },
+     {
       "time": "20:00",
       "home": "Bochum",
       "away": "Mainz",
@@ -924,82 +1069,6 @@
        "Hücum/savunma (son 10+ maç): Bochum 0.8 atıyor, 1.1 yiyor; Mainz 2.1 atıyor, 1.7 yiyor.",
        "Son ikili maçlar: Bochum 1-4 Mainz, Mainz 2-0 Bochum.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
-     },
-     {
-      "time": "23:00",
-      "home": "Fleetwood Town",
-      "away": "Arsenal",
-      "league": "İngiltere Lig Kupası",
-      "sel": "İY 2",
-      "o": 1.2,
-      "p": 0.638,
-      "nid": 3243777,
-      "mk": "1. Yarı Sonucu",
-      "mtid": 7,
-      "line": 0.0,
-      "idx": 2,
-      "fam": "İY",
-      "base": 0.24,
-      "edge": 0.398,
-      "why": [
-       "Model beklentisi: Fleetwood Town 0.50, Arsenal 2.85 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %24.",
-       "Form: Fleetwood Town son 5 maçta 1G 1B 3M (6-8 gol); Arsenal son 5 maçta 4G 0B 1M (7-4 gol).",
-       "Hücum/savunma (son 10+ maç): Fleetwood Town 1.2 atıyor, 1.5 yiyor; Arsenal 1.6 atıyor, 0.6 yiyor.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 4.04,
-    "p": 0.2288,
-    "legs": [
-     {
-      "time": "",
-      "home": "Woking",
-      "away": "Boreham Wood",
-      "league": "İngiltere Conference",
-      "sel": "Dep 1,5 Üst",
-      "o": 1.46,
-      "p": 0.573,
-      "nid": 3243903,
-      "mk": "Deplasman 1,5 Gol Alt/Üst",
-      "mtid": 29,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.369,
-      "edge": 0.204,
-      "why": [
-       "Model beklentisi: Woking 1.30, Boreham Wood 1.93 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
-       "Form: Woking son 5 maçta 3G 0B 2M (13-10 gol); Boreham Wood son 5 maçta 5G 0B 0M (15-2 gol).",
-       "Gol temposu (son 10+ maç): Woking maçlarında ortalama 3.4, Boreham Wood maçlarında 3.5 gol; 2.5 üst oranı %50 / %80, iki takım da gol atma oranı %70 / %70.",
-       "Son ikili maçlar: Woking 2-2 Boreham Wood, Boreham Wood 1-0 Woking."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Stenhousemuir",
-      "away": "Dunfermline",
-      "league": "İskoçya Championship",
-      "sel": "Dep: yarılar eşit",
-      "o": 2.18,
-      "p": 0.572,
-      "nid": 3245963,
-      "mk": "Deplasman Hangi Yarıda Daha Çok Gol Atar",
-      "mtid": 587,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "YARI",
-      "base": 0.452,
-      "edge": 0.12,
-      "why": [
-       "Model beklentisi: Stenhousemuir 1.14, Dunfermline 0.67 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
-       "Form: Stenhousemuir son 5 maçta 2G 1B 2M (3-6 gol); Dunfermline son 5 maçta 2G 3B 0M (4-2 gol).",
-       "Gol temposu (son 10+ maç): Stenhousemuir maçlarında ortalama 1.9, Dunfermline maçlarında 1.5 gol; 2.5 üst oranı %20 / %0, iki takım da gol atma oranı %20 / %40.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %48, deplasmanda %50 oranında atılıyor (geçmiş maçların yarı skorlarından)."
       ]
      },
      {
@@ -1028,8 +1097,8 @@
     ]
    },
    {
-    "odds": 3.44,
-    "p": 0.2078,
+    "odds": 3.33,
+    "p": 0.1941,
     "legs": [
      {
       "time": "",
@@ -1056,24 +1125,25 @@
      },
      {
       "time": "",
-      "home": "Benevento",
-      "away": "Catanzaro",
-      "league": "İtalya Serie B",
-      "sel": "Ev 1,5 Üst",
-      "o": 1.51,
-      "p": 0.614,
-      "nid": 3243912,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
+      "home": "Woking",
+      "away": "Boreham Wood",
+      "league": "İngiltere Conference",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.46,
+      "p": 0.573,
+      "nid": 3243903,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
       "line": 1.5,
       "idx": 1,
       "fam": "TAKIM",
-      "base": 0.413,
-      "edge": 0.201,
+      "base": 0.369,
+      "edge": 0.204,
       "why": [
-       "Model beklentisi: Benevento 2.08, Catanzaro 1.00 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
-       "Form: Benevento son 5 maçta 4G 1B 0M (11-3 gol); Catanzaro son 5 maçta 1G 1B 3M (6-13 gol).",
-       "Gol temposu (son 8+ maç): Benevento maçlarında ortalama 2.5, Catanzaro maçlarında 3.9 gol; 2.5 üst oranı %50 / %80, iki takım da gol atma oranı %50 / %80."
+       "Model beklentisi: Woking 1.30, Boreham Wood 1.93 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
+       "Form: Woking son 5 maçta 3G 0B 2M (13-10 gol); Boreham Wood son 5 maçta 5G 0B 0M (15-2 gol).",
+       "Gol temposu (son 10+ maç): Woking maçlarında ortalama 3.4, Boreham Wood maçlarında 3.5 gol; 2.5 üst oranı %50 / %80, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Woking 2-2 Boreham Wood, Boreham Wood 1-0 Woking."
       ]
      },
      {
@@ -1098,82 +1168,6 @@
        "Gol temposu (son 10+ maç): Roma maçlarında ortalama 2.9, Cagliari maçlarında 2.1 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %30 / %40.",
        "Son ikili maçlar: Roma 2-0 Cagliari, Cagliari 1-0 Roma, Roma 1-0 Cagliari.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %43, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 3.2,
-    "p": 0.2206,
-    "legs": [
-     {
-      "time": "",
-      "home": "Dortmund",
-      "away": "Werder Bremen",
-      "league": "Almanya Bundesliga",
-      "sel": "MS1 & 1,5 Üst",
-      "o": 1.34,
-      "p": 0.605,
-      "nid": 3243745,
-      "mk": "Maç Sonucu & 1,5 Alt/Üst",
-      "mtid": 342,
-      "line": 1.5,
-      "idx": 3,
-      "fam": "MS&AÜ",
-      "base": 0.374,
-      "edge": 0.231,
-      "why": [
-       "Model beklentisi: Dortmund 2.29, Werder Bremen 0.81 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
-       "Form: Dortmund son 5 maçta 3G 2B 0M (7-2 gol); Werder Bremen son 5 maçta 2G 3B 0M (11-9 gol).",
-       "Gol temposu (son 10+ maç): Dortmund maçlarında ortalama 2.4, Werder Bremen maçlarında 3.6 gol; 2.5 üst oranı %40 / %70, iki takım da gol atma oranı %30 / %80.",
-       "Son ikili maçlar: Dortmund 2-2 Werder Bremen, Werder Bremen 0-2 Dortmund, Dortmund 3-0 Werder Bremen."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Sassuolo",
-      "away": "Lazio",
-      "league": "İtalya Serie A",
-      "sel": "Ev hiçbir yarıyı kazanamaz",
-      "o": 1.57,
-      "p": 0.574,
-      "nid": 3243683,
-      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
-      "mtid": 584,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "YARI",
-      "base": 0.469,
-      "edge": 0.105,
-      "why": [
-       "Model beklentisi: Sassuolo 1.11, Lazio 1.48 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
-       "Form: Sassuolo son 5 maçta 1G 1B 3M (7-11 gol); Lazio son 5 maçta 4G 1B 0M (12-4 gol).",
-       "Gol temposu (son 10+ maç): Sassuolo maçlarında ortalama 3.4, Lazio maçlarında 2.6 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %80 / %50.",
-       "Son ikili maçlar: Lazio 2-1 Sassuolo, Sassuolo 1-0 Lazio.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %43, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
-      ]
-     },
-     {
-      "time": "22:45",
-      "home": "Barnet",
-      "away": "Cork City",
-      "league": "İngiltere 2. Lig",
-      "sel": "Ev 1,5 Üst",
-      "o": 1.52,
-      "p": 0.634,
-      "nid": 3270642,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.442,
-      "edge": 0.192,
-      "why": [
-       "Model beklentisi: Barnet 2.16, Cork City 1.13 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Barnet son 5 maçta 3G 1B 1M (10-7 gol); Cork City son 5 maçta 0G 1B 4M (3-7 gol).",
-       "Gol temposu (son 10+ maç): Barnet maçlarında ortalama 3.6, Cork City maçlarında 2.1 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %100 / %40.",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
     ]
