@@ -1177,8 +1177,8 @@
  "2026-10-28": {
   "list": [
    {
-    "odds": 3.27,
-    "p": 0.3331,
+    "odds": 3.17,
+    "p": 0.3328,
     "legs": [
      {
       "time": "",
@@ -1209,7 +1209,7 @@
       "away": "Magdeburg",
       "league": "Almanya Kupası",
       "sel": "4,5 Üst",
-      "o": 1.59,
+      "o": 1.54,
       "p": 0.82,
       "nid": 3246261,
       "mk": "Alt/Üst 4,5",
@@ -1218,9 +1218,9 @@
       "idx": 1,
       "fam": "AÜ",
       "base": 0.133,
-      "edge": 0.687,
+      "edge": 0.686,
       "why": [
-       "Model beklentisi: Bayern Munich 5.65, Magdeburg 1.33 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %13.",
+       "Model beklentisi: Bayern Munich 5.64, Magdeburg 1.34 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %13.",
        "Form: Bayern Munich son 5 maçta 4G 1B 0M (20-5 gol); Magdeburg son 5 maçta 3G 1B 1M (13-4 gol).",
        "Gol temposu (son 10+ maç): Bayern Munich maçlarında ortalama 4.4, Magdeburg maçlarında 3.3 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %70 / %40.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
