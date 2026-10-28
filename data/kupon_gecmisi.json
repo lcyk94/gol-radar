@@ -1253,7 +1253,7 @@
     ]
    },
    {
-    "odds": 3.38,
+    "odds": 3.27,
     "p": 0.2126,
     "legs": [
      {
@@ -1262,7 +1262,7 @@
       "away": "Dundee",
       "league": "İskoçya Premiership",
       "sel": "HMS -1 · 1",
-      "o": 1.47,
+      "o": 1.39,
       "p": 0.585,
       "nid": 3246337,
       "mk": "Handikaplı MS (ev -1)",
@@ -1285,7 +1285,7 @@
       "away": "Napoli",
       "league": "İtalya Serie A",
       "sel": "MS2 & 1,5 Üst",
-      "o": 1.81,
+      "o": 1.85,
       "p": 0.566,
       "nid": 3246308,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
@@ -1329,30 +1329,30 @@
     ]
    },
    {
-    "odds": 3.6,
-    "p": 0.2162,
+    "odds": 3.01,
+    "p": 0.2178,
     "legs": [
      {
       "time": "",
-      "home": "Goteborg",
-      "away": "Djurgarden",
+      "home": "Halmstad",
+      "away": "Malmo FF",
       "league": "İsveç Allsvenskan",
       "sel": "MS 2",
-      "o": 1.82,
-      "p": 0.571,
-      "nid": 3246250,
+      "o": 1.5,
+      "p": 0.575,
+      "nid": 3246234,
       "mk": "Maç Sonucu",
       "mtid": 1,
       "line": 0.0,
       "idx": 2,
       "fam": "MS",
       "base": 0.296,
-      "edge": 0.275,
+      "edge": 0.279,
       "why": [
-       "Model beklentisi: Goteborg 1.01, Djurgarden 1.89 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %30.",
-       "Form: Goteborg son 5 maçta 3G 2B 0M (7-4 gol); Djurgarden son 5 maçta 3G 1B 1M (8-4 gol).",
-       "Hücum/savunma (son 10+ maç): Goteborg 1.6 atıyor, 1.1 yiyor; Djurgarden 1.9 atıyor, 0.7 yiyor.",
-       "Son ikili maçlar: Djurgarden 6-0 Goteborg, Djurgarden 0-0 Goteborg, Goteborg 1-2 Djurgarden."
+       "Model beklentisi: Halmstad 0.74, Malmo FF 1.62 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %30.",
+       "Form: Halmstad son 5 maçta 2G 0B 3M (5-9 gol); Malmo FF son 5 maçta 2G 1B 2M (5-4 gol).",
+       "Hücum/savunma (son 10+ maç): Halmstad 0.7 atıyor, 1.5 yiyor; Malmo FF 0.8 atıyor, 0.9 yiyor.",
+       "Son ikili maçlar: Malmo FF 5-2 Halmstad, Halmstad 0-4 Malmo FF, Malmo FF 3-0 Halmstad."
       ]
      },
      {
@@ -1382,7 +1382,7 @@
       "away": "Haugesund",
       "league": "Norveç Eliteserien",
       "sel": "İY 1",
-      "o": 1.3,
+      "o": 1.32,
       "p": 0.584,
       "nid": 3248002,
       "mk": "1. Yarı Sonucu",
@@ -1403,30 +1403,30 @@
     ]
    },
    {
-    "odds": 4.26,
-    "p": 0.242,
+    "odds": 3.45,
+    "p": 0.2415,
     "legs": [
      {
       "time": "",
-      "home": "Halmstad",
-      "away": "Malmo FF",
+      "home": "Goteborg",
+      "away": "Djurgarden",
       "league": "İsveç Allsvenskan",
-      "sel": "KG Yok",
-      "o": 2.13,
-      "p": 0.572,
-      "nid": 3246234,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
+      "sel": "MS 2",
+      "o": 1.82,
+      "p": 0.571,
+      "nid": 3246250,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
       "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.431,
-      "edge": 0.141,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.296,
+      "edge": 0.275,
       "why": [
-       "Model beklentisi: Halmstad 0.74, Malmo FF 1.62 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
-       "Form: Halmstad son 5 maçta 2G 0B 3M (5-9 gol); Malmo FF son 5 maçta 2G 1B 2M (5-4 gol).",
-       "Gol temposu (son 10+ maç): Halmstad maçlarında ortalama 2.2, Malmo FF maçlarında 1.7 gol; 2.5 üst oranı %40 / %30, iki takım da gol atma oranı %40 / %20.",
-       "Son ikili maçlar: Malmo FF 5-2 Halmstad, Halmstad 0-4 Malmo FF, Malmo FF 3-0 Halmstad."
+       "Model beklentisi: Goteborg 1.01, Djurgarden 1.89 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %30.",
+       "Form: Goteborg son 5 maçta 3G 2B 0M (7-4 gol); Djurgarden son 5 maçta 3G 1B 1M (8-4 gol).",
+       "Hücum/savunma (son 10+ maç): Goteborg 1.6 atıyor, 1.1 yiyor; Djurgarden 1.9 atıyor, 0.7 yiyor.",
+       "Son ikili maçlar: Djurgarden 6-0 Goteborg, Djurgarden 0-0 Goteborg, Goteborg 1-2 Djurgarden."
       ]
      },
      {
@@ -1459,7 +1459,7 @@
       "away": "Vasteras SK",
       "league": "İsveç Allsvenskan",
       "sel": "ÇŞ X-2",
-      "o": 1.36,
+      "o": 1.29,
       "p": 0.745,
       "nid": 3246444,
       "mk": "Çifte Şans",
