@@ -1311,7 +1311,7 @@ def nesine_results():
         t = r.get("t") or {}
         sc = t.get("1")
         m = (st.get("matches") or {}).get(k)
-        if r.get("s") != 5 or not sc or not m:
+        if r.get("s") not in nesine.FINAL_STATES or not sc or not m:
             continue
         ht = t.get("2")
         if not (ht and ht[0] <= sc[0] and ht[1] <= sc[1]):
