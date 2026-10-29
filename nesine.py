@@ -776,12 +776,42 @@ def update_result_store(js, feed, path=None, today=None):
 UNLIVE_URL = "https://ls.nesine.com/api/v2/LiveScore/GetUnliveMatches?sportType=1&date={d}"
 
 
-def fetch_unlive(ctx, js, days=6, today=None):
+FINAL_STATES = (5, 24)       # S=5 bitti; S=24: skorlu ve çoğunlukla berabere biten kupa maçları (logdaki dağılıma göre bitmiş sayılır)
+
+
+def unlive_days(today=None, floor=3, cap=21):
+    """Kaç gün geriye bakılacak: kupon kaydındaki sonucu hâlâ eksik en eski gün kadar (en az `floor`, en çok `cap`)."""
+    today = today or istanbul_today()
+    try:
+        log = json.loads((DATA_DIR / "kupon_gecmisi.json").read_text(encoding="utf-8"))
+        st = load_results_store()
+    except Exception:                                    # noqa: BLE001
+        return floor
+    oldest = None
+    for day, ent in log.items():
+        try:
+            d = date.fromisoformat(day)
+        except ValueError:
+            continue
+        if d >= today:
+            continue
+        for k in ent.get("list", []):
+            for l in k.get("legs", []):
+                r = (st.get("results") or {}).get(str(l.get("nid")))
+                if not r or r.get("s") not in FINAL_STATES:
+                    oldest = d if oldest is None or d < oldest else oldest
+    if oldest is None:
+        return floor
+    return max(floor, min(cap, (today - oldest).days + 1))
+
+
+def fetch_unlive(ctx, js, days=None, today=None):
     """Nesine'nin canlı skor sayfasının kullandığı gün bazlı liste (GetUnliveMatches): başlamamış ve BİTMİŞ maçlar.
     Sayfanın tarih seçince yaptığı isteğin aynısı, son `days` gün için. Akıştan düşmüş maçların sonuçları buradan gelir.
     Yanıt, canlı sonuç akışıyla aynı biçimdedir (C maç no, S durum, ES skorlar); biçim beklenenden farklıysa logda görünür."""
     from collections import Counter
     today = today or istanbul_today()
+    days = days or unlive_days(today)
     total = 0
     for i in range(days):
         d = today - timedelta(days=i)
@@ -798,7 +828,7 @@ def fetch_unlive(ctx, js, days=6, today=None):
             continue
         feed = results_from_feed(body)
         n_sc = sum(1 for v in feed.values() if v["t"].get(1))
-        n_fin = sum(1 for v in feed.values() if v["s"] == 5 and v["t"].get(1))
+        n_fin = sum(1 for v in feed.values() if v["s"] in FINAL_STATES and v["t"].get(1))
         print(f"  SONUÇ-GEÇMİŞ {d}: {len(body)} bayt, {len(feed)} maç, skorlu {n_sc}, bitmiş (S=5) {n_fin}, "
               f"durumlar {dict(Counter(v['s'] for v in feed.values()))}")
         if not feed:
@@ -810,6 +840,12 @@ def fetch_unlive(ctx, js, days=6, today=None):
             continue
         update_result_store(js, feed)
         total += n_fin
+        for stt in (24, 22, 23, 17):                     # 5 dışındaki durumların ne olduğunu loga yaz (doğrulama için)
+            ex = [(m, v) for m, v in feed.items() if v["s"] == stt and v["t"].get(1)]
+            if ex:
+                draws = sum(1 for _, v in ex if v["t"][1][0] == v["t"][1][1])
+                print(f"    S={stt}: {len(ex)} skorlu maç, berabere {draws}; örnek: " +
+                      "; ".join(f"{m}={v['t'][1]}" for m, v in ex[:4]))
     print(f"  SONUÇ-GEÇMİŞ: son {days} günde bitmiş skor toplam {total}")
     return total
 
