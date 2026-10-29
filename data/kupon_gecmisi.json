@@ -1479,5 +1479,314 @@
     ]
    }
   ]
+ },
+ "2026-10-29": {
+  "list": [
+   {
+    "odds": 3.11,
+    "p": 0.2749,
+    "legs": [
+     {
+      "time": "",
+      "home": "FC Voluntari",
+      "away": "Univ. Craiova",
+      "league": "Romanya Liga 1",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.51,
+      "p": 0.674,
+      "nid": 3246004,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.285,
+      "edge": 0.389,
+      "why": [
+       "Model beklentisi: FC Voluntari 0.85, Univ. Craiova 2.32 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: FC Voluntari son 5 maçta 0G 0B 5M (5-11 gol); Univ. Craiova son 5 maçta 5G 0B 0M (14-0 gol).",
+       "Gol temposu (son 10+ maç): FC Voluntari maçlarında ortalama 3.2, Univ. Craiova maçlarında 2.7 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %70 / %30.",
+       "Son ikili maçlar: Univ. Craiova 3-1 FC Voluntari, Univ. Craiova 2-1 FC Voluntari, FC Voluntari 0-0 Univ. Craiova."
+      ]
+     },
+     {
+      "time": "",
+      "home": "A. Lustenau",
+      "away": "Sturm Graz",
+      "league": "Avusturya Bundesliga",
+      "sel": "MS 2",
+      "o": 1.24,
+      "p": 0.683,
+      "nid": 3243680,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.316,
+      "edge": 0.367,
+      "why": [
+       "Model beklentisi: A. Lustenau 1.04, Sturm Graz 2.48 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: A. Lustenau son 5 maçta 1G 0B 4M (7-15 gol); Sturm Graz son 5 maçta 3G 1B 1M (12-7 gol).",
+       "Hücum/savunma (son 10+ maç): A. Lustenau 1.2 atıyor, 2.4 yiyor; Sturm Graz 1.8 atıyor, 1.2 yiyor.",
+       "Son ikili maçlar: Sturm Graz 1-1 A. Lustenau, Sturm Graz 2-0 A. Lustenau, A. Lustenau 0-1 Sturm Graz."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Frosinone",
+      "away": "Lecce",
+      "league": "İtalya Serie A",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.66,
+      "p": 0.597,
+      "nid": 3247795,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.291,
+      "edge": 0.306,
+      "why": [
+       "Model beklentisi: Frosinone 2.40, Lecce 1.05 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Frosinone son 5 maçta 2G 2B 1M (11-10 gol); Lecce son 5 maçta 2G 0B 3M (7-9 gol).",
+       "Gol temposu (son 10+ maç): Frosinone maçlarında ortalama 3.6, Lecce maçlarında 2.9 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %40 / %30."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.27,
+    "p": 0.3263,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kalmar",
+      "away": "GAIS",
+      "league": "İsveç Allsvenskan",
+      "sel": "ÇŞ X-2",
+      "o": 1.39,
+      "p": 0.799,
+      "nid": 3248009,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.559,
+      "edge": 0.24,
+      "why": [
+       "Model beklentisi: Kalmar 0.76, GAIS 1.36 gol. Bu seçenek %80 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Kalmar son 5 maçta 1G 0B 4M (2-11 gol); GAIS son 5 maçta 1G 1B 3M (6-8 gol).",
+       "Hücum/savunma (son 10+ maç): Kalmar 0.4 atıyor, 2.0 yiyor; GAIS 1.2 atıyor, 1.1 yiyor.",
+       "Son ikili maçlar: GAIS 3-0 Kalmar, GAIS 1-1 Kalmar, Kalmar 2-3 GAIS."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Midtjylland",
+      "away": "Odense",
+      "league": "Danimarka Süper Lig",
+      "sel": "MS 1",
+      "o": 1.41,
+      "p": 0.659,
+      "nid": 3261963,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.425,
+      "edge": 0.234,
+      "why": [
+       "Model beklentisi: Midtjylland 2.17, Odense 0.89 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Midtjylland son 5 maçta 4G 1B 0M (12-6 gol); Odense son 5 maçta 2G 3B 0M (6-4 gol).",
+       "Hücum/savunma (son 10+ maç): Midtjylland 1.9 atıyor, 1.0 yiyor; Odense 1.0 atıyor, 1.5 yiyor.",
+       "Son ikili maçlar: Odense 1-1 Midtjylland, Odense 1-4 Midtjylland, Midtjylland 3-3 Odense."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Fiorentina",
+      "away": "Atalanta",
+      "league": "İtalya Serie A",
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.67,
+      "p": 0.619,
+      "nid": 3247862,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.477,
+      "edge": 0.142,
+      "why": [
+       "Model beklentisi: Fiorentina 1.18, Atalanta 1.66 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Fiorentina son 5 maçta 1G 1B 3M (8-10 gol); Atalanta son 5 maçta 1G 1B 3M (10-12 gol).",
+       "Gol temposu (son 10+ maç): Fiorentina maçlarında ortalama 3.2, Atalanta maçlarında 3.2 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Fiorentina 1-1 Atalanta, Atalanta 2-0 Fiorentina, Fiorentina 1-0 Atalanta.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %43, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "2026-10-30": {
+  "list": [
+   {
+    "odds": 3.03,
+    "p": 0.2426,
+    "legs": [
+     {
+      "time": "",
+      "home": "FC Rapid Bucuresti",
+      "away": "Csikszereda M. Ciuc",
+      "league": "Romanya Liga 1",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.25,
+      "p": 0.616,
+      "nid": 3253741,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.316,
+      "edge": 0.3,
+      "why": [
+       "Model beklentisi: FC Rapid Bucuresti 2.26, Csikszereda M. Ciuc 0.66 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: FC Rapid Bucuresti son 5 maçta 4G 0B 1M (12-9 gol); Csikszereda M. Ciuc son 5 maçta 1G 1B 3M (4-8 gol).",
+       "Gol temposu (son 10+ maç): FC Rapid Bucuresti maçlarında ortalama 2.7, Csikszereda M. Ciuc maçlarında 2.9 gol; 2.5 üst oranı %40 / %50, iki takım da gol atma oranı %50 / %60.",
+       "Son ikili maçlar: FC Rapid Bucuresti 4-1 Csikszereda M. Ciuc, Csikszereda M. Ciuc 0-2 FC Rapid Bucuresti."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Rodez",
+      "away": "Dunkerque",
+      "league": "Fransa Ligue 2",
+      "sel": "2,5 Üst",
+      "o": 1.37,
+      "p": 0.636,
+      "nid": 3252655,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.475,
+      "edge": 0.161,
+      "why": [
+       "Model beklentisi: Rodez 1.68, Dunkerque 1.60 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Rodez son 5 maçta 1G 0B 4M (5-11 gol); Dunkerque son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Gol temposu (son 10+ maç): Rodez maçlarında ortalama 3.8, Dunkerque maçlarında 3.0 gol; 2.5 üst oranı %70 / %40, iki takım da gol atma oranı %60 / %60.",
+       "Son ikili maçlar: Dunkerque 1-1 Rodez, Rodez 1-1 Dunkerque, Rodez 5-1 Dunkerque."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Stenhousemuir",
+      "away": "Livingston",
+      "league": "İskoçya Championship",
+      "sel": "KG Yok",
+      "o": 1.77,
+      "p": 0.619,
+      "nid": 3255271,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.509,
+      "edge": 0.11,
+      "why": [
+       "Model beklentisi: Stenhousemuir 1.11, Livingston 0.81 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
+       "Form: Stenhousemuir son 5 maçta 2G 1B 2M (3-6 gol); Livingston son 5 maçta 2G 1B 2M (5-4 gol).",
+       "Gol temposu (son 10+ maç): Stenhousemuir maçlarında ortalama 1.9, Livingston maçlarında 2.2 gol; 2.5 üst oranı %20 / %40, iki takım da gol atma oranı %20 / %40.",
+       "Son ikili maçlar: Livingston 0-1 Stenhousemuir."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.84,
+    "p": 0.2193,
+    "legs": [
+     {
+      "time": "",
+      "home": "Vasco",
+      "away": "Flamengo RJ",
+      "league": "Brezilya Serie A",
+      "sel": "MS 2",
+      "o": 1.66,
+      "p": 0.554,
+      "nid": 3246353,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.25,
+      "edge": 0.304,
+      "why": [
+       "Model beklentisi: Vasco 1.05, Flamengo RJ 1.85 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %25.",
+       "Form: Vasco son 5 maçta 3G 1B 1M (10-4 gol); Flamengo RJ son 5 maçta 4G 1B 0M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Vasco 1.6 atıyor, 1.4 yiyor; Flamengo RJ 2.0 atıyor, 0.8 yiyor.",
+       "Son ikili maçlar: Flamengo RJ 2-2 Vasco, Flamengo RJ 1-1 Vasco, Vasco 0-0 Flamengo RJ."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Konyaspor",
+      "away": "Galatasaray",
+      "league": "Türkiye Süper Lig",
+      "sel": "Ev hiçbir yarıyı kazanamaz",
+      "o": 1.33,
+      "p": 0.647,
+      "nid": 3258190,
+      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
+      "mtid": 584,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.411,
+      "edge": 0.236,
+      "why": [
+       "Model beklentisi: Konyaspor 0.96, Galatasaray 1.70 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Konyaspor son 5 maçta 2G 2B 1M (3-1 gol); Galatasaray son 5 maçta 4G 0B 1M (7-6 gol).",
+       "Gol temposu (son 10+ maç): Konyaspor maçlarında ortalama 1.8, Galatasaray maçlarında 3.2 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %30 / %50.",
+       "Son ikili maçlar: Konyaspor 2-0 Galatasaray, Galatasaray 3-1 Konyaspor, Galatasaray 1-0 Konyaspor.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Metz",
+      "away": "Pau FC",
+      "league": "Fransa Ligue 2",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.74,
+      "p": 0.612,
+      "nid": 3252715,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.41,
+      "edge": 0.202,
+      "why": [
+       "Model beklentisi: Metz 2.07, Pau FC 1.29 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Metz son 5 maçta 1G 2B 2M (8-10 gol); Pau FC son 5 maçta 4G 0B 1M (9-5 gol).",
+       "Gol temposu (son 10+ maç): Metz maçlarında ortalama 3.0, Pau FC maçlarında 2.3 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %80 / %50.",
+       "Son ikili maçlar: Pau FC 2-1 Metz, Metz 0-0 Pau FC."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
