@@ -181,3 +181,15 @@ def test_fetch_unlive_stores_finished_results(tmp_path, monkeypatch):
     assert n == 4 and len(calls) == 2 and "date=2026-10-26" in calls[1]
     st = nesine.load_results_store(tmp_path / "sonuc.json")
     assert st["results"]["3241666"]["t"]["1"] == [2, 1] and st["results"]["3241666"]["s"] == 5
+
+
+def test_unlive_days_reaches_oldest_missing_leg(tmp_path, monkeypatch):
+    import json, datetime, nesine
+    monkeypatch.setattr(nesine, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(nesine, "RESULT_FILE", tmp_path / "s.json")
+    (tmp_path / "kupon_gecmisi.json").write_text(json.dumps({
+        "2026-10-20": {"list": [{"legs": [{"nid": 1}]}]}, "2026-10-26": {"list": [{"legs": [{"nid": 2}]}]}}))
+    (tmp_path / "s.json").write_text(json.dumps({"matches": {}, "results": {"2": {"s": 24, "t": {"1": [1, 1]}}}}))
+    assert nesine.unlive_days(datetime.date(2026, 10, 29)) == 10       # 20 Ekim'deki bacağın sonucu yok
+    (tmp_path / "s.json").write_text(json.dumps({"matches": {}, "results": {"1": {"s": 5, "t": {"1": [1, 0]}}, "2": {"s": 24, "t": {"1": [1, 1]}}}}))
+    assert nesine.unlive_days(datetime.date(2026, 10, 29)) == 3
