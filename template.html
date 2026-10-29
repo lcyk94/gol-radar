@@ -432,7 +432,7 @@ function renderYesterday(){
       k.legs.map(l=>
         `<li><span class="yk ${l.ok===true?'y':l.ok===false?'n':'u'}" title="${l.ok===true?'Tuttu':l.ok===false?'Tutmadı':'Sonuç yok'}">${l.ok===true?'✓':l.ok===false?'✗':'?'}</span>`+
         `<span class="ym"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.league||'')}</span></span>`+
-        `<span class="ys"><b>${esc(l.sel)}</b>${l.score?esc(l.score):'sonuç yok'}</span></li>`).join('')+
+        `<span class="ys"><b>${esc(l.sel)}</b>${l.score?esc(l.score):'sonuç yok'}${l.score&&l.ok===null?'<br><small>yarı skoru yok</small>':''}</span></li>`).join('')+
       `</ul></article>`).join('')+
     `<p class="ytot">Bugüne kadar kayıtlı ${t.days} günde: ${t.won} kupon tuttu, ${t.lost} tutmadı`+
     (t.pending?`, ${t.pending} sonuç bekleniyor`:'')+`. Örnek sayısı az olduğu sürece bu rakama güvenme.</p>`;
