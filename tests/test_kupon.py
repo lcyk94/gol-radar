@@ -154,3 +154,30 @@ def test_espn_fallback_finds_scores_and_half_scores(monkeypatch):
     assert out[("fc copenhagen", "odense")][1:] == (3, 0, 2, 0)
     assert ("yok", "maç") not in out
     assert any("soccer/all/scoreboard" in c for c in calls)
+
+
+def test_fetch_unlive_stores_finished_results(tmp_path, monkeypatch):
+    import json, datetime, nesine
+    monkeypatch.setattr(nesine, "RESULT_FILE", tmp_path / "sonuc.json")
+    body = json.dumps({"sc": 200, "d": [
+        {"MID": 1, "C": 3241666, "S": 5, "ES": [{"T": 1, "H": 2, "A": 1}, {"T": 2, "H": 1, "A": 0}]},
+        {"MID": 2, "C": 3241581, "S": 5, "ES": [{"T": 1, "H": 3, "A": 0}, {"T": 2, "H": 2, "A": 0}]},
+        {"MID": 3, "C": 999, "S": 1, "ES": []}]})
+    calls = []
+
+    class R:
+        status = 200
+        def text(self): return body
+
+    class Ctx:
+        class request:
+            @staticmethod
+            def get(url, headers=None, timeout=None):
+                calls.append(url)
+                return R()
+    js = [{"id": 3241666, "home": "Sandefjord", "away": "Sarpsborg 08", "date": "2026-10-26", "league": "x"},
+          {"id": 3241581, "home": "FC Copenhagen", "away": "Odense", "date": "2026-10-26", "league": "x"}]
+    n = nesine.fetch_unlive(Ctx, js, days=2, today=datetime.date(2026, 10, 27))
+    assert n == 4 and len(calls) == 2 and "date=2026-10-26" in calls[1]
+    st = nesine.load_results_store(tmp_path / "sonuc.json")
+    assert st["results"]["3241666"]["t"]["1"] == [2, 1] and st["results"]["3241666"]["s"] == 5
