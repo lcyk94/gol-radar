@@ -773,6 +773,47 @@ def update_result_store(js, feed, path=None, today=None):
     return ms, rs
 
 
+UNLIVE_URL = "https://ls.nesine.com/api/v2/LiveScore/GetUnliveMatches?sportType=1&date={d}"
+
+
+def fetch_unlive(ctx, js, days=6, today=None):
+    """Nesine'nin canlı skor sayfasının kullandığı gün bazlı liste (GetUnliveMatches): başlamamış ve BİTMİŞ maçlar.
+    Sayfanın tarih seçince yaptığı isteğin aynısı, son `days` gün için. Akıştan düşmüş maçların sonuçları buradan gelir.
+    Yanıt, canlı sonuç akışıyla aynı biçimdedir (C maç no, S durum, ES skorlar); biçim beklenenden farklıysa logda görünür."""
+    from collections import Counter
+    today = today or istanbul_today()
+    total = 0
+    for i in range(days):
+        d = today - timedelta(days=i)
+        url = UNLIVE_URL.format(d=d.isoformat())
+        try:
+            r = ctx.request.get(url, headers={"Referer": "https://www.nesine.com/iddaa/canli-skor/futbol",
+                                              "Accept": "application/json"}, timeout=40000)
+            body = r.text()
+            if r.status != 200:
+                print(f"  SONUÇ-GEÇMİŞ {d}: HTTP {r.status}")
+                continue
+        except Exception as e:                           # noqa: BLE001
+            print(f"  SONUÇ-GEÇMİŞ {d}: istek başarısız: {str(e)[:100]}")
+            continue
+        feed = results_from_feed(body)
+        n_sc = sum(1 for v in feed.values() if v["t"].get(1))
+        n_fin = sum(1 for v in feed.values() if v["s"] == 5 and v["t"].get(1))
+        print(f"  SONUÇ-GEÇMİŞ {d}: {len(body)} bayt, {len(feed)} maç, skorlu {n_sc}, bitmiş (S=5) {n_fin}, "
+              f"durumlar {dict(Counter(v['s'] for v in feed.values()))}")
+        if not feed:
+            try:
+                first = (json.loads(body).get("d") or [None])[0]
+                print("    beklenen alanlar (C, S, ES) bulunamadı; ilk kaydın alanları:", sorted(first) if isinstance(first, dict) else first)
+            except Exception:                            # noqa: BLE001
+                print("    yanıt JSON değil:", body[:200])
+            continue
+        update_result_store(js, feed)
+        total += n_fin
+    print(f"  SONUÇ-GEÇMİŞ: son {days} günde bitmiş skor toplam {total}")
+    return total
+
+
 def load_results_store(path=None):
     try:
         return json.loads(Path(path or RESULT_FILE).read_text(encoding="utf-8"))
@@ -1089,6 +1130,10 @@ def fetch(url=URL, out=OUT):
                             print(f"  SONUÇ-ÖRNEK {mm['d']} {mm['h']} - {mm['a']} | S={feed[i]['s']} | skorlar(T:[ev,dep])={feed[i]['t']}")
                     except Exception as e:               # noqa: BLE001
                         print("  sonuç akışı işlenemedi:", str(e)[:100])
+                    try:
+                        fetch_unlive(ctx, js)
+                    except Exception as e:               # noqa: BLE001  geçmiş sonuç okuma bültenin kaydını bozmasın
+                        print("  geçmiş sonuç okunamadı:", str(e)[:120])
                     try:
                         _log_sample_markets(js)
                     except Exception as e:               # noqa: BLE001
