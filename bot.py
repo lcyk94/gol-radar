@@ -943,6 +943,8 @@ MIN_EDGE = 0.10        # modelin olasılığı sıradan bir lig maçındakinden 
 FAM_PEN = 0.10         # aynı pazar ailesi önceki kuponlarda kullanıldıkça seçim puanından düşülen ceza (çeşitlilik)
 DUP_PEN = 0.30         # aynı kuponda aynı pazar ailesinin ikinci kez kullanılması cezası
 N_COUPONS = 4
+N_SURPRISE = 2          # her gün eklenen sürpriz kupon sayısı
+SURPRISE_MIN_ODDS = 6.0 # sürpriz kuponun toplam oranı en az bu kadar olmalı
 BASIC_FAMILIES = ("MS", "ÇŞ", "KG", "AÜ")   # başarı ölçümü yoksa yalnızca bunlar kullanılır
 
 # Kupon seçiminin bağlamı (site üretilirken cmd_site doldurur): ilk yarı gol payları, pazar doğrulaması, pazar ailesi
@@ -1076,10 +1078,33 @@ def build_coupons(out_rows):
             nearest = {"date": day.strftime("%Y-%m-%d"), "list": [], "max_odds": round(math.prod(best), 2)}
     if got:
         print("  Kuponlarda kullanılan pazar aileleri:", dict(sorted(fam_use.items(), key=lambda x: -x[1])))
-        return {"date": got[0]["date"], "list": got}
+        sday = pd.Timestamp(got[0]["date"])
+        sur = _surprise_for_day(sday, by_day.get(sday, []), got)
+        print(f"  Sürpriz kupon: {len(sur)}" + "".join(f" (oran {k['odds']}, tutma %{round(100 * k['p'])})" for k in sur))
+        return {"date": got[0]["date"], "list": got, "surprise": sur}
     nearest = nearest or {"date": today.strftime("%Y-%m-%d"), "list": []}
     nearest["diag"] = _coupon_diag(out_rows, today)
     return nearest
+
+
+def _surprise_for_day(day, items, normal):
+    """O günün sürpriz kuponları. Önce normal kuponlarda kullanılmayan maçlardan aranır; yeterli çıkmazsa tüm maçlardan
+    (iki sürpriz kupon yine birbirinden farklı maçlardan oluşur)."""
+    def key(t):
+        r = t[1]
+        return (str(r["Date"])[:10], str(r["HomeTeam"]).strip().lower(), str(r["AwayTeam"]).strip().lower())
+    used = {(k["date"], str(l["home"]).strip().lower(), str(l["away"]).strip().lower())
+            for k in normal if k["date"] == day.strftime("%Y-%m-%d") for l in k["legs"]}
+    try:
+        res = _coupons_for_day(day, items, N_SURPRISE, mode="surprise", exclude=used)["list"]
+        if len(res) < N_SURPRISE:
+            res2 = _coupons_for_day(day, items, N_SURPRISE, mode="surprise")["list"]
+            if len(res2) > len(res):
+                res = res2
+        return res
+    except Exception as e:  # noqa: BLE001  sürpriz kupon ana kuponları bozmasın
+        print(f"  ! sürpriz kupon atlandı: {e}")
+        return []
 
 
 def _coupon_diag(out_rows, today):
@@ -1209,7 +1234,7 @@ def _why(r, p, meta, lab, pr):
     return out
 
 
-def _coupons_for_day(day, items, limit=None, fam_use=None):
+def _coupons_for_day(day, items, limit=None, fam_use=None, mode="normal", exclude=None):
     """Her kupon farklı maçlardan oluşur: bir kupon seçilince o maçlar havuzdan çıkar."""
     fam_use = fam_use if fam_use is not None else {}
 
@@ -1220,12 +1245,12 @@ def _coupons_for_day(day, items, limit=None, fam_use=None):
 
     chosen, pool, seen = [], [], set()
     for t in items:                   # aynı maç iki satır olarak gelmişse biri atılır
-        if key(t) not in seen:
+        if key(t) not in seen and not (exclude and key(t) in exclude):
             seen.add(key(t))
             pool.append(t)
     used_all = set()
     while len(chosen) < (limit or N_COUPONS) and len(pool) >= COUPON_LEGS:
-        best = _best_combo(pool, fam_use=fam_use)
+        best = _best_surprise(pool) if mode == "surprise" else _best_combo(pool, fam_use=fam_use)
         if best is None:
             break
         sc, od, combo, pick = best[:4]
@@ -1251,8 +1276,41 @@ def _coupons_for_day(day, items, limit=None, fam_use=None):
                          "why": _why(r, c[3], m, x[0], x[1]) if len(c) > 3 else []})
         legs.sort(key=lambda l: l["time"])
         chosen.append({"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"),
-                       "p": round(pr, 4), "ev": round(pr * od, 2), "score": round(sc, 3)})
+                       "p": round(pr, 4), "ev": round(pr * od, 2), "score": round(sc, 3),
+                       **({"surprise": True} if mode == "surprise" else {})})
     return {"date": day.strftime("%Y-%m-%d"), "list": chosen}
+
+
+def _best_surprise(items, pool_size=30):
+    """Sürpriz kupon: toplam oranı SURPRISE_MIN_ODDS ve üzeri olan kuponlar arasında, TUTMA OLASILIĞI en yüksek olan.
+    Adaylar normal kuponlarla aynı havuzdan gelir (yeşil, ligin sıradan maçından en az MIN_EDGE yukarıda, Nesine'de açık).
+    Normal kuponun tersine burada oran önemli: modelin yüksek olasılık verdiği ama bahis sitesinin daha yüksek oran
+    verdiği seçenekler aranır. Avrupa kupası önceliği ve çeşitlilik cezası yoktur."""
+    cands = []
+    for t in items:
+        legs = t[2]
+        opts, best_p = [], -1.0
+        for x in sorted(legs, key=lambda x: -x[2]):          # orana göre azalan; olasılığı artmayan seçenekler elenir
+            if x[1] > best_p + 1e-12:
+                opts.append(x)
+                best_p = x[1]
+        if opts:
+            cands.append((t, opts[:5]))
+    cands.sort(key=lambda c: -max(x[1] * x[2] for x in c[1]))
+    cands = cands[:pool_size]
+    best = None
+    maxo = [max(x[2] for x in c[1]) for c in cands]
+    for i, j, k in itertools.combinations(range(len(cands)), 3):
+        if maxo[i] * maxo[j] * maxo[k] < SURPRISE_MIN_ODDS:
+            continue
+        for pick in itertools.product(cands[i][1], cands[j][1], cands[k][1]):
+            od = pick[0][2] * pick[1][2] * pick[2][2]
+            if od < SURPRISE_MIN_ODDS:
+                continue
+            pr = pick[0][1] * pick[1][1] * pick[2][1]
+            if best is None or pr > best[0]:
+                best = (pr, od, (cands[i][0], cands[j][0], cands[k][0]), pick, 0)
+    return best
 
 
 # --------------------------------------------------------------------------
@@ -1274,9 +1332,9 @@ def save_coupons(coupons, keep_days=120):
         return
     log = _load_log()
     by_day = {}
-    for k in coupons["list"]:             # her kupon kendi maç gününün altına kaydedilir
+    for k in coupons["list"] + (coupons.get("surprise") or []):   # her kupon kendi maç gününün altına kaydedilir
         by_day.setdefault(k.get("date") or coupons["date"], []).append(
-            {"odds": k["odds"], "p": k["p"],
+            {"odds": k["odds"], "p": k["p"], **({"surprise": True} if k.get("surprise") else {}),
              "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid", "mk", "mtid", "line", "idx", "fam", "base", "edge", "why")
                               if x in l}
                       for l in k["legs"]]})
@@ -1347,7 +1405,7 @@ def _grade_day(day, entry, idx, byid=None):
             bad |= ok is False
             pend |= ok is None
             legs.append({**l, "score": None if res is None else f"{res[0]}-{res[1]}", "ok": ok})
-        out.append({"odds": k["odds"], "p": k["p"], "legs": legs,
+        out.append({"odds": k["odds"], "p": k["p"], "legs": legs, "surprise": bool(k.get("surprise")),
                     "status": "lost" if bad else ("pending" if pend else "won")})
     return out
 
@@ -1734,9 +1792,18 @@ def performance(hist, days=120, step=7):
             by_day.setdefault(x["r"]["Date"].normalize(), []).append((k, x["r"], legs))
     n_cp = hits = 0
     ret, exp_p, odds_l = 0.0, [], []
+    s_n = s_hit = 0
+    s_ret, s_exp, s_odds = 0.0, [], []
     for day, items in by_day.items():
         if len(items) < COUPON_LEGS:
             continue
+        for cp in _coupons_for_day(day, items, mode="surprise", limit=N_SURPRISE)["list"]:
+            s_n += 1
+            s_exp.append(cp["p"])
+            s_odds.append(cp["odds"])
+            if all(_leg_hit(recs[l["id"]]["r"], l["sel"]) for l in cp["legs"]):
+                s_hit += 1
+                s_ret += cp["odds"]
         for cp in _coupons_for_day(day, items)["list"]:
             n_cp += 1
             exp_p.append(cp["p"])
@@ -1747,6 +1814,8 @@ def performance(hist, days=120, step=7):
     perf["coupons"] = ({"n": n_cp, "hit": hits, "exp": float(np.mean(exp_p)),
                         "avg_odds": float(np.mean(odds_l)), "roi": (ret - n_cp) / n_cp}
                        if n_cp else {"n": 0})
+    perf["surprise"] = ({"n": s_n, "hit": s_hit, "exp": float(np.mean(s_exp)), "avg_odds": float(np.mean(s_odds)),
+                         "roi": (s_ret - s_n) / s_n} if s_n else {"n": 0})
     return perf
 
 
@@ -1877,7 +1946,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
     return {"generated_iso": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
             "generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
-            "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS,
+            "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS, "surprise_min_odds": SURPRISE_MIN_ODDS,
             "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
             "coupons": build_coupons(out_rows), "yesterday": yday, "performance": perf}
 
