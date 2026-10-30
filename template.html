@@ -93,6 +93,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .cn{margin:0 0 12px;color:var(--mut);font-size:14px;max-width:76ch}
 .cps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 .cp{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.cp.sur h3{background:#5b2a86}
 .cp h3{margin:0;padding:8px 12px;background:var(--navy);color:#fff;font-size:14px}
 .cp ul{list-style:none;margin:0;padding:0}
 .lgr{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:0 6px;align-items:center;
@@ -283,7 +284,7 @@ function renderAbout(){ $('#about').innerHTML = '<h2>Nasıl çalışır?</h2>'+[
  ['Tahminler nasıl hesaplanıyor?', `<p>Model, takımların son yıllardaki maç sonuçlarından (yakın maçlar daha ağırlıklı) hücum ve savunma gücünü, ev sahibi avantajını ve ligin gol ortalamasını hesaplar; bundan her skorun olasılığını çıkarır. Maç sonucu, çifte şans, Alt/Üst, karşılıklı gol, ilk yarı, toplam gol, takım golleri, handikap ve kombine bahisler bu skor olasılıklarından türetilir. Geçmiş maç sonuçları football-data.co.uk'tan alınır.</p>
    <p>Kendi geçmişi olmayan maçlarda (ör. farklı liglerin takımlarının oynadığı Avrupa kupaları) olasılığın bir kısmı ya da tamamı Nesine oranlarından türetilir; bu maçlar kartında "model + piyasa" ya da "piyasa olasılığı" diye işaretlenir.</p>`],
  ['Renkler ne anlama geliyor?', `<p><b>Yeşil:</b> model o seçeneğin %${G} ve üzeri olasılıkla gerçekleştiğini düşünüyor. <b>Turuncu:</b> %${O} ile %${G} arası, riskli. <b>Kırmızı:</b> %${O} altı. Renk yalnızca modelin kendi olasılığına bağlıdır, oranın düşük ya da yüksek olması rengi değiştirmez. Model ile bahis sitesi çok farklı düşünebilir; bahis sitesi sakatlık ve kadro haberlerini bilir, model bilmez.</p>`],
- ['Günlük kuponlar nasıl seçiliyor?', `<p>Seçimi oran değil modelin analizi belirler: Nesine'nin açtığı bütün bahis türleri için modelin olasılığı, o ligin sıradan bir maçındaki olasılıkla kıyaslanır; model en çok "fazla bilgi" gördüğü seçenekleri öne çıkarır. Oran yalnızca kurallar içindir: ${LEGS} maç, toplam oran en az ${fo(MIN_ODDS)}, tek seçenekte oran en az 1,20, her seçenek yeşil, Alt seçimi yok, bir maç yalnızca bir kuponda. Avrupa kupaları öne alınır. Hepsi tutmadan kupon tutmaz; bu yüzden kuponların tutma olasılığı düşüktür ve kupon oynamak uzun vadede genellikle kaybettirir.</p>`],
+ ['Günlük kuponlar nasıl seçiliyor?', `<p>Seçimi oran değil modelin analizi belirler: Nesine'nin açtığı bütün bahis türleri için modelin olasılığı, o ligin sıradan bir maçındaki olasılıkla kıyaslanır; model en çok "fazla bilgi" gördüğü seçenekleri öne çıkarır. Oran yalnızca kurallar içindir: ${LEGS} maç, toplam oran en az ${fo(MIN_ODDS)}, tek seçenekte oran en az 1,20, her seçenek yeşil, Alt seçimi yok, bir maç yalnızca bir kuponda. Avrupa kupaları öne alınır. Her gün ayrıca 2 sürpriz kupon çıkar: toplam oranı en az 6 olan kuponlar arasında modelin en yüksek tutma olasılığı verdiği seçimler. Hepsi tutmadan kupon tutmaz; bu yüzden kuponların tutma olasılığı düşüktür ve kupon oynamak uzun vadede genellikle kaybettirir.</p>`],
  ['Model ne kadar güvenilir?', `<p>"Model ne kadar tutuyor?" bölümü modeli geçmişte, her maçı yalnızca o günden önceki sonuçlarla tahmin ettirerek sınıyor ve bahis türlerine göre tablo veriyor. Geçmişteki başarı geleceği garanti etmez. Model aşırı güvenli olduğu bir bahis türünü kuponlara almaz.</p>`],
  ['Modelin bilmedikleri', `<p>Sakatlık, ceza, kadro, rotasyon, motivasyon, hava, hakem ve son dakika haberlerini bilmez. İlk yarı skoru bazı maçlarda yaklaşık hesaplanır. Veri azsa ya da takım adı eşleşmezse maç "modelsiz" kalır.</p>`],
  ['Dünün kuponları neden bazen "bekleniyor"?', `<p>Sonuçlar Nesine'nin canlı skor verisinden alınır; maç bitmemişse, ertelenmişse ya da sonuç verisi henüz gelmemişse bacak "bekleniyor" görünür. Ertelenen ya da yarım kalan maçlar tutmuş ya da tutmamış sayılmaz.</p>`],
@@ -439,6 +440,7 @@ function renderCoupons(){
       (D.odds_source==='nesine' && c && c.max_odds ? ' Nesine oranlarındaki bahisçi payı yüzünden güvenilir seçeneklerin oranları düşük kalıyor.' : '')+'</div>'+marginNote();
     return;
   }
+  const SUR = c.surprise || [], ALL = c.list.concat(SUR), SUR_MIN = D.surprise_min_odds || 6;
   const notToday = new Date(c.date+'T12:00:00').toDateString() !== new Date().toDateString();
   el.innerHTML = `<h2>Günün kuponları</h2>`+
     `<p class="cn">${esc(fmtLong(c.date))} maçlarından, toplam oranı en az ${fo(MIN_ODDS)} olan kuponlar. `+
@@ -448,8 +450,8 @@ function renderCoupons(){
     `Her kuponda ${LEGS} maç var ve hepsi tutmalı. Her kupon farklı maçlardan oluşur, bir maç yalnızca bir kuponda yer alır. `+
     (c.list.length<N_CP ? `Yeterli güvenilir maç olmadığı için ${c.list.length} kupon çıktı, boşluğu riskli maçlarla doldurmadım. ` : '')+
     `Seçenekleri oran değil botun analizi belirler: Nesine'nin açtığı bütün bahis türleri (ilk yarı, toplam gol, takım golleri, handikap, kombine vb.) için modelin olasılığı, o ligin sıradan bir maçındaki olasılığıyla kıyaslanır ve modelin en çok "fazla bilgi" gördüğü seçenekler öne geçer. Oran yalnızca kupon kuralları için süzgeçtir. Her seçeneğin altındaki "Neden bu seçenek?" gerekçeyi gösterir.</p>`+
-    `<div class="cps">`+ c.list.map((k,i)=>
-      `<article class="cp" data-p="${k.p}"><h3>Kupon ${i+1}${k.date&&k.date!==c.date?` <small>· ${esc(fmtLong(k.date))}</small>`:''}</h3><ul>`+
+    `<div class="cps">`+ ALL.map((k,i)=>
+      `<article class="cp${k.surprise?' sur':''}" data-p="${k.p}" data-min="${k.surprise?SUR_MIN:MIN_ODDS}"><h3>${k.surprise?`Sürpriz ${i-c.list.length+1}`:`Kupon ${i+1}`}${k.date&&k.date!==c.date?` <small>· ${esc(fmtLong(k.date))}</small>`:''}</h3><ul>`+
       k.legs.map(l=>{
         const ov = parseOdds(LS.get(okey({date:k.date||c.date},l))), cur = ov || l.o;
         return `<li class="lgr"><button class="lgb" data-id="${l.id}" title="Maç panelini aç">`+
@@ -465,10 +467,11 @@ function renderCoupons(){
       `<div><dt>Toplam oran</dt><dd class="to">${k.odds.toFixed(2)}</dd></div>`+
       `<div><dt>Tutma olasılığı</dt><dd>%${(k.p*100).toFixed(k.p<0.1?1:0)}</dd></div>`+
       `<div><dt>Beklenen değer</dt><dd class="te">${k.ev.toFixed(2)}</dd></div></dl>`+
-      `<p class="cw" hidden>Bu oranlarla toplam oran ${fo(MIN_ODDS)}'in altında kaldı.</p>`+
+      `<p class="cw" hidden>Bu oranlarla toplam oran ${fo(k.surprise?SUR_MIN:MIN_ODDS)}'in altında kaldı.</p>`+
       `<button class="rst" hidden>Bot oranlarına dön</button>`+
       `<button class="cpy" type="button" data-i="${i}" aria-live="polite">Kuponu kopyala</button></article>`).join('')+
     `</div>`+
+    (SUR.length ? `<p class="cnote"><b>Sürpriz kuponlar:</b> toplam oranı en az ${fo(SUR_MIN)} olan kuponlar arasında modelin tutma olasılığını en yüksek bulduğu seçimler (bahis sitesinin modelden daha yüksek oran verdiği seçenekler aranır). Yine her seçenek yeşildir, ama oran yüksek olduğu için tutma olasılığı normal kuponlardan düşüktür ve çoğu gün tutmaz. Normal kuponların maçlarından ayrı maçlar tercih edilir, yeterli maç yoksa aynı maçlar tekrar kullanılabilir. Model ile bahis sitesi arasındaki fark, modelin yanılıyor olmasından da kaynaklanabilir; bu kuponlara küçük miktarlarla bile güvenme.</p>` : '')+
     `<p class="cnote">`+(D.odds_source==='nesine'
       ? `Kuponlardaki oranlar Nesine bülteninden alındı (${esc(nesTime())}). Bahis oynamadan önce sitede oranın değişmediğini kontrol et. `+
         `Farklı bir oran görürsen kutuya yaz, toplam oran ve beklenen değer buna göre güncellenir. Yazdıkların sadece bu tarayıcıda saklanır. `+
@@ -491,7 +494,7 @@ function renderYesterday(){
   el.innerHTML = '<h2>Dünün kuponları</h2>'+
     `<p class="yn">${esc(fmtLong(y.date))} için önerilen kuponlar ve gerçekleşen sonuçlar.</p>`+
     y.list.map((k,i)=>
-      `<article class="yc ${k.status}"><h3><span>Kupon ${i+1}</span><span>${W[k.status]} · ${k.odds.toFixed(2)}</span></h3><ul>`+
+      `<article class="yc ${k.status}"><h3><span>${k.surprise?'Sürpriz':'Kupon'} ${i+1}</span><span>${W[k.status]} · ${k.odds.toFixed(2)}</span></h3><ul>`+
       k.legs.map(l=>
         `<li><span class="yk ${l.ok===true?'y':l.ok===false?'n':'u'}" title="${l.ok===true?'Tuttu':l.ok===false?'Tutmadı':'Sonuç yok'}">${l.ok===true?'✓':l.ok===false?'✗':'?'}</span>`+
         `<span class="ym"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.league||'')}</span></span>`+
@@ -544,7 +547,7 @@ function recalc(art){
   });
   art.querySelector('.to').textContent = od.toFixed(2);
   art.querySelector('.te').textContent = (+art.dataset.p * od).toFixed(2);
-  art.querySelector('.cw').hidden = od >= MIN_ODDS - 1e-9;
+  art.querySelector('.cw').hidden = od >= (+art.dataset.min || MIN_ODDS) - 1e-9;
   art.querySelector('.rst').hidden = !edited;
 }
 
@@ -585,6 +588,10 @@ function renderPerf(){
     cards.push(['Geçmiş kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}.${few}`]);
     cards.push(['Kuponların getirisi', (c.roi>=0?'+':'')+p1(c.roi)+'%', 'Her kupona 1 birim yatırsaydın.'+few]);
   }
+  if(P.surprise && P.surprise.n){
+    const c = P.surprise;
+    cards.push(['Geçmiş sürpriz kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}, getiri ${(c.roi>=0?'+':'')+p1(c.roi)}%.${c.n < 30 ? ' Örnek çok az, bu rakama güvenme.' : ''}`]);
+  }
   const rows = (P.cal||[]).map(c=>
     `<tr><td><span class="t-${c.t}">${esc(c.label)}</span></td><td>${c.n}</td><td>%${p1(c.p)}</td><td>%${p1(c.hit)}</td>`+
     `<td><div class="bar" aria-hidden="true"><i style="width:${Math.min(100,c.hit*100)}%"></i><b style="left:${Math.min(100,c.p*100)}%"></b></div></td></tr>`).join('');
@@ -623,9 +630,9 @@ $('#coupons').addEventListener('change', e=>{
 $('#coupons').addEventListener('click', e=>{
   const cp = e.target.closest('.cpy');
   if(cp){
-    const k = D.coupons.list[+cp.dataset.i], art = cp.closest('.cp');
+    const k = D.coupons.list.concat(D.coupons.surprise||[])[+cp.dataset.i], art = cp.closest('.cp');
     const od = [...art.querySelectorAll('.oi')].map(i=>parseOdds(i.value) || +i.dataset.bot);
-    const txt = `Gol Radar kupon ${+cp.dataset.i+1} (${k.date||D.coupons.date})\n`+
+    const txt = `Gol Radar ${k.surprise?'sürpriz kupon':'kupon'} ${k.surprise ? +cp.dataset.i+1-D.coupons.list.length : +cp.dataset.i+1} (${k.date||D.coupons.date})\n`+
       k.legs.map((l,j)=>`${l.time} ${l.home} - ${l.away} (${l.league||''}): ${l.mk?l.mk+' ':''}${l.sel} @${od[j].toFixed(2)}`).join('\n')+
       `\nToplam oran ${od.reduce((a,b)=>a*b,1).toFixed(2)}. Model tahminidir, kazanç garantisi yoktur.`;
     const done = ok => { cp.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı, metni elle seç'; setTimeout(()=>{cp.textContent='Kuponu kopyala';}, 2200); };
