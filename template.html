@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gol Radar</title>
+<title>Gol Radar: istatistik modelinin maç tahminleri</title>
+<meta name="description" content="Nesine bülteninin tüm maçları için istatistik modeliyle olasılık hesabı, günlük kupon önerileri ve modelin geçmiş başarısı. Bahis sitesi değildir, kazanç garantisi vermez.">
+<meta name="theme-color" content="#0e2339">
+<meta property="og:title" content="Gol Radar: istatistik modelinin maç tahminleri">
+<meta property="og:description" content="Her maç için modelin olasılığı, günlük 4 kupon önerisi ve modelin geçmişte ne kadar tuttuğu. Bahis sitesi değildir.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e2339'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2316864a' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%2316864a'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#edf0f4; --card:#fff; --ink:#13202f; --mut:#586878; --line:#d8dfe7;
@@ -159,6 +165,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .pc dt{font-size:12.5px;color:var(--mut)}
 .pc dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
 .pc small{display:block;font-size:12.5px;color:var(--mut);font-weight:400;margin-top:2px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .cal{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
   border-radius:8px;overflow:hidden;font-size:14px;font-variant-numeric:tabular-nums}
 .cal th,.cal td{padding:7px 10px;text-align:left;border-top:1px solid var(--line)}
@@ -170,7 +177,29 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .pn{color:var(--mut);font-size:12.5px;margin:8px 0 0;max-width:80ch}
 .empty{background:#fff;border:1px dashed var(--line);border-radius:6px;padding:28px 16px;
   text-align:center;color:var(--mut)}
-.foot{padding:22px 0 44px;color:var(--mut);font-size:13px;max-width:72ch}
+nav.nv{display:flex;gap:4px 16px;flex-wrap:wrap;margin-left:auto;font-size:14px}
+nav.nv a{color:#c9d8e8;text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;outline:none}
+.legal{background:#fff8e1;border-bottom:1px solid #ecd9a0;color:#4a3a00;font-size:13px;padding:7px 0}
+.legal b{font-weight:700}
+.stale{background:#fdecec;border-bottom:1px solid #f1c4c6;color:#7a1f24;font-size:14px;padding:9px 0}
+.cpy{display:block;width:100%;border:0;border-top:1px solid var(--line);background:#fff;padding:8px 12px;font:inherit;
+  font-size:13px;color:#1f4f9c;cursor:pointer;text-align:left}
+.cpy:hover{text-decoration:underline}
+.cpy:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px}
+#about{margin:34px 0 8px}
+#about h2{font-size:18px;margin:0 0 10px}
+#about details{background:#fff;border:1px solid var(--line);border-radius:8px;margin:0 0 8px}
+#about summary{cursor:pointer;padding:11px 14px;font-weight:600}
+#about summary:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px;border-radius:8px}
+#about details>div{padding:0 14px 12px;color:#2c3a49;max-width:80ch}
+#about details p{margin:0 0 8px}
+.sitefoot{background:var(--navy);color:#b9c8d8;padding:22px 0 30px;margin-top:30px;font-size:13px}
+.sitefoot b{color:#fff}
+.sitefoot a{color:#cfe0f2}
+.sitefoot p{margin:0 0 8px;max-width:90ch}
+.foot{padding:22px 0 12px;color:var(--mut);font-size:13px;max-width:72ch}
+@media (max-width:560px){ nav.nv{margin-left:0;width:100%} #gen{margin-left:0;width:100%} }
 
 @media (max-width:760px){
   .cols{grid-template-columns:44px minmax(0,1fr) repeat(3,50px) 30px}
@@ -184,8 +213,12 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 <header class="top"><div class="wrap">
   <h1>Gol Radar</h1>
   <p class="sub">İstatistik modelinin maç tahminleri</p>
+  <nav class="nv" aria-label="Bölümler"><a href="#coupons">Kuponlar</a><a href="#list">Maçlar</a><a href="#perf">Başarı</a><a href="#about">Nasıl çalışır?</a></nav>
   <span id="gen"></span>
 </div></header>
+<div class="legal"><div class="wrap"><b>+18.</b> Gol Radar bir bahis sitesi değildir, bahis oynatmaz ve kupon satmaz. Gösterilenler bir istatistik modelinin tahminidir, <b>kazanç garantisi ve yatırım tavsiyesi değildir</b>. Nesine ile bir bağlantısı yoktur. Maç listesi ve oranlar Nesine'nin herkese açık bülteninden okunur.</div></div>
+<div id="stale" class="stale" role="status" hidden><div class="wrap"></div></div>
+<noscript><div class="stale"><div class="wrap">Bu sayfanın çalışması için JavaScript gerekir.</div></div></noscript>
 <div id="demo" class="demo" hidden><div class="wrap"><b>Örnek veri.</b> Takımlar ve oranlar kurgusaldır, gerçek bir maça ait değildir. Gerçek sayfa için <code>python bot.py site</code> çalıştır.</div></div>
 
 <main class="wrap">
@@ -203,8 +236,15 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   <div class="legend" id="legend"></div>
   <div id="list"></div>
   <section id="perf" aria-label="Model ne kadar tutuyor"></section>
+  <section id="about" aria-label="Nasıl çalışır"></section>
   <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Maç listesi ve oranlar yalnızca Nesine bülteninden okunur (yurtdışı oran/maç kaynağı kullanılmaz); model, geçmiş maç sonuçlarındaki takım gücünden hesaplanır. Hiçbir tahmin kazanç garantisi vermez.  "—" Nesine'nin o seçenek için oran açmadığı anlamına gelir; yüzde ise modelin olasılığıdır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
 </main>
+<footer class="sitefoot"><div class="wrap">
+  <p><b>Sorumlu oyun.</b> Bahis bağımlılık yapabilir. Oynuyorsan yalnızca yasal ve lisanslı operatörleri kullan, kaybetmeyi göze alabileceğinden fazlasını yatırma, kaybı telafi etmek için oynama. Kontrolü kaybettiğini hissedersen Yeşilay Danışmanlık Merkezi'ni (YEDAM) <b>115</b>'ten arayabilirsin, hizmet ücretsizdir. 18 yaşından küçükler için bu içerik uygun değildir.</p>
+  <p><b>Gizlilik.</b> Bu sayfa çerez kullanmaz, kullanıcı takibi ya da analiz aracı içermez, hiçbir bilgiyi sunucuya göndermez. Kupon kutularına yazdığın oranlar yalnızca senin tarayıcında saklanır.</p>
+  <p><b>Sorumluluk reddi.</b> Tahminler geçmiş sonuçlardan hesaplanan olasılıklardır; sakatlık, ceza, kadro, hava ve haber bilgisi içermez. Bilgiler hatalı ya da eksik olabilir, oranlar Nesine'de sonradan değişebilir. Bu sayfayı kullanarak yaptığın işlemlerden sen sorumlusun. Gol Radar, Nesine veya başka bir kuruluşla bağlantılı değildir; adı geçen markalar sahiplerine aittir.</p>
+  <p>Hata ya da öneri için: <a href="https://github.com/lcyk94/gol-radar/issues" rel="noopener">GitHub sayfası</a>.</p>
+</div></footer>
 
 <script>
 (function(){
@@ -228,9 +268,31 @@ const okey = (c,l) => `ov|${c.date}|${l.home}|${l.away}|${l.sel}`;
 const parseOdds = v => { const x = parseFloat(String(v).replace(',','.')); return isFinite(x) && x > 1 ? x : null; };
 
 $('#gen').textContent = 'Güncelleme: ' + D.generated;
+(function(){
+  try{
+    const t = Date.parse(D.generated_iso || ''); if(!isFinite(t) || D.demo) return;
+    const h = (Date.now()-t)/36e5;
+    if(h > 14){
+      const el = $('#stale'); el.hidden = false;
+      el.firstElementChild.textContent = `Bu sayfa ${h>=48 ? Math.floor(h/24)+' gündür' : Math.floor(h)+' saattir'} güncellenmedi. Günlük güncelleme çalışmamış olabilir; oranlar ve kuponlar eski. Bahis oynamadan önce güncel oranı Nesine'de kontrol et.`;
+    }
+  }catch(e){}
+})();
+function renderAbout(){ $('#about').innerHTML = '<h2>Nasıl çalışır?</h2>'+[
+ ['Gol Radar nedir?', `<p>Nesine bülteninde açık olan maçlar için bir istatistik modelinin hesapladığı olasılıkları ve günlük kupon önerilerini gösteren bir sayfadır. Bahis oynatmaz, para almaz, kupon satmaz. Her gün otomatik güncellenir.</p>`],
+ ['Tahminler nasıl hesaplanıyor?', `<p>Model, takımların son yıllardaki maç sonuçlarından (yakın maçlar daha ağırlıklı) hücum ve savunma gücünü, ev sahibi avantajını ve ligin gol ortalamasını hesaplar; bundan her skorun olasılığını çıkarır. Maç sonucu, çifte şans, Alt/Üst, karşılıklı gol, ilk yarı, toplam gol, takım golleri, handikap ve kombine bahisler bu skor olasılıklarından türetilir. Geçmiş maç sonuçları football-data.co.uk'tan alınır.</p>
+   <p>Kendi geçmişi olmayan maçlarda (ör. farklı liglerin takımlarının oynadığı Avrupa kupaları) olasılığın bir kısmı ya da tamamı Nesine oranlarından türetilir; bu maçlar kartında "model + piyasa" ya da "piyasa olasılığı" diye işaretlenir.</p>`],
+ ['Renkler ne anlama geliyor?', `<p><b>Yeşil:</b> model o seçeneğin %${G} ve üzeri olasılıkla gerçekleştiğini düşünüyor. <b>Turuncu:</b> %${O} ile %${G} arası, riskli. <b>Kırmızı:</b> %${O} altı. Renk yalnızca modelin kendi olasılığına bağlıdır, oranın düşük ya da yüksek olması rengi değiştirmez. Model ile bahis sitesi çok farklı düşünebilir; bahis sitesi sakatlık ve kadro haberlerini bilir, model bilmez.</p>`],
+ ['Günlük kuponlar nasıl seçiliyor?', `<p>Seçimi oran değil modelin analizi belirler: Nesine'nin açtığı bütün bahis türleri için modelin olasılığı, o ligin sıradan bir maçındaki olasılıkla kıyaslanır; model en çok "fazla bilgi" gördüğü seçenekleri öne çıkarır. Oran yalnızca kurallar içindir: ${LEGS} maç, toplam oran en az ${fo(MIN_ODDS)}, tek seçenekte oran en az 1,20, her seçenek yeşil, Alt seçimi yok, bir maç yalnızca bir kuponda. Avrupa kupaları öne alınır. Hepsi tutmadan kupon tutmaz; bu yüzden kuponların tutma olasılığı düşüktür ve kupon oynamak uzun vadede genellikle kaybettirir.</p>`],
+ ['Model ne kadar güvenilir?', `<p>"Model ne kadar tutuyor?" bölümü modeli geçmişte, her maçı yalnızca o günden önceki sonuçlarla tahmin ettirerek sınıyor ve bahis türlerine göre tablo veriyor. Geçmişteki başarı geleceği garanti etmez. Model aşırı güvenli olduğu bir bahis türünü kuponlara almaz.</p>`],
+ ['Modelin bilmedikleri', `<p>Sakatlık, ceza, kadro, rotasyon, motivasyon, hava, hakem ve son dakika haberlerini bilmez. İlk yarı skoru bazı maçlarda yaklaşık hesaplanır. Veri azsa ya da takım adı eşleşmezse maç "modelsiz" kalır.</p>`],
+ ['Dünün kuponları neden bazen "bekleniyor"?', `<p>Sonuçlar Nesine'nin canlı skor verisinden alınır; maç bitmemişse, ertelenmişse ya da sonuç verisi henüz gelmemişse bacak "bekleniyor" görünür. Ertelenen ya da yarım kalan maçlar tutmuş ya da tutmamış sayılmaz.</p>`],
+ ['Kişisel veri', `<p>Sayfa hiçbir kişisel veri toplamaz. Kupon kutularına yazdığın oranlar yalnızca senin tarayıcında (yerel depolama) saklanır; silmek için tarayıcı verilerini temizlemen yeterli.</p>`]
+].map(x=>`<details><summary>${esc(x[0])}</summary><div>${x[1]}</div></details>`).join(''); }
 if(D.demo) $('#demo').hidden = false;
 
 const G = pct(D.green), O = pct(D.orange);
+renderAbout();
 $('#legend').innerHTML =
   `<span><i class="sw t-g"></i>Önerilen: model %${G} ve üzeri görüyor</span>`+
   `<span><i class="sw t-o"></i>Riskli: %${O} ile %${G} arası</span>`+
@@ -404,7 +466,8 @@ function renderCoupons(){
       `<div><dt>Tutma olasılığı</dt><dd>%${(k.p*100).toFixed(k.p<0.1?1:0)}</dd></div>`+
       `<div><dt>Beklenen değer</dt><dd class="te">${k.ev.toFixed(2)}</dd></div></dl>`+
       `<p class="cw" hidden>Bu oranlarla toplam oran ${fo(MIN_ODDS)}'in altında kaldı.</p>`+
-      `<button class="rst" hidden>Bot oranlarına dön</button></article>`).join('')+
+      `<button class="rst" hidden>Bot oranlarına dön</button>`+
+      `<button class="cpy" type="button" data-i="${i}" aria-live="polite">Kuponu kopyala</button></article>`).join('')+
     `</div>`+
     `<p class="cnote">`+(D.odds_source==='nesine'
       ? `Kuponlardaki oranlar Nesine bülteninden alındı (${esc(nesTime())}). Bahis oynamadan önce sitede oranın değişmediğini kontrol et. `+
@@ -491,7 +554,7 @@ function famTable(P){
   const FN = {'YARI':'Yarı bazlı (hangi yarı, iki yarı)','TAKIM':'Takım golü','TG':'Toplam gol','AÜ':'Alt/Üst','HMS':'Handikaplı MS','İY':'İlk yarı sonucu','İY ÇŞ':'İlk yarı çifte şans','İY AÜ':'İlk yarı Alt/Üst','İY TG':'İlk yarı gol sayısı','İY/MS':'İlk yarı / maç sonucu','İY MS&KG':'İlk yarı sonucu & KG','2Y':'İkinci yarı sonucu','2Y ÇŞ':'İkinci yarı çifte şans','MS&AÜ':'MS & Alt/Üst','MS&KG':'MS & KG'};
   const rows = F.map(f=>`<tr><td>${esc(FN[f.fam]||f.fam)}</td><td>${f.n}</td><td>%${p1(f.p)}</td><td>%${p1(f.hit)}</td><td>${f.ok?'kuponlara girebilir':(f.n<40?'veri az, girmez':'model aşırı güvenli, girmez')}</td></tr>`).join('');
   return '<h3 class="fh">Bahis türüne göre sınav</h3>'+
-    '<table class="cal cal2"><thead><tr><th>Bahis türü</th><th>Yeşil seçenek</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Kupon kapısı</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    '<table class="cal cal2"><thead><tr><th>Bahis türü</th><th>Yeşil seçenek</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Kupon kapısı</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
     '<p class="pn">Bir bahis türü, geçmişte yeşil dediği seçeneklerde tutma oranı modelin verdiği olasılığın en fazla 5 puan altında kalırsa kuponlara girer. Yarı skoru gerektiren bahisler (ilk yarı, İY/MS vb.) football-data\'daki yarı skorlarıyla ölçülür.</p>';
 }
 
@@ -528,7 +591,7 @@ function renderPerf(){
   el.innerHTML = '<h2>Model ne kadar tutuyor?</h2>'+
     `<p class="pv">${esc(P.from)} ile ${esc(P.to)} arasındaki ${P.matches} maç, model her maçı sadece o günden önceki sonuçlarla tahmin edecek şekilde geriye dönük sınandı. ${esc(verdict)}</p>`+
     '<dl class="pcs">'+cards.map(c=>`<div class="pc"><dt>${esc(c[0])}</dt><dd>${esc(c[1])}<small>${esc(c[2])}</small></dd></div>`).join('')+'</dl>'+
-    (rows ? '<table class="cal"><thead><tr><th>Modelin verdiği olasılık</th><th>Seçenek sayısı</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Fark</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+    (rows ? '<div class="tw"><table class="cal"><thead><tr><th>Modelin verdiği olasılık</th><th>Seçenek sayısı</th><th>Model ne dedi</th><th>Gerçekte tuttu</th><th>Fark</th></tr></thead><tbody>'+rows+'</tbody></table>'+
     '<p class="pn">Model güvenilirse "Model ne dedi" ile "Gerçekte tuttu" sütunları birbirine yakın olur. Kırmızı çizgi modelin dediği, mavi çubuk gerçekte tutan orandır. Yeşil satırda gerçek oran modelin altında kalıyorsa, yeşil seçeneklere olduğundan fazla güveniliyor demektir.</p>' : '')+
     famTable(P);
 }
@@ -558,6 +621,17 @@ $('#coupons').addEventListener('change', e=>{
   if(!parseOdds(i.value)){ i.value = (+i.dataset.bot).toFixed(2); LS.del(i.dataset.key); recalc(i.closest('.cp')); }
 });
 $('#coupons').addEventListener('click', e=>{
+  const cp = e.target.closest('.cpy');
+  if(cp){
+    const k = D.coupons.list[+cp.dataset.i], art = cp.closest('.cp');
+    const od = [...art.querySelectorAll('.oi')].map(i=>parseOdds(i.value) || +i.dataset.bot);
+    const txt = `Gol Radar kupon ${+cp.dataset.i+1} (${k.date||D.coupons.date})\n`+
+      k.legs.map((l,j)=>`${l.time} ${l.home} - ${l.away} (${l.league||''}): ${l.mk?l.mk+' ':''}${l.sel} @${od[j].toFixed(2)}`).join('\n')+
+      `\nToplam oran ${od.reduce((a,b)=>a*b,1).toFixed(2)}. Model tahminidir, kazanç garantisi yoktur.`;
+    const done = ok => { cp.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı, metni elle seç'; setTimeout(()=>{cp.textContent='Kuponu kopyala';}, 2200); };
+    try{ navigator.clipboard.writeText(txt).then(()=>done(true), ()=>done(false)); }catch(err){ done(false); }
+    return;
+  }
   const r = e.target.closest('.rst');
   if(r){
     const art = r.closest('.cp');
