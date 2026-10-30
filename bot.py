@@ -1874,7 +1874,8 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
             "ctx": ctxf(r["HomeTeam"], r["AwayTeam"]),
             "nm": nes_markets(nes, p, r.get("SRC"), r.get("Div")),
             "markets": build_markets(p, r)})
-    return {"generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
+    return {"generated_iso": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "generated": datetime.combine(today_tr(), datetime.min.time()).strftime("%d.%m.%Y") + " " + _now_tr().strftime("%H:%M"), "demo": demo,
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
             "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS,
             "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
