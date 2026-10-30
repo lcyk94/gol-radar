@@ -1637,7 +1637,7 @@
  "2026-10-30": {
   "list": [
    {
-    "odds": 3.17,
+    "odds": 3.25,
     "p": 0.2397,
     "legs": [
      {
@@ -1646,7 +1646,7 @@
       "away": "Csikszereda M. Ciuc",
       "league": "Romanya Liga 1",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.25,
+      "o": 1.24,
       "p": 0.616,
       "nid": 3253741,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
@@ -1669,7 +1669,7 @@
       "away": "Pau FC",
       "league": "Fransa Ligue 2",
       "sel": "Ev 1,5 Üst",
-      "o": 1.8,
+      "o": 1.86,
       "p": 0.612,
       "nid": 3252715,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -1712,7 +1712,7 @@
     ]
    },
    {
-    "odds": 3.63,
+    "odds": 3.57,
     "p": 0.2265,
     "legs": [
      {
@@ -1745,7 +1745,7 @@
       "away": "Livingston",
       "league": "İskoçya Championship",
       "sel": "KG Yok",
-      "o": 1.74,
+      "o": 1.71,
       "p": 0.629,
       "nid": 3255271,
       "mk": "Karşılıklı Gol",
@@ -1788,7 +1788,7 @@
     ]
    },
    {
-    "odds": 3.32,
+    "odds": 3.29,
     "p": 0.2046,
     "legs": [
      {
@@ -1797,7 +1797,7 @@
       "away": "Espanol",
       "league": "İspanya La Liga",
       "sel": "MS 1",
-      "o": 1.26,
+      "o": 1.25,
       "p": 0.633,
       "nid": 3258486,
       "mk": "Maç Sonucu",
@@ -1862,7 +1862,7 @@
     ]
    },
    {
-    "odds": 5.89,
+    "odds": 6.16,
     "p": 0.2476,
     "legs": [
      {
@@ -1871,7 +1871,7 @@
       "away": "Rennes",
       "league": "Fransa Ligue 1",
       "sel": "Dep bir yarıyı kazanır",
-      "o": 1.54,
+      "o": 1.57,
       "p": 0.598,
       "nid": 3254474,
       "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
@@ -1917,7 +1917,7 @@
       "away": "Cercle Brugge",
       "league": "Belçika Pro League",
       "sel": "Ev 1,5 Üst",
-      "o": 2.94,
+      "o": 3.02,
       "p": 0.564,
       "nid": 3254887,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -1937,7 +1937,7 @@
     ]
    },
    {
-    "odds": 6.15,
+    "odds": 6.56,
     "p": 0.2696,
     "surprise": true,
     "legs": [
@@ -1947,7 +1947,7 @@
       "away": "Cercle Brugge",
       "league": "Belçika Pro League",
       "sel": "Ev 1,5 Üst",
-      "o": 2.94,
+      "o": 3.02,
       "p": 0.564,
       "nid": 3254887,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -1970,7 +1970,7 @@
       "away": "Pau FC",
       "league": "Fransa Ligue 2",
       "sel": "2,5 Üst",
-      "o": 1.61,
+      "o": 1.67,
       "p": 0.652,
       "nid": 3252715,
       "mk": "Alt/Üst 2,5",
