@@ -10,6 +10,7 @@
 <meta property="og:description" content="Her maç için modelin olasılığı, günlük 4 kupon önerisi ve modelin geçmişte ne kadar tuttuğu. Bahis sitesi değildir.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e2339'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2316864a' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%2316864a'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('gr-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>
 :root{
   --bg:#edf0f4; --card:#fff; --ink:#13202f; --mut:#586878; --line:#d8dfe7;
@@ -18,7 +19,37 @@
   --o:#f2a33a; --ot:#2a1800;   /* riskli */
   --r:#c9474d; --rt:#fff;      /* önerilmez */
   --cell:56px;
+  --hov:#f4f8fc; --exp:#eef4fb; --link:#1f4f9c;
+  --wbg:#fff3cf; --wbd:#e8cf86; --wt:#4a3600;
+  --ebg:#fdecec; --ebd:#f1c4c6; --et:#7a1f24;
+  --npb:#e3e8ee; --npt:#44546a; --barb:#e6ebf1;
+  color-scheme:light;
 }
+:root[data-theme=dark]{
+  --bg:#0c1118; --card:#151d27; --ink:#e4ebf3; --mut:#9aabbd; --line:#2a3644;
+  --navy:#0a1624; --band:#1b2633; --soft:#111922;
+  --g:#1f9a58; --o:#e59a2f; --r:#d0555b;
+  --hov:#1b2735; --exp:#1d2b3b; --link:#7fb2ff;
+  --wbg:#2e2711; --wbd:#5b4c1c; --wt:#f0dca0;
+  --ebg:#33191b; --ebd:#6a2e32; --et:#f2b5b8;
+  --npb:#243040; --npt:#b6c4d4; --barb:#2a3644;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --bg:#0c1118; --card:#151d27; --ink:#e4ebf3; --mut:#9aabbd; --line:#2a3644;
+    --navy:#0a1624; --band:#1b2633; --soft:#111922;
+    --g:#1f9a58; --o:#e59a2f; --r:#d0555b;
+    --hov:#1b2735; --exp:#1d2b3b; --link:#7fb2ff;
+    --wbg:#2e2711; --wbd:#5b4c1c; --wt:#f0dca0;
+    --ebg:#33191b; --ebd:#6a2e32; --et:#f2b5b8;
+    --npb:#243040; --npt:#b6c4d4; --barb:#2a3644;
+    color-scheme:dark;
+  }
+}
+.thm{background:transparent;border:1px solid #4a617a;color:#dfe9f4;border-radius:999px;height:28px;padding:0 12px;font:inherit;font-size:13px;cursor:pointer}
+.thm:hover{background:rgba(255,255,255,.1)}
+.thm:focus-visible{outline:3px solid #7fb2ff;outline-offset:2px}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -29,14 +60,14 @@ body{margin:0;background:var(--bg);color:var(--ink);
 h1{margin:0;font-size:22px;font-weight:800;letter-spacing:.2px}
 .sub{margin:0;color:#9db2c8;font-size:14px}
 #gen{margin-left:auto;color:#9db2c8;font-size:13px}
-.demo{background:#fff3cf;color:#4a3600;border-bottom:1px solid #e8cf86;padding:8px 0;font-size:14px}
+.demo{background:var(--wbg);color:var(--wt);border-bottom:1px solid var(--wbd);padding:8px 0;font-size:14px}
 
 .tools{display:flex;flex-wrap:wrap;gap:8px 10px;padding:14px 0 8px;align-items:center}
 input[type=search],select{height:38px;border:1px solid var(--line);border-radius:6px;
-  padding:0 10px;background:#fff;font:inherit;color:inherit}
+  padding:0 10px;background:var(--card);font:inherit;color:inherit}
 input[type=search]{flex:1 1 200px;min-width:0}
 .dates{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;flex:1 1 100%}
-.dchip{border:1px solid var(--line);background:#fff;border-radius:999px;height:32px;
+.dchip{border:1px solid var(--line);background:var(--card);border-radius:999px;height:32px;
   padding:0 13px;font:inherit;cursor:pointer;white-space:nowrap;color:inherit}
 .dchip[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}
 label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut);cursor:pointer}
@@ -55,8 +86,8 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .band .bt{grid-column:1 / 3}
 .band .hd{text-align:center;color:var(--mut);font-size:12px}
 .row{padding:8px 10px;background:var(--card);border-top:1px solid var(--line);cursor:pointer}
-.row:hover{background:#f4f8fc}
-.row[aria-expanded=true]{background:#eef4fb}
+.row:hover{background:var(--hov)}
+.row[aria-expanded=true]{background:var(--exp)}
 .row:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px}
 .time{color:var(--mut);font-size:13px;font-variant-numeric:tabular-nums}
 .teams b,.teams span.tn{display:block;font-weight:600}
@@ -77,7 +108,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .none{margin:0 0 6px;color:var(--mut);font-size:14px}
 .xg{color:var(--mut);font-size:13px;margin:0 0 12px}
 .mks{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-.mk{background:#fff;border:1px solid var(--line);border-radius:6px;padding:8px}
+.mk{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px}
 .sels{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:5px}
 .sel{border-radius:5px;padding:5px 6px;display:flex;flex-direction:column;align-items:center;
   justify-content:center;min-height:58px;font-variant-numeric:tabular-nums}
@@ -92,14 +123,14 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 #coupons h2{margin:0 0 4px;font-size:18px}
 .cn{margin:0 0 12px;color:var(--mut);font-size:14px;max-width:76ch}
 .cps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.cp{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.cp{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .cp.sur h3{background:#5b2a86}
 .cp h3{margin:0;padding:8px 12px;background:var(--navy);color:#fff;font-size:14px}
 .cp ul{list-style:none;margin:0;padding:0}
 .lgr{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:0 6px;align-items:center;
-  border-top:1px solid var(--line);padding:6px 12px 6px 0;background:#fff}
+  border-top:1px solid var(--line);padding:6px 12px 6px 0;background:var(--card)}
 .cp li:first-child{border-top:0}
-.lgr:hover{background:#f4f8fc}
+.lgr:hover{background:var(--hov)}
 .lgb{display:grid;grid-template-columns:42px minmax(0,1fr);gap:0 8px;align-items:center;
   text-align:left;border:0;background:transparent;padding:2px 4px 2px 12px;font:inherit;color:inherit;cursor:pointer;min-width:0}
 .lgb:focus-visible,.oi:focus-visible,.rst:focus-visible{outline:3px solid #2f6fd6;outline-offset:-1px}
@@ -114,15 +145,15 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   text-align:center;font-variant-numeric:tabular-nums}
 .ls input.ed{outline:2px solid #2f6fd6;background:#fff}
 .lw{grid-column:1/-1;padding:3px 12px 2px;font-size:12.5px;color:var(--mut);line-height:1.4}
-.lw .mkn{color:#13202f;font-weight:600}
-.lw summary{cursor:pointer;color:#1f4f9c;margin-top:2px}
+.lw .mkn{color:var(--ink);font-weight:600}
+.lw summary{cursor:pointer;color:var(--link);margin-top:2px}
 .lw summary:focus-visible{outline:3px solid #2f6fd6;outline-offset:2px}
 .lw details p{margin:3px 0 0}
 .cal2 td:first-child{font-weight:600}
 .fh{margin:18px 0 6px;font-size:15px}
-.cw{margin:0;padding:6px 12px;background:#fdecec;color:#7a1f24;font-size:13px;border-top:1px solid #f1c4c6}
+.cw{margin:0;padding:6px 12px;background:var(--ebg);color:var(--et);font-size:13px;border-top:1px solid var(--ebd)}
 .rst{display:block;width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);
-  padding:7px 12px;font:inherit;font-size:13px;color:#1f4f9c;cursor:pointer;text-align:left}
+  padding:7px 12px;font:inherit;font-size:13px;color:var(--link);cursor:pointer;text-align:left}
 .rst:hover{text-decoration:underline}
 .rst[hidden],.cw[hidden]{display:none}
 .tot{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-top:2px solid var(--line);
@@ -131,7 +162,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .tot dt{font-size:11.5px;color:var(--mut)}
 .tot dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
 .cnote{color:var(--mut);font-size:12.5px;margin:10px 0 0;max-width:80ch}
-.pill.np{background:#e3e8ee;color:#44546a}
+.pill.np{background:var(--npb);color:var(--npt)}
 
 .cpgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:0 18px;align-items:start}
 @media (min-width:900px){
@@ -142,7 +173,7 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 #yday{padding:16px 0 4px}
 #yday h2{margin:0 0 4px;font-size:18px}
 .yn{margin:0 0 10px;color:var(--mut);font-size:13.5px}
-.yc{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:10px}
+.yc{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:10px}
 .yc h3{margin:0;padding:7px 10px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px;color:#fff}
 .yc.won h3{background:var(--g)}.yc.lost h3{background:var(--r)}.yc.pending h3{background:#6b7b8e}
 .yc ul{list-style:none;margin:0;padding:0}
@@ -156,44 +187,44 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .ys{text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px}
 .ys b{display:block;font-size:13px}
 .lg{display:block;font-size:11.5px;color:var(--mut);font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ytot{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--mut)}
-.nesbar{margin:14px 0 0;background:#fff3cf;border:1px solid #e8cf86;color:#4a3600;border-radius:8px;padding:10px 12px;font-size:14px}
+.ytot{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--mut)}
+.nesbar{margin:14px 0 0;background:var(--wbg);border:1px solid var(--wbd);color:var(--wt);border-radius:8px;padding:10px 12px;font-size:14px}
 #perf{padding:22px 0 4px}
 #perf h2{margin:0 0 4px;font-size:18px}
 .pv{margin:0 0 12px;font-size:15px;max-width:76ch}
 .pcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:14px}
-.pc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
 .pc dt{font-size:12.5px;color:var(--mut)}
 .pc dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
 .pc small{display:block;font-size:12.5px;color:var(--mut);font-weight:400;margin-top:2px}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-.cal{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);
+.cal{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
   border-radius:8px;overflow:hidden;font-size:14px;font-variant-numeric:tabular-nums}
 .cal th,.cal td{padding:7px 10px;text-align:left;border-top:1px solid var(--line)}
 .cal thead th{border-top:0;background:var(--band);font-size:12.5px;color:var(--mut);font-weight:600}
 .cal td:first-child span{display:inline-block;min-width:78px;text-align:center;border-radius:4px;padding:1px 6px;font-size:13px;font-weight:600}
-.bar{height:8px;background:#e6ebf1;border-radius:4px;min-width:90px;position:relative}
-.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--navy)}
+.bar{height:8px;background:var(--barb);border-radius:4px;min-width:90px;position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--link)}
 .bar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:#d33;border-radius:1px}
 .pn{color:var(--mut);font-size:12.5px;margin:8px 0 0;max-width:80ch}
-.empty{background:#fff;border:1px dashed var(--line);border-radius:6px;padding:28px 16px;
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:6px;padding:28px 16px;
   text-align:center;color:var(--mut)}
 nav.nv{display:flex;gap:4px 16px;flex-wrap:wrap;margin-left:auto;font-size:14px}
 nav.nv a{color:#c9d8e8;text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
 nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;outline:none}
-.legal{background:#fff8e1;border-bottom:1px solid #ecd9a0;color:#4a3a00;font-size:13px;padding:7px 0}
+.legal{background:var(--wbg);border-bottom:1px solid var(--wbd);color:var(--wt);font-size:13px;padding:7px 0}
 .legal b{font-weight:700}
-.stale{background:#fdecec;border-bottom:1px solid #f1c4c6;color:#7a1f24;font-size:14px;padding:9px 0}
-.cpy{display:block;width:100%;border:0;border-top:1px solid var(--line);background:#fff;padding:8px 12px;font:inherit;
-  font-size:13px;color:#1f4f9c;cursor:pointer;text-align:left}
+.stale{background:var(--ebg);border-bottom:1px solid var(--ebd);color:var(--et);font-size:14px;padding:9px 0}
+.cpy{display:block;width:100%;border:0;border-top:1px solid var(--line);background:var(--card);padding:8px 12px;font:inherit;
+  font-size:13px;color:var(--link);cursor:pointer;text-align:left}
 .cpy:hover{text-decoration:underline}
 .cpy:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px}
 #about{margin:34px 0 8px}
 #about h2{font-size:18px;margin:0 0 10px}
-#about details{background:#fff;border:1px solid var(--line);border-radius:8px;margin:0 0 8px}
+#about details{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 8px}
 #about summary{cursor:pointer;padding:11px 14px;font-weight:600}
 #about summary:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px;border-radius:8px}
-#about details>div{padding:0 14px 12px;color:#2c3a49;max-width:80ch}
+#about details>div{padding:0 14px 12px;color:var(--ink);max-width:80ch}
 #about details p{margin:0 0 8px}
 .sitefoot{background:var(--navy);color:#b9c8d8;padding:22px 0 30px;margin-top:30px;font-size:13px}
 .sitefoot b{color:#fff}
@@ -215,6 +246,7 @@ nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;out
   <h1>Gol Radar</h1>
   <p class="sub">İstatistik modelinin maç tahminleri</p>
   <nav class="nv" aria-label="Bölümler"><a href="#coupons">Kuponlar</a><a href="#list">Maçlar</a><a href="#perf">Başarı</a><a href="#about">Nasıl çalışır?</a></nav>
+  <button class="thm" id="thm" type="button" aria-label="Koyu ya da açık görünüm"></button>
   <span id="gen"></span>
 </div></header>
 <div class="legal"><div class="wrap"><b>+18.</b> Gol Radar bir bahis sitesi değildir, bahis oynatmaz ve kupon satmaz. Gösterilenler bir istatistik modelinin tahminidir, <b>kazanç garantisi ve yatırım tavsiyesi değildir</b>. Nesine ile bir bağlantısı yoktur. Maç listesi ve oranlar Nesine'nin herkese açık bülteninden okunur.</div></div>
@@ -269,6 +301,18 @@ const okey = (c,l) => `ov|${c.date}|${l.home}|${l.away}|${l.sel}`;
 const parseOdds = v => { const x = parseFloat(String(v).replace(',','.')); return isFinite(x) && x > 1 ? x : null; };
 
 $('#gen').textContent = 'Güncelleme: ' + D.generated;
+(function(){
+  const b = $('#thm'), mq = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : {matches:false};
+  const cur = () => document.documentElement.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light');
+  const paint = () => { b.textContent = cur()==='dark' ? '☀ Açık mod' : '☾ Koyu mod'; };
+  b.addEventListener('click', ()=>{
+    const n = cur()==='dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', n);
+    try{ localStorage.setItem('gr-theme', n); }catch(e){}
+    paint();
+  });
+  paint();
+})();
 (function(){
   try{
     const t = Date.parse(D.generated_iso || ''); if(!isFinite(t) || D.demo) return;
