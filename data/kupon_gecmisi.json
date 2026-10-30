@@ -1637,8 +1637,8 @@
  "2026-10-30": {
   "list": [
    {
-    "odds": 3.03,
-    "p": 0.2426,
+    "odds": 3.17,
+    "p": 0.2397,
     "legs": [
      {
       "time": "",
@@ -1665,11 +1665,34 @@
      },
      {
       "time": "",
+      "home": "Metz",
+      "away": "Pau FC",
+      "league": "Fransa Ligue 2",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.8,
+      "p": 0.612,
+      "nid": 3252715,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.41,
+      "edge": 0.202,
+      "why": [
+       "Model beklentisi: Metz 2.07, Pau FC 1.29 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Metz son 5 maçta 1G 2B 2M (8-10 gol); Pau FC son 5 maçta 4G 0B 1M (9-5 gol).",
+       "Gol temposu (son 10+ maç): Metz maçlarında ortalama 3.0, Pau FC maçlarında 2.3 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %80 / %50.",
+       "Son ikili maçlar: Pau FC 2-1 Metz, Metz 0-0 Pau FC."
+      ]
+     },
+     {
+      "time": "",
       "home": "Rodez",
       "away": "Dunkerque",
       "league": "Fransa Ligue 2",
       "sel": "2,5 Üst",
-      "o": 1.37,
+      "o": 1.41,
       "p": 0.636,
       "nid": 3252655,
       "mk": "Alt/Üst 2,5",
@@ -1685,66 +1708,20 @@
        "Gol temposu (son 10+ maç): Rodez maçlarında ortalama 3.8, Dunkerque maçlarında 3.0 gol; 2.5 üst oranı %70 / %40, iki takım da gol atma oranı %60 / %60.",
        "Son ikili maçlar: Dunkerque 1-1 Rodez, Rodez 1-1 Dunkerque, Rodez 5-1 Dunkerque."
       ]
-     },
-     {
-      "time": "",
-      "home": "Stenhousemuir",
-      "away": "Livingston",
-      "league": "İskoçya Championship",
-      "sel": "KG Yok",
-      "o": 1.77,
-      "p": 0.619,
-      "nid": 3255271,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.509,
-      "edge": 0.11,
-      "why": [
-       "Model beklentisi: Stenhousemuir 1.11, Livingston 0.81 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
-       "Form: Stenhousemuir son 5 maçta 2G 1B 2M (3-6 gol); Livingston son 5 maçta 2G 1B 2M (5-4 gol).",
-       "Gol temposu (son 10+ maç): Stenhousemuir maçlarında ortalama 1.9, Livingston maçlarında 2.2 gol; 2.5 üst oranı %20 / %40, iki takım da gol atma oranı %20 / %40.",
-       "Son ikili maçlar: Livingston 0-1 Stenhousemuir."
-      ]
      }
     ]
    },
    {
-    "odds": 3.84,
-    "p": 0.2193,
+    "odds": 3.63,
+    "p": 0.2265,
     "legs": [
-     {
-      "time": "",
-      "home": "Vasco",
-      "away": "Flamengo RJ",
-      "league": "Brezilya Serie A",
-      "sel": "MS 2",
-      "o": 1.66,
-      "p": 0.554,
-      "nid": 3246353,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 2,
-      "fam": "MS",
-      "base": 0.25,
-      "edge": 0.304,
-      "why": [
-       "Model beklentisi: Vasco 1.05, Flamengo RJ 1.85 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %25.",
-       "Form: Vasco son 5 maçta 3G 1B 1M (10-4 gol); Flamengo RJ son 5 maçta 4G 1B 0M (11-5 gol).",
-       "Hücum/savunma (son 10+ maç): Vasco 1.6 atıyor, 1.4 yiyor; Flamengo RJ 2.0 atıyor, 0.8 yiyor.",
-       "Son ikili maçlar: Flamengo RJ 2-2 Vasco, Flamengo RJ 1-1 Vasco, Vasco 0-0 Flamengo RJ."
-      ]
-     },
      {
       "time": "",
       "home": "Konyaspor",
       "away": "Galatasaray",
       "league": "Türkiye Süper Lig",
       "sel": "Ev hiçbir yarıyı kazanamaz",
-      "o": 1.33,
+      "o": 1.25,
       "p": 0.647,
       "nid": 3258190,
       "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
@@ -1764,25 +1741,197 @@
      },
      {
       "time": "",
-      "home": "Metz",
-      "away": "Pau FC",
-      "league": "Fransa Ligue 2",
-      "sel": "Ev 1,5 Üst",
+      "home": "Stenhousemuir",
+      "away": "Livingston",
+      "league": "İskoçya Championship",
+      "sel": "KG Yok",
       "o": 1.74,
-      "p": 0.612,
-      "nid": 3252715,
+      "p": 0.629,
+      "nid": 3255271,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.51,
+      "edge": 0.119,
+      "why": [
+       "Model beklentisi: Stenhousemuir 1.01, Livingston 0.84 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
+       "Form: Stenhousemuir son 5 maçta 1G 1B 3M (2-7 gol); Livingston son 5 maçta 2G 1B 2M (5-4 gol).",
+       "Gol temposu (son 10+ maç): Stenhousemuir maçlarında ortalama 1.8, Livingston maçlarında 2.2 gol; 2.5 üst oranı %20 / %40, iki takım da gol atma oranı %20 / %40.",
+       "Son ikili maçlar: Livingston 0-1 Stenhousemuir."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Bielefeld",
+      "away": "Braunschweig",
+      "league": "Almanya 2. Bundesliga",
+      "sel": "MS 1",
+      "o": 1.67,
+      "p": 0.557,
+      "nid": 3252618,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.443,
+      "edge": 0.114,
+      "why": [
+       "Model beklentisi: Bielefeld 1.92, Braunschweig 1.11 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Bielefeld son 5 maçta 2G 1B 2M (6-6 gol); Braunschweig son 5 maçta 2G 1B 2M (5-5 gol).",
+       "Hücum/savunma (son 10+ maç): Bielefeld 1.9 atıyor, 1.5 yiyor; Braunschweig 1.5 atıyor, 1.6 yiyor.",
+       "Son ikili maçlar: Bielefeld 3-2 Braunschweig, Braunschweig 1-1 Bielefeld."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.32,
+    "p": 0.2046,
+    "legs": [
+     {
+      "time": "",
+      "home": "Villarreal",
+      "away": "Espanol",
+      "league": "İspanya La Liga",
+      "sel": "MS 1",
+      "o": 1.26,
+      "p": 0.633,
+      "nid": 3258486,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.451,
+      "edge": 0.181,
+      "why": [
+       "Model beklentisi: Villarreal 2.02, Espanol 0.88 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Villarreal son 5 maçta 3G 1B 1M (8-4 gol); Espanol son 5 maçta 0G 1B 4M (4-9 gol).",
+       "Hücum/savunma (son 10+ maç): Villarreal 1.5 atıyor, 1.4 yiyor; Espanol 1.2 atıyor, 1.4 yiyor.",
+       "Son ikili maçlar: Villarreal 4-1 Espanol, Espanol 0-2 Villarreal, Villarreal 1-0 Espanol."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Shelbourne",
+      "away": "Waterford",
+      "league": "İrlanda Premier Lig",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.48,
+      "p": 0.558,
+      "nid": 3254956,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
       "line": 1.5,
       "idx": 1,
       "fam": "TAKIM",
-      "base": 0.41,
-      "edge": 0.202,
+      "base": 0.419,
+      "edge": 0.139,
       "why": [
-       "Model beklentisi: Metz 2.07, Pau FC 1.29 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
-       "Form: Metz son 5 maçta 1G 2B 2M (8-10 gol); Pau FC son 5 maçta 4G 0B 1M (9-5 gol).",
-       "Gol temposu (son 10+ maç): Metz maçlarında ortalama 3.0, Pau FC maçlarında 2.3 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %80 / %50.",
-       "Son ikili maçlar: Pau FC 2-1 Metz, Metz 0-0 Pau FC."
+       "Model beklentisi: Shelbourne 1.87, Waterford 1.18 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Shelbourne son 5 maçta 4G 1B 0M (12-5 gol); Waterford son 5 maçta 2G 1B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Shelbourne maçlarında ortalama 2.6, Waterford maçlarında 3.0 gol; 2.5 üst oranı %50 / %60, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Waterford 1-0 Shelbourne, Shelbourne 2-1 Waterford, Waterford 1-1 Shelbourne."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Grenoble",
+      "away": "Dijon",
+      "league": "Fransa Ligue 2",
+      "sel": "2,5 Üst",
+      "o": 1.78,
+      "p": 0.579,
+      "nid": 3252374,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.475,
+      "edge": 0.104,
+      "why": [
+       "Model beklentisi: Grenoble 1.37, Dijon 1.64 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Grenoble son 5 maçta 1G 1B 3M (3-7 gol); Dijon son 5 maçta 3G 0B 2M (12-11 gol).",
+       "Gol temposu (son 10+ maç): Grenoble maçlarında ortalama 2.6, Dijon maçlarında 3.5 gol; 2.5 üst oranı %50 / %60, iki takım da gol atma oranı %40 / %90."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 5.81,
+    "p": 0.2476,
+    "legs": [
+     {
+      "time": "",
+      "home": "Nice",
+      "away": "Rennes",
+      "league": "Fransa Ligue 1",
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.52,
+      "p": 0.598,
+      "nid": 3254474,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.467,
+      "edge": 0.131,
+      "why": [
+       "Model beklentisi: Nice 1.41, Rennes 1.73 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Nice son 5 maçta 3G 0B 2M (7-6 gol); Rennes son 5 maçta 3G 0B 2M (11-9 gol).",
+       "Gol temposu (son 10+ maç): Nice maçlarında ortalama 2.1, Rennes maçlarında 3.9 gol; 2.5 üst oranı %60 / %90, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Nice 0-4 Rennes, Rennes 1-2 Nice, Rennes 2-0 Nice.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %42, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Elversberg",
+      "away": "Mainz",
+      "league": "Almanya Bundesliga",
+      "sel": "2,5 Üst",
+      "o": 1.3,
+      "p": 0.733,
+      "nid": 3253900,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.624,
+      "edge": 0.109,
+      "why": [
+       "Model beklentisi: Elversberg 2.08, Mainz 1.73 gol. Bu seçenek %73 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %62.",
+       "Form: Elversberg son 5 maçta 1G 1B 3M (5-10 gol); Mainz son 5 maçta 2G 0B 3M (11-13 gol).",
+       "Gol temposu (son 10+ maç): Elversberg maçlarında ortalama 4.0, Mainz maçlarında 3.8 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %60 / %60."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Waregem",
+      "away": "Cercle Brugge",
+      "league": "Belçika Pro League",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.94,
+      "p": 0.564,
+      "nid": 3254887,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.46,
+      "edge": 0.105,
+      "why": [
+       "Model beklentisi: Waregem 1.89, Cercle Brugge 1.30 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Waregem son 5 maçta 1G 0B 4M (2-9 gol); Cercle Brugge son 5 maçta 0G 1B 4M (6-14 gol).",
+       "Gol temposu (son 10+ maç): Waregem maçlarında ortalama 2.5, Cercle Brugge maçlarında 3.7 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %30 / %70.",
+       "Son ikili maçlar: Cercle Brugge 2-3 Waregem, Waregem 2-2 Cercle Brugge, Waregem 1-1 Cercle Brugge."
       ]
      }
     ]
