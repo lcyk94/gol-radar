@@ -193,3 +193,32 @@ def test_unlive_days_reaches_oldest_missing_leg(tmp_path, monkeypatch):
     assert nesine.unlive_days(datetime.date(2026, 10, 29)) == 10       # 20 Ekim'deki bacağın sonucu yok
     (tmp_path / "s.json").write_text(json.dumps({"matches": {}, "results": {"1": {"s": 5, "t": {"1": [1, 0]}}, "2": {"s": 24, "t": {"1": [1, 1]}}}}))
     assert nesine.unlive_days(datetime.date(2026, 10, 29)) == 3
+
+
+def test_surprise_coupons():
+    hist, rows = synth(days=3)
+    _env(hist, rows)
+    res = bot.build_coupons(rows)
+    sur = res.get("surprise") or []
+    assert len(sur) <= bot.N_SURPRISE
+    keys = set()
+    for k in sur:
+        assert k["surprise"] and len(k["legs"]) == bot.COUPON_LEGS and k["odds"] >= bot.SURPRISE_MIN_ODDS - 1e-9
+        for l in k["legs"]:
+            assert l["p"] >= bot.COUPON_MIN_P and l["o"] >= bot.COUPON_MIN_LEG_ODDS
+            assert (l["home"], l["away"]) not in keys       # iki sürpriz kupon farklı maçlardan
+            keys.add((l["home"], l["away"]))
+    # tutma olasılığı, aynı oran eşiğini sağlayan en iyi normal kupondan az olmamalı değil; yalnızca alan sağlaması:
+    assert all(0 < k["p"] < 1 for k in sur)
+
+
+def test_surprise_saved_and_graded(tmp_path, monkeypatch):
+    hist, rows = synth(days=3)
+    _env(hist, rows)
+    res = bot.build_coupons(rows)
+    monkeypatch.setattr(bot, "COUPON_LOG", tmp_path / "k.json")
+    bot.save_coupons(res)
+    saved = bot._load_log()
+    n = sum(len(v["list"]) for v in saved.values())
+    assert n == len(res["list"]) + len(res.get("surprise") or [])
+    assert sum(1 for v in saved.values() for k in v["list"] if k.get("surprise")) == len(res.get("surprise") or [])
