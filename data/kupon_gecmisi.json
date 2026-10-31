@@ -2016,7 +2016,7 @@
  "2026-10-31": {
   "list": [
    {
-    "odds": 3.32,
+    "odds": 3.28,
     "p": 0.3406,
     "legs": [
      {
@@ -2025,7 +2025,7 @@
       "away": "Krasnodar",
       "league": "Rusya Premier Lig",
       "sel": "MS2 & 2,5 Üst",
-      "o": 2.06,
+      "o": 2.05,
       "p": 0.697,
       "nid": 3252760,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -2068,7 +2068,7 @@
       "away": "Alaves",
       "league": "İspanya La Liga",
       "sel": "Ev iki yarıda da gol atar",
-      "o": 1.25,
+      "o": 1.24,
       "p": 0.647,
       "nid": 3259542,
       "mk": "Ev Sahibi İki Yarıda da Gol",
@@ -2089,7 +2089,7 @@
     ]
    },
    {
-    "odds": 3.01,
+    "odds": 3.05,
     "p": 0.2701,
     "legs": [
      {
@@ -2144,7 +2144,7 @@
       "away": "Exeter",
       "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.57,
+      "o": 1.59,
       "p": 0.738,
       "nid": 3252784,
       "mk": "Karşılıklı Gol",
@@ -2388,8 +2388,8 @@
     ]
    },
    {
-    "odds": 6.29,
-    "p": 0.2469,
+    "odds": 6.03,
+    "p": 0.2515,
     "surprise": true,
     "legs": [
      {
@@ -2398,7 +2398,7 @@
       "away": "Oxford",
       "league": "İngiltere League One",
       "sel": "MS 2",
-      "o": 2.06,
+      "o": 2.12,
       "p": 0.579,
       "nid": 3254996,
       "mk": "Maç Sonucu",
@@ -2420,7 +2420,7 @@
       "away": "Sutton",
       "league": "İngiltere Conference",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.92,
+      "o": 1.96,
       "p": 0.609,
       "nid": 3254993,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
@@ -2438,24 +2438,25 @@
      },
      {
       "time": "",
-      "home": "Accrington",
-      "away": "Northampton",
-      "league": "İngiltere League Two",
+      "home": "Dep. Riestra",
+      "away": "Talleres Cordoba",
+      "league": "Arjantin Primera",
       "sel": "KG Yok",
-      "o": 1.59,
-      "p": 0.7,
-      "nid": 3253466,
+      "o": 1.45,
+      "p": 0.713,
+      "nid": 3258570,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
       "line": 0.0,
       "idx": 1,
       "fam": "KG",
-      "base": 0.478,
-      "edge": 0.222,
+      "base": 0.548,
+      "edge": 0.165,
       "why": [
-       "Model beklentisi: Accrington 0.90, Northampton 0.68 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Accrington son 5 maçta 3G 2B 0M (11-2 gol); Northampton son 5 maçta 2G 1B 2M (5-3 gol).",
-       "Gol temposu (son 10+ maç): Accrington maçlarında ortalama 2.7, Northampton maçlarında 1.6 gol; 2.5 üst oranı %50 / %0, iki takım da gol atma oranı %60 / %30."
+       "Model beklentisi: Dep. Riestra 0.83, Talleres Cordoba 0.69 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %55.",
+       "Form: Dep. Riestra son 5 maçta 0G 3B 2M (2-4 gol); Talleres Cordoba son 5 maçta 0G 1B 4M (3-8 gol).",
+       "Gol temposu (son 10+ maç): Dep. Riestra maçlarında ortalama 1.5, Talleres Cordoba maçlarında 2.3 gol; 2.5 üst oranı %10 / %60, iki takım da gol atma oranı %40 / %60.",
+       "Son ikili maçlar: Talleres Cordoba 2-0 Dep. Riestra, Talleres Cordoba 0-1 Dep. Riestra, Dep. Riestra 0-0 Talleres Cordoba."
       ]
      }
     ]
