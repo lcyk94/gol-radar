@@ -222,3 +222,29 @@ def test_surprise_saved_and_graded(tmp_path, monkeypatch):
     n = sum(len(v["list"]) for v in saved.values())
     assert n == len(res["list"]) + len(res.get("surprise") or [])
     assert sum(1 for v in saved.values() for k in v["list"] if k.get("surprise")) == len(res.get("surprise") or [])
+
+
+def test_todays_coupons_are_frozen(tmp_path, monkeypatch):
+    hist, rows = synth(days=3)
+    _env(hist, rows)
+    monkeypatch.setattr(bot, "COUPON_LOG", tmp_path / "k.json")
+    res = bot.build_coupons(rows)
+    day = pd.Timestamp(res["date"]).date()
+    monkeypatch.setattr(bot, "today_tr", lambda: day)
+    bot.save_coupons(res)
+    dd = day.strftime("%Y-%m-%d")
+    today_cp = [k for k in res["list"] if k["date"] == dd]
+    first = [[(l["home"], l["away"], l["sel"]) for l in k["legs"]] for k in today_cp]
+    # maçlar bültenden düşse bile (başlayanlar) bugünün kuponları aynı kalır
+    used = {(l["home"], l["away"]) for k in today_cp for l in k["legs"]}
+    rows2 = [x for x in rows if (x[0]["HomeTeam"], x[0]["AwayTeam"]) not in used]
+    res2 = bot.build_coupons(rows2)
+    again = [[(l["home"], l["away"], l["sel"]) for l in k["legs"]] for k in res2["list"] if k["date"] == dd]
+    assert again == first
+    sig = lambda L: [[(l["home"], l["away"], l["sel"], l["o"]) for l in k["legs"]] for k in (L or [])]
+    assert sig(res2.get("surprise")) == sig(res.get("surprise"))
+    # ikinci kayıt günün kaydını bozmaz
+    bot.save_coupons(res2)
+    ent = bot._load_log()[day.strftime("%Y-%m-%d")]
+    assert ent["saved_on"] == day.strftime("%Y-%m-%d")
+    assert len([k for k in ent["list"] if not k.get("surprise")]) == len(today_cp)
