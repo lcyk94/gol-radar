@@ -1065,9 +1065,15 @@ def build_coupons(out_rows):
         if d_ >= today:
             print(f"  Kupon adayı maç {d_:%Y-%m-%d}: {len(its)} (kaynak: {dict(_Cn(t[1].get('SRC') for t in its))}, avrupa kupası: {sum(bool(t[1].get('EURO')) for t in its)})")
     got, fam_use = [], {}                 # bugünden başlayarak, 4 kupon dolana kadar sonraki günlerin maçlarına bakılır
+    frozen_n, frozen_s = _frozen_today(out_rows, today)
+    if frozen_n or frozen_s:
+        print(f"  Bugünün kuponları o gün ilk kaydedildiği hâliyle gösteriliyor: {len(frozen_n)} kupon, {len(frozen_s)} sürpriz")
+        got = list(frozen_n)
     for day in sorted(d for d in by_day if d >= today):
         if len(got) >= N_COUPONS:
             break
+        if day == today and frozen_n:
+            continue                      # bugünün kuponları sabit; eksik varsa sonraki günlerden tamamlanır
         if len(by_day[day]) < COUPON_LEGS:
             continue
         res = _coupons_for_day(day, by_day[day], N_COUPONS - len(got), fam_use)
@@ -1079,12 +1085,32 @@ def build_coupons(out_rows):
     if got:
         print("  Kuponlarda kullanılan pazar aileleri:", dict(sorted(fam_use.items(), key=lambda x: -x[1])))
         sday = pd.Timestamp(got[0]["date"])
-        sur = _surprise_for_day(sday, by_day.get(sday, []), got)
+        sur = frozen_s or _surprise_for_day(sday, by_day.get(sday, []), got)
         print(f"  Sürpriz kupon: {len(sur)}" + "".join(f" (oran {k['odds']}, tutma %{round(100 * k['p'])})" for k in sur))
         return {"date": got[0]["date"], "list": got, "surprise": sur}
     nearest = nearest or {"date": today.strftime("%Y-%m-%d"), "list": []}
     nearest["diag"] = _coupon_diag(out_rows, today)
     return nearest
+
+
+def _frozen_today(out_rows, today):
+    """Bugünün kuponları, o gün ilk kez kaydedildiyse (saved_on == bugün) aynen geri verilir: gün içinde 4 saatlik
+    güncellemelerle kuponlar değişmez, başlayan maçlar bültenden düşse de kuponda kalır.
+    Maç paneli bağlantısı (id) güncel satırlara göre yeniden eşlenir."""
+    d = today.strftime("%Y-%m-%d")
+    ent = _load_log().get(d) or {}
+    if ent.get("saved_on") != d or not ent.get("full"):
+        return [], []
+    pos = {}
+    for k, (r, _p, _x) in enumerate(out_rows):
+        pos[(str(r["HomeTeam"]).strip().lower(), str(r["AwayTeam"]).strip().lower())] = k
+    nrm, sur = [], []
+    for c in ent["full"]:
+        c = json.loads(json.dumps(c))
+        for l in c["legs"]:
+            l["id"] = pos.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), -1)
+        (sur if c.get("surprise") else nrm).append(c)
+    return nrm, sur
 
 
 def _surprise_for_day(day, items, normal):
@@ -1338,8 +1364,17 @@ def save_coupons(coupons, keep_days=120):
              "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid", "mk", "mtid", "line", "idx", "fam", "base", "edge", "why")
                               if x in l}
                       for l in k["legs"]]})
+    today = today_tr().strftime("%Y-%m-%d")
+    fulls = {}
+    for k in coupons["list"] + (coupons.get("surprise") or []):
+        fulls.setdefault(k.get("date") or coupons["date"], []).append(k)
     for d_, lst in by_day.items():
+        if (log.get(d_) or {}).get("saved_on") == d_:
+            continue                      # o günün kuponları gün içinde kaydedildi: üzerine yazılmaz
         log[d_] = {"list": lst}
+        if d_ == today:                   # maç günü ilk kaydedilen hâl sabitlenir (tam kupon verisiyle)
+            log[d_]["saved_on"] = today
+            log[d_]["full"] = fulls.get(d_, [])
     for d in sorted(log)[:-keep_days]:
         del log[d]
     COUPON_LOG.parent.mkdir(parents=True, exist_ok=True)
