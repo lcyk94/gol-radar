@@ -6,6 +6,9 @@ on:
     # GitHub yoğunlukta birkaç dakika geciktirebilir. Nesine bir denemede bağlantıyı kabul etmezse başarısız çalışma
     # siteyi değiştirmez, 4 saat sonra yeniden denenir.
     - cron: "0 */4 * * *"
+    # Gün dönümü: 21:05 UTC = Türkiye saatiyle 00:05. Yeni günün kuponları gece yarısından hemen sonra kurulup sabitlenir,
+    # dünün kuponları aynı çalışmada "dünün kuponları" bölümüne geçer.
+    - cron: "5 21 * * *"
   workflow_dispatch:       # elle de çalıştırılabilir
 
 permissions:
