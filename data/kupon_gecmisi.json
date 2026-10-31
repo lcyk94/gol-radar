@@ -2016,7 +2016,7 @@
  "2026-10-31": {
   "list": [
    {
-    "odds": 3.36,
+    "odds": 3.41,
     "p": 0.3406,
     "legs": [
      {
@@ -2025,7 +2025,7 @@
       "away": "Krasnodar",
       "league": "Rusya Premier Lig",
       "sel": "MS2 & 2,5 Üst",
-      "o": 2.07,
+      "o": 2.13,
       "p": 0.697,
       "nid": 3252760,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -2068,7 +2068,7 @@
       "away": "Alaves",
       "league": "İspanya La Liga",
       "sel": "Ev iki yarıda da gol atar",
-      "o": 1.25,
+      "o": 1.23,
       "p": 0.647,
       "nid": 3259542,
       "mk": "Ev Sahibi İki Yarıda da Gol",
@@ -2089,7 +2089,7 @@
     ]
    },
    {
-    "odds": 4.48,
+    "odds": 4.53,
     "p": 0.2299,
     "legs": [
      {
@@ -2098,7 +2098,7 @@
       "away": "Estoril",
       "league": "Portekiz Primeira Liga",
       "sel": "HMS -1 · 1",
-      "o": 1.34,
+      "o": 1.32,
       "p": 0.558,
       "nid": 3254998,
       "mk": "Handikaplı MS (ev -1)",
@@ -2121,7 +2121,7 @@
       "away": "FC Dallas",
       "league": "ABD MLS",
       "sel": "Dep 1,5 Üst",
-      "o": 1.41,
+      "o": 1.46,
       "p": 0.656,
       "nid": 3255243,
       "mk": "Deplasman 1,5 Gol Alt/Üst",
@@ -2144,7 +2144,7 @@
       "away": "RB Leipzig",
       "league": "Almanya Bundesliga",
       "sel": "KG Yok",
-      "o": 2.37,
+      "o": 2.35,
       "p": 0.628,
       "nid": 3254253,
       "mk": "Karşılıklı Gol",
@@ -2163,7 +2163,7 @@
     ]
    },
    {
-    "odds": 4.55,
+    "odds": 4.44,
     "p": 0.2762,
     "legs": [
      {
@@ -2172,7 +2172,7 @@
       "away": "Osnabruck",
       "league": "Almanya 2. Bundesliga",
       "sel": "MS1 & 2,5 Üst",
-      "o": 1.74,
+      "o": 1.71,
       "p": 0.655,
       "nid": 3254782,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -2194,7 +2194,7 @@
       "away": "Roma",
       "league": "İtalya Serie A",
       "sel": "MS 2",
-      "o": 1.37,
+      "o": 1.36,
       "p": 0.652,
       "nid": 3253824,
       "mk": "Maç Sonucu",
@@ -2236,7 +2236,7 @@
     ]
    },
    {
-    "odds": 3.37,
+    "odds": 3.51,
     "p": 0.2821,
     "legs": [
      {
@@ -2245,7 +2245,7 @@
       "away": "Tirol",
       "league": "Avusturya Bundesliga",
       "sel": "İY 1",
-      "o": 1.55,
+      "o": 1.54,
       "p": 0.553,
       "nid": 3254324,
       "mk": "1. Yarı Sonucu",
@@ -2269,7 +2269,7 @@
       "away": "Monza",
       "league": "İtalya Serie A",
       "sel": "Ev 1,5 Üst",
-      "o": 1.54,
+      "o": 1.56,
       "p": 0.677,
       "nid": 3254918,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -2292,7 +2292,7 @@
       "away": "Le Mans",
       "league": "Fransa Ligue 1",
       "sel": "ÇŞ X-2",
-      "o": 1.41,
+      "o": 1.46,
       "p": 0.753,
       "nid": 3253968,
       "mk": "Çifte Şans",
@@ -2312,8 +2312,8 @@
     ]
    },
    {
-    "odds": 6.95,
-    "p": 0.3867,
+    "odds": 6.26,
+    "p": 0.3869,
     "surprise": true,
     "legs": [
      {
@@ -2341,33 +2341,11 @@
      },
      {
       "time": "",
-      "home": "Celta B",
-      "away": "Cordoba",
-      "league": "İspanya Segunda",
-      "sel": "Ev 1,5 Üst",
-      "o": 2.37,
-      "p": 0.601,
-      "nid": 3258207,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.43,
-      "edge": 0.17,
-      "why": [
-       "Model beklentisi: Celta B 2.02, Cordoba 1.72 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
-       "Form: Celta B son 5 maçta 1G 2B 2M (9-11 gol); Cordoba son 5 maçta 3G 0B 2M (8-7 gol).",
-       "Gol temposu (son 10+ maç): Celta B maçlarında ortalama 3.7, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %70 / %70."
-      ]
-     },
-     {
-      "time": "",
       "home": "Salford",
       "away": "Exeter",
       "league": "İngiltere League Two",
       "sel": "Ev iki yarıda da atamaz",
-      "o": 1.32,
+      "o": 1.41,
       "p": 0.89,
       "nid": 3252784,
       "mk": "Ev Sahibi İki Yarıda da Gol",
@@ -2382,36 +2360,6 @@
        "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
        "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 6.0,
-    "p": 0.2898,
-    "surprise": true,
-    "legs": [
-     {
-      "time": "",
-      "home": "Standard",
-      "away": "Kortrijk",
-      "league": "Belçika Pro League",
-      "sel": "KG Yok",
-      "o": 1.9,
-      "p": 0.642,
-      "nid": 3254327,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.438,
-      "edge": 0.204,
-      "why": [
-       "Model beklentisi: Standard 1.76, Kortrijk 0.55 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Standard son 5 maçta 1G 0B 4M (5-9 gol); Kortrijk son 5 maçta 1G 0B 4M (1-9 gol).",
-       "Gol temposu (son 10+ maç): Standard maçlarında ortalama 3.1, Kortrijk maçlarında 2.6 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %20.",
-       "Son ikili maçlar: Standard 1-0 Kortrijk, Kortrijk 1-0 Standard."
       ]
      },
      {
@@ -2434,6 +2382,57 @@
        "Model beklentisi: Swindon 2.15, Rotherham 1.13 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
        "Form: Swindon son 5 maçta 1G 2B 2M (4-4 gol); Rotherham son 5 maçta 0G 2B 3M (6-12 gol).",
        "Hücum/savunma (son 10+ maç): Swindon 1.1 atıyor, 1.2 yiyor; Rotherham 1.3 atıyor, 1.9 yiyor."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.01,
+    "p": 0.3058,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Celta B",
+      "away": "Cordoba",
+      "league": "İspanya Segunda",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.32,
+      "p": 0.601,
+      "nid": 3258207,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.43,
+      "edge": 0.17,
+      "why": [
+       "Model beklentisi: Celta B 2.02, Cordoba 1.72 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Celta B son 5 maçta 1G 2B 2M (9-11 gol); Cordoba son 5 maçta 3G 0B 2M (8-7 gol).",
+       "Gol temposu (son 10+ maç): Celta B maçlarında ortalama 3.7, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %70 / %70."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Worthing",
+      "away": "Sutton",
+      "league": "İngiltere Conference",
+      "sel": "MS 1",
+      "o": 1.64,
+      "p": 0.678,
+      "nid": 3254993,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.432,
+      "edge": 0.246,
+      "why": [
+       "Model beklentisi: Worthing 2.46, Sutton 1.05 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Worthing son 5 maçta 3G 2B 0M (13-6 gol); Sutton son 5 maçta 1G 1B 3M (4-8 gol).",
+       "Hücum/savunma (son 10+ maç): Worthing 2.3 atıyor, 1.2 yiyor; Sutton 1.0 atıyor, 1.8 yiyor."
       ]
      },
      {
