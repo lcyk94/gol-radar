@@ -2463,5 +2463,458 @@
     ]
    }
   ]
+ },
+ "2026-11-01": {
+  "list": [
+   {
+    "odds": 3.05,
+    "p": 0.353,
+    "legs": [
+     {
+      "time": "",
+      "home": "Salzburg",
+      "away": "A. Lustenau",
+      "league": "Avusturya Bundesliga",
+      "sel": "HMS -1 · 1",
+      "o": 1.3,
+      "p": 0.722,
+      "nid": 3258532,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.218,
+      "edge": 0.504,
+      "why": [
+       "Model beklentisi: Salzburg 3.51, A. Lustenau 0.75 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Form: Salzburg son 5 maçta 3G 2B 0M (10-2 gol); A. Lustenau son 5 maçta 1G 0B 4M (7-15 gol).",
+       "Hücum/savunma (son 10+ maç): Salzburg 2.4 atıyor, 0.5 yiyor; A. Lustenau 1.2 atıyor, 2.4 yiyor.",
+       "Son ikili maçlar: Salzburg 7-0 A. Lustenau, A. Lustenau 0-4 Salzburg, Salzburg 4-0 A. Lustenau."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Santander",
+      "away": "Real Madrid",
+      "league": "İspanya La Liga",
+      "sel": "MS2 & 2,5 Üst",
+      "o": 1.23,
+      "p": 0.665,
+      "nid": 3259795,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.164,
+      "edge": 0.5,
+      "why": [
+       "Model beklentisi: Santander 1.19, Real Madrid 3.21 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %16.",
+       "Form: Santander son 5 maçta 1G 1B 3M (6-17 gol); Real Madrid son 5 maçta 4G 0B 1M (11-6 gol).",
+       "Gol temposu (son 10+ maç): Santander maçlarında ortalama 4.1, Real Madrid maçlarında 3.5 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %70."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Arezzo",
+      "away": "Ascoli",
+      "league": "İtalya Serie B",
+      "sel": "MS 2",
+      "o": 1.91,
+      "p": 0.736,
+      "nid": 3259992,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.446,
+      "why": [
+       "Model beklentisi: Arezzo 0.75, Ascoli 2.40 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Arezzo son 5 maçta 1G 1B 3M (4-10 gol); Ascoli son 5 maçta 3G 2B 0M (12-3 gol).",
+       "Hücum/savunma (son 9+ maç): Arezzo 1.0 atıyor, 2.1 yiyor; Ascoli 1.8 atıyor, 0.7 yiyor."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.45,
+    "p": 0.4013,
+    "legs": [
+     {
+      "time": "",
+      "home": "Frosinone",
+      "away": "Torino",
+      "league": "İtalya Serie A",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.48,
+      "p": 0.785,
+      "nid": 3258916,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.387,
+      "edge": 0.397,
+      "why": [
+       "Model beklentisi: Frosinone 2.90, Torino 1.50 gol. Bu seçenek %78 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Frosinone son 5 maçta 3G 1B 1M (15-10 gol); Torino son 5 maçta 3G 1B 1M (10-7 gol).",
+       "Gol temposu (son 10+ maç): Frosinone maçlarında ortalama 4.1, Torino maçlarında 3.2 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %50 / %80."
+      ]
+     },
+     {
+      "time": "",
+      "home": "PAOK",
+      "away": "Asteras Tripolis",
+      "league": "Yunanistan Super League",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.28,
+      "p": 0.679,
+      "nid": 3259451,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.317,
+      "edge": 0.361,
+      "why": [
+       "Model beklentisi: PAOK 2.55, Asteras Tripolis 0.67 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: PAOK son 5 maçta 3G 0B 2M (9-7 gol); Asteras Tripolis son 5 maçta 1G 3B 1M (6-9 gol).",
+       "Gol temposu (son 10+ maç): PAOK maçlarında ortalama 3.3, Asteras Tripolis maçlarında 2.5 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %80 / %60.",
+       "Son ikili maçlar: PAOK 2-0 Asteras Tripolis, Asteras Tripolis 3-3 PAOK, PAOK 2-0 Asteras Tripolis."
+      ]
+     },
+     {
+      "time": "19:00",
+      "home": "Inter",
+      "away": "Andorra",
+      "league": "Andorra Primera Division",
+      "sel": "3,5 Üst",
+      "o": 1.82,
+      "p": 0.754,
+      "nid": 3259127,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.28,
+      "edge": 0.473,
+      "why": [
+       "Model beklentisi: Inter 4.09, Andorra 1.05 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %28.",
+       "Form: Inter son 5 maçta 4G 1B 0M (12-4 gol); Andorra son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Gol temposu (son 10+ maç): Inter maçlarında ortalama 4.1, Andorra maçlarında 2.9 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %70 / %50.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.34,
+    "p": 0.1804,
+    "legs": [
+     {
+      "time": "",
+      "home": "Trabzonspor",
+      "away": "Gaziantep",
+      "league": "Türkiye Süper Lig",
+      "sel": "HMS -1 · 1",
+      "o": 1.59,
+      "p": 0.556,
+      "nid": 3258316,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.229,
+      "edge": 0.327,
+      "why": [
+       "Model beklentisi: Trabzonspor 2.66, Gaziantep 0.80 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %23.",
+       "Form: Trabzonspor son 5 maçta 4G 0B 1M (13-4 gol); Gaziantep son 5 maçta 0G 1B 4M (2-10 gol).",
+       "Hücum/savunma (son 10+ maç): Trabzonspor 2.2 atıyor, 1.1 yiyor; Gaziantep 1.0 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: Gaziantep 1-2 Trabzonspor, Trabzonspor 1-1 Gaziantep, Trabzonspor 3-2 Gaziantep."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Djurgarden",
+      "away": "Degerfors",
+      "league": "İsveç Allsvenskan",
+      "sel": "İY 1",
+      "o": 1.51,
+      "p": 0.564,
+      "nid": 3259297,
+      "mk": "1. Yarı Sonucu",
+      "mtid": 7,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "İY",
+      "base": 0.344,
+      "edge": 0.22,
+      "why": [
+       "Model beklentisi: Djurgarden 2.35, Degerfors 0.58 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Form: Djurgarden son 5 maçta 2G 2B 1M (7-5 gol); Degerfors son 5 maçta 0G 1B 4M (2-11 gol).",
+       "Hücum/savunma (son 10+ maç): Djurgarden 1.9 atıyor, 0.5 yiyor; Degerfors 0.7 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: Degerfors 0-1 Djurgarden, Degerfors 1-1 Djurgarden, Djurgarden 5-1 Degerfors.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Young Boys",
+      "away": "Zurich",
+      "league": "İsviçre Super League",
+      "sel": "Ev iki yarıda da gol atar",
+      "o": 1.39,
+      "p": 0.575,
+      "nid": 3258208,
+      "mk": "Ev Sahibi İki Yarıda da Gol",
+      "mtid": 295,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.317,
+      "edge": 0.257,
+      "why": [
+       "Model beklentisi: Young Boys 2.87, Zurich 1.35 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Young Boys son 5 maçta 3G 2B 0M (12-7 gol); Zurich son 5 maçta 3G 2B 0M (11-7 gol).",
+       "Gol temposu (son 10+ maç): Young Boys maçlarında ortalama 4.7, Zurich maçlarında 4.0 gol; 2.5 üst oranı %80 / %90, iki takım da gol atma oranı %70 / %90.",
+       "Son ikili maçlar: Zurich 2-4 Young Boys, Young Boys 3-0 Zurich, Young Boys 3-0 Zurich.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.23,
+    "p": 0.3384,
+    "legs": [
+     {
+      "time": "",
+      "home": "Palermo",
+      "away": "Vicenza",
+      "league": "İtalya Serie B",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.34,
+      "p": 0.725,
+      "nid": 3259412,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.413,
+      "edge": 0.312,
+      "why": [
+       "Model beklentisi: Palermo 2.56, Vicenza 1.04 gol. Bu seçenek %73 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Palermo son 5 maçta 4G 1B 0M (13-7 gol); Vicenza son 5 maçta 1G 1B 3M (6-9 gol).",
+       "Gol temposu (son 9+ maç): Palermo maçlarında ortalama 3.4, Vicenza maçlarında 3.2 gol; 2.5 üst oranı %60 / %78, iki takım da gol atma oranı %70 / %67."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Como",
+      "away": "Venezia",
+      "league": "İtalya Serie A",
+      "sel": "KG Yok",
+      "o": 1.87,
+      "p": 0.628,
+      "nid": 3259481,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.471,
+      "edge": 0.156,
+      "why": [
+       "Model beklentisi: Como 2.15, Venezia 0.54 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Como son 5 maçta 3G 1B 1M (8-4 gol); Venezia son 5 maçta 1G 0B 4M (2-8 gol).",
+       "Gol temposu (son 10+ maç): Como maçlarında ortalama 3.0, Venezia maçlarında 2.7 gol; 2.5 üst oranı %60 / %30, iki takım da gol atma oranı %70 / %30.",
+       "Son ikili maçlar: Como 1-1 Venezia, Venezia 2-2 Como."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Start",
+      "away": "Lillestrom",
+      "league": "Norveç Eliteserien",
+      "sel": "ÇŞ X-2",
+      "o": 1.29,
+      "p": 0.743,
+      "nid": 3259476,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.526,
+      "edge": 0.217,
+      "why": [
+       "Model beklentisi: Start 1.21, Lillestrom 1.75 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %53.",
+       "Form: Start son 5 maçta 2G 0B 3M (6-13 gol); Lillestrom son 5 maçta 3G 1B 1M (9-7 gol).",
+       "Hücum/savunma (son 10+ maç): Start 1.2 atıyor, 2.1 yiyor; Lillestrom 1.3 atıyor, 1.9 yiyor.",
+       "Son ikili maçlar: Lillestrom 3-1 Start, Lillestrom 4-3 Start, Start 2-1 Lillestrom."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.12,
+    "p": 0.2935,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Shandong Taishan",
+      "away": "Shenzhen Xinpengcheng",
+      "league": "Çin Süper Lig",
+      "sel": "2,5 Üst",
+      "o": 1.79,
+      "p": 0.712,
+      "nid": 3258204,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.56,
+      "edge": 0.151,
+      "why": [
+       "Model beklentisi: Shandong Taishan 2.54, Shenzhen Xinpengcheng 1.14 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Shandong Taishan son 5 maçta 3G 2B 0M (15-7 gol); Shenzhen Xinpengcheng son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Gol temposu (son 10+ maç): Shandong Taishan maçlarında ortalama 3.5, Shenzhen Xinpengcheng maçlarında 3.2 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Shandong Taishan 1-1 Shenzhen Xinpengcheng, Shenzhen Xinpengcheng 1-2 Shandong Taishan, Shenzhen Xinpengcheng 1-3 Shandong Taishan."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Palmeiras",
+      "away": "Vasco",
+      "league": "Brezilya Serie A",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.79,
+      "p": 0.659,
+      "nid": 3259493,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.418,
+      "edge": 0.241,
+      "why": [
+       "Model beklentisi: Palmeiras 2.26, Vasco 0.63 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Palmeiras son 5 maçta 4G 1B 0M (9-1 gol); Vasco son 5 maçta 2G 1B 2M (6-8 gol).",
+       "Gol temposu (son 10+ maç): Palmeiras maçlarında ortalama 1.9, Vasco maçlarında 3.2 gol; 2.5 üst oranı %20 / %70, iki takım da gol atma oranı %30 / %60.",
+       "Son ikili maçlar: Palmeiras 4-1 Vasco, Vasco 2-1 Palmeiras, Palmeiras 3-0 Vasco."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Machida",
+      "away": "Gamba Osaka",
+      "league": "Japonya J1 Lig",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.91,
+      "p": 0.626,
+      "nid": 3259506,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.309,
+      "edge": 0.317,
+      "why": [
+       "Model beklentisi: Machida 2.39, Gamba Osaka 0.81 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Machida son 5 maçta 3G 1B 1M (11-4 gol); Gamba Osaka son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Gol temposu (son 10+ maç): Machida maçlarında ortalama 3.0, Gamba Osaka maçlarında 2.6 gol; 2.5 üst oranı %60 / %50, iki takım da gol atma oranı %60 / %50.",
+       "Son ikili maçlar: Machida 3-1 Gamba Osaka, Gamba Osaka 0-1 Machida, Gamba Osaka 1-3 Machida."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.06,
+    "p": 0.2387,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Academico Viseu",
+      "away": "Rio Ave",
+      "league": "Portekiz Primeira Liga",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 2.05,
+      "p": 0.593,
+      "nid": 3258533,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.319,
+      "edge": 0.274,
+      "why": [
+       "Model beklentisi: Academico Viseu 2.23, Rio Ave 0.79 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Academico Viseu son 5 maçta 5G 0B 0M (9-3 gol); Rio Ave son 5 maçta 1G 1B 3M (6-14 gol).",
+       "Gol temposu (son 9+ maç): Academico Viseu maçlarında ortalama 2.7, Rio Ave maçlarında 3.1 gol; 2.5 üst oranı %67 / %50, iki takım da gol atma oranı %56 / %30."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Burgos",
+      "away": "Castellon",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.92,
+      "p": 0.58,
+      "nid": 3258610,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.472,
+      "edge": 0.108,
+      "why": [
+       "Model beklentisi: Burgos 1.02, Castellon 1.03 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Burgos son 5 maçta 3G 0B 2M (6-5 gol); Castellon son 5 maçta 3G 1B 1M (10-2 gol).",
+       "Gol temposu (son 10+ maç): Burgos maçlarında ortalama 2.3, Castellon maçlarında 2.5 gol; 2.5 üst oranı %50 / %50, iki takım da gol atma oranı %50 / %30.",
+       "Son ikili maçlar: Castellon 3-1 Burgos, Burgos 0-0 Castellon, Castellon 2-1 Burgos."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Velez Sarsfield",
+      "away": "San Lorenzo",
+      "league": "Arjantin Primera",
+      "sel": "KG Yok",
+      "o": 1.54,
+      "p": 0.693,
+      "nid": 3259229,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.548,
+      "edge": 0.145,
+      "why": [
+       "Model beklentisi: Velez Sarsfield 1.17, San Lorenzo 0.57 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %55.",
+       "Form: Velez Sarsfield son 5 maçta 3G 1B 1M (11-6 gol); San Lorenzo son 5 maçta 2G 1B 2M (3-6 gol).",
+       "Gol temposu (son 10+ maç): Velez Sarsfield maçlarında ortalama 2.8, San Lorenzo maçlarında 1.4 gol; 2.5 üst oranı %40 / %20, iki takım da gol atma oranı %60 / %20.",
+       "Son ikili maçlar: San Lorenzo 0-0 Velez Sarsfield, San Lorenzo 1-0 Velez Sarsfield, Velez Sarsfield 0-0 San Lorenzo."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
