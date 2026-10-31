@@ -1606,6 +1606,9 @@ def _save_backup(d):
     BACKUP_FILE.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
 
 
+HISTORY_DAYS = 10     # "Geçmiş kuponlar" bölümünde gösterilen gün sayısı
+
+
 def yesterday_report(hist, today=None, online=False):
     """En son geçmiş kupon gününün sonuçları ve tüm kayıtlı günlerin toplam tutma sayısı."""
     log = _load_log()
@@ -1665,11 +1668,19 @@ def yesterday_report(hist, today=None, online=False):
     except Exception as e:  # noqa: BLE001
         print("  (bekleyen sonuç nedenleri yazılamadı:", e, ")")
     tot = {"won": 0, "lost": 0, "pending": 0, "days": len(days)}
+    sur = {"won": 0, "lost": 0, "pending": 0}
     for d in days:
         for k in graded[d]:
-            tot[k["status"]] += 1
+            (sur if k.get("surprise") else tot)[k["status"]] += 1
     last = days[-1]
-    return {"date": last, "list": graded[last], "total": tot}
+    # Geçmiş kuponlar bölümü: son HISTORY_DAYS günün bütün kuponları (normal + sürpriz), en yeni gün başta
+    hist_days = [{"date": d, "list": graded[d]} for d in reversed(days[-HISTORY_DAYS:])]
+    h_stat = {"n": {"won": 0, "lost": 0, "pending": 0}, "s": {"won": 0, "lost": 0, "pending": 0}, "days": len(hist_days)}
+    for hd in hist_days:
+        for k in hd["list"]:
+            h_stat["s" if k.get("surprise") else "n"][k["status"]] += 1
+    return {"date": last, "list": graded[last],
+            "total": tot, "surprise_total": sur, "history": hist_days, "hist_stat": h_stat}
 
 
 # --------------------------------------------------------------------------
