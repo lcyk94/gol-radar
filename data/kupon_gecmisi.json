@@ -2016,27 +2016,27 @@
  "2026-10-31": {
   "list": [
    {
-    "odds": 3.05,
-    "p": 0.3249,
+    "odds": 3.36,
+    "p": 0.3406,
     "legs": [
      {
       "time": "",
       "home": "Rodina Moscow",
       "away": "Krasnodar",
       "league": "Rusya Premier Lig",
-      "sel": "MS2 & 1,5 Üst",
-      "o": 1.7,
-      "p": 0.771,
+      "sel": "MS2 & 2,5 Üst",
+      "o": 2.07,
+      "p": 0.697,
       "nid": 3252760,
-      "mk": "Maç Sonucu & 1,5 Alt/Üst",
-      "mtid": 342,
-      "line": 1.5,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
       "idx": 5,
       "fam": "MS&AÜ",
-      "base": 0.203,
-      "edge": 0.567,
+      "base": 0.155,
+      "edge": 0.542,
       "why": [
-       "Model beklentisi: Rodina Moscow 0.99, Krasnodar 3.32 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Model beklentisi: Rodina Moscow 0.99, Krasnodar 3.32 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %15.",
        "Form: Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol)."
       ]
      },
@@ -2064,40 +2064,11 @@
      },
      {
       "time": "",
-      "home": "Porto",
-      "away": "Estoril",
-      "league": "Portekiz Primeira Liga",
-      "sel": "HMS -1 · 1",
-      "o": 1.38,
-      "p": 0.558,
-      "nid": 3254998,
-      "mk": "Handikaplı MS (ev -1)",
-      "mtid": 268,
-      "line": -1.0,
-      "idx": 0,
-      "fam": "HMS",
-      "base": 0.201,
-      "edge": 0.357,
-      "why": [
-       "Model beklentisi: Porto 2.46, Estoril 0.60 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
-       "Form: Porto son 5 maçta 5G 0B 0M (12-4 gol); Estoril son 5 maçta 0G 1B 4M (3-8 gol).",
-       "Hücum/savunma (son 10+ maç): Porto 2.2 atıyor, 0.4 yiyor; Estoril 0.6 atıyor, 1.8 yiyor.",
-       "Son ikili maçlar: Estoril 1-3 Porto, Porto 1-0 Estoril, Estoril 1-2 Porto."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 4.13,
-    "p": 0.2665,
-    "legs": [
-     {
-      "time": "",
       "home": "Barcelona",
       "away": "Alaves",
       "league": "İspanya La Liga",
       "sel": "Ev iki yarıda da gol atar",
-      "o": 1.24,
+      "o": 1.25,
       "p": 0.647,
       "nid": 3259542,
       "mk": "Ev Sahibi İki Yarıda da Gol",
@@ -2113,6 +2084,35 @@
        "Gol temposu (son 10+ maç): Barcelona maçlarında ortalama 5.1, Alaves maçlarında 2.5 gol; 2.5 üst oranı %90 / %50, iki takım da gol atma oranı %60 / %60.",
        "Son ikili maçlar: Alaves 1-0 Barcelona, Barcelona 3-1 Alaves, Barcelona 1-0 Alaves.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %41 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 4.48,
+    "p": 0.2299,
+    "legs": [
+     {
+      "time": "",
+      "home": "Porto",
+      "away": "Estoril",
+      "league": "Portekiz Primeira Liga",
+      "sel": "HMS -1 · 1",
+      "o": 1.34,
+      "p": 0.558,
+      "nid": 3254998,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.201,
+      "edge": 0.357,
+      "why": [
+       "Model beklentisi: Porto 2.46, Estoril 0.60 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Form: Porto son 5 maçta 5G 0B 0M (12-4 gol); Estoril son 5 maçta 0G 1B 4M (3-8 gol).",
+       "Hücum/savunma (son 10+ maç): Porto 2.2 atıyor, 0.4 yiyor; Estoril 0.6 atıyor, 1.8 yiyor.",
+       "Son ikili maçlar: Estoril 1-3 Porto, Porto 1-0 Estoril, Estoril 1-2 Porto."
       ]
      },
      {
@@ -2144,7 +2144,7 @@
       "away": "RB Leipzig",
       "league": "Almanya Bundesliga",
       "sel": "KG Yok",
-      "o": 2.36,
+      "o": 2.37,
       "p": 0.628,
       "nid": 3254253,
       "mk": "Karşılıklı Gol",
@@ -2236,7 +2236,7 @@
     ]
    },
    {
-    "odds": 3.34,
+    "odds": 3.37,
     "p": 0.2821,
     "legs": [
      {
@@ -2269,7 +2269,7 @@
       "away": "Monza",
       "league": "İtalya Serie A",
       "sel": "Ev 1,5 Üst",
-      "o": 1.53,
+      "o": 1.54,
       "p": 0.677,
       "nid": 3254918,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -2312,8 +2312,8 @@
     ]
    },
    {
-    "odds": 6.07,
-    "p": 0.4007,
+    "odds": 6.95,
+    "p": 0.3867,
     "surprise": true,
     "legs": [
      {
@@ -2341,86 +2341,11 @@
      },
      {
       "time": "",
-      "home": "Salford",
-      "away": "Exeter",
-      "league": "İngiltere League Two",
-      "sel": "KG Yok",
-      "o": 1.71,
-      "p": 0.738,
-      "nid": 3252784,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.478,
-      "edge": 0.26,
-      "why": [
-       "Model beklentisi: Salford 0.81, Exeter 0.61 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
-       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20."
-      ]
-     },
-     {
-      "time": "23:00",
-      "home": "Zaragoza",
-      "away": "Villarreal",
-      "league": "İspanya Primera RFEF",
-      "sel": "HMS -1 · 2",
-      "o": 1.6,
-      "p": 0.75,
-      "nid": 3258441,
-      "mk": "Handikaplı MS (ev -1)",
-      "mtid": 268,
-      "line": -1.0,
-      "idx": 2,
-      "fam": "HMS",
-      "base": 0.56,
-      "edge": 0.19,
-      "why": [
-       "Model beklentisi: Zaragoza 1.25, Villarreal 1.87 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
-       "Form: Zaragoza son 5 maçta 0G 1B 4M (2-9 gol); Villarreal son 5 maçta 3G 1B 1M (8-4 gol).",
-       "Hücum/savunma (son 10+ maç): Zaragoza 0.6 atıyor, 1.6 yiyor; Villarreal 1.5 atıyor, 1.4 yiyor.",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 6.2,
-    "p": 0.2755,
-    "surprise": true,
-    "legs": [
-     {
-      "time": "",
-      "home": "Sociedad",
-      "away": "Girona",
-      "league": "İspanya La Liga",
-      "sel": "Ev 1,5 Üst",
-      "o": 2.3,
-      "p": 0.562,
-      "nid": 3258439,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.454,
-      "edge": 0.109,
-      "why": [
-       "Model beklentisi: Sociedad 1.89, Girona 1.11 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
-       "Form: Sociedad son 5 maçta 4G 0B 1M (13-10 gol); Girona son 5 maçta 3G 2B 0M (10-2 gol).",
-       "Gol temposu (son 10+ maç): Sociedad maçlarında ortalama 3.7, Girona maçlarında 3.0 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %70 / %60.",
-       "Son ikili maçlar: Girona 1-1 Sociedad, Sociedad 1-2 Girona, Sociedad 3-2 Girona."
-      ]
-     },
-     {
-      "time": "",
       "home": "Celta B",
       "away": "Cordoba",
       "league": "İspanya Segunda",
       "sel": "Ev 1,5 Üst",
-      "o": 2.14,
+      "o": 2.37,
       "p": 0.601,
       "nid": 3258207,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -2438,25 +2363,100 @@
      },
      {
       "time": "",
-      "home": "Kyoto",
-      "away": "Shimizu S-Pulse",
-      "league": "Japonya J1 Lig",
-      "sel": "ÇŞ 1-X",
-      "o": 1.26,
-      "p": 0.816,
-      "nid": 3254344,
-      "mk": "Çifte Şans",
-      "mtid": 3,
+      "home": "Salford",
+      "away": "Exeter",
+      "league": "İngiltere League Two",
+      "sel": "Ev iki yarıda da atamaz",
+      "o": 1.32,
+      "p": 0.89,
+      "nid": 3252784,
+      "mk": "Ev Sahibi İki Yarıda da Gol",
+      "mtid": 295,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.751,
+      "edge": 0.139,
+      "why": [
+       "Model beklentisi: Salford 0.81, Exeter 0.61 gol. Bu seçenek %89 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %75.",
+       "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
+       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.0,
+    "p": 0.2898,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Standard",
+      "away": "Kortrijk",
+      "league": "Belçika Pro League",
+      "sel": "KG Yok",
+      "o": 1.9,
+      "p": 0.642,
+      "nid": 3254327,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.438,
+      "edge": 0.204,
+      "why": [
+       "Model beklentisi: Standard 1.76, Kortrijk 0.55 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Standard son 5 maçta 1G 0B 4M (5-9 gol); Kortrijk son 5 maçta 1G 0B 4M (1-9 gol).",
+       "Gol temposu (son 10+ maç): Standard maçlarında ortalama 3.1, Kortrijk maçlarında 2.6 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %20.",
+       "Son ikili maçlar: Standard 1-0 Kortrijk, Kortrijk 1-0 Standard."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Swindon",
+      "away": "Rotherham",
+      "league": "İngiltere League Two",
+      "sel": "MS 1",
+      "o": 2.0,
+      "p": 0.601,
+      "nid": 3252737,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
       "line": 0.0,
       "idx": 0,
-      "fam": "ÇŞ",
-      "base": 0.679,
-      "edge": 0.137,
+      "fam": "MS",
+      "base": 0.416,
+      "edge": 0.185,
       "why": [
-       "Model beklentisi: Kyoto 1.77, Shimizu S-Pulse 0.91 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %68.",
-       "Form: Kyoto son 5 maçta 1G 2B 2M (6-9 gol); Shimizu S-Pulse son 5 maçta 2G 1B 2M (6-13 gol).",
-       "Hücum/savunma (son 10+ maç): Kyoto 1.2 atıyor, 1.9 yiyor; Shimizu S-Pulse 0.9 atıyor, 1.9 yiyor.",
-       "Son ikili maçlar: Kyoto 0-1 Shimizu S-Pulse, Shimizu S-Pulse 1-2 Kyoto, Shimizu S-Pulse 1-0 Kyoto."
+       "Model beklentisi: Swindon 2.15, Rotherham 1.13 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Swindon son 5 maçta 1G 2B 2M (4-4 gol); Rotherham son 5 maçta 0G 2B 3M (6-12 gol).",
+       "Hücum/savunma (son 10+ maç): Swindon 1.1 atıyor, 1.2 yiyor; Rotherham 1.3 atıyor, 1.9 yiyor."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Zaragoza",
+      "away": "Villarreal",
+      "league": "İspanya Primera RFEF",
+      "sel": "HMS -1 · 2",
+      "o": 1.58,
+      "p": 0.751,
+      "nid": 3258441,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.56,
+      "edge": 0.191,
+      "why": [
+       "Model beklentisi: Zaragoza 1.24, Villarreal 1.86 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Zaragoza son 5 maçta 0G 1B 4M (2-9 gol); Villarreal son 5 maçta 3G 1B 1M (8-4 gol).",
+       "Hücum/savunma (son 10+ maç): Zaragoza 0.6 atıyor, 1.6 yiyor; Villarreal 1.5 atıyor, 1.4 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
     ]
