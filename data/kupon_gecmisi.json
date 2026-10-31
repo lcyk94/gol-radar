@@ -2016,7 +2016,7 @@
  "2026-10-31": {
   "list": [
    {
-    "odds": 3.31,
+    "odds": 3.28,
     "p": 0.3406,
     "legs": [
      {
@@ -2068,7 +2068,7 @@
       "away": "Alaves",
       "league": "İspanya La Liga",
       "sel": "Ev iki yarıda da gol atar",
-      "o": 1.25,
+      "o": 1.24,
       "p": 0.647,
       "nid": 3259542,
       "mk": "Ev Sahibi İki Yarıda da Gol",
@@ -2089,8 +2089,8 @@
     ]
    },
    {
-    "odds": 3.05,
-    "p": 0.2701,
+    "odds": 3.56,
+    "p": 0.2368,
     "legs": [
      {
       "time": "",
@@ -2098,7 +2098,7 @@
       "away": "Estoril",
       "league": "Portekiz Primeira Liga",
       "sel": "HMS -1 · 1",
-      "o": 1.34,
+      "o": 1.33,
       "p": 0.558,
       "nid": 3254998,
       "mk": "Handikaplı MS (ev -1)",
@@ -2140,31 +2140,31 @@
      },
      {
       "time": "",
-      "home": "Salford",
-      "away": "Exeter",
-      "league": "İngiltere League Two",
-      "sel": "KG Yok",
-      "o": 1.59,
-      "p": 0.738,
-      "nid": 3252784,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
+      "home": "Cambuur",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "3,5 Üst",
+      "o": 1.87,
+      "p": 0.647,
+      "nid": 3252863,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
       "idx": 1,
-      "fam": "KG",
-      "base": 0.478,
-      "edge": 0.26,
+      "fam": "AÜ",
+      "base": 0.392,
+      "edge": 0.255,
       "why": [
-       "Model beklentisi: Salford 0.81, Exeter 0.61 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
-       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20."
+       "Model beklentisi: Cambuur 2.22, Go Ahead Eagles 2.21 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Cambuur son 5 maçta 3G 2B 0M (13-4 gol); Go Ahead Eagles son 5 maçta 1G 3B 1M (9-11 gol).",
+       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.1, Go Ahead Eagles maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %100."
       ]
      }
     ]
    },
    {
-    "odds": 3.98,
-    "p": 0.2336,
+    "odds": 3.87,
+    "p": 0.2318,
     "legs": [
      {
       "time": "",
@@ -2215,53 +2215,53 @@
      },
      {
       "time": "",
-      "home": "Cambuur",
-      "away": "Go Ahead Eagles",
-      "league": "Hollanda Eredivisie",
-      "sel": "3,5 Üst",
-      "o": 1.87,
-      "p": 0.647,
-      "nid": 3252863,
-      "mk": "Alt/Üst 3,5",
-      "mtid": 13,
-      "line": 3.5,
+      "home": "Standard",
+      "away": "Kortrijk",
+      "league": "Belçika Pro League",
+      "sel": "KG Yok",
+      "o": 1.82,
+      "p": 0.642,
+      "nid": 3254327,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
       "idx": 1,
-      "fam": "AÜ",
-      "base": 0.392,
-      "edge": 0.255,
+      "fam": "KG",
+      "base": 0.438,
+      "edge": 0.204,
       "why": [
-       "Model beklentisi: Cambuur 2.22, Go Ahead Eagles 2.21 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
-       "Form: Cambuur son 5 maçta 3G 2B 0M (13-4 gol); Go Ahead Eagles son 5 maçta 1G 3B 1M (9-11 gol).",
-       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.1, Go Ahead Eagles maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %100."
+       "Model beklentisi: Standard 1.76, Kortrijk 0.55 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Standard son 5 maçta 1G 0B 4M (5-9 gol); Kortrijk son 5 maçta 1G 0B 4M (1-9 gol).",
+       "Gol temposu (son 10+ maç): Standard maçlarında ortalama 3.1, Kortrijk maçlarında 2.6 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %20.",
+       "Son ikili maçlar: Standard 1-0 Kortrijk, Kortrijk 1-0 Standard."
       ]
      }
     ]
    },
    {
-    "odds": 3.88,
-    "p": 0.3326,
+    "odds": 4.1,
+    "p": 0.3331,
     "legs": [
      {
       "time": "",
-      "home": "Boreham Wood",
-      "away": "Hartlepool",
-      "league": "İngiltere Conference",
+      "home": "Betis",
+      "away": "Malaga",
+      "league": "İspanya La Liga",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.21,
-      "p": 0.651,
-      "nid": 3254684,
+      "o": 1.28,
+      "p": 0.652,
+      "nid": 3258623,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
       "mtid": 342,
       "line": 1.5,
       "idx": 3,
       "fam": "MS&AÜ",
-      "base": 0.349,
-      "edge": 0.302,
+      "base": 0.355,
+      "edge": 0.297,
       "why": [
-       "Model beklentisi: Boreham Wood 2.50, Hartlepool 0.82 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
-       "Form: Boreham Wood son 5 maçta 5G 0B 0M (14-3 gol); Hartlepool son 5 maçta 2G 0B 3M (7-8 gol).",
-       "Gol temposu (son 10+ maç): Boreham Wood maçlarında ortalama 3.3, Hartlepool maçlarında 3.0 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %70 / %60.",
-       "Son ikili maçlar: Boreham Wood 3-0 Hartlepool, Hartlepool 0-0 Boreham Wood."
+       "Model beklentisi: Betis 2.43, Malaga 0.69 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %36.",
+       "Form: Betis son 5 maçta 2G 2B 1M (9-8 gol); Malaga son 5 maçta 0G 2B 3M (5-11 gol).",
+       "Gol temposu (son 10+ maç): Betis maçlarında ortalama 3.0, Malaga maçlarında 2.6 gol; 2.5 üst oranı %40 / %30, iki takım da gol atma oranı %50 / %60."
       ]
      },
      {
@@ -2308,6 +2308,80 @@
        "Form: Troyes son 5 maçta 0G 1B 4M (1-9 gol); Le Mans son 5 maçta 1G 2B 2M (6-10 gol).",
        "Hücum/savunma (son 10+ maç): Troyes 0.9 atıyor, 1.7 yiyor; Le Mans 1.4 atıyor, 1.7 yiyor.",
        "Son ikili maçlar: Troyes 0-2 Le Mans, Le Mans 2-2 Troyes."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.05,
+    "p": 0.3846,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Botafogo RJ",
+      "away": "Sport Recife",
+      "league": "Brezilya Serie A",
+      "sel": "MS 1",
+      "o": 2.22,
+      "p": 0.724,
+      "nid": 3254868,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.467,
+      "edge": 0.256,
+      "why": [
+       "Model beklentisi: Botafogo RJ 2.34, Sport Recife 0.76 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Botafogo RJ son 5 maçta 1G 1B 3M (4-8 gol); Sport Recife son 5 maçta 0G 0B 5M (3-15 gol).",
+       "Hücum/savunma (son 10+ maç): Botafogo RJ 0.8 atıyor, 1.6 yiyor; Sport Recife 0.7 atıyor, 3.1 yiyor.",
+       "Son ikili maçlar: Botafogo RJ 3-2 Sport Recife, Sport Recife 0-1 Botafogo RJ, Botafogo RJ 0-1 Sport Recife."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Rodina Moscow",
+      "away": "Krasnodar",
+      "league": "Rusya Premier Lig",
+      "sel": "Dep iki yarıda da gol atar",
+      "o": 2.13,
+      "p": 0.649,
+      "nid": 3252760,
+      "mk": "Deplasman İki Yarıda da Gol",
+      "mtid": 296,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.177,
+      "edge": 0.472,
+      "why": [
+       "Model beklentisi: Rodina Moscow 0.99, Krasnodar 3.32 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %18.",
+       "Form: Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol).",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Cambuur",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "2,5 Üst",
+      "o": 1.28,
+      "p": 0.819,
+      "nid": 3252863,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.615,
+      "edge": 0.205,
+      "why": [
+       "Model beklentisi: Cambuur 2.22, Go Ahead Eagles 2.21 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %61.",
+       "Form: Cambuur son 5 maçta 3G 2B 0M (13-4 gol); Go Ahead Eagles son 5 maçta 1G 3B 1M (9-11 gol).",
+       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.1, Go Ahead Eagles maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %100."
       ]
      }
     ]
@@ -2383,80 +2457,6 @@
        "Form: Zaragoza son 5 maçta 0G 1B 4M (2-9 gol); Villarreal son 5 maçta 3G 1B 1M (8-4 gol).",
        "Hücum/savunma (son 10+ maç): Zaragoza 0.6 atıyor, 1.6 yiyor; Villarreal 1.5 atıyor, 1.4 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 6.03,
-    "p": 0.2515,
-    "surprise": true,
-    "legs": [
-     {
-      "time": "",
-      "home": "Barnsley",
-      "away": "Oxford",
-      "league": "İngiltere League One",
-      "sel": "MS 2",
-      "o": 2.12,
-      "p": 0.579,
-      "nid": 3254996,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 2,
-      "fam": "MS",
-      "base": 0.3,
-      "edge": 0.279,
-      "why": [
-       "Model beklentisi: Barnsley 1.04, Oxford 1.94 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %30.",
-       "Form: Barnsley son 5 maçta 0G 1B 4M (5-10 gol); Oxford son 5 maçta 3G 2B 0M (6-3 gol).",
-       "Hücum/savunma (son 10+ maç): Barnsley 1.1 atıyor, 2.0 yiyor; Oxford 1.7 atıyor, 0.8 yiyor."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Worthing",
-      "away": "Sutton",
-      "league": "İngiltere Conference",
-      "sel": "MS1 & 1,5 Üst",
-      "o": 1.96,
-      "p": 0.609,
-      "nid": 3254993,
-      "mk": "Maç Sonucu & 1,5 Alt/Üst",
-      "mtid": 342,
-      "line": 1.5,
-      "idx": 3,
-      "fam": "MS&AÜ",
-      "base": 0.349,
-      "edge": 0.261,
-      "why": [
-       "Model beklentisi: Worthing 2.46, Sutton 1.05 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
-       "Form: Worthing son 5 maçta 3G 2B 0M (13-6 gol); Sutton son 5 maçta 1G 1B 3M (4-8 gol).",
-       "Gol temposu (son 10+ maç): Worthing maçlarında ortalama 3.5, Sutton maçlarında 2.8 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %80 / %50."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Dep. Riestra",
-      "away": "Talleres Cordoba",
-      "league": "Arjantin Primera",
-      "sel": "KG Yok",
-      "o": 1.45,
-      "p": 0.713,
-      "nid": 3258570,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.548,
-      "edge": 0.165,
-      "why": [
-       "Model beklentisi: Dep. Riestra 0.83, Talleres Cordoba 0.69 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %55.",
-       "Form: Dep. Riestra son 5 maçta 0G 3B 2M (2-4 gol); Talleres Cordoba son 5 maçta 0G 1B 4M (3-8 gol).",
-       "Gol temposu (son 10+ maç): Dep. Riestra maçlarında ortalama 1.5, Talleres Cordoba maçlarında 2.3 gol; 2.5 üst oranı %10 / %60, iki takım da gol atma oranı %40 / %60.",
-       "Son ikili maçlar: Talleres Cordoba 2-0 Dep. Riestra, Talleres Cordoba 0-1 Dep. Riestra, Dep. Riestra 0-0 Talleres Cordoba."
       ]
      }
     ]
