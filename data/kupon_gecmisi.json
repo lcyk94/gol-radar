@@ -2012,5 +2012,455 @@
     ]
    }
   ]
+ },
+ "2026-10-31": {
+  "list": [
+   {
+    "odds": 3.05,
+    "p": 0.3249,
+    "legs": [
+     {
+      "time": "",
+      "home": "Rodina Moscow",
+      "away": "Krasnodar",
+      "league": "Rusya Premier Lig",
+      "sel": "MS2 & 1,5 Üst",
+      "o": 1.7,
+      "p": 0.771,
+      "nid": 3252760,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.203,
+      "edge": 0.567,
+      "why": [
+       "Model beklentisi: Rodina Moscow 0.99, Krasnodar 3.32 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Form: Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Beveren",
+      "away": "St. Gilloise",
+      "league": "Belçika Pro League",
+      "sel": "MS 2",
+      "o": 1.3,
+      "p": 0.755,
+      "nid": 3253602,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.291,
+      "edge": 0.464,
+      "why": [
+       "Model beklentisi: Beveren 0.79, St. Gilloise 2.58 gol. Bu seçenek %76 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Beveren son 5 maçta 2G 1B 2M (10-8 gol); St. Gilloise son 5 maçta 4G 1B 0M (16-5 gol).",
+       "Hücum/savunma (son 9+ maç): Beveren 1.3 atıyor, 2.0 yiyor; St. Gilloise 3.2 atıyor, 0.7 yiyor."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Porto",
+      "away": "Estoril",
+      "league": "Portekiz Primeira Liga",
+      "sel": "HMS -1 · 1",
+      "o": 1.38,
+      "p": 0.558,
+      "nid": 3254998,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.201,
+      "edge": 0.357,
+      "why": [
+       "Model beklentisi: Porto 2.46, Estoril 0.60 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Form: Porto son 5 maçta 5G 0B 0M (12-4 gol); Estoril son 5 maçta 0G 1B 4M (3-8 gol).",
+       "Hücum/savunma (son 10+ maç): Porto 2.2 atıyor, 0.4 yiyor; Estoril 0.6 atıyor, 1.8 yiyor.",
+       "Son ikili maçlar: Estoril 1-3 Porto, Porto 1-0 Estoril, Estoril 1-2 Porto."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 4.13,
+    "p": 0.2665,
+    "legs": [
+     {
+      "time": "",
+      "home": "Barcelona",
+      "away": "Alaves",
+      "league": "İspanya La Liga",
+      "sel": "Ev iki yarıda da gol atar",
+      "o": 1.24,
+      "p": 0.647,
+      "nid": 3259542,
+      "mk": "Ev Sahibi İki Yarıda da Gol",
+      "mtid": 295,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.284,
+      "edge": 0.363,
+      "why": [
+       "Model beklentisi: Barcelona 3.30, Alaves 0.80 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %28.",
+       "Form: Barcelona son 5 maçta 4G 0B 1M (19-7 gol); Alaves son 5 maçta 0G 2B 3M (3-6 gol).",
+       "Gol temposu (son 10+ maç): Barcelona maçlarında ortalama 5.1, Alaves maçlarında 2.5 gol; 2.5 üst oranı %90 / %50, iki takım da gol atma oranı %60 / %60.",
+       "Son ikili maçlar: Alaves 1-0 Barcelona, Barcelona 3-1 Alaves, Barcelona 1-0 Alaves.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %41 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Sporting Kansas City",
+      "away": "FC Dallas",
+      "league": "ABD MLS",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.41,
+      "p": 0.656,
+      "nid": 3255243,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.34,
+      "edge": 0.316,
+      "why": [
+       "Model beklentisi: Sporting Kansas City 1.48, FC Dallas 2.24 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Form: Sporting Kansas City son 5 maçta 0G 1B 4M (6-15 gol); FC Dallas son 5 maçta 2G 1B 2M (8-7 gol).",
+       "Gol temposu (son 10+ maç): Sporting Kansas City maçlarında ortalama 4.4, FC Dallas maçlarında 2.9 gol; 2.5 üst oranı %90 / %60, iki takım da gol atma oranı %80 / %50.",
+       "Son ikili maçlar: FC Dallas 4-3 Sporting Kansas City, Sporting Kansas City 2-4 FC Dallas, FC Dallas 2-1 Sporting Kansas City."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Schalke 04",
+      "away": "RB Leipzig",
+      "league": "Almanya Bundesliga",
+      "sel": "KG Yok",
+      "o": 2.36,
+      "p": 0.628,
+      "nid": 3254253,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.358,
+      "edge": 0.271,
+      "why": [
+       "Model beklentisi: Schalke 04 0.77, RB Leipzig 1.13 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %36.",
+       "Form: Schalke 04 son 5 maçta 1G 2B 2M (4-4 gol); RB Leipzig son 5 maçta 3G 0B 2M (16-8 gol).",
+       "Gol temposu (son 10+ maç): Schalke 04 maçlarında ortalama 1.6, RB Leipzig maçlarında 4.4 gol; 2.5 üst oranı %40 / %90, iki takım da gol atma oranı %20 / %50."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 4.55,
+    "p": 0.2762,
+    "legs": [
+     {
+      "time": "",
+      "home": "Wolfsburg",
+      "away": "Osnabruck",
+      "league": "Almanya 2. Bundesliga",
+      "sel": "MS1 & 2,5 Üst",
+      "o": 1.74,
+      "p": 0.655,
+      "nid": 3254782,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.297,
+      "edge": 0.357,
+      "why": [
+       "Model beklentisi: Wolfsburg 3.23, Osnabruck 1.35 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %30.",
+       "Form: Wolfsburg son 5 maçta 2G 2B 1M (13-8 gol); Osnabruck son 5 maçta 1G 2B 2M (7-7 gol).",
+       "Gol temposu (son 9+ maç): Wolfsburg maçlarında ortalama 4.1, Osnabruck maçlarında 3.2 gol; 2.5 üst oranı %60 / %67, iki takım da gol atma oranı %70 / %67."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Udinese",
+      "away": "Roma",
+      "league": "İtalya Serie A",
+      "sel": "MS 2",
+      "o": 1.37,
+      "p": 0.652,
+      "nid": 3253824,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.332,
+      "edge": 0.32,
+      "why": [
+       "Model beklentisi: Udinese 0.80, Roma 2.01 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Udinese son 5 maçta 0G 1B 4M (1-8 gol); Roma son 5 maçta 2G 3B 0M (11-7 gol).",
+       "Hücum/savunma (son 10+ maç): Udinese 0.9 atıyor, 1.9 yiyor; Roma 2.5 atıyor, 0.8 yiyor.",
+       "Son ikili maçlar: Udinese 1-0 Roma, Roma 2-0 Udinese, Udinese 1-2 Roma."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Cambuur",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "3,5 Üst",
+      "o": 1.91,
+      "p": 0.647,
+      "nid": 3252863,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.392,
+      "edge": 0.255,
+      "why": [
+       "Model beklentisi: Cambuur 2.22, Go Ahead Eagles 2.21 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Cambuur son 5 maçta 3G 2B 0M (13-4 gol); Go Ahead Eagles son 5 maçta 1G 3B 1M (9-11 gol).",
+       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.1, Go Ahead Eagles maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %100."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.34,
+    "p": 0.2821,
+    "legs": [
+     {
+      "time": "",
+      "home": "LASK",
+      "away": "Tirol",
+      "league": "Avusturya Bundesliga",
+      "sel": "İY 1",
+      "o": 1.55,
+      "p": 0.553,
+      "nid": 3254324,
+      "mk": "1. Yarı Sonucu",
+      "mtid": 7,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "İY",
+      "base": 0.338,
+      "edge": 0.215,
+      "why": [
+       "Model beklentisi: LASK 2.59, Tirol 0.91 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Form: LASK son 5 maçta 1G 1B 3M (9-10 gol); Tirol son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Hücum/savunma (son 10+ maç): LASK 2.4 atıyor, 1.2 yiyor; Tirol 1.3 atıyor, 1.5 yiyor.",
+       "Son ikili maçlar: LASK 1-0 Tirol, Tirol 3-1 LASK, Tirol 1-3 LASK.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Bologna",
+      "away": "Monza",
+      "league": "İtalya Serie A",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.53,
+      "p": 0.677,
+      "nid": 3254918,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.387,
+      "edge": 0.289,
+      "why": [
+       "Model beklentisi: Bologna 2.33, Monza 1.29 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Bologna son 5 maçta 3G 1B 1M (10-7 gol); Monza son 5 maçta 2G 0B 3M (10-11 gol).",
+       "Gol temposu (son 10+ maç): Bologna maçlarında ortalama 3.0, Monza maçlarında 4.2 gol; 2.5 üst oranı %50 / %90, iki takım da gol atma oranı %60 / %90.",
+       "Son ikili maçlar: Bologna 3-1 Monza, Monza 1-2 Bologna."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Troyes",
+      "away": "Le Mans",
+      "league": "Fransa Ligue 1",
+      "sel": "ÇŞ X-2",
+      "o": 1.41,
+      "p": 0.753,
+      "nid": 3253968,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.565,
+      "edge": 0.188,
+      "why": [
+       "Model beklentisi: Troyes 1.09, Le Mans 1.63 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Troyes son 5 maçta 0G 1B 4M (1-9 gol); Le Mans son 5 maçta 1G 2B 2M (6-10 gol).",
+       "Hücum/savunma (son 10+ maç): Troyes 0.9 atıyor, 1.7 yiyor; Le Mans 1.4 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: Troyes 0-2 Le Mans, Le Mans 2-2 Troyes."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.07,
+    "p": 0.4007,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Botafogo RJ",
+      "away": "Sport Recife",
+      "league": "Brezilya Serie A",
+      "sel": "MS 1",
+      "o": 2.22,
+      "p": 0.724,
+      "nid": 3254868,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.467,
+      "edge": 0.256,
+      "why": [
+       "Model beklentisi: Botafogo RJ 2.34, Sport Recife 0.76 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Botafogo RJ son 5 maçta 1G 1B 3M (4-8 gol); Sport Recife son 5 maçta 0G 0B 5M (3-15 gol).",
+       "Hücum/savunma (son 10+ maç): Botafogo RJ 0.8 atıyor, 1.6 yiyor; Sport Recife 0.7 atıyor, 3.1 yiyor.",
+       "Son ikili maçlar: Botafogo RJ 3-2 Sport Recife, Sport Recife 0-1 Botafogo RJ, Botafogo RJ 0-1 Sport Recife."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Salford",
+      "away": "Exeter",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "o": 1.71,
+      "p": 0.738,
+      "nid": 3252784,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.478,
+      "edge": 0.26,
+      "why": [
+       "Model beklentisi: Salford 0.81, Exeter 0.61 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
+       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Zaragoza",
+      "away": "Villarreal",
+      "league": "İspanya Primera RFEF",
+      "sel": "HMS -1 · 2",
+      "o": 1.6,
+      "p": 0.75,
+      "nid": 3258441,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.56,
+      "edge": 0.19,
+      "why": [
+       "Model beklentisi: Zaragoza 1.25, Villarreal 1.87 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Zaragoza son 5 maçta 0G 1B 4M (2-9 gol); Villarreal son 5 maçta 3G 1B 1M (8-4 gol).",
+       "Hücum/savunma (son 10+ maç): Zaragoza 0.6 atıyor, 1.6 yiyor; Villarreal 1.5 atıyor, 1.4 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.2,
+    "p": 0.2755,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Sociedad",
+      "away": "Girona",
+      "league": "İspanya La Liga",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.3,
+      "p": 0.562,
+      "nid": 3258439,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.454,
+      "edge": 0.109,
+      "why": [
+       "Model beklentisi: Sociedad 1.89, Girona 1.11 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Sociedad son 5 maçta 4G 0B 1M (13-10 gol); Girona son 5 maçta 3G 2B 0M (10-2 gol).",
+       "Gol temposu (son 10+ maç): Sociedad maçlarında ortalama 3.7, Girona maçlarında 3.0 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Girona 1-1 Sociedad, Sociedad 1-2 Girona, Sociedad 3-2 Girona."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Celta B",
+      "away": "Cordoba",
+      "league": "İspanya Segunda",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.14,
+      "p": 0.601,
+      "nid": 3258207,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.43,
+      "edge": 0.17,
+      "why": [
+       "Model beklentisi: Celta B 2.02, Cordoba 1.72 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Celta B son 5 maçta 1G 2B 2M (9-11 gol); Cordoba son 5 maçta 3G 0B 2M (8-7 gol).",
+       "Gol temposu (son 10+ maç): Celta B maçlarında ortalama 3.7, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %70 / %70."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Kyoto",
+      "away": "Shimizu S-Pulse",
+      "league": "Japonya J1 Lig",
+      "sel": "ÇŞ 1-X",
+      "o": 1.26,
+      "p": 0.816,
+      "nid": 3254344,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "ÇŞ",
+      "base": 0.679,
+      "edge": 0.137,
+      "why": [
+       "Model beklentisi: Kyoto 1.77, Shimizu S-Pulse 0.91 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %68.",
+       "Form: Kyoto son 5 maçta 1G 2B 2M (6-9 gol); Shimizu S-Pulse son 5 maçta 2G 1B 2M (6-13 gol).",
+       "Hücum/savunma (son 10+ maç): Kyoto 1.2 atıyor, 1.9 yiyor; Shimizu S-Pulse 0.9 atıyor, 1.9 yiyor.",
+       "Son ikili maçlar: Kyoto 0-1 Shimizu S-Pulse, Shimizu S-Pulse 1-2 Kyoto, Shimizu S-Pulse 1-0 Kyoto."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
