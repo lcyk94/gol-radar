@@ -2016,7 +2016,7 @@
  "2026-10-31": {
   "list": [
    {
-    "odds": 3.28,
+    "odds": 3.44,
     "p": 0.3406,
     "legs": [
      {
@@ -2025,7 +2025,7 @@
       "away": "Krasnodar",
       "league": "Rusya Premier Lig",
       "sel": "MS2 & 2,5 Üst",
-      "o": 2.05,
+      "o": 2.15,
       "p": 0.697,
       "nid": 3252760,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -2089,7 +2089,7 @@
     ]
    },
    {
-    "odds": 3.56,
+    "odds": 3.58,
     "p": 0.2368,
     "legs": [
      {
@@ -2098,7 +2098,7 @@
       "away": "Estoril",
       "league": "Portekiz Primeira Liga",
       "sel": "HMS -1 · 1",
-      "o": 1.33,
+      "o": 1.34,
       "p": 0.558,
       "nid": 3254998,
       "mk": "Handikaplı MS (ev -1)",
@@ -2163,7 +2163,7 @@
     ]
    },
    {
-    "odds": 3.87,
+    "odds": 3.85,
     "p": 0.2318,
     "legs": [
      {
@@ -2172,7 +2172,7 @@
       "away": "Roma",
       "league": "İtalya Serie A",
       "sel": "MS 2",
-      "o": 1.4,
+      "o": 1.37,
       "p": 0.652,
       "nid": 3253824,
       "mk": "Maç Sonucu",
@@ -2219,7 +2219,7 @@
       "away": "Kortrijk",
       "league": "Belçika Pro League",
       "sel": "KG Yok",
-      "o": 1.82,
+      "o": 1.85,
       "p": 0.642,
       "nid": 3254327,
       "mk": "Karşılıklı Gol",
@@ -2313,8 +2313,8 @@
     ]
    },
    {
-    "odds": 6.05,
-    "p": 0.3846,
+    "odds": 6.07,
+    "p": 0.4194,
     "surprise": true,
     "legs": [
      {
@@ -2345,95 +2345,20 @@
       "home": "Rodina Moscow",
       "away": "Krasnodar",
       "league": "Rusya Premier Lig",
-      "sel": "Dep iki yarıda da gol atar",
-      "o": 2.13,
-      "p": 0.649,
+      "sel": "MS2 & 1,5 Üst",
+      "o": 1.73,
+      "p": 0.771,
       "nid": 3252760,
-      "mk": "Deplasman İki Yarıda da Gol",
-      "mtid": 296,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "YARI",
-      "base": 0.177,
-      "edge": 0.472,
-      "why": [
-       "Model beklentisi: Rodina Moscow 0.99, Krasnodar 3.32 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %18.",
-       "Form: Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol).",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Cambuur",
-      "away": "Go Ahead Eagles",
-      "league": "Hollanda Eredivisie",
-      "sel": "2,5 Üst",
-      "o": 1.28,
-      "p": 0.819,
-      "nid": 3252863,
-      "mk": "Alt/Üst 2,5",
-      "mtid": 12,
-      "line": 2.5,
-      "idx": 1,
-      "fam": "AÜ",
-      "base": 0.615,
-      "edge": 0.205,
-      "why": [
-       "Model beklentisi: Cambuur 2.22, Go Ahead Eagles 2.21 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %61.",
-       "Form: Cambuur son 5 maçta 3G 2B 0M (13-4 gol); Go Ahead Eagles son 5 maçta 1G 3B 1M (9-11 gol).",
-       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.1, Go Ahead Eagles maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %100."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 6.24,
-    "p": 0.29,
-    "surprise": true,
-    "legs": [
-     {
-      "time": "",
-      "home": "Celta B",
-      "away": "Cordoba",
-      "league": "İspanya Segunda",
-      "sel": "Ev 1,5 Üst",
-      "o": 2.17,
-      "p": 0.601,
-      "nid": 3258207,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
       "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.43,
-      "edge": 0.17,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.203,
+      "edge": 0.567,
       "why": [
-       "Model beklentisi: Celta B 2.02, Cordoba 1.72 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
-       "Form: Celta B son 5 maçta 1G 2B 2M (9-11 gol); Cordoba son 5 maçta 3G 0B 2M (8-7 gol).",
-       "Gol temposu (son 10+ maç): Celta B maçlarında ortalama 3.7, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %70 / %70."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Standard",
-      "away": "Kortrijk",
-      "league": "Belçika Pro League",
-      "sel": "KG Yok",
-      "o": 1.82,
-      "p": 0.642,
-      "nid": 3254327,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.438,
-      "edge": 0.204,
-      "why": [
-       "Model beklentisi: Standard 1.76, Kortrijk 0.55 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Standard son 5 maçta 1G 0B 4M (5-9 gol); Kortrijk son 5 maçta 1G 0B 4M (1-9 gol).",
-       "Gol temposu (son 10+ maç): Standard maçlarında ortalama 3.1, Kortrijk maçlarında 2.6 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %20.",
-       "Son ikili maçlar: Standard 1-0 Kortrijk, Kortrijk 1-0 Standard."
+       "Model beklentisi: Rodina Moscow 0.99, Krasnodar 3.32 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Form: Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol)."
       ]
      },
      {
@@ -2457,6 +2382,82 @@
        "Form: Zaragoza son 5 maçta 0G 1B 4M (2-9 gol); Villarreal son 5 maçta 3G 1B 1M (8-4 gol).",
        "Hücum/savunma (son 10+ maç): Zaragoza 0.6 atıyor, 1.6 yiyor; Villarreal 1.5 atıyor, 1.4 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.5,
+    "p": 0.2604,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Troyes",
+      "away": "Le Mans",
+      "league": "Fransa Ligue 1",
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.88,
+      "p": 0.627,
+      "nid": 3253968,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.467,
+      "edge": 0.16,
+      "why": [
+       "Model beklentisi: Troyes 1.09, Le Mans 1.63 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Troyes son 5 maçta 0G 1B 4M (1-9 gol); Le Mans son 5 maçta 1G 2B 2M (6-10 gol).",
+       "Gol temposu (son 10+ maç): Troyes maçlarında ortalama 2.6, Le Mans maçlarında 3.1 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %30 / %80.",
+       "Son ikili maçlar: Troyes 0-2 Le Mans, Le Mans 2-2 Troyes.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %42, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Cambuur",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "3,5 Üst",
+      "o": 1.87,
+      "p": 0.647,
+      "nid": 3252863,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.392,
+      "edge": 0.255,
+      "why": [
+       "Model beklentisi: Cambuur 2.22, Go Ahead Eagles 2.21 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Cambuur son 5 maçta 3G 2B 0M (13-4 gol); Go Ahead Eagles son 5 maçta 1G 3B 1M (9-11 gol).",
+       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.1, Go Ahead Eagles maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %100."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Standard",
+      "away": "Kortrijk",
+      "league": "Belçika Pro League",
+      "sel": "KG Yok",
+      "o": 1.85,
+      "p": 0.642,
+      "nid": 3254327,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.438,
+      "edge": 0.204,
+      "why": [
+       "Model beklentisi: Standard 1.76, Kortrijk 0.55 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Standard son 5 maçta 1G 0B 4M (5-9 gol); Kortrijk son 5 maçta 1G 0B 4M (1-9 gol).",
+       "Gol temposu (son 10+ maç): Standard maçlarında ortalama 3.1, Kortrijk maçlarında 2.6 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %20.",
+       "Son ikili maçlar: Standard 1-0 Kortrijk, Kortrijk 1-0 Standard."
       ]
      }
     ]
