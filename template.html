@@ -197,6 +197,13 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .pc dt{font-size:12.5px;color:var(--mut)}
 .pc dd{margin:2px 0 0;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
 .pc small{display:block;font-size:12.5px;color:var(--mut);font-weight:400;margin-top:2px}
+.hsum{margin:0 0 12px;font-size:14px}
+.hd{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:0 0 8px}
+.hd summary{cursor:pointer;padding:10px 14px;display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline}
+.hd summary span{color:var(--mut);font-size:13px}
+.hd summary:focus-visible{outline:3px solid #2f6fd6;outline-offset:-3px;border-radius:8px}
+.hg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;padding:0 12px 12px}
+.hg .yc{margin-bottom:0}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .cal{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
   border-radius:8px;overflow:hidden;font-size:14px;font-variant-numeric:tabular-nums}
@@ -245,7 +252,7 @@ nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;out
 <header class="top"><div class="wrap">
   <h1>Gol Radar</h1>
   <p class="sub">İstatistik modelinin maç tahminleri</p>
-  <nav class="nv" aria-label="Bölümler"><a href="#coupons">Kuponlar</a><a href="#list">Maçlar</a><a href="#perf">Başarı</a><a href="#about">Nasıl çalışır?</a></nav>
+  <nav class="nv" aria-label="Bölümler"><a href="#coupons">Kuponlar</a><a href="#list">Maçlar</a><a href="#hist">Geçmiş</a><a href="#perf">Başarı</a><a href="#about">Nasıl çalışır?</a></nav>
   <button class="thm" id="thm" type="button" aria-label="Koyu ya da açık görünüm"></button>
   <span id="gen"></span>
 </div></header>
@@ -268,6 +275,7 @@ nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;out
   </div>
   <div class="legend" id="legend"></div>
   <div id="list"></div>
+  <section id="hist" aria-label="Geçmiş kuponlar"></section>
   <section id="perf" aria-label="Model ne kadar tutuyor"></section>
   <section id="about" aria-label="Nasıl çalışır"></section>
   <p class="foot">Bu sayfa bahis sitesi değildir; geçmiş maç istatistiklerinden hesaplanan olasılıkları gösterir ve kupon almaz. Maç listesi ve oranlar yalnızca Nesine bülteninden okunur (yurtdışı oran/maç kaynağı kullanılmaz); model, geçmiş maç sonuçlarındaki takım gücünden hesaplanır. Hiçbir tahmin kazanç garantisi vermez.  "—" Nesine'nin o seçenek için oran açmadığı anlamına gelir; yüzde ise modelin olasılığıdır. Bahis oynuyorsan yalnızca lisanslı operatörleri kullan ve kaybetmeyi göze alabileceğin tutarı geçme.</p>
@@ -528,6 +536,31 @@ function renderCoupons(){
   el.querySelectorAll('.cp').forEach(recalc);
 }
 
+const YW = {won:'Tuttu', lost:'Tutmadı', pending:'Bekleniyor'};
+function ycard(k,i){
+  return `<article class="yc ${k.status}"><h3><span>${k.surprise?'Sürpriz':'Kupon'} ${i+1}</span><span>${YW[k.status]} · ${k.odds.toFixed(2)}</span></h3><ul>`+
+    k.legs.map(l=>
+      `<li><span class="yk ${l.ok===true?'y':l.ok===false?'n':'u'}" title="${l.ok===true?'Tuttu':l.ok===false?'Tutmadı':'Sonuç yok'}">${l.ok===true?'✓':l.ok===false?'✗':'?'}</span>`+
+      `<span class="ym"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.league||'')}</span></span>`+
+      `<span class="ys"><b>${esc(l.sel)}</b>${l.score?esc(l.score):'sonuç yok'}${l.score&&l.ok===null?'<br><small>yarı skoru yok</small>':''}</span></li>`).join('')+
+    `</ul></article>`;
+}
+function renderHistory(){
+  const y = D.yesterday, el = $('#hist');
+  const H = y && y.history || [];
+  if(!H.length){ el.innerHTML = '<h2>Geçmiş kuponlar</h2><div class="empty">Henüz geçmişe düşen kupon yok. Önerilen bütün kuponlar burada 10 gün boyunca, sonuçlarıyla birlikte saklanır.</div>'; return; }
+  const S = y.hist_stat || {n:{},s:{}};
+  const line = (name, t) => { const done = (t.won||0)+(t.lost||0); return done ? `${name}: ${done} sonuçlanan kuponun <b>${t.won}</b> tanesi tuttu (%${Math.round(100*t.won/done)})` + (t.pending ? `, ${t.pending} sonuç bekleniyor` : '') : (t.pending ? `${name}: ${t.pending} kuponun sonucu bekleniyor` : ''); };
+  const sm = [line('Normal kuponlar', S.n||{}), line('Sürpriz kuponlar', S.s||{})].filter(Boolean).join('<br>');
+  el.innerHTML = '<h2>Geçmiş kuponlar</h2>'+
+    `<p class="pv">Önerilen bütün kuponlar son ${H.length} gün boyunca burada tutulur. Sonuçlar maçlar bitince Nesine'nin skor verisinden alınır; "bekleniyor" olan bacak, skoru henüz gelmemiş maçtır.</p>`+
+    (sm ? `<p class="hsum">${sm}<br><small>Örnek sayısı az olduğu sürece bu oranlara güvenme. Her bacak ve tüm kupon tutarsa kupon "tuttu" sayılır.</small></p>` : '')+
+    H.map((h,j)=>{
+      const w = h.list.filter(k=>k.status==='won').length, l = h.list.filter(k=>k.status==='lost').length, p = h.list.filter(k=>k.status==='pending').length;
+      return `<details class="hd"${j===0?' open':''}><summary><b>${esc(fmtLong(h.date))}</b> <span>${h.list.length} kupon: ${w} tuttu, ${l} tutmadı${p?`, ${p} bekleniyor`:''}</span></summary>`+
+        `<div class="hg">`+ h.list.map((k,i)=>ycard(k, k.surprise ? h.list.filter(x=>x.surprise).indexOf(k) : h.list.filter(x=>!x.surprise).indexOf(k))).join('')+`</div></details>`;
+    }).join('');
+}
 function renderYesterday(){
   const y = D.yesterday, el = $('#yday');
   if(!y || !y.list || !y.list.length){
@@ -537,13 +570,7 @@ function renderYesterday(){
   const W = {won:'Tuttu', lost:'Tutmadı', pending:'Bekleniyor'}, t = y.total || {};
   el.innerHTML = '<h2>Dünün kuponları</h2>'+
     `<p class="yn">${esc(fmtLong(y.date))} için önerilen kuponlar ve gerçekleşen sonuçlar.</p>`+
-    y.list.map((k,i)=>
-      `<article class="yc ${k.status}"><h3><span>${k.surprise?'Sürpriz':'Kupon'} ${i+1}</span><span>${W[k.status]} · ${k.odds.toFixed(2)}</span></h3><ul>`+
-      k.legs.map(l=>
-        `<li><span class="yk ${l.ok===true?'y':l.ok===false?'n':'u'}" title="${l.ok===true?'Tuttu':l.ok===false?'Tutmadı':'Sonuç yok'}">${l.ok===true?'✓':l.ok===false?'✗':'?'}</span>`+
-        `<span class="ym"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.league||'')}</span></span>`+
-        `<span class="ys"><b>${esc(l.sel)}</b>${l.score?esc(l.score):'sonuç yok'}${l.score&&l.ok===null?'<br><small>yarı skoru yok</small>':''}</span></li>`).join('')+
-      `</ul></article>`).join('')+
+    y.list.map((k,i)=>ycard(k,i)).join('')+
     `<p class="ytot">Bugüne kadar kayıtlı ${t.days} günde: ${t.won} kupon tuttu, ${t.lost} tutmadı`+
     (t.pending?`, ${t.pending} sonuç bekleniyor`:'')+`. Örnek sayısı az olduğu sürece bu rakama güvenme.</p>`;
 }
@@ -629,12 +656,12 @@ function renderPerf(){
   if(P.coupons && P.coupons.n){
     const c = P.coupons;
     const few = c.n < 30 ? ' Örnek çok az, bu rakama güvenme.' : '';
-    cards.push(['Geçmiş kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}.${few}`]);
+    cards.push(['Geriye dönük test: kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}.${few}`]);
     cards.push(['Kuponların getirisi', (c.roi>=0?'+':'')+p1(c.roi)+'%', 'Her kupona 1 birim yatırsaydın.'+few]);
   }
   if(P.surprise && P.surprise.n){
     const c = P.surprise;
-    cards.push(['Geçmiş sürpriz kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}, getiri ${(c.roi>=0?'+':'')+p1(c.roi)}%.${c.n < 30 ? ' Örnek çok az, bu rakama güvenme.' : ''}`]);
+    cards.push(['Geriye dönük test: sürpriz kuponlar', `${c.hit} / ${c.n}`, `Beklenen tutma %${p1(c.exp)}, ortalama oran ${c.avg_odds.toFixed(2)}, getiri ${(c.roi>=0?'+':'')+p1(c.roi)}%.${c.n < 30 ? ' Örnek çok az, bu rakama güvenme.' : ''}`]);
   }
   const rows = (P.cal||[]).map(c=>
     `<tr><td><span class="t-${c.t}">${esc(c.label)}</span></td><td>${c.n}</td><td>%${p1(c.p)}</td><td>%${p1(c.hit)}</td>`+
@@ -707,6 +734,7 @@ $('#rec').addEventListener('change', e=>{ state.rec = e.target.checked; render()
 nesBanner();
 renderCoupons();
 renderYesterday();
+renderHistory();
 renderPerf();
 render();
 })();
