@@ -2,11 +2,10 @@ name: Günlük güncelleme
 
 on:
   schedule:
-    - cron: "0 5 * * *"   # her gün 05:00 UTC = Türkiye saatiyle 08:00
-    # Nesine bazen GitHub sunucusunun bağlantısını kabul etmiyor; farklı sunucu/zamanla tekrar denenir.
-    # Başarısız çalışma siteyi değiştirmez; başarılı olan siteyi günceller.
-    - cron: "0 6 * * *"
-    - cron: "0 8 * * *"
+    # 4 saatte bir: 00:00, 04:00, 08:00, 12:00, 16:00, 20:00 UTC = Türkiye saatiyle 03:00, 07:00, 11:00, 15:00, 19:00, 23:00.
+    # GitHub yoğunlukta birkaç dakika geciktirebilir. Nesine bir denemede bağlantıyı kabul etmezse başarısız çalışma
+    # siteyi değiştirmez, 4 saat sonra yeniden denenir.
+    - cron: "0 */4 * * *"
   workflow_dispatch:       # elle de çalıştırılabilir
 
 permissions:
