@@ -2016,7 +2016,7 @@
  "2026-10-31": {
   "list": [
    {
-    "odds": 3.43,
+    "odds": 3.32,
     "p": 0.3406,
     "legs": [
      {
@@ -2025,7 +2025,7 @@
       "away": "Krasnodar",
       "league": "Rusya Premier Lig",
       "sel": "MS2 & 2,5 Üst",
-      "o": 2.11,
+      "o": 2.06,
       "p": 0.697,
       "nid": 3252760,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -2046,7 +2046,7 @@
       "away": "St. Gilloise",
       "league": "Belçika Pro League",
       "sel": "MS 2",
-      "o": 1.31,
+      "o": 1.29,
       "p": 0.755,
       "nid": 3253602,
       "mk": "Maç Sonucu",
@@ -2068,7 +2068,7 @@
       "away": "Alaves",
       "league": "İspanya La Liga",
       "sel": "Ev iki yarıda da gol atar",
-      "o": 1.24,
+      "o": 1.25,
       "p": 0.647,
       "nid": 3259542,
       "mk": "Ev Sahibi İki Yarıda da Gol",
@@ -2089,8 +2089,8 @@
     ]
    },
    {
-    "odds": 4.03,
-    "p": 0.2299,
+    "odds": 3.01,
+    "p": 0.2701,
     "legs": [
      {
       "time": "",
@@ -2098,7 +2098,7 @@
       "away": "Estoril",
       "league": "Portekiz Primeira Liga",
       "sel": "HMS -1 · 1",
-      "o": 1.33,
+      "o": 1.34,
       "p": 0.558,
       "nid": 3254998,
       "mk": "Handikaplı MS (ev -1)",
@@ -2140,30 +2140,30 @@
      },
      {
       "time": "",
-      "home": "Schalke 04",
-      "away": "RB Leipzig",
-      "league": "Almanya Bundesliga",
+      "home": "Salford",
+      "away": "Exeter",
+      "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 2.12,
-      "p": 0.628,
-      "nid": 3254253,
+      "o": 1.57,
+      "p": 0.738,
+      "nid": 3252784,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
       "line": 0.0,
       "idx": 1,
       "fam": "KG",
-      "base": 0.358,
-      "edge": 0.271,
+      "base": 0.478,
+      "edge": 0.26,
       "why": [
-       "Model beklentisi: Schalke 04 0.77, RB Leipzig 1.13 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %36.",
-       "Form: Schalke 04 son 5 maçta 1G 2B 2M (4-4 gol); RB Leipzig son 5 maçta 3G 0B 2M (16-8 gol).",
-       "Gol temposu (son 10+ maç): Schalke 04 maçlarında ortalama 1.6, RB Leipzig maçlarında 4.4 gol; 2.5 üst oranı %40 / %90, iki takım da gol atma oranı %20 / %50."
+       "Model beklentisi: Salford 0.81, Exeter 0.61 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
+       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20."
       ]
      }
     ]
    },
    {
-    "odds": 4.0,
+    "odds": 3.98,
     "p": 0.2336,
     "legs": [
      {
@@ -2172,7 +2172,7 @@
       "away": "Roma",
       "league": "İtalya Serie A",
       "sel": "MS 2",
-      "o": 1.39,
+      "o": 1.4,
       "p": 0.652,
       "nid": 3253824,
       "mk": "Maç Sonucu",
@@ -2195,7 +2195,7 @@
       "away": "Tirol",
       "league": "Avusturya Bundesliga",
       "sel": "İY 1",
-      "o": 1.54,
+      "o": 1.52,
       "p": 0.553,
       "nid": 3254324,
       "mk": "1. Yarı Sonucu",
@@ -2238,53 +2238,53 @@
     ]
    },
    {
-    "odds": 3.21,
-    "p": 0.3241,
+    "odds": 3.88,
+    "p": 0.3326,
     "legs": [
      {
       "time": "",
-      "home": "Bologna",
-      "away": "Monza",
-      "league": "İtalya Serie A",
-      "sel": "Ev 1,5 Üst",
-      "o": 1.54,
-      "p": 0.677,
-      "nid": 3254918,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.387,
-      "edge": 0.289,
-      "why": [
-       "Model beklentisi: Bologna 2.33, Monza 1.29 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
-       "Form: Bologna son 5 maçta 3G 1B 1M (10-7 gol); Monza son 5 maçta 2G 0B 3M (10-11 gol).",
-       "Gol temposu (son 10+ maç): Bologna maçlarında ortalama 3.0, Monza maçlarında 4.2 gol; 2.5 üst oranı %50 / %90, iki takım da gol atma oranı %60 / %90.",
-       "Son ikili maçlar: Bologna 3-1 Monza, Monza 1-2 Bologna."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Fenerbahce",
-      "away": "Goztep",
-      "league": "Türkiye Süper Lig",
+      "home": "Boreham Wood",
+      "away": "Hartlepool",
+      "league": "İngiltere Conference",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.42,
-      "p": 0.636,
-      "nid": 3255613,
+      "o": 1.21,
+      "p": 0.651,
+      "nid": 3254684,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
       "mtid": 342,
       "line": 1.5,
       "idx": 3,
       "fam": "MS&AÜ",
-      "base": 0.357,
-      "edge": 0.279,
+      "base": 0.349,
+      "edge": 0.302,
       "why": [
-       "Model beklentisi: Fenerbahce 2.61, Goztep 1.08 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %36.",
-       "Form: Fenerbahce son 5 maçta 3G 1B 1M (15-2 gol); Goztep son 5 maçta 3G 2B 0M (12-5 gol).",
-       "Gol temposu (son 10+ maç): Fenerbahce maçlarında ortalama 3.7, Goztep maçlarında 3.8 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %50 / %60.",
-       "Son ikili maçlar: Fenerbahce 1-1 Goztep, Goztep 0-0 Fenerbahce, Fenerbahce 3-2 Goztep."
+       "Model beklentisi: Boreham Wood 2.50, Hartlepool 0.82 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Boreham Wood son 5 maçta 5G 0B 0M (14-3 gol); Hartlepool son 5 maçta 2G 0B 3M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Boreham Wood maçlarında ortalama 3.3, Hartlepool maçlarında 3.0 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Boreham Wood 3-0 Hartlepool, Hartlepool 0-0 Boreham Wood."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Botafogo RJ",
+      "away": "Sport Recife",
+      "league": "Brezilya Serie A",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.18,
+      "p": 0.678,
+      "nid": 3254868,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.418,
+      "edge": 0.261,
+      "why": [
+       "Model beklentisi: Botafogo RJ 2.34, Sport Recife 0.76 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Botafogo RJ son 5 maçta 1G 1B 3M (4-8 gol); Sport Recife son 5 maçta 0G 0B 5M (3-15 gol).",
+       "Gol temposu (son 10+ maç): Botafogo RJ maçlarında ortalama 2.4, Sport Recife maçlarında 3.8 gol; 2.5 üst oranı %50 / %80, iki takım da gol atma oranı %50 / %50.",
+       "Son ikili maçlar: Botafogo RJ 3-2 Sport Recife, Sport Recife 0-1 Botafogo RJ, Botafogo RJ 0-1 Sport Recife."
       ]
      },
      {
@@ -2313,82 +2313,7 @@
     ]
    },
    {
-    "odds": 6.18,
-    "p": 0.3922,
-    "surprise": true,
-    "legs": [
-     {
-      "time": "",
-      "home": "Botafogo RJ",
-      "away": "Sport Recife",
-      "league": "Brezilya Serie A",
-      "sel": "MS 1",
-      "o": 2.22,
-      "p": 0.724,
-      "nid": 3254868,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "MS",
-      "base": 0.467,
-      "edge": 0.256,
-      "why": [
-       "Model beklentisi: Botafogo RJ 2.34, Sport Recife 0.76 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
-       "Form: Botafogo RJ son 5 maçta 1G 1B 3M (4-8 gol); Sport Recife son 5 maçta 0G 0B 5M (3-15 gol).",
-       "Hücum/savunma (son 10+ maç): Botafogo RJ 0.8 atıyor, 1.6 yiyor; Sport Recife 0.7 atıyor, 3.1 yiyor.",
-       "Son ikili maçlar: Botafogo RJ 3-2 Sport Recife, Sport Recife 0-1 Botafogo RJ, Botafogo RJ 0-1 Sport Recife."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Salford",
-      "away": "Exeter",
-      "league": "İngiltere League Two",
-      "sel": "Ev iki yarıda da atamaz",
-      "o": 1.45,
-      "p": 0.89,
-      "nid": 3252784,
-      "mk": "Ev Sahibi İki Yarıda da Gol",
-      "mtid": 295,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "YARI",
-      "base": 0.751,
-      "edge": 0.139,
-      "why": [
-       "Model beklentisi: Salford 0.81, Exeter 0.61 gol. Bu seçenek %89 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %75.",
-       "Form: Salford son 5 maçta 5G 0B 0M (11-4 gol); Exeter son 5 maçta 4G 1B 0M (6-1 gol).",
-       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Exeter maçlarında 1.1 gol; 2.5 üst oranı %60 / %10, iki takım da gol atma oranı %60 / %20.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Worthing",
-      "away": "Sutton",
-      "league": "İngiltere Conference",
-      "sel": "MS1 & 1,5 Üst",
-      "o": 1.92,
-      "p": 0.609,
-      "nid": 3254993,
-      "mk": "Maç Sonucu & 1,5 Alt/Üst",
-      "mtid": 342,
-      "line": 1.5,
-      "idx": 3,
-      "fam": "MS&AÜ",
-      "base": 0.349,
-      "edge": 0.261,
-      "why": [
-       "Model beklentisi: Worthing 2.46, Sutton 1.05 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
-       "Form: Worthing son 5 maçta 3G 2B 0M (13-6 gol); Sutton son 5 maçta 1G 1B 3M (4-8 gol).",
-       "Gol temposu (son 10+ maç): Worthing maçlarında ortalama 3.5, Sutton maçlarında 2.8 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %80 / %50."
-      ]
-     }
-    ]
-   },
-   {
-    "odds": 6.64,
+    "odds": 6.24,
     "p": 0.29,
     "surprise": true,
     "legs": [
@@ -2398,7 +2323,7 @@
       "away": "Cordoba",
       "league": "İspanya Segunda",
       "sel": "Ev 1,5 Üst",
-      "o": 2.26,
+      "o": 2.17,
       "p": 0.601,
       "nid": 3258207,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
@@ -2420,7 +2345,7 @@
       "away": "Kortrijk",
       "league": "Belçika Pro League",
       "sel": "KG Yok",
-      "o": 1.86,
+      "o": 1.82,
       "p": 0.642,
       "nid": 3254327,
       "mk": "Karşılıklı Gol",
@@ -2458,6 +2383,79 @@
        "Form: Zaragoza son 5 maçta 0G 1B 4M (2-9 gol); Villarreal son 5 maçta 3G 1B 1M (8-4 gol).",
        "Hücum/savunma (son 10+ maç): Zaragoza 0.6 atıyor, 1.6 yiyor; Villarreal 1.5 atıyor, 1.4 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.29,
+    "p": 0.2469,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Barnsley",
+      "away": "Oxford",
+      "league": "İngiltere League One",
+      "sel": "MS 2",
+      "o": 2.06,
+      "p": 0.579,
+      "nid": 3254996,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.3,
+      "edge": 0.279,
+      "why": [
+       "Model beklentisi: Barnsley 1.04, Oxford 1.94 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %30.",
+       "Form: Barnsley son 5 maçta 0G 1B 4M (5-10 gol); Oxford son 5 maçta 3G 2B 0M (6-3 gol).",
+       "Hücum/savunma (son 10+ maç): Barnsley 1.1 atıyor, 2.0 yiyor; Oxford 1.7 atıyor, 0.8 yiyor."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Worthing",
+      "away": "Sutton",
+      "league": "İngiltere Conference",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.92,
+      "p": 0.609,
+      "nid": 3254993,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.349,
+      "edge": 0.261,
+      "why": [
+       "Model beklentisi: Worthing 2.46, Sutton 1.05 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Worthing son 5 maçta 3G 2B 0M (13-6 gol); Sutton son 5 maçta 1G 1B 3M (4-8 gol).",
+       "Gol temposu (son 10+ maç): Worthing maçlarında ortalama 3.5, Sutton maçlarında 2.8 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %80 / %50."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Accrington",
+      "away": "Northampton",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "o": 1.59,
+      "p": 0.7,
+      "nid": 3253466,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.478,
+      "edge": 0.222,
+      "why": [
+       "Model beklentisi: Accrington 0.90, Northampton 0.68 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Accrington son 5 maçta 3G 2B 0M (11-2 gol); Northampton son 5 maçta 2G 1B 2M (5-3 gol).",
+       "Gol temposu (son 10+ maç): Accrington maçlarında ortalama 2.7, Northampton maçlarında 1.6 gol; 2.5 üst oranı %50 / %0, iki takım da gol atma oranı %60 / %30."
       ]
      }
     ]
