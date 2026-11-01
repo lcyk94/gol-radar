@@ -3460,5 +3460,823 @@
     "surprise": true
    }
   ]
+ },
+ "2026-11-02": {
+  "list": [
+   {
+    "odds": 3.23,
+    "p": 0.2387,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kalamata",
+      "away": "Iraklis",
+      "league": "Yunanistan Super League",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.1,
+      "p": 0.565,
+      "nid": 3254979,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.406,
+      "edge": 0.158,
+      "why": [
+       "Model beklentisi: Kalamata 1.90, Iraklis 1.51 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Kalamata son 5 maçta 3G 0B 2M (10-11 gol); Iraklis son 5 maçta 1G 2B 2M (6-6 gol).",
+       "Gol temposu (son 8+ maç): Kalamata maçlarında ortalama 3.7, Iraklis maçlarında 2.5 gol; 2.5 üst oranı %62 / %38, iki takım da gol atma oranı %62 / %50."
+      ]
+     },
+     {
+      "time": "19:00",
+      "home": "AL Sadd",
+      "away": "Ahli Saudi",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "ÇŞ X-2",
+      "o": 1.21,
+      "p": 0.662,
+      "nid": 3262027,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.56,
+      "edge": 0.102,
+      "why": [
+       "Model beklentisi: AL Sadd 1.45, Ahli Saudi 1.62 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56."
+      ]
+     },
+     {
+      "time": "21:15",
+      "home": "AL Gharrafa",
+      "away": "AL Qadisiyah",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "MS 2",
+      "o": 1.27,
+      "p": 0.638,
+      "nid": 3262348,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.348,
+      "why": [
+       "Model beklentisi: AL Gharrafa 1.10, AL Qadisiyah 2.31 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.24,
+    "p": 0.1811,
+    "legs": [
+     {
+      "time": "",
+      "home": "Benfica",
+      "away": "Alverca",
+      "league": "Portekiz Primeira Liga",
+      "sel": "HMS -1 · 1",
+      "o": 1.29,
+      "p": 0.57,
+      "nid": 3262056,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.201,
+      "edge": 0.369,
+      "why": [
+       "Model beklentisi: Benfica 2.69, Alverca 0.78 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (12-5 gol); Alverca son 5 maçta 3G 0B 2M (9-5 gol).",
+       "Hücum/savunma (son 10+ maç): Benfica 2.9 atıyor, 0.9 yiyor; Alverca 1.3 atıyor, 1.4 yiyor.",
+       "Son ikili maçlar: Benfica 2-1 Alverca, Alverca 1-2 Benfica."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Krylya Sovetov",
+      "away": "Zenit",
+      "league": "Rusya Premier Lig",
+      "sel": "Ev: yarılar eşit",
+      "o": 1.77,
+      "p": 0.571,
+      "nid": 3262054,
+      "mk": "Ev Sahibi Hangi Yarıda Daha Çok Gol Atar",
+      "mtid": 586,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.377,
+      "edge": 0.194,
+      "why": [
+       "Model beklentisi: Krylya Sovetov 0.67, Zenit 1.79 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %38.",
+       "Form: Krylya Sovetov son 5 maçta 2G 2B 1M (7-4 gol); Zenit son 5 maçta 5G 0B 0M (14-2 gol).",
+       "Gol temposu (son 10+ maç): Krylya Sovetov maçlarında ortalama 2.5, Zenit maçlarında 2.4 gol; 2.5 üst oranı %50 / %50, iki takım da gol atma oranı %70 / %40.",
+       "Son ikili maçlar: Zenit 2-1 Krylya Sovetov, Krylya Sovetov 1-1 Zenit, Zenit 2-3 Krylya Sovetov.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Sonderjyske",
+      "away": "FC Copenhagen",
+      "league": "Danimarka Süper Lig",
+      "sel": "MS2 & 1,5 Üst",
+      "o": 1.42,
+      "p": 0.557,
+      "nid": 3262191,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.24,
+      "edge": 0.316,
+      "why": [
+       "Model beklentisi: Sonderjyske 1.24, FC Copenhagen 2.35 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %24.",
+       "Form: Sonderjyske son 5 maçta 2G 1B 2M (10-11 gol); FC Copenhagen son 5 maçta 2G 2B 1M (6-4 gol).",
+       "Gol temposu (son 10+ maç): Sonderjyske maçlarında ortalama 4.0, FC Copenhagen maçlarında 2.9 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %60 / %40.",
+       "Son ikili maçlar: FC Copenhagen 3-1 Sonderjyske, FC Copenhagen 0-2 Sonderjyske, Sonderjyske 1-2 FC Copenhagen."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.01,
+    "p": 0.2562,
+    "legs": [
+     {
+      "time": "",
+      "home": "New England Revolution",
+      "away": "Inter Miami",
+      "league": "ABD MLS",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.45,
+      "p": 0.58,
+      "nid": 3262086,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.34,
+      "edge": 0.241,
+      "why": [
+       "Model beklentisi: New England Revolution 1.84, Inter Miami 1.95 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Form: New England Revolution son 5 maçta 4G 0B 1M (9-8 gol); Inter Miami son 5 maçta 3G 1B 1M (11-5 gol).",
+       "Gol temposu (son 10+ maç): New England Revolution maçlarında ortalama 3.5, Inter Miami maçlarında 3.3 gol; 2.5 üst oranı %90 / %70, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Inter Miami 1-1 New England Revolution, Inter Miami 4-1 New England Revolution, New England Revolution 1-2 Inter Miami."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Mallorca",
+      "away": "Cadiz",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.54,
+      "p": 0.698,
+      "nid": 3258685,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.472,
+      "edge": 0.226,
+      "why": [
+       "Model beklentisi: Mallorca 1.47, Cadiz 0.48 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Mallorca son 5 maçta 1G 3B 1M (5-4 gol); Cadiz son 5 maçta 2G 1B 2M (8-5 gol).",
+       "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.7, Cadiz maçlarında 2.8 gol; 2.5 üst oranı %20 / %50, iki takım da gol atma oranı %30 / %60."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Radomiak Radom",
+      "away": "Slask Wroclaw",
+      "league": "Polonya Ekstraklasa",
+      "sel": "2,5 Üst",
+      "o": 1.35,
+      "p": 0.632,
+      "nid": 3253955,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.495,
+      "edge": 0.137,
+      "why": [
+       "Model beklentisi: Radomiak Radom 1.74, Slask Wroclaw 1.52 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Radomiak Radom son 5 maçta 0G 0B 5M (6-15 gol); Slask Wroclaw son 5 maçta 1G 0B 4M (7-11 gol).",
+       "Gol temposu (son 10+ maç): Radomiak Radom maçlarında ortalama 3.3, Slask Wroclaw maçlarında 3.2 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %50 / %80.",
+       "Son ikili maçlar: Radomiak Radom 1-1 Slask Wroclaw, Slask Wroclaw 1-2 Radomiak Radom, Slask Wroclaw 2-0 Radomiak Radom."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 4.41,
+    "p": 0.2507,
+    "legs": [
+     {
+      "time": "",
+      "home": "Cruz Azul",
+      "away": "Club Leon",
+      "league": "Meksika Liga MX",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.74,
+      "p": 0.576,
+      "nid": 3262217,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.349,
+      "edge": 0.227,
+      "why": [
+       "Model beklentisi: Cruz Azul 2.30, Club Leon 1.04 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Cruz Azul son 5 maçta 3G 2B 0M (16-8 gol); Club Leon son 5 maçta 2G 2B 1M (9-8 gol).",
+       "Gol temposu (son 10+ maç): Cruz Azul maçlarında ortalama 3.9, Club Leon maçlarında 2.9 gol; 2.5 üst oranı %70 / %30, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Club Leon 2-1 Cruz Azul, Cruz Azul 4-1 Club Leon, Cruz Azul 2-1 Club Leon."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Atalanta",
+      "away": "Parma",
+      "league": "İtalya Serie A",
+      "sel": "MS 1",
+      "o": 1.34,
+      "p": 0.592,
+      "nid": 3262167,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.387,
+      "edge": 0.205,
+      "why": [
+       "Model beklentisi: Atalanta 1.64, Parma 0.71 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Atalanta son 5 maçta 1G 2B 2M (11-12 gol); Parma son 5 maçta 1G 1B 3M (3-9 gol).",
+       "Hücum/savunma (son 10+ maç): Atalanta 1.7 atıyor, 1.8 yiyor; Parma 0.6 atıyor, 1.5 yiyor.",
+       "Son ikili maçlar: Atalanta 4-0 Parma, Parma 1-1 Atalanta, Atalanta 2-3 Parma."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Independiente",
+      "away": "Boca Juniors",
+      "league": "Arjantin Primera",
+      "sel": "HMS -1 · 2",
+      "o": 1.89,
+      "p": 0.736,
+      "nid": 3351526,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.577,
+      "edge": 0.159,
+      "why": [
+       "Model beklentisi: Independiente 0.91, Boca Juniors 1.24 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %58.",
+       "Form: Independiente son 5 maçta 1G 2B 2M (4-7 gol); Boca Juniors son 5 maçta 4G 1B 0M (10-3 gol).",
+       "Hücum/savunma (son 10+ maç): Independiente 0.9 atıyor, 1.2 yiyor; Boca Juniors 1.8 atıyor, 0.8 yiyor.",
+       "Son ikili maçlar: Independiente 0-1 Boca Juniors, Boca Juniors 1-1 Independiente, Boca Juniors 0-1 Independiente."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.0,
+    "p": 0.1943,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "U. Cluj",
+      "away": "FCSB",
+      "league": "Romanya Liga 1",
+      "sel": "MS 1",
+      "o": 2.24,
+      "p": 0.561,
+      "nid": 3255270,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.43,
+      "edge": 0.131,
+      "why": [
+       "Model beklentisi: U. Cluj 2.01, FCSB 1.18 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: U. Cluj son 5 maçta 3G 1B 1M (13-7 gol); FCSB son 5 maçta 3G 1B 1M (9-9 gol).",
+       "Hücum/savunma (son 10+ maç): U. Cluj 2.1 atıyor, 1.7 yiyor; FCSB 1.4 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: FCSB 1-3 U. Cluj, U. Cluj 0-2 FCSB, U. Cluj 0-2 FCSB."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Zaglebie",
+      "away": "Korona Kielce",
+      "league": "Polonya Ekstraklasa",
+      "sel": "KG Yok",
+      "o": 1.74,
+      "p": 0.571,
+      "nid": 3253248,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.46,
+      "edge": 0.111,
+      "why": [
+       "Model beklentisi: Zaglebie 1.25, Korona Kielce 0.90 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Zaglebie son 5 maçta 2G 1B 2M (7-9 gol); Korona Kielce son 5 maçta 2G 0B 3M (5-12 gol).",
+       "Gol temposu (son 10+ maç): Zaglebie maçlarında ortalama 2.4, Korona Kielce maçlarında 2.9 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %60 / %60.",
+       "Son ikili maçlar: Korona Kielce 1-2 Zaglebie, Zaglebie 1-1 Korona Kielce, Zaglebie 1-1 Korona Kielce."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Reims",
+      "away": "Sochaux",
+      "league": "Fransa Ligue 2",
+      "sel": "MS 1",
+      "o": 1.54,
+      "p": 0.606,
+      "nid": 3354433,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.417,
+      "edge": 0.19,
+      "why": [
+       "Model beklentisi: Reims 1.73, Sochaux 0.73 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Reims son 5 maçta 2G 3B 0M (8-5 gol); Sochaux son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Hücum/savunma (son 10+ maç): Reims 2.0 atıyor, 1.2 yiyor; Sochaux 0.8 atıyor, 1.2 yiyor."
+      ]
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-02",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 9,
+      "time": "",
+      "home": "Kalamata",
+      "away": "Iraklis",
+      "league": "Yunanistan Super League",
+      "sel": "Ev 1,5 Üst",
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "o": 2.1,
+      "p": 0.565,
+      "base": 0.406,
+      "edge": 0.158,
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3254979,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Kalamata 1.90, Iraklis 1.51 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Kalamata son 5 maçta 3G 0B 2M (10-11 gol); Iraklis son 5 maçta 1G 2B 2M (6-6 gol).",
+       "Gol temposu (son 8+ maç): Kalamata maçlarında ortalama 3.7, Iraklis maçlarında 2.5 gol; 2.5 üst oranı %62 / %38, iki takım da gol atma oranı %62 / %50."
+      ]
+     },
+     {
+      "id": 107,
+      "time": "19:00",
+      "home": "AL Sadd",
+      "away": "Ahli Saudi",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "ÇŞ X-2",
+      "mk": "Çifte Şans",
+      "o": 1.21,
+      "p": 0.662,
+      "base": 0.56,
+      "edge": 0.102,
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "t": "g",
+      "src": "market",
+      "nid": 3262027,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: AL Sadd 1.45, Ahli Saudi 1.62 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56."
+      ]
+     },
+     {
+      "id": 144,
+      "time": "21:15",
+      "home": "AL Gharrafa",
+      "away": "AL Qadisiyah",
+      "league": "AFC Asya Şampiyonlar Ligi Batı",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.27,
+      "p": 0.638,
+      "base": 0.29,
+      "edge": 0.348,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "market",
+      "nid": 3262348,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: AL Gharrafa 1.10, AL Qadisiyah 2.31 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29."
+      ]
+     }
+    ],
+    "odds": 3.23,
+    "date": "2026-11-02",
+    "p": 0.2387,
+    "ev": 0.77,
+    "score": 0.609
+   },
+   {
+    "legs": [
+     {
+      "id": 14,
+      "time": "",
+      "home": "Benfica",
+      "away": "Alverca",
+      "league": "Portekiz Primeira Liga",
+      "sel": "HMS -1 · 1",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.29,
+      "p": 0.57,
+      "base": 0.201,
+      "edge": 0.369,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3262056,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Benfica 2.69, Alverca 0.78 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %20.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (12-5 gol); Alverca son 5 maçta 3G 0B 2M (9-5 gol).",
+       "Hücum/savunma (son 10+ maç): Benfica 2.9 atıyor, 0.9 yiyor; Alverca 1.3 atıyor, 1.4 yiyor.",
+       "Son ikili maçlar: Benfica 2-1 Alverca, Alverca 1-2 Benfica."
+      ]
+     },
+     {
+      "id": 20,
+      "time": "",
+      "home": "Krylya Sovetov",
+      "away": "Zenit",
+      "league": "Rusya Premier Lig",
+      "sel": "Ev: yarılar eşit",
+      "mk": "Ev Sahibi Hangi Yarıda Daha Çok Gol Atar",
+      "o": 1.77,
+      "p": 0.571,
+      "base": 0.377,
+      "edge": 0.194,
+      "mtid": 586,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3262054,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Krylya Sovetov 0.67, Zenit 1.79 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %38.",
+       "Form: Krylya Sovetov son 5 maçta 2G 2B 1M (7-4 gol); Zenit son 5 maçta 5G 0B 0M (14-2 gol).",
+       "Gol temposu (son 10+ maç): Krylya Sovetov maçlarında ortalama 2.5, Zenit maçlarında 2.4 gol; 2.5 üst oranı %50 / %50, iki takım da gol atma oranı %70 / %40.",
+       "Son ikili maçlar: Zenit 2-1 Krylya Sovetov, Krylya Sovetov 1-1 Zenit, Zenit 2-3 Krylya Sovetov.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 2,
+      "time": "",
+      "home": "Sonderjyske",
+      "away": "FC Copenhagen",
+      "league": "Danimarka Süper Lig",
+      "sel": "MS2 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.42,
+      "p": 0.557,
+      "base": 0.24,
+      "edge": 0.316,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3262191,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Sonderjyske 1.24, FC Copenhagen 2.35 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %24.",
+       "Form: Sonderjyske son 5 maçta 2G 1B 2M (10-11 gol); FC Copenhagen son 5 maçta 2G 2B 1M (6-4 gol).",
+       "Gol temposu (son 10+ maç): Sonderjyske maçlarında ortalama 4.0, FC Copenhagen maçlarında 2.9 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %60 / %40.",
+       "Son ikili maçlar: FC Copenhagen 3-1 Sonderjyske, FC Copenhagen 0-2 Sonderjyske, Sonderjyske 1-2 FC Copenhagen."
+      ]
+     }
+    ],
+    "odds": 3.24,
+    "date": "2026-11-02",
+    "p": 0.1811,
+    "ev": 0.59,
+    "score": 0.879
+   },
+   {
+    "legs": [
+     {
+      "id": 28,
+      "time": "",
+      "home": "New England Revolution",
+      "away": "Inter Miami",
+      "league": "ABD MLS",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.45,
+      "p": 0.58,
+      "base": 0.34,
+      "edge": 0.241,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3262086,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: New England Revolution 1.84, Inter Miami 1.95 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Form: New England Revolution son 5 maçta 4G 0B 1M (9-8 gol); Inter Miami son 5 maçta 3G 1B 1M (11-5 gol).",
+       "Gol temposu (son 10+ maç): New England Revolution maçlarında ortalama 3.5, Inter Miami maçlarında 3.3 gol; 2.5 üst oranı %90 / %70, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Inter Miami 1-1 New England Revolution, Inter Miami 4-1 New England Revolution, New England Revolution 1-2 Inter Miami."
+      ]
+     },
+     {
+      "id": 24,
+      "time": "",
+      "home": "Mallorca",
+      "away": "Cadiz",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.54,
+      "p": 0.698,
+      "base": 0.472,
+      "edge": 0.226,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3258685,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Mallorca 1.47, Cadiz 0.48 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Mallorca son 5 maçta 1G 3B 1M (5-4 gol); Cadiz son 5 maçta 2G 1B 2M (8-5 gol).",
+       "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.7, Cadiz maçlarında 2.8 gol; 2.5 üst oranı %20 / %50, iki takım da gol atma oranı %30 / %60."
+      ]
+     },
+     {
+      "id": 17,
+      "time": "",
+      "home": "Radomiak Radom",
+      "away": "Slask Wroclaw",
+      "league": "Polonya Ekstraklasa",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.35,
+      "p": 0.632,
+      "base": 0.495,
+      "edge": 0.137,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3253955,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Radomiak Radom 1.74, Slask Wroclaw 1.52 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Radomiak Radom son 5 maçta 0G 0B 5M (6-15 gol); Slask Wroclaw son 5 maçta 1G 0B 4M (7-11 gol).",
+       "Gol temposu (son 10+ maç): Radomiak Radom maçlarında ortalama 3.3, Slask Wroclaw maçlarında 3.2 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %50 / %80.",
+       "Son ikili maçlar: Radomiak Radom 1-1 Slask Wroclaw, Slask Wroclaw 1-2 Radomiak Radom, Slask Wroclaw 2-0 Radomiak Radom."
+      ]
+     }
+    ],
+    "odds": 3.01,
+    "date": "2026-11-02",
+    "p": 0.2562,
+    "ev": 0.77,
+    "score": 0.504
+   },
+   {
+    "legs": [
+     {
+      "id": 13,
+      "time": "",
+      "home": "Cruz Azul",
+      "away": "Club Leon",
+      "league": "Meksika Liga MX",
+      "sel": "MS1 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.74,
+      "p": 0.576,
+      "base": 0.349,
+      "edge": 0.227,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3262217,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Cruz Azul 2.30, Club Leon 1.04 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Cruz Azul son 5 maçta 3G 2B 0M (16-8 gol); Club Leon son 5 maçta 2G 2B 1M (9-8 gol).",
+       "Gol temposu (son 10+ maç): Cruz Azul maçlarında ortalama 3.9, Club Leon maçlarında 2.9 gol; 2.5 üst oranı %70 / %30, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Club Leon 2-1 Cruz Azul, Cruz Azul 4-1 Club Leon, Cruz Azul 2-1 Club Leon."
+      ]
+     },
+     {
+      "id": 10,
+      "time": "",
+      "home": "Atalanta",
+      "away": "Parma",
+      "league": "İtalya Serie A",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.34,
+      "p": 0.592,
+      "base": 0.387,
+      "edge": 0.205,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3262167,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Atalanta 1.64, Parma 0.71 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Atalanta son 5 maçta 1G 2B 2M (11-12 gol); Parma son 5 maçta 1G 1B 3M (3-9 gol).",
+       "Hücum/savunma (son 10+ maç): Atalanta 1.7 atıyor, 1.8 yiyor; Parma 0.6 atıyor, 1.5 yiyor.",
+       "Son ikili maçlar: Atalanta 4-0 Parma, Parma 1-1 Atalanta, Atalanta 2-3 Parma."
+      ]
+     },
+     {
+      "id": 1,
+      "time": "",
+      "home": "Independiente",
+      "away": "Boca Juniors",
+      "league": "Arjantin Primera",
+      "sel": "HMS -1 · 2",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.89,
+      "p": 0.736,
+      "base": 0.577,
+      "edge": 0.159,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3351526,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Independiente 0.91, Boca Juniors 1.24 gol. Bu seçenek %74 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %58.",
+       "Form: Independiente son 5 maçta 1G 2B 2M (4-7 gol); Boca Juniors son 5 maçta 4G 1B 0M (10-3 gol).",
+       "Hücum/savunma (son 10+ maç): Independiente 0.9 atıyor, 1.2 yiyor; Boca Juniors 1.8 atıyor, 0.8 yiyor.",
+       "Son ikili maçlar: Independiente 0-1 Boca Juniors, Boca Juniors 1-1 Independiente, Boca Juniors 0-1 Independiente."
+      ]
+     }
+    ],
+    "odds": 4.41,
+    "date": "2026-11-02",
+    "p": 0.2507,
+    "ev": 1.1,
+    "score": 0.29
+   },
+   {
+    "legs": [
+     {
+      "id": 19,
+      "time": "",
+      "home": "U. Cluj",
+      "away": "FCSB",
+      "league": "Romanya Liga 1",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 2.24,
+      "p": 0.561,
+      "base": 0.43,
+      "edge": 0.131,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3255270,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: U. Cluj 2.01, FCSB 1.18 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: U. Cluj son 5 maçta 3G 1B 1M (13-7 gol); FCSB son 5 maçta 3G 1B 1M (9-9 gol).",
+       "Hücum/savunma (son 10+ maç): U. Cluj 2.1 atıyor, 1.7 yiyor; FCSB 1.4 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: FCSB 1-3 U. Cluj, U. Cluj 0-2 FCSB, U. Cluj 0-2 FCSB."
+      ]
+     },
+     {
+      "id": 16,
+      "time": "",
+      "home": "Zaglebie",
+      "away": "Korona Kielce",
+      "league": "Polonya Ekstraklasa",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.74,
+      "p": 0.571,
+      "base": 0.46,
+      "edge": 0.111,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3253248,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Zaglebie 1.25, Korona Kielce 0.90 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Zaglebie son 5 maçta 2G 1B 2M (7-9 gol); Korona Kielce son 5 maçta 2G 0B 3M (5-12 gol).",
+       "Gol temposu (son 10+ maç): Zaglebie maçlarında ortalama 2.4, Korona Kielce maçlarında 2.9 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %60 / %60.",
+       "Son ikili maçlar: Korona Kielce 1-2 Zaglebie, Zaglebie 1-1 Korona Kielce, Zaglebie 1-1 Korona Kielce."
+      ]
+     },
+     {
+      "id": 6,
+      "time": "",
+      "home": "Reims",
+      "away": "Sochaux",
+      "league": "Fransa Ligue 2",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.54,
+      "p": 0.606,
+      "base": 0.417,
+      "edge": 0.19,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3354433,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Reims 1.73, Sochaux 0.73 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Reims son 5 maçta 2G 3B 0M (8-5 gol); Sochaux son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Hücum/savunma (son 10+ maç): Reims 2.0 atıyor, 1.2 yiyor; Sochaux 0.8 atıyor, 1.2 yiyor."
+      ]
+     }
+    ],
+    "odds": 6.0,
+    "date": "2026-11-02",
+    "p": 0.1943,
+    "ev": 1.17,
+    "score": 0.194,
+    "surprise": true
+   }
+  ]
  }
 }
