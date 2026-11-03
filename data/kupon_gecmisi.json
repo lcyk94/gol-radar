@@ -4782,8 +4782,8 @@
  "2026-11-04": {
   "list": [
    {
-    "odds": 3.19,
-    "p": 0.236,
+    "odds": 3.12,
+    "p": 0.2419,
     "legs": [
      {
       "time": "",
@@ -4813,8 +4813,8 @@
       "away": "Sabah",
       "league": "UEFA Şampiyonlar Ligi",
       "sel": "MS 1",
-      "o": 1.28,
-      "p": 0.657,
+      "o": 1.25,
+      "p": 0.674,
       "nid": 3266862,
       "mk": "Maç Sonucu",
       "mtid": 1,
@@ -4822,9 +4822,9 @@
       "idx": 0,
       "fam": "MS",
       "base": 0.44,
-      "edge": 0.217,
+      "edge": 0.234,
       "why": [
-       "Model beklentisi: Viking 2.40, Sabah 1.10 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Viking 2.50, Sabah 1.10 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Viking son 5 maçta 5G 0B 0M (19-4 gol)."
       ]
      },
