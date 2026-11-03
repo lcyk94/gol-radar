@@ -53,7 +53,8 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1900px;margin:0 auto;padding:0 16px}
+@media (min-width:1500px){.wrap{padding:0 28px}}
 
 .top{background:var(--navy);color:#fff;padding:14px 0}
 .top .wrap{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
@@ -169,6 +170,21 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
   .cpgrid{grid-template-columns:300px minmax(0,1fr);grid-template-areas:"y c"}
   #yday{grid-area:y}#coupons{grid-area:c}
   .cpgrid .cps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:1500px){
+  .cpgrid{grid-template-columns:340px minmax(0,1fr)}
+  .cpgrid .cps{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (min-width:1700px){
+  .lay{grid-template-columns:minmax(0,1fr) 360px}
+  #list{column-count:2;column-gap:18px}
+  #list .m{break-inside:avoid}
+  #list .m.open{column-span:all}
+  #list .band{break-after:avoid}
+}
+@media (min-width:1500px){
+  #perf{max-width:1300px}
+  #about{max-width:1000px}
 }
 #yday{padding:16px 0 4px}
 #yday h2{margin:0 0 4px;font-size:18px}
@@ -603,7 +619,7 @@ function render(){
     const ms = mk(m,'Maç Sonucu').sels, ou = mk(m,'Alt/Üst 2.5').sels, kg = mk(m,'Karşılıklı Gol').sels;
     const total = m.markets.reduce((a,k)=>a+k.sels.length,0) - 6;
     const open = state.open.has(m.id), nr = recs(m).length;
-    html += `<div class="m"><div class="row cols" role="button" tabindex="0" data-id="${m.id}" aria-expanded="${open}">`+
+    html += `<div class="m${open?' open':''}"><div class="row cols" role="button" tabindex="0" data-id="${m.id}" aria-expanded="${open}">`+
       `<span class="time">${esc(m.time)}</span>`+
       `<span class="teams"><b>${esc(m.home)}${star('t',m.home)}</b><span class="tn">${esc(m.away)}${star('t',m.away)}</span>`+
         (nr?`<span class="pill t-g">${nr} öneri</span>`:'')+
