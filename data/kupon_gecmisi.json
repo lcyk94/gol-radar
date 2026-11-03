@@ -4783,7 +4783,7 @@
   "list": [
    {
     "odds": 3.01,
-    "p": 0.2575,
+    "p": 0.2574,
     "legs": [
      {
       "time": "",
@@ -4850,6 +4850,177 @@
        "Model beklentisi: Lens 1.30, Como 1.58 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
        "Form: Lens son 5 maçta 3G 0B 2M (8-6 gol); Como son 5 maçta 4G 1B 0M (9-2 gol).",
        "Hücum/savunma (son 10+ maç): Lens 2.0 atıyor, 1.3 yiyor; Como 1.8 atıyor, 0.8 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-04",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 5,
+      "time": "",
+      "home": "Cardiff",
+      "away": "West Ham",
+      "league": "İngiltere Championship",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.8,
+      "p": 0.565,
+      "base": 0.288,
+      "edge": 0.277,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3266612,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Cardiff 1.55, West Ham 2.42 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Cardiff son 5 maçta 2G 1B 2M (9-8 gol); West Ham son 5 maçta 2G 1B 2M (11-7 gol).",
+       "Hücum/savunma (son 10+ maç): Cardiff 1.4 atıyor, 1.5 yiyor; West Ham 2.9 atıyor, 1.3 yiyor."
+      ]
+     },
+     {
+      "id": 44,
+      "time": "20:45",
+      "home": "Fenerbahce",
+      "away": "Liverpool",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "KG Var",
+      "mk": "Karşılıklı Gol",
+      "o": 1.36,
+      "p": 0.659,
+      "base": 0.545,
+      "edge": 0.114,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "t": "g",
+      "src": "blend",
+      "nid": 3266645,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Fenerbahce 1.41, Liverpool 1.99 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Fenerbahce son 5 maçta 3G 0B 2M (16-4 gol); Liverpool son 5 maçta 3G 0B 2M (5-5 gol).",
+       "Gol temposu (son 10+ maç): Fenerbahce maçlarında ortalama 3.4, Liverpool maçlarında 2.2 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %50 / %40.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "id": 41,
+      "time": "23:00",
+      "home": "Lens",
+      "away": "Como",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "ÇŞ X-2",
+      "mk": "Çifte Şans",
+      "o": 1.23,
+      "p": 0.692,
+      "base": 0.56,
+      "edge": 0.132,
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "t": "g",
+      "src": "blend",
+      "nid": 3266624,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Lens 1.30, Como 1.58 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Lens son 5 maçta 3G 0B 2M (8-6 gol); Como son 5 maçta 4G 1B 0M (9-2 gol).",
+       "Hücum/savunma (son 10+ maç): Lens 2.0 atıyor, 1.3 yiyor; Como 1.8 atıyor, 0.8 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.01,
+    "date": "2026-11-04",
+    "p": 0.2574,
+    "ev": 0.78,
+    "score": 0.523
+   }
+  ]
+ },
+ "2026-11-05": {
+  "list": [
+   {
+    "odds": 3.01,
+    "p": 0.2974,
+    "legs": [
+     {
+      "time": "20:45",
+      "home": "Sociedad B",
+      "away": "Lyon",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "ÇŞ X-2",
+      "o": 1.73,
+      "p": 0.719,
+      "nid": 3269201,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.56,
+      "edge": 0.159,
+      "why": [
+       "Model beklentisi: Sociedad B 1.37, Lyon 1.84 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Sociedad B son 5 maçta 1G 0B 4M (6-12 gol); Lyon son 5 maçta 3G 0B 2M (9-5 gol).",
+       "Hücum/savunma (son 10+ maç): Sociedad B 1.3 atıyor, 2.0 yiyor; Lyon 1.5 atıyor, 1.1 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "20:45",
+      "home": "Thun",
+      "away": "Hearts",
+      "league": "UEFA Konferans Ligi",
+      "sel": "2,5 Üst",
+      "o": 1.37,
+      "p": 0.684,
+      "nid": 3269300,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.501,
+      "edge": 0.183,
+      "why": [
+       "Model beklentisi: Thun 1.72, Hearts 1.81 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Thun son 5 maçta 2G 0B 3M (13-16 gol); Hearts son 5 maçta 2G 2B 1M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Thun maçlarında ortalama 4.8, Hearts maçlarında 3.8 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %70.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Benfica",
+      "away": "Lech Poznan",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "HMS -1 · 1",
+      "o": 1.27,
+      "p": 0.605,
+      "nid": 3268967,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.222,
+      "edge": 0.383,
+      "why": [
+       "Model beklentisi: Benfica 2.94, Lech Poznan 0.85 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (9-5 gol); Lech Poznan son 5 maçta 5G 0B 0M (20-5 gol).",
+       "Hücum/savunma (son 10+ maç): Benfica 2.7 atıyor, 0.8 yiyor; Lech Poznan 3.0 atıyor, 1.0 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
