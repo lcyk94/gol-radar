@@ -270,3 +270,21 @@ def test_odds_moves_and_payload(tmp_path):
     m0 = pl["matches"][0]
     assert "nid" in m0 and "mv" in m0 and len(m0["sm"]) == 6 and all(len(r) == 6 for r in m0["sm"])
     assert 0 < sum(sum(r) for r in m0["sm"]) <= 1005     # binde bir birimlerle, 6x6 kısmı
+
+
+def test_euro_cup_detection():
+    for ok in ("UEFA Şampiyonlar Ligi", "UEFA Avrupa Ligi", "UEFA Konferans Ligi", "Şampiyonlar Ligi", "UEFA Konferans Ligi Play-Off"):
+        assert bot._is_euro_cup(ok), ok
+    for no in ("UEFA Gençler Ligi", "AFC Şampiyonlar Ligi", "AFC Kupası", "CAF Şampiyonlar Ligi", "UEFA Kadınlar Şampiyonlar Ligi",
+               "Şampiyonlar Ligi U19", "Konkakaf Şampiyonlar Kupası", "Türkiye Süper Lig", "Mısır Ligi Kupası", "", None, "CONCACAF Şampiyonlar Ligi"):
+        assert not bot._is_euro_cup(no), no
+
+
+def test_euro_flag_ignores_missing_values():
+    import math
+    assert bot._euro({"EURO": float("nan")}) is False      # NaN, bool() ile True olurdu
+    assert bot._euro({}) is False and bot._euro({"EURO": False}) is False
+    assert bot._euro({"EURO": True}) is True
+    assert bot._euro(pd.Series({"Div": "E0"})) is False
+    assert bot._is_euro_cup("UEFA ŞAMPİYONLAR LİGİ") and bot._is_euro_cup("UEFA KONFERANS LİGİ")
+    assert not bot._is_euro_cup("UEFA GENÇLER LİGİ") and not bot._is_euro_cup("AFC ŞAMPİYONLAR LİGİ")
