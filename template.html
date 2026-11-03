@@ -53,7 +53,7 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
 
 .top{background:var(--navy);color:#fff;padding:14px 0}
 .top .wrap{display:flex;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
@@ -249,6 +249,36 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .sact button,.sact a{border:1px solid var(--line);background:var(--card);color:var(--link);border-radius:6px;padding:7px 12px;font:inherit;font-size:14px;cursor:pointer;text-decoration:none}
 .sact button:focus-visible,.sact a:focus-visible{outline:3px solid #2f6fd6}
 body.slipopen{padding-bottom:0}
+.q.add{cursor:pointer}
+.q.add:hover{filter:brightness(1.12)}
+.q.add.on{outline:3px solid var(--ink);outline-offset:-3px}
+.q.add:focus-visible{outline:3px solid #2f6fd6}
+.lay{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.side{display:none}
+@media (min-width:1000px){
+  .lay{grid-template-columns:minmax(0,1fr) 320px}
+  .side{display:block;position:sticky;top:10px;align-self:start;max-height:calc(100vh - 20px);overflow:auto;margin-top:14px;
+    background:var(--card);border:1px solid var(--line);border-radius:8px}
+  #slipbar,#slip{display:none!important}
+}
+.sh{background:var(--navy);color:#fff;padding:10px 12px;font-weight:800;letter-spacing:.3px;display:flex;justify-content:space-between;align-items:center;border-radius:8px 8px 0 0}
+.sh em{font-style:normal;background:#f5c518;color:#1a1400;border-radius:999px;padding:1px 9px;font-size:13px}
+.sb{padding:0 12px 12px}
+.sb .empty-s{margin:12px 0;color:var(--mut);font-size:14px}
+.si2{display:grid;grid-template-columns:minmax(0,1fr) 26px;gap:2px 6px;padding:9px 0;border-top:1px solid var(--line)}
+.si2 b{display:block;font-size:14px}
+.si2 small{color:var(--mut);font-size:12px}
+.si2 .ch{grid-column:1 / 2;display:grid;grid-template-columns:minmax(0,1fr) auto 74px;gap:6px;align-items:center;margin-top:4px}
+.si2 .mk1{background:var(--band);color:var(--ink);border-radius:4px;padding:4px 7px;font-size:12.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.si2 .op{background:#44586f;color:#fff;border-radius:4px;padding:4px 8px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.si2 input{width:100%;height:28px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font:700 14px system-ui,sans-serif;text-align:center}
+.si2 input.ed{outline:2px solid #2f6fd6}
+.si2 .sr{grid-column:2;grid-row:1}
+.sf{background:var(--band);margin:8px -12px 0;padding:8px 12px}
+.sf div.r{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:13px;color:var(--mut)}
+.sf div.r b{color:var(--ink);font-size:15px}
+.sf .stake{width:110px;height:30px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font:700 14px system-ui,sans-serif;text-align:right;padding:0 8px}
+.sf .win b{color:var(--link);font-size:18px}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .cal{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
   border-radius:8px;overflow:hidden;font-size:14px;font-variant-numeric:tabular-nums}
@@ -312,16 +342,19 @@ nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;out
     <section id="coupons" aria-label="Günün kuponları"></section>
     <aside id="yday" aria-label="Dünün kuponlarının sonuçları"></aside>
   </div>
+  <div class="lay"><div class="lmain">
   <div class="tools">
     <input id="q" type="search" placeholder="Takım ya da lig ara" aria-label="Takım ya da lig ara">
     <select id="lg" aria-label="Lig"></select>
     <label class="tg"><input id="rec" type="checkbox"> Sadece önerisi olan maçlar</label>
     <label class="tg"><input id="favf" type="checkbox"> ★ Favorilerim</label>
-    <label class="tg"><input id="eur" type="checkbox"> Avrupa kupaları</label>
+    <label class="tg"><input id="eur" type="checkbox"> Şampiyonlar / Avrupa / Konferans Ligi</label>
     <div class="dates" id="dates" role="group" aria-label="Tarih"></div>
   </div>
   <div class="legend" id="legend"></div>
   <div id="list"></div>
+  </div>
+  <aside id="slipside" class="side" aria-label="Kuponum"></aside></div>
   <section id="hist" aria-label="Geçmiş kuponlar"></section>
   <section id="perf" aria-label="Model ne kadar tutuyor"></section>
   <section id="about" aria-label="Nasıl çalışır"></section>
@@ -435,7 +468,12 @@ const mvArrow = (m,k,i) => {
   const r = (p[1]-p[0])/p[0]; if(Math.abs(r) < 0.03) return '';
   return `<span class="mvk" aria-label="oran ${r<0?'düştü':'yükseldi'}">${r<0?'▼':'▲'}</span>`;
 };
-const qcell = (s,x,ar) => `<span class="q t-${s.t}${s.o?'':' fair'}${x?' x':''}" title="${esc(tip(s)+(ar?'. Oran hareketi var, ayrıntı maç panelinde':''))}">${oddsText(s)}${ar||''}</span>`;
+const qcell = (s,x,ar,ref) => `<span class="q t-${s.t}${s.o?'':' fair'}${x?' x':''}${ref?' add'+(inSlip(ref)?' on':''):''}"${ref?` role="button" tabindex="0" data-add="${ref}" aria-label="${esc(s.l+' '+oddsText(s)+' kupona ekle ya da çıkar')}"`:''} title="${esc(tip(s)+(ar?'. Oran hareketi var, ayrıntı maç panelinde':''))}">${oddsText(s)}${ar||''}</span>`;
+const qref = (m,mtid,line,idx,s) => {            // satırdaki oran hücresi sepet düğmesi olur
+  if(!s || m.nid==null || !m.nm) return '';
+  const k = m.nm.find(x=>String(x.mtid)===String(mtid) && +(x.line||0)===+line);
+  return k && k.outs && k.outs[idx] && k.outs[idx].o ? [m.nid,mtid,line,idx].join('|') : '';
+};
 const isFavM = m => fav.t.includes(m.home) || fav.t.includes(m.away) || fav.l.includes(m.league);
 const star = (kind,name) => { const on = (kind==='t'?fav.t:fav.l).includes(name);
   return `<button class="fav" type="button" data-fk="${kind}" data-fn="${esc(name)}" aria-pressed="${on}" aria-label="${esc(name)} ${on?'favorilerden çıkar':'favorilere ekle'}" title="${on?'Favorilerden çıkar':'Favorilere ekle'}">${on?'★':'☆'}</button>`; };
@@ -550,7 +588,7 @@ function render(){
     `<button class="dchip" data-d="${v}" aria-pressed="${state.date===v}">${esc(t)}</button>`).join('');
 
   if(!list.length){
-    $('#list').innerHTML = `<div class="empty">${D.matches.length ? (state.fav && !fav.t.length && !fav.l.length ? 'Henüz favorin yok. Bir takımın ya da ligin yanındaki ☆ işaretine basarak ekle.' : 'Filtreye uyan maç yok. Aramayı, lig seçimini ya da işaretli kutuları temizle.') : 'Bu aralıkta maç bulunamadı.'}</div>`;
+    $('#list').innerHTML = `<div class="empty">${D.matches.length ? (state.eur && !D.matches.some(m=>m.euro) ? 'Bu aralıkta Şampiyonlar Ligi, Avrupa Ligi ya da Konferans Ligi maçı yok.' : state.fav && !fav.t.length && !fav.l.length ? 'Henüz favorin yok. Bir takımın ya da ligin yanındaki ☆ işaretine basarak ekle.' : 'Filtreye uyan maç yok. Aramayı, lig seçimini ya da işaretli kutuları temizle.') : 'Bu aralıkta maç bulunamadı.'}</div>`;
     return;
   }
   let html = '', last = '';
@@ -575,7 +613,7 @@ function render(){
         (m.src==='prior'?` <span class="pill np">Bu maçın MS oranı ve takım verisi yok: genel ortalamaya dayalı kaba tahmin</span>`:'')+
         (m.src==='market'?(m.euro?` <span class="pill np">Avrupa kupası: takım verisi yok, piyasa olasılığı</span>`:` <span class="pill np">Model yok: piyasa olasılığı</span>`):'')+
         (D.odds_source==='nesine' && !m.nes ? ` <span class="pill np">Nesine'de bulunamadı</span>` : '')+`</span>`+
-      ms.map((s,i)=>qcell(s,0,mvArrow(m,'ms',i))).join('')+qcell(ou[0],1,mvArrow(m,'ou25',0))+qcell(ou[1],1,mvArrow(m,'ou25',1))+qcell(kg[0],1,mvArrow(m,'kg',0))+
+      ms.map((s,i)=>qcell(s,0,mvArrow(m,'ms',i),qref(m,1,0,i,s))).join('')+qcell(ou[0],1,mvArrow(m,'ou25',0),qref(m,12,2.5,0,ou[0]))+qcell(ou[1],1,mvArrow(m,'ou25',1),qref(m,12,2.5,1,ou[1]))+qcell(kg[0],1,mvArrow(m,'kg',0),qref(m,38,0,0,kg[0]))+
       `<span class="more">${open?'Kapat':'+'+total}</span></div>`+
       (open?panel(m):'')+`</div>`;
   });
@@ -885,13 +923,10 @@ function slipItems(){
   slip.forEach(r=>{ const x = resolve(r); if(x){ const ov = parseOdds(r[4]||''); out.push({...x, ref:r, ov: ov && Math.abs(ov-x.o)>1e-9 ? ov : null}); } });
   return out;
 }
-function renderSlip(){
-  slip = slip.filter(r=>resolve(r));                       // bültenden düşenler kaldırılır
-  const bar = $('#slipbar'), box = $('#slip'), items = slipItems();
-  if(!items.length){ bar.hidden = true; box.hidden = true; return; }
+const stakeVal = () => { const v = parseFloat(String(LS.get('gr-stake')||'').replace(',','.')); return isFinite(v) && v>0 ? v : 50; };
+const tl = x => x.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' TL';
+function slipBody(items, drawer){
   const od = items.map(x=>x.ov||x.o), tot = od.reduce((a,b)=>a*b,1);
-  $('#slipbtn').textContent = `Kuponum (${items.length}) · oran ${tot.toFixed(2)}`;
-  bar.hidden = box.hidden === false;
   const ms = new Set(items.map(x=>x.m.nid)), dup = ms.size < items.length;
   const mbs = Math.max(...items.map(x=>+x.k.mbs||1));
   const pOk = !dup && items.every(x=>x.p!=null), p = pOk ? items.reduce((a,x)=>a*x.p,1) : null;
@@ -899,49 +934,81 @@ function renderSlip(){
   if(dup) warns.push('Aynı maçtan birden fazla seçim var. Nesine çoğu zaman bunu kabul etmez ve seçimler birbirinden bağımsız olmadığı için tutma olasılığı hesaplanamaz.');
   if(ms.size < mbs) warns.push(`Seçtiğin bir bahis türü en az ${mbs} maçlık kupon ister (MBS ${mbs}); kuponunda ${ms.size} maç var.`);
   if(!dup && !pOk) warns.push('Bazı seçimlerde model olasılığı yok (model yalnızca doğrulanmış bahis türlerinde hesaplar), bu yüzden tutma olasılığı gösterilemiyor.');
-  if(new Set(items.map(x=>x.m.date)).size > 1) warns.push('Seçimler farklı günlerden; kupon en geç sonuncu maça kadar açık kalır.');
-  $('#slipin').innerHTML = `<h2><span>Kuponum</span><button class="sx" type="button" id="slipclose">Kapat</button></h2>`+
-    items.map((x,i)=>`<div class="si"><span class="t">${esc(x.m.time)}</span>`+
-      `<span class="n"><b>${esc(x.m.home)} - ${esc(x.m.away)}</b><span>${esc(x.mk)}: ${esc(x.lab)}${x.p!=null?` · model %${pct(x.p)}`:''}</span></span>`+
-      `<input type="text" inputmode="decimal" autocomplete="off" class="${x.ov?'ed':''}" value="${od[i].toFixed(2)}" data-i="${i}" data-bot="${x.o}" aria-label="${esc(x.m.home+' '+x.lab+' oranı')}">`+
-      `<button class="sr" type="button" data-rm="${i}" aria-label="Seçimi kaldır">×</button></div>`).join('')+
+  if(new Set(items.map(x=>x.m.date)).size > 1) warns.push('Seçimler farklı günlerden.');
+  const st = stakeVal();
+  return `<div class="sh"><span>KUPONUM</span><span>${drawer?`<button class="sx" type="button" data-act="close">Kapat</button> `:''}<em>${items.length}</em></span></div><div class="sb">`+
+    items.map((x,i)=>`<div class="si2"><div><b>${esc(x.m.home)} - ${esc(x.m.away)}</b><small>${esc(fmtLong(x.m.date))} ${esc(x.m.time)}</small></div>`+
+      `<button class="sr" type="button" data-rm="${i}" aria-label="Seçimi kaldır">×</button>`+
+      `<div class="ch"><span class="mk1" title="${esc(x.mk)}">${esc(x.mk)}</span><span class="op">${esc(x.lab)}${x.p!=null?` · %${pct(x.p)}`:''}</span>`+
+      `<input type="text" inputmode="decimal" autocomplete="off" class="${x.ov?'ed':''}" value="${od[i].toFixed(2)}" data-i="${i}" data-bot="${x.o}" aria-label="${esc(x.m.home+' '+x.lab+' oranı')}"></div></div>`).join('')+
     warns.map(w=>`<p class="slw">${esc(w)}</p>`).join('')+
-    `<dl class="stot"><div><dt>Toplam oran</dt><dd>${tot.toFixed(2)}</dd></div>`+
-    `<div><dt>Modele göre tutma olasılığı</dt><dd>${p!=null?'%'+(p*100).toFixed(p<0.1?1:0):'—'}</dd></div>`+
-    `<div><dt>Beklenen değer</dt><dd>${p!=null?(p*tot).toFixed(2):'—'}</dd></div></dl>`+
-    (p!=null?`<p class="xg">Olasılık, seçimlerin birbirinden bağımsız olduğu varsayımıyla çarpılarak hesaplanır. Beklenen değer 1'in altındaysa bu oranlarla kupon uzun vadede kaybettirir.</p>`:'')+
-    `<div class="sact"><button type="button" id="slipcopy">Kuponu kopyala</button>`+
-    `<a id="slipwa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(slipText(items)+'\n'+slipLink())}">WhatsApp'ta paylaş</a>`+
-    `<button type="button" id="sliplink">Bağlantıyı kopyala</button><button type="button" id="slipclr">Temizle</button></div>`+
-    `<p class="xg">Bu sayfada kupon oynanmaz; seçimleri Nesine'de kendin yaparsın. Paylaşılan bağlantıyı açan kişi, seçimleri bu sayfadaki güncel Nesine oranlarıyla görür.</p>`;
+    `<div class="sf"><div class="r"><span>Toplam oran</span><b class="s-tot">${tot.toFixed(2)}</b></div>`+
+    `<div class="r"><label for="stk${drawer?'d':'s'}">Kupon tutarı</label><input id="stk${drawer?'d':'s'}" class="stake" type="text" inputmode="decimal" autocomplete="off" value="${String(st).replace('.',',')}"></div>`+
+    `<div class="r win"><span>Maks. kazanç</span><b class="s-win">${tl(tot*st)}</b></div></div>`+
+    `<div class="r2"><p class="xg"><b>Modele göre tutma olasılığı:</b> <span class="s-p">${p!=null?'%'+(p*100).toFixed(p<0.1?1:0):'hesaplanamıyor'}</span><br>`+
+    `<b>Beklenen değer:</b> <span class="s-ev">${p!=null?(p*tot).toFixed(2):'—'}</span> (1'in altı: bu oranlarla uzun vadede kaybettirir)</p></div>`+
+    `<div class="sact"><button type="button" data-act="copy">Kopyala</button>`+
+    `<a target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(slipText(items)+'\n'+slipLink())}">WhatsApp</a>`+
+    `<button type="button" data-act="link">Bağlantı</button><button type="button" data-act="clear">Temizle</button></div>`+
+    `<p class="xg">Kupon bu sayfada oynanmaz; seçimleri Nesine'de kendin yapıp onaylarsın. Olasılık, seçimler birbirinden bağımsız varsayılarak çarpılır.</p></div>`;
+}
+function renderSlip(){
+  slip = slip.filter(r=>resolve(r));                       // bültenden düşenler kaldırılır
+  const bar = $('#slipbar'), box = $('#slip'), items = slipItems();
+  $('#slipside').innerHTML = items.length ? slipBody(items,false) :
+    `<div class="sh"><span>KUPONUM</span><span><em>0</em></span></div><div class="sb"><p class="empty-s">Kuponun boş. Maç listesindeki <b>1, X, 2, Alt, Üst, KG Var</b> oranlarına tıkla; diğer bahisler için maça tıklayıp açılan kartlardan seç. İstediğin kadar maçtan seçim yapabilirsin.</p></div>`;
+  if(!items.length){ bar.hidden = true; box.hidden = true; $('#slipin').innerHTML = ''; return; }
+  const tot = items.map(x=>x.ov||x.o).reduce((a,b)=>a*b,1);
+  $('#slipbtn').textContent = `Kuponum (${items.length}) · oran ${tot.toFixed(2)}`;
+  $('#slipin').innerHTML = slipBody(items,true);
+  bar.hidden = box.hidden === false;
 }
 function copyTxt(btn, txt){
   const old = btn.textContent, done = ok => { btn.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı'; setTimeout(()=>{ btn.textContent = old; }, 2000); };
   try{ navigator.clipboard.writeText(txt).then(()=>done(true), ()=>done(false)); }catch(e){ done(false); }
 }
-$('#slipbtn').addEventListener('click', ()=>{ $('#slip').hidden = false; $('#slipbar').hidden = true; $('#slipclose') && $('#slipclose').focus(); });
-$('#slip').addEventListener('click', e=>{
-  const t = e.target;
-  if(t.id==='slipclose'){ $('#slip').hidden = true; $('#slipbar').hidden = !slip.length; $('#slipbtn').focus(); return; }
-  if(t.id==='slipclr'){ slip = []; saveSlip(); syncSel(); renderSlip(); return; }
-  if(t.id==='slipcopy'){ copyTxt(t, slipText(slipItems())); return; }
-  if(t.id==='sliplink'){ copyTxt(t, slipLink()); return; }
-  const rm = t.closest('[data-rm]');
-  if(rm){ const x = slipItems()[+rm.dataset.rm]; if(x){ const i = slip.findIndex(r=>refKey(r)===refKey(x.ref)); if(i>=0) slip.splice(i,1); saveSlip(); syncSel(); renderSlip(); } }
-});
-$('#slip').addEventListener('input', e=>{
+function closeSlip(){ $('#slip').hidden = true; $('#slipbar').hidden = !slip.length; }
+function onSlipClick(e){
+  const a = e.target.closest('[data-act]'), rm = e.target.closest('[data-rm]');
+  if(rm){ const x = slipItems()[+rm.dataset.rm]; if(x){ const i = slip.findIndex(r=>refKey(r)===refKey(x.ref)); if(i>=0) slip.splice(i,1); saveSlip(); syncSel(); renderSlip(); } return; }
+  if(!a) return;
+  const act = a.dataset.act;
+  if(act==='close'){ closeSlip(); $('#slipbtn').focus(); }
+  else if(act==='clear'){ slip = []; saveSlip(); syncSel(); renderSlip(); }
+  else if(act==='copy') copyTxt(a, slipText(slipItems()));
+  else if(act==='link') copyTxt(a, slipLink());
+}
+function onSlipInput(e){
+  const sk = e.target.closest('.stake');
+  const its0 = slipItems();
+  if(sk){
+    const v = parseFloat(sk.value.replace(',','.'));
+    if(isFinite(v) && v>0) LS.set('gr-stake', String(v));
+    document.querySelectorAll('.stake').forEach(o=>{ if(o!==sk) o.value = sk.value; });
+    refreshTotals(its0); return;
+  }
   const i = e.target.closest('input[data-i]'); if(!i) return;
-  const x = slipItems()[+i.dataset.i]; if(!x) return;
+  const x = its0[+i.dataset.i]; if(!x) return;
   const v = parseOdds(i.value), r = slip.find(q=>refKey(q)===refKey(x.ref));
   if(r){ r[4] = v && Math.abs(v-x.o)>1e-9 ? v : undefined; saveSlip(); }
-  const its = slipItems(), od = its.map(y=>y.ov||y.o), tot = od.reduce((a,b)=>a*b,1);
-  const dd = $('#slip .stot'); if(dd){ const dds = dd.querySelectorAll('dd'); dds[0].textContent = tot.toFixed(2);
-    const pOk = its.every(y=>y.p!=null) && new Set(its.map(y=>y.m.nid)).size === its.length;
-    if(pOk){ const p = its.reduce((a,y)=>a*y.p,1); dds[2].textContent = (p*tot).toFixed(2); } }
+  const its = slipItems();
+  document.querySelectorAll(`input[data-i="${i.dataset.i}"]`).forEach(o=>{ if(o!==i) o.value = i.value; o.classList.toggle('ed', !!(v && Math.abs(v-x.o)>1e-9)); });
+  refreshTotals(its);
+}
+function refreshTotals(its){
+  const tot = its.map(y=>y.ov||y.o).reduce((a,b)=>a*b,1), st = stakeVal();
+  const pOk = its.every(y=>y.p!=null) && new Set(its.map(y=>y.m.nid)).size === its.length;
+  document.querySelectorAll('.s-tot').forEach(d=>{ d.textContent = tot.toFixed(2); });
+  document.querySelectorAll('.s-win').forEach(d=>{ d.textContent = tl(tot*st); });
+  if(pOk) document.querySelectorAll('.s-ev').forEach(d=>{ d.textContent = (its.reduce((a,y)=>a*y.p,1)*tot).toFixed(2); });
   $('#slipbtn').textContent = `Kuponum (${its.length}) · oran ${tot.toFixed(2)}`;
-  i.classList.toggle('ed', !!(v && Math.abs(v-x.o)>1e-9));
-});
-document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !$('#slip').hidden){ $('#slip').hidden = true; $('#slipbar').hidden = !slip.length; } });
+}
+$('#slipbtn').addEventListener('click', ()=>{ $('#slip').hidden = false; $('#slipbar').hidden = true; const c = $('#slip [data-act=close]'); if(c) c.focus(); });
+$('#slip').addEventListener('click', onSlipClick);
+$('#slipside').addEventListener('click', onSlipClick);
+$('#slip').addEventListener('input', onSlipInput);
+$('#slipside').addEventListener('input', onSlipInput);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !$('#slip').hidden) closeSlip(); });
 (function fromHash(){                                      // paylaşılan kupon bağlantısı: #k=nid,mtid,line,idx~...
   const h = location.hash; if(!h.startsWith('#k=')) return;
   let ok = 0, miss = 0;
