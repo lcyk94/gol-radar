@@ -541,9 +541,20 @@ def blend_predict(pmodel, nm, w=0.5):
     return _fit_lambdas(tgt, (max(pmodel["xg_h"], .3), max(pmodel["xg_a"], .3)))
 
 
+def _euro(r):
+    """Satır Avrupa kupası maçı mı. Satırda EURO alanı yoksa pandas NaN verir ve bool(NaN) True'dur: yalnızca gerçek True sayılır."""
+    v = r.get("EURO") if r is not None else None
+    return v is True or (isinstance(v, (bool, np.bool_)) and bool(v))
+
+
 def _is_euro_cup(name):
     n = str(name or "").upper().translate(str.maketrans("İŞÇĞÜÖ", "ISCGUO"))
-    return any(k in n for k in ("SAMPIYONLAR LIGI", "AVRUPA LIGI", "KONFERANS LIGI")) and "GENC" not in n
+    if not any(k in n for k in ("SAMPIYONLAR LIGI", "AVRUPA LIGI", "KONFERANS LIGI")):
+        return False
+    # yalnızca UEFA'nın erkekler A takım kupaları: gençler, kadınlar, genç yaş grupları ve başka kıtaların kupaları dışarıda
+    bad = ("GENC", "KADIN", "BAYAN", "WOMEN", "YOUTH", "U15", "U16", "U17", "U18", "U19", "U20", "U21", "U23", "AFC", "CAF",
+           "CONCACAF", "CONMEBOL", "ASYA", "AFRIKA", "AMERIKA", "ARAP", "KORFEZ", "FUTSAL", "SALON", "ESPOR", "ESPORT", "SANAL", "VIRTUAL")
+    return not any(k in n for k in bad)
 
 
 def extra_rows(out_rows, hist_all, models, today, days, leagues=None):
@@ -997,7 +1008,7 @@ def _legs(r, p):
     if (nes.get("mbs") or 1) > COUPON_LEGS:
         return []
     src = r.get("SRC")
-    euro = bool(r.get("EURO"))
+    euro = _euro(r)
     if src in ("cross", "prior") or (src == "market" and not euro):   # botun kendi tahmini olmayan maçlar kupona girmez
         return []
     cx = _ctx_of(p, r.get("Div"))
@@ -1063,7 +1074,7 @@ def build_coupons(out_rows):
     from collections import Counter as _Cn
     for d_, its in sorted(by_day.items()):
         if d_ >= today:
-            print(f"  Kupon adayı maç {d_:%Y-%m-%d}: {len(its)} (kaynak: {dict(_Cn(t[1].get('SRC') for t in its))}, avrupa kupası: {sum(bool(t[1].get('EURO')) for t in its)})")
+            print(f"  Kupon adayı maç {d_:%Y-%m-%d}: {len(its)} (kaynak: {dict(_Cn(t[1].get('SRC') for t in its))}, avrupa kupası: {sum(_euro(t[1]) for t in its)})")
     got, fam_use = [], {}                 # bugünden başlayarak, 4 kupon dolana kadar sonraki günlerin maçlarına bakılır
     frozen_n, frozen_s = _frozen_today(out_rows, today)
     if frozen_n or frozen_s:
@@ -1177,7 +1188,7 @@ def _best_combo(items, pool_size=45, fam_use=None):
     Aynı pazar ailesi kuponlarda tekrarlandıkça puan düşer (çeşitlilik), böylece her kupon çifte şans olmaz."""
     fam_use = fam_use or {}
     cands = [(t, _pareto(t[2])) for t in items if t[2]]
-    euro = lambda t: t[1] is not None and t[1].get("EURO") == True  # noqa: E712
+    euro = lambda t: t[1] is not None and _euro(t[1])
     eu = [c for c in cands if euro(c[0])]
     cands = [c for c in cands if not euro(c[0])]
     cands.sort(key=lambda c: -max(x[3]["edge"] for x in c[1]))
@@ -2023,7 +2034,7 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
             "mv": moves.get(_nid(r.get("NID"))) or None,
             "sm": [[int(round(float(p["matrix"][i][j]) * 1000)) for j in range(6)] for i in range(6)],
             "league": (r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"]))),
-            "src": r.get("SRC") or "model", "euro": bool(r.get("EURO")),
+            "src": r.get("SRC") or "model", "euro": _euro(r),
             "date": r["Date"].strftime("%Y-%m-%d"),
             "time": "" if t in ("nan", "NaT") else t[:5],
             "home": r["HomeTeam"], "away": r["AwayTeam"],
