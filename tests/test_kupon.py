@@ -248,3 +248,25 @@ def test_todays_coupons_are_frozen(tmp_path, monkeypatch):
     ent = bot._load_log()[day.strftime("%Y-%m-%d")]
     assert ent["saved_on"] == day.strftime("%Y-%m-%d")
     assert len([k for k in ent["list"] if not k.get("surprise")]) == len(today_cp)
+
+
+def test_odds_moves_and_payload(tmp_path):
+    import json, datetime as dt
+    now = dt.datetime.utcnow()
+    f = tmp_path / "o.jsonl"
+    rows = [
+        {"t": (now - dt.timedelta(hours=9)).isoformat(), "id": 7, "odds": {"ms": [2.0, 3.0, 3.5], "ou25": [1.9, 1.8], "kg": [1.7, 2.0]}},
+        {"t": (now - dt.timedelta(hours=1)).isoformat(), "id": 7, "odds": {"ms": [1.8, 3.1, 4.0], "ou25": [1.9, 1.8], "kg": [1.7, 2.0]}},
+        {"t": now.isoformat(), "id": 8, "odds": {"ms": [2.0, 3.0, 3.5], "ou25": None, "kg": None}},     # tek kayıt: hareket yok
+        {"t": (now - dt.timedelta(days=30)).isoformat(), "id": 9, "odds": {"ms": [2.0, 3.0, 3.5]}},
+    ]
+    f.write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
+    mv = bot.odds_moves(f)
+    assert set(mv) == {7} and mv[7]["ms"][0] == [2.0, 1.8] and "ou25" not in mv[7]
+    assert bot.odds_moves(tmp_path / "yok.jsonl") == {}
+    hist, rws = synth(days=3)
+    _env(hist, rws)
+    pl = bot.site_payload(rws, demo=True, perf=None, nes_info=None, yday=None, hist=hist)
+    m0 = pl["matches"][0]
+    assert "nid" in m0 and "mv" in m0 and len(m0["sm"]) == 6 and all(len(r) == 6 for r in m0["sm"])
+    assert 0 < sum(sum(r) for r in m0["sm"]) <= 1005     # binde bir birimlerle, 6x6 kısmı
