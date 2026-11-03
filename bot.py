@@ -1971,14 +1971,57 @@ def match_context(hist):
     return ctx
 
 
+def odds_moves(path=None, max_age_days=10):
+    """Nesine maç numarası -> {'ms': [[ilk, şimdi] x3], 'ou25': [[..] x2], 'kg': [[..] x2]}: oran geçmişi dosyasındaki ilk
+    kayıttan en son kayda oran değişimi. Yalnızca iki farklı kayıt varsa ve oran gerçekten değiştiyse yazılır;
+    ilk kayıt 'açılış' değil, botun maçı ilk gördüğü orandır."""
+    path = Path(path) if path else DATA_DIR / "oran_gecmisi.jsonl"
+    first, last = {}, {}
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()[-60000:]
+    except Exception:  # noqa: BLE001  dosya yok: hareket gösterilmez
+        return {}
+    cut = (datetime.utcnow() - timedelta(days=max_age_days)).strftime("%Y-%m-%dT%H:%M:%S")
+    for ln in lines:
+        try:
+            r = json.loads(ln)
+        except Exception:  # noqa: BLE001
+            continue
+        if str(r.get("t", "")) < cut or r.get("id") is None:
+            continue
+        first.setdefault(r["id"], r["odds"])
+        last[r["id"]] = r["odds"]
+    out = {}
+    for mid, lo in last.items():
+        fo = first[mid]
+        mv = {}
+        for k, n in (("ms", 3), ("ou25", 2), ("kg", 2)):
+            a, b = fo.get(k), lo.get(k)
+            if not a or not b or len(a) < n or len(b) < n:
+                continue
+            pairs = [[a[i], b[i]] for i in range(n)]
+            if all(x and y for x, y in pairs) and any(abs(y - x) >= 0.005 for x, y in pairs):
+                mv[k] = pairs
+        if mv:
+            out[mid] = mv
+    return out
+
+
 def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist=None):
     ctxf = match_context(hist)
+    try:
+        moves = odds_moves()
+    except Exception as e:  # noqa: BLE001  oran hareketi sayfayı bozmasın
+        print(f"  ! oran hareketi atlandı: {e}")
+        moves = {}
     matches = []
     for k, (r, p, _) in enumerate(out_rows):
         t = str(r.get("Time", "") or "")
         nes = _nes_of(r)[0]
         matches.append({
-            "id": k, "div": r["Div"],
+            "id": k, "div": r["Div"], "nid": _nid(r.get("NID")),
+            "mv": moves.get(_nid(r.get("NID"))) or None,
+            "sm": [[int(round(float(p["matrix"][i][j]) * 1000)) for j in range(6)] for i in range(6)],
             "league": (r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"]))),
             "src": r.get("SRC") or "model", "euro": bool(r.get("EURO")),
             "date": r["Date"].strftime("%Y-%m-%d"),
