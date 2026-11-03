@@ -4782,8 +4782,8 @@
  "2026-11-04": {
   "list": [
    {
-    "odds": 3.12,
-    "p": 0.242,
+    "odds": 3.1,
+    "p": 0.2422,
     "legs": [
      {
       "time": "",
@@ -4824,7 +4824,7 @@
       "base": 0.44,
       "edge": 0.234,
       "why": [
-       "Model beklentisi: Viking 2.51, Sabah 1.11 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Viking 2.52, Sabah 1.12 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Viking son 5 maçta 4G 0B 1M (13-6 gol)."
       ]
      },
@@ -4834,8 +4834,8 @@
       "away": "Club Brugge",
       "league": "UEFA Şampiyonlar Ligi",
       "sel": "Ev 1,5 Üst",
-      "o": 1.41,
-      "p": 0.639,
+      "o": 1.4,
+      "p": 0.64,
       "nid": 3266906,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -4845,7 +4845,7 @@
       "base": 0.443,
       "edge": 0.197,
       "why": [
-       "Model beklentisi: PSV Eindhoven 2.18, Club Brugge 1.71 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: PSV Eindhoven 2.18, Club Brugge 1.73 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: PSV Eindhoven son 5 maçta 2G 1B 2M (13-6 gol); Club Brugge son 5 maçta 5G 0B 0M (17-6 gol).",
        "Gol temposu (son 10+ maç): PSV Eindhoven maçlarında ortalama 4.4, Club Brugge maçlarında 3.4 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %50.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
