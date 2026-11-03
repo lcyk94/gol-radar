@@ -27,3 +27,10 @@ Aday: Nesine'nin maçta açtığı ve `pazarlar.py`'de tanımlı bütün bahis t
 - Sonuç akışı biten maçı kısa süre tutar; `sonuc.yml` 20 dakikada bir okur. Okunmadan akıştan düşen maçın sonucu Nesine'den alınamaz (ana ligler ertesi gün football-data'dan gelir).
 - Sakat/cezalı modülü yok (doğrulanmış, kullanımı uygun ücretsiz kaynak yok).
 - Nesine kullanım şartları kullanıcı tarafından kontrol edilmelidir. 403/captcha aşılmaz.
+
+## Sayfadaki araçlar
+- **Kuponum (sepet):** maç panelindeki "Nesine'de açık bütün bahisler" kartlarında bir seçeneğe tıklanınca kupona eklenir. Tarayıcıda yalnızca `[maç no, bahis türü, çizgi, seçenek sırası, elle yazılan oran]` saklanır (`gr-slip`); adlar ve oranlar her açılışta güncel veriden okunur. Toplam oran, modele göre tutma olasılığı (seçimler bağımsız varsayımıyla çarpım) ve MBS uyarısı gösterilir. Paylaşım bağlantısı `#k=maçno,tür,çizgi,sıra~...` biçimindedir.
+- **Oran hareketi:** `data/oran_gecmisi.jsonl` içindeki ilk ve son kayıt karşılaştırılır (`bot.odds_moves`), yalnızca MS, Alt/Üst 2.5 ve KG için. İlk kayıt gerçek açılış oranı değil, botun maçı ilk gördüğü orandır. Satırda %3 ve üzeri değişimde ▲/▼ görünür.
+- **Favoriler:** takım ve lig yanındaki ☆; seçimler tarayıcıda saklanır (`gr-fav`). "★ Favorilerim" ve "Avrupa kupaları" süzgeçleri vardır.
+- **Skor ısı haritası ve form grafiği:** maç panelinde. Isı haritası modelin 6x6 skor matrisinden (`sm`, binde bir birimlerle) çizilir.
+- **Bacak isabeti:** kupon bacağının altında, o bahis türünün geriye dönük sınavdaki isabeti (`performance.fam`).
