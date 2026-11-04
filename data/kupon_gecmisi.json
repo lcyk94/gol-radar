@@ -5005,9 +5005,30 @@
  "2026-11-05": {
   "list": [
    {
-    "odds": 3.01,
-    "p": 0.2974,
+    "odds": 3.13,
+    "p": 0.314,
     "legs": [
+     {
+      "time": "20:45",
+      "home": "Sparta Prag",
+      "away": "Bournemouth",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "MS 2",
+      "o": 1.32,
+      "p": 0.639,
+      "nid": 3269161,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.349,
+      "why": [
+       "Model beklentisi: Sparta Prag 0.97, Bournemouth 2.15 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Bournemouth son 5 maçta 3G 0B 2M (8-6 gol)."
+      ]
+     },
      {
       "time": "20:45",
       "home": "Sociedad B",
@@ -5051,29 +5072,6 @@
        "Model beklentisi: Thun 1.72, Hearts 1.81 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
        "Form: Thun son 5 maçta 2G 0B 3M (13-16 gol); Hearts son 5 maçta 2G 2B 1M (11-10 gol).",
        "Gol temposu (son 10+ maç): Thun maçlarında ortalama 4.8, Hearts maçlarında 3.8 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %70.",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
-     },
-     {
-      "time": "23:00",
-      "home": "Benfica",
-      "away": "Lech Poznan",
-      "league": "UEFA Avrupa Ligi",
-      "sel": "HMS -1 · 1",
-      "o": 1.27,
-      "p": 0.605,
-      "nid": 3268967,
-      "mk": "Handikaplı MS (ev -1)",
-      "mtid": 268,
-      "line": -1.0,
-      "idx": 0,
-      "fam": "HMS",
-      "base": 0.222,
-      "edge": 0.383,
-      "why": [
-       "Model beklentisi: Benfica 2.94, Lech Poznan 0.85 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
-       "Form: Benfica son 5 maçta 4G 0B 1M (9-5 gol); Lech Poznan son 5 maçta 5G 0B 0M (20-5 gol).",
-       "Hücum/savunma (son 10+ maç): Benfica 2.7 atıyor, 0.8 yiyor; Lech Poznan 3.0 atıyor, 1.0 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
