@@ -288,3 +288,50 @@ def test_euro_flag_ignores_missing_values():
     assert bot._euro(pd.Series({"Div": "E0"})) is False
     assert bot._is_euro_cup("UEFA ŞAMPİYONLAR LİGİ") and bot._is_euro_cup("UEFA KONFERANS LİGİ")
     assert not bot._is_euro_cup("UEFA GENÇLER LİGİ") and not bot._is_euro_cup("AFC ŞAMPİYONLAR LİGİ")
+
+
+def test_milyoner_coupon_rules_and_freeze(tmp_path, monkeypatch):
+    hist, rows = synth(days=3)
+    _env(hist, rows)
+    monkeypatch.setattr(bot, "COUPON_LOG", tmp_path / "k.json")
+    k = bot.build_milyoner(rows)
+    assert k and k["mil"] and 1 <= len(k["legs"]) <= 3 and k["odds"] >= bot.MIL_ODDS - 1e-9
+    for l in k["legs"]:
+        assert l["p"] >= bot.COUPON_MIN_P and l["o"] >= bot.COUPON_MIN_LEG_ODDS
+        assert (l.get("mbs") or 1) <= len(k["legs"])             # MBS koşulu kupondaki maç sayısını aşmaz
+    # aynı oran eşiğini sağlayan 3'lü kupondan (sürpriz mantığı) daha az olasılıklı olmamalı: en yüksek olasılığı seçer
+    sur = bot.build_coupons(rows).get("surprise") or []
+    if sur and sur[0]["odds"] >= bot.MIL_ODDS:
+        assert k["p"] >= sur[0]["p"] - 1e-9
+    day = pd.Timestamp(k["date"]).date()
+    monkeypatch.setattr(bot, "today_tr", lambda: day)
+    bot.save_mil(k)
+    ent = bot._load_log()[k["date"]]
+    assert ent["mil_saved_on"] == k["date"] and sum(1 for x in ent["list"] if x.get("mil")) == 1
+    # sonradan maçlar bültenden düşse de aynı kupon geri gelir ve kayıt değişmez
+    used = {(l["home"], l["away"]) for l in k["legs"]}
+    rows2 = [x for x in rows if (x[0]["HomeTeam"], x[0]["AwayTeam"]) not in used]
+    k2 = bot.build_milyoner(rows2)
+    assert k2["frozen"] and [(l["home"], l["sel"], l["o"]) for l in k2["legs"]] == [(l["home"], l["sel"], l["o"]) for l in k["legs"]]
+    k2["odds"] = 99
+    bot.save_mil(k2)
+    assert bot._load_log()[k["date"]]["list"][-1]["odds"] == k["odds"]
+
+
+def test_mil_summary_attempts():
+    def g(d, st, odds=2.0):
+        return {d: [{"mil": True, "odds": odds, "status": st, "p": .5}]}
+    graded = {}
+    seq = ["won", "won", "lost", "won", "pending"]
+    for i, st in enumerate(seq):
+        graded.update(g(f"2026-10-{10 + i}", st, 2.05))
+    graded["2026-10-12"].append({"mil": False, "odds": 3, "status": "won"})      # normal kupon sayılmaz
+    s = bot.mil_summary(graded)
+    assert [a["result"] for a in s["attempts"]] == ["lost", "running"]
+    a0, a1 = s["attempts"]
+    assert a0["days"] == 2 and abs(a0["bank"] - 100 * 2.05 ** 2) < 0.02
+    assert a1["days"] == 1 and a1["pending"] == 1 and s["best"] == 2 and not s["reached"]
+    assert (s["won"], s["lost"], s["pending"]) == (3, 1, 1)
+    full = {f"2026-09-{i + 1:02d}": [{"mil": True, "odds": 2.0, "status": "won", "p": .5}] for i in range(bot.MIL_DAYS)}
+    s2 = bot.mil_summary(full)
+    assert s2["reached"] and s2["attempts"][0]["result"] == "goal" and s2["attempts"][0]["bank"] == 100 * 2 ** bot.MIL_DAYS
