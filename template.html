@@ -166,13 +166,16 @@ label.tg{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mut)
 .pill.np{background:var(--npb);color:var(--npt)}
 
 .cpgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:0 18px;align-items:start}
+#coupons{order:1}#mil{order:2}#yday{order:3}
 @media (min-width:900px){
-  .cpgrid{grid-template-columns:300px minmax(0,1fr);grid-template-areas:"y c"}
-  #yday{grid-area:y}#coupons{grid-area:c}
+  .cpgrid{grid-template-columns:300px minmax(0,1fr);grid-template-areas:"m m" "y c"}
+  #yday{grid-area:y}#coupons{grid-area:c}#mil{grid-area:m}
   .cpgrid .cps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (min-width:1500px){
-  .cpgrid{grid-template-columns:340px minmax(0,1fr)}
+  .cpgrid{grid-template-columns:340px minmax(0,1fr) 400px;grid-template-areas:"y c m"}
+}
+@media (min-width:1800px){
   .cpgrid .cps{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (min-width:1700px){
@@ -295,6 +298,29 @@ body.slipopen{padding-bottom:0}
 .sf div.r b{color:var(--ink);font-size:15px}
 .sf .stake{width:110px;height:30px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font:700 14px system-ui,sans-serif;text-align:right;padding:0 8px}
 .sf .win b{color:var(--link);font-size:18px}
+.milc{background:var(--card);border:1px solid var(--line);border-top:3px solid #c9a227;border-radius:8px;padding:12px 14px 14px;margin:16px 0 4px}
+.milc h2{margin:0 0 2px;font-size:18px}
+.milc h2 small{font-size:12px;font-weight:600;color:var(--mut);margin-left:6px}
+.milc .cn{margin:4px 0 8px;font-size:13px}
+.milbig{display:flex;gap:18px;flex-wrap:wrap;margin:8px 0}
+.milbig div{min-width:84px}.milbig dt{font-size:12px;color:var(--mut)}.milbig dd{margin:0;font-size:20px;font-weight:800}
+.mlg{border-top:1px solid var(--line);padding:7px 0;display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:2px 8px;align-items:center}
+.mlg .t{color:var(--mut);font-size:13px}
+.mlg .n b,.mlg .n span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mlg .n span{font-size:12.5px;color:var(--mut)}
+.mlg .o{background:var(--g);color:#fff;border-radius:5px;padding:4px 9px;font-weight:800;text-align:center}
+.mlg .o small{display:block;font-size:11px;font-weight:600;opacity:.92}
+.mlad{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:8px 0;font-variant-numeric:tabular-nums}
+.mlad span{border:1px solid var(--line);border-radius:5px;padding:3px 2px;text-align:center;font-size:10px;overflow:hidden;color:var(--mut);background:var(--soft)}
+.mlad span b{display:block;color:var(--ink);font-size:12px}
+.mlad span.ok{background:var(--exp);border-color:var(--link)}
+.mlad span.now{outline:2px solid #c9a227;outline-offset:-2px}
+.mlh{margin:10px 0 0;padding:0;list-style:none;font-size:13px}
+.mlh li{border-top:1px solid var(--line);padding:6px 0;display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.mlh .dots{letter-spacing:1px}
+.mlh .dots .y{color:var(--g)}.mlh .dots .n{color:var(--r)}.mlh .dots .u{color:var(--mut)}
+.mlw{margin:10px 0 0;padding:8px 10px;border-radius:6px;background:var(--wbg);color:var(--wt);border:1px solid var(--wbd);font-size:12.5px}
+@media (min-width:900px) and (max-width:1499px){.milc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0 28px}}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .cal{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
   border-radius:8px;overflow:hidden;font-size:14px;font-variant-numeric:tabular-nums}
@@ -357,6 +383,7 @@ nav.nv a:hover,nav.nv a:focus-visible{color:#fff;border-bottom-color:#16864a;out
   <div class="cpgrid">
     <section id="coupons" aria-label="Günün kuponları"></section>
     <aside id="yday" aria-label="Dünün kuponlarının sonuçları"></aside>
+    <aside id="mil" aria-label="14 günde milyoner meydan okuması"></aside>
   </div>
   <div class="lay"><div class="lmain">
   <div class="tools">
@@ -721,6 +748,42 @@ function renderHistory(){
         `<div class="hg">`+ h.list.map((k,i)=>ycard(k, k.surprise ? h.list.filter(x=>x.surprise).indexOf(k) : h.list.filter(x=>!x.surprise).indexOf(k))).join('')+`</div></details>`;
     }).join('');
 }
+function renderMil(){
+  const M = D.milyoner || {}, S = M.summary || {}, T = M.today, el = $('#mil');
+  const DAYS = S.days_goal || 14, START = S.start || 100, tl = x => Math.round(x).toLocaleString('tr-TR')+' TL';
+  const last = (S.attempts||[]).slice(-1)[0], run = last && last.result==='running' ? last : null;
+  const done = run ? run.days : 0, pend = run ? run.pending : 0, bank = run ? run.bank : START;
+  const dayNo = done + pend + 1, tgt = S.target_odds || 2;
+  let body = '';
+  if(T){
+    const rem = Math.max(1, DAYS - done), once = T.p > 0 ? Math.round(1/Math.pow(T.p, rem)) : 0;
+    body += `<div><dl class="milbig"><div><dt>Seri günü</dt><dd>${Math.min(dayNo,DAYS)} / ${DAYS}</dd></div>`+
+      `<div><dt>Sanal kasa</dt><dd>${pend ? '?' : tl(bank)}</dd></div>`+
+      `<div><dt>Kupon oranı</dt><dd>${T.odds.toFixed(2)}</dd></div>`+
+      `<div><dt>Tutma olasılığı</dt><dd>%${(T.p*100).toFixed(T.p<0.1?1:0)}</dd></div></dl>`+
+      `<p class="cn">${esc(fmtLong(T.date))} için botun en güvendiği, oranı ${tgt} ve üzeri kupon (${T.legs.length} maç). `+
+      (pend ? 'Dünkü kuponun sonucu henüz gelmedi, kasa ona göre belli olacak. ' : `Bu kupon tutarsa kasa ${tl(bank*T.odds)} olur. `)+`</p>`+
+      T.legs.map(l=>`<div class="mlg"><span class="t">${esc(l.time)}</span><span class="n"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.mk)}${l.league?' · '+esc(l.league):''}</span></span>`+
+        `<span class="o">${esc(l.sel)}<small>${l.o.toFixed(2)} · model %${pct(l.p)}</small></span></div>`).join('')+
+      `<button class="cpy" type="button" data-mil="1">Kuponu kopyala</button>`+
+      `<p class="mlw"><b>Gerçekçi ol:</b> bu kuponun tutma olasılığı %${(T.p*100).toFixed(0)}. ${rem} gün üst üste tutturmanın olasılığı, her gün aynı olasılıkla, yaklaşık <b>${once.toLocaleString('tr-TR')}'de 1</b>. `+
+      `Bu yüzden köşe, gerçek parayla tüm kasayı her gün basmak için bir öneri değildir; bot sanal ${START} TL ile ilerler ve geçmişi burada görünür.</p></div>`;
+  } else {
+    body += `<div><p class="cn">Bugün için oranı ${tgt} ve üzeri, yeterince güvenli bir kupon çıkmadı; bu gün atlanır, seri bozulmaz.</p>`+
+      `<dl class="milbig"><div><dt>Sanal kasa</dt><dd>${pend ? '?' : tl(bank)}</dd></div><div><dt>Seri</dt><dd>${done} / ${DAYS}</dd></div></dl></div>`;
+  }
+  const ladder = Array.from({length:DAYS},(_,i)=>`<span class="${i<done?'ok':''}${i===done+pend&&T?' now':''}"><b>${i+1}</b>${Math.round(START*Math.pow(2,i+1)).toLocaleString('tr-TR')}</span>`).join('');
+  const att = (S.attempts||[]).slice().reverse();
+  const hist = att.length ? `<ul class="mlh">`+att.map(a=>{
+    const dots = a.path.map(p=>`<span class="${p.status==='won'?'y':p.status==='lost'?'n':'u'}" title="${esc(fmtLong(p.date))}: ${p.odds.toFixed(2)} oran">${p.status==='won'?'●':p.status==='lost'?'✗':'○'}</span>`).join(' ');
+    const res = a.result==='goal' ? `<b>Hedefe ulaştı: ${tl(a.bank)}</b>` : a.result==='lost' ? `${a.days} gün sürdü, ${a.days+1}. günde tutmadı, kasa 0` : `devam ediyor: ${a.days} gün${a.pending?', sonuç bekleniyor':''}`;
+    return `<li><span>${esc(fmtLong(a.start))}</span><span class="dots">${dots}</span><span>${res}</span></li>`;
+  }).join('')+`</ul>` : `<p class="cn">Henüz sonuçlanmış deneme yok. Kuponlar her gün kaydedilir, sonuçlar ertesi gün burada görünür.</p>`;
+  const stats = `En iyi seri: <b>${S.best||0}</b> gün · ${S.n_attempts||0} deneme · ${S.won||0} gün tuttu, ${S.lost||0} gün tutmadı${S.reached?' · <b>hedefe ulaşıldı</b>':' · hedefe henüz ulaşılmadı'}`;
+  el.innerHTML = `<section class="milc"><div><h2>14 günde milyoner <small>sanal kasa meydan okuması</small></h2>`+
+    `<p class="cn">${START} TL'lik sanal kasa her gün tamamen bota en güvendiği, toplam oranı en az ${tgt} olan kuponda (1 ile 3 maç) oynanır. ${DAYS} gün üst üste tutarsa ${Math.round(START*Math.pow(2,DAYS)).toLocaleString('tr-TR')} TL olur. Tek kayıp seriyi bitirir, ertesi gün yeniden ${START} TL ile başlanır. Uygun kupon çıkmayan gün atlanır.</p>${body}</div>`+
+    `<div><div class="mlad" aria-label="Kasa merdiveni (TL)">${ladder}</div><p class="cn">${stats}</p><h3 style="margin:8px 0 0;font-size:14px">Denemeler</h3>${hist}</div></section>`;
+}
 function renderYesterday(){
   const y = D.yesterday, el = $('#yday');
   if(!y || !y.list || !y.list.length){
@@ -871,6 +934,14 @@ $('#coupons').addEventListener('input', e=>{
 $('#coupons').addEventListener('change', e=>{
   const i = e.target.closest('.oi'); if(!i) return;
   if(!parseOdds(i.value)){ i.value = (+i.dataset.bot).toFixed(2); LS.del(i.dataset.key); recalc(i.closest('.cp')); }
+});
+$('#mil').addEventListener('click', e=>{
+  const c = e.target.closest('[data-mil]'); if(!c) return;
+  const T = D.milyoner && D.milyoner.today; if(!T) return;
+  const txt = `Gol Radar milyoner kuponu (${T.date})\n`+T.legs.map(l=>`${l.time} ${l.home} - ${l.away}: ${l.mk?l.mk+' ':''}${l.sel} @${l.o.toFixed(2)}`).join('\n')+
+    `\nToplam oran ${T.odds.toFixed(2)}. Sanal kasa meydan okuması; model tahminidir, kazanç garantisi yoktur.`;
+  const old = c.textContent, done = ok => { c.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı'; setTimeout(()=>{ c.textContent = old; }, 2000); };
+  try{ navigator.clipboard.writeText(txt).then(()=>done(true), ()=>done(false)); }catch(err){ done(false); }
 });
 $('#coupons').addEventListener('click', e=>{
   const cp = e.target.closest('.cpy');
@@ -1040,6 +1111,7 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !$('#slip').hid
 nesBanner();
 renderCoupons();
 renderYesterday();
+renderMil();
 renderHistory();
 renderPerf();
 render();
