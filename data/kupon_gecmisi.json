@@ -4854,6 +4854,58 @@
       ]
      }
     ]
+   },
+   {
+    "odds": 2.38,
+    "p": 0.4346,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Cardiff",
+      "away": "West Ham",
+      "league": "İngiltere Championship",
+      "sel": "MS 2",
+      "o": 1.8,
+      "p": 0.565,
+      "nid": 3266612,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.288,
+      "edge": 0.277,
+      "why": [
+       "Model beklentisi: Cardiff 1.55, West Ham 2.42 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Cardiff son 5 maçta 2G 1B 2M (9-8 gol); West Ham son 5 maçta 2G 1B 2M (11-7 gol).",
+       "Hücum/savunma (son 10+ maç): Cardiff 1.4 atıyor, 1.5 yiyor; West Ham 2.9 atıyor, 1.3 yiyor."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Kortrijk",
+      "away": "Mechelen",
+      "league": "Belçika Pro League",
+      "sel": "ÇŞ X-2",
+      "o": 1.32,
+      "p": 0.769,
+      "nid": 3342553,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.555,
+      "edge": 0.215,
+      "why": [
+       "Model beklentisi: Kortrijk 0.91, Mechelen 1.44 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %55.",
+       "Form: Kortrijk son 5 maçta 1G 1B 3M (2-9 gol); Mechelen son 5 maçta 2G 1B 2M (5-8 gol).",
+       "Hücum/savunma (son 10+ maç): Kortrijk 0.5 atıyor, 2.1 yiyor; Mechelen 1.0 atıyor, 2.0 yiyor.",
+       "Son ikili maçlar: Kortrijk 3-1 Mechelen, Mechelen 3-0 Kortrijk."
+      ]
+     }
+    ]
    }
   ],
   "saved_on": "2026-11-04",
@@ -4947,7 +4999,8 @@
     "ev": 0.78,
     "score": 0.523
    }
-  ]
+  ],
+  "mil_saved_on": "2026-11-04"
  },
  "2026-11-05": {
   "list": [
