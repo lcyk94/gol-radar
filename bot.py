@@ -1051,7 +1051,8 @@ def _legs(r, p):
             if edge < MIN_EDGE:
                 continue
             legs.append((lab, float(pr), float(od), {"mtid": mtid, "line": line, "idx": i, "mk": name, "fam": fam,
-                                                     "base": float(b), "edge": float(edge)}))
+                                                     "base": float(b), "edge": float(edge),
+                                                     "mbs": max(int(nes.get("mbs") or 1), int(mk.get("mbs") or 1))}))
     legs.sort(key=lambda x: -x[3]["edge"])
     per, out = {}, []
     for l in legs:                                      # bir pazar ailesinden en çok 3 seçenek tutulur
@@ -1122,6 +1123,144 @@ def _frozen_today(out_rows, today):
             l["id"] = pos.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), -1)
         (sur if c.get("surprise") else nrm).append(c)
     return nrm, sur
+
+
+MIL_ODDS = 2.0          # "14 günde milyoner" kuponunun toplam oranı en az bu kadar
+MIL_DAYS = 14           # 100 TL x 2^14 = 1.638.400 TL
+MIL_START = 100.0
+
+
+def _best_mil(items, pool_size=30):
+    """Milyoner kuponu: toplam oranı MIL_ODDS ve üzeri olan 1, 2 ya da 3 maçlık kuponlar arasında TUTMA OLASILIĞI en yüksek olan
+    (eşitlikte oranı 2'ye en yakın). Maç sayısı serbesttir; bacakların MBS koşulu kupondaki maç sayısını aşmamalı.
+    Adaylar normal kuponlarla aynı havuzdan gelir (yeşil, ligin sıradan maçından en az MIN_EDGE yukarıda, Nesine'de açık)."""
+    cands = []
+    for t in items:
+        opts, best_p = [], -1.0
+        for x in sorted(t[2], key=lambda x: -x[2]):
+            if x[1] > best_p + 1e-12:
+                opts.append(x)
+                best_p = x[1]
+        if opts:
+            cands.append((t, opts[:6]))
+    cands.sort(key=lambda c: -max(x[1] * x[2] for x in c[1]))
+    cands = cands[:pool_size]
+    best = None
+    for n in (1, 2, 3):
+        for idx in itertools.combinations(range(len(cands)), n):
+            if math.prod(max(x[2] for x in cands[i][1]) for i in idx) < MIL_ODDS:
+                continue
+            for pick in itertools.product(*[cands[i][1] for i in idx]):
+                od = math.prod(x[2] for x in pick)
+                if od < MIL_ODDS or max(x[3].get("mbs") or 1 for x in pick) > n:
+                    continue
+                pr = math.prod(x[1] for x in pick)
+                key = (round(pr, 6), -od)
+                if best is None or key > best[0]:
+                    best = (key, pr, od, tuple(cands[i][0] for i in idx), pick)
+    return None if best is None else (best[1], best[2], best[3], best[4])
+
+
+def _day_items(out_rows):
+    by_day = {}
+    for k, (r, p, _) in enumerate(out_rows):
+        legs = _legs(r, p)
+        if legs:
+            by_day.setdefault(r["Date"].normalize(), []).append((k, r, legs, p))
+    return by_day
+
+
+def build_milyoner(out_rows):
+    """Bugünün (bugün yoksa ilk uygun günün) milyoner kuponu; gün içinde ilk kaydedildiği hâliyle sabit kalır.
+    Kupon yoksa None (o gün atlanır)."""
+    today = pd.Timestamp(today_tr())
+    d0 = today.strftime("%Y-%m-%d")
+    ent = _load_log().get(d0) or {}
+    if ent.get("mil_saved_on") == d0:
+        for k in ent.get("list", []):
+            if k.get("mil"):
+                k = json.loads(json.dumps(k))
+                pos = {(str(r["HomeTeam"]).strip().lower(), str(r["AwayTeam"]).strip().lower()): i for i, (r, _p, _x) in enumerate(out_rows)}
+                for l in k["legs"]:
+                    l["id"] = pos.get((str(l["home"]).strip().lower(), str(l["away"]).strip().lower()), -1)
+                k["date"] = d0
+                k["frozen"] = True
+                return k
+    by_day = _day_items(out_rows)
+    for day in sorted(d for d in by_day if d >= today):
+        seen, pool = set(), []
+        for t in by_day[day]:
+            kk = (str(t[1]["HomeTeam"]).strip().lower(), str(t[1]["AwayTeam"]).strip().lower())
+            if kk not in seen:
+                seen.add(kk)
+                pool.append(t)
+        best = _best_mil(pool)
+        if best is None:
+            continue
+        pr0, od, combo, pick = best
+        legs, pr = _legs_dicts(combo, pick, None)
+        return {"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"), "p": round(pr, 4),
+                "ev": round(pr * od, 2), "mil": True}
+    return None
+
+
+def save_mil(k, keep_days=120):
+    """Milyoner kuponunu günün kaydına ekler (kupon_gecmisi.json, 'mil' işaretiyle). O günün kaydı gün içinde bir kez
+    yazıldıysa değişmez."""
+    if not k:
+        return
+    log = _load_log()
+    d = k["date"]
+    ent = log.setdefault(d, {"list": []})
+    if ent.get("mil_saved_on") == d:
+        return
+    ent["list"] = [x for x in ent.get("list", []) if not x.get("mil")]
+    ent["list"].append({"odds": k["odds"], "p": k["p"], "mil": True,
+                        "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid", "mk", "mtid", "line",
+                                                    "idx", "fam", "base", "edge", "why") if x in l} for l in k["legs"]]})
+    if d == today_tr().strftime("%Y-%m-%d"):
+        ent["mil_saved_on"] = d
+    for x in sorted(log)[:-keep_days]:
+        del log[x]
+    COUPON_LOG.parent.mkdir(parents=True, exist_ok=True)
+    COUPON_LOG.write_text(json.dumps(log, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def mil_summary(graded):
+    """Sonuçlanmış günlerden milyoner serisi. graded: {gün: [değerlendirilmiş kuponlar]} (içinde 'mil' işaretli olanlar).
+    Bir deneme 100 TL'lik sanal kasayla başlar; tutan kuponun oranıyla çarpılır; tutmayan denemeyi bitirir, ertesi kupon yeni deneme olur;
+    MIL_DAYS gün üst üste tutarsa deneme hedefe ulaşmış sayılır. Sonucu gelmeyen gün 'bekleyen' kalır."""
+    attempts, cur = [], None
+    won = lost = pend = 0
+    for d in sorted(graded):
+        for k in graded[d]:
+            if not k.get("mil"):
+                continue
+            if cur is None:
+                cur = {"start": d, "days": 0, "bank": MIL_START, "path": [], "result": "running", "pending": 0}
+            cur["path"].append({"date": d, "odds": k["odds"], "status": k["status"], "p": k.get("p")})
+            if k["status"] == "won":
+                won += 1
+                cur["days"] += 1
+                cur["bank"] = round(cur["bank"] * k["odds"], 2)
+                if cur["days"] >= MIL_DAYS:
+                    cur["result"], cur["end"] = "goal", d
+                    attempts.append(cur)
+                    cur = None
+            elif k["status"] == "lost":
+                lost += 1
+                cur["result"], cur["end"] = "lost", d
+                attempts.append(cur)
+                cur = None
+            else:
+                pend += 1
+                cur["pending"] += 1
+    if cur is not None:
+        attempts.append(cur)
+    best = max([a["days"] for a in attempts] or [0])
+    return {"attempts": attempts[-12:], "best": best, "won": won, "lost": lost, "pending": pend,
+            "n_attempts": len(attempts), "days_goal": MIL_DAYS, "start": MIL_START, "target_odds": MIL_ODDS,
+            "reached": any(a["result"] == "goal" for a in attempts)}
 
 
 def _surprise_for_day(day, items, normal):
@@ -1271,6 +1410,28 @@ def _why(r, p, meta, lab, pr):
     return out
 
 
+def _legs_dicts(combo, pick, fam_use=None):
+    """Seçilen maçlar ve seçeneklerden kupon bacakları (sayfada ve kayıtta kullanılan sözlükler) ve tutma olasılığı."""
+    legs, pr = [], 1.0
+    for c, x in zip(combo, pick):
+        r = c[1]
+        t = str(r.get("Time", "") or "")
+        m = x[3]
+        pr *= x[1]
+        if fam_use is not None:
+            fam_use[m["fam"]] = fam_use.get(m["fam"], 0) + 1
+        legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
+                     "home": r["HomeTeam"], "away": r["AwayTeam"],
+                     "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"])),
+                     "sel": x[0], "mk": m["mk"], "o": round(x[2], 2), "p": round(x[1], 3), "base": round(m["base"], 3),
+                     "edge": round(m["edge"], 3), "mtid": m["mtid"], "line": m["line"], "idx": m["idx"], "fam": m["fam"],
+                     "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model", "nid": _nid(r.get("NID")),
+                     "mbs": (_nes_of(r)[0] or {}).get("mbs"),
+                     "why": _why(r, c[3], m, x[0], x[1]) if len(c) > 3 else []})
+    legs.sort(key=lambda l: l["time"])
+    return legs, pr
+
+
 def _coupons_for_day(day, items, limit=None, fam_use=None, mode="normal", exclude=None):
     """Her kupon farklı maçlardan oluşur: bir kupon seçilince o maçlar havuzdan çıkar."""
     fam_use = fam_use if fam_use is not None else {}
@@ -1296,22 +1457,7 @@ def _coupons_for_day(day, items, limit=None, fam_use=None, mode="normal", exclud
             break                     # tekrar eden maç olamaz; olursa kuponu eklemeden dur
         used_all |= used
         pool = [t for t in pool if key(t) not in used]
-        legs, pr = [], 1.0
-        for c, x in zip(combo, pick):
-            r = c[1]
-            t = str(r.get("Time", "") or "")
-            m = x[3]
-            pr *= x[1]
-            fam_use[m["fam"]] = fam_use.get(m["fam"], 0) + 1
-            legs.append({"id": c[0], "time": "" if t in ("nan", "NaT") else t[:5],
-                         "home": r["HomeTeam"], "away": r["AwayTeam"],
-                         "league": r.get("LeagueName") or LEAGUES.get(r["Div"], DEMO_LEAGUES.get(r["Div"], "Lig adı Nesine'de yok" if r["Div"] == "NES" else r["Div"])),
-                         "sel": x[0], "mk": m["mk"], "o": round(x[2], 2), "p": round(x[1], 3), "base": round(m["base"], 3),
-                         "edge": round(m["edge"], 3), "mtid": m["mtid"], "line": m["line"], "idx": m["idx"], "fam": m["fam"],
-                         "t": tier(x[1], x[2])[0], "src": r.get("SRC") or "model", "nid": _nid(r.get("NID")),
-                         "mbs": (_nes_of(r)[0] or {}).get("mbs"),
-                         "why": _why(r, c[3], m, x[0], x[1]) if len(c) > 3 else []})
-        legs.sort(key=lambda l: l["time"])
+        legs, pr = _legs_dicts(combo, pick, fam_use)
         chosen.append({"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"),
                        "p": round(pr, 4), "ev": round(pr * od, 2), "score": round(sc, 3),
                        **({"surprise": True} if mode == "surprise" else {})})
@@ -1451,7 +1597,7 @@ def _grade_day(day, entry, idx, byid=None):
             bad |= ok is False
             pend |= ok is None
             legs.append({**l, "score": None if res is None else f"{res[0]}-{res[1]}", "ok": ok})
-        out.append({"odds": k["odds"], "p": k["p"], "legs": legs, "surprise": bool(k.get("surprise")),
+        out.append({"odds": k["odds"], "p": k["p"], "legs": legs, "surprise": bool(k.get("surprise")), "mil": bool(k.get("mil")),
                     "status": "lost" if bad else ("pending" if pend else "won")})
     return out
 
@@ -1682,15 +1828,18 @@ def yesterday_report(hist, today=None, online=False):
     sur = {"won": 0, "lost": 0, "pending": 0}
     for d in days:
         for k in graded[d]:
+            if k.get("mil"):
+                continue
             (sur if k.get("surprise") else tot)[k["status"]] += 1
     last = days[-1]
     # Geçmiş kuponlar bölümü: son HISTORY_DAYS günün bütün kuponları (normal + sürpriz), en yeni gün başta
-    hist_days = [{"date": d, "list": graded[d]} for d in reversed(days[-HISTORY_DAYS:])]
+    hist_days = [{"date": d, "list": [k for k in graded[d] if not k.get("mil")]} for d in reversed(days[-HISTORY_DAYS:])]
     h_stat = {"n": {"won": 0, "lost": 0, "pending": 0}, "s": {"won": 0, "lost": 0, "pending": 0}, "days": len(hist_days)}
     for hd in hist_days:
         for k in hd["list"]:
             h_stat["s" if k.get("surprise") else "n"][k["status"]] += 1
-    return {"date": last, "list": graded[last],
+    mil = mil_summary(graded)
+    return {"date": last, "list": [k for k in graded[last] if not k.get("mil")], "mil": mil,
             "total": tot, "surprise_total": sur, "history": hist_days, "hist_stat": h_stat}
 
 
@@ -2018,6 +2167,21 @@ def odds_moves(path=None, max_age_days=10):
     return out
 
 
+def _mil_payload(out_rows, yday):
+    try:
+        today = build_milyoner(out_rows)
+    except Exception as e:  # noqa: BLE001  milyoner köşesi sayfayı bozmasın
+        print(f"  ! milyoner kuponu atlandı: {e}")
+        today = None
+    summ = (yday or {}).get("mil") or mil_summary({})
+    if today:
+        print(f"  Milyoner kuponu: {today['date']} oran {today['odds']}, tutma %{round(100 * today['p'])}, {len(today['legs'])} maç"
+              + (" (sabit)" if today.get("frozen") else ""))
+    else:
+        print("  Milyoner kuponu: uygun kupon yok")
+    return {"today": today, "summary": summ}
+
+
 def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist=None):
     ctxf = match_context(hist)
     try:
@@ -2048,7 +2212,8 @@ def site_payload(out_rows, demo=False, perf=None, nes_info=None, yday=None, hist
             "green": GREEN_P, "orange": ORANGE_P, "matches": matches,
             "coupon_legs": COUPON_LEGS, "min_odds": COUPON_MIN_ODDS, "n_coupons": N_COUPONS, "surprise_min_odds": SURPRISE_MIN_ODDS,
             "odds_source": "nesine" if nes_info else "avrupa", "nesine": nes_info,
-            "coupons": build_coupons(out_rows), "yesterday": yday, "performance": perf}
+            "coupons": build_coupons(out_rows), "yesterday": yday, "performance": perf,
+            "milyoner": _mil_payload(out_rows, yday)}
 
 
 def write_site(payload, out="tahminler.html"):
@@ -2127,6 +2292,7 @@ def cmd_site(leagues, days, out, open_it, demo=False):
     if not demo:
         try:
             save_coupons(payload["coupons"])
+            save_mil((payload.get("milyoner") or {}).get("today"))
         except Exception as e:  # noqa: BLE001
             print(f"  ! kupon kaydı yazılamadı: {e}")
     path = write_site(payload, out)
