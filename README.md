@@ -34,3 +34,6 @@ Aday: Nesine'nin maçta açtığı ve `pazarlar.py`'de tanımlı bütün bahis t
 - **Favoriler:** takım ve lig yanındaki ☆; seçimler tarayıcıda saklanır (`gr-fav`). "★ Favorilerim" ve "Avrupa kupaları" süzgeçleri vardır.
 - **Skor ısı haritası ve form grafiği:** maç panelinde. Isı haritası modelin 6x6 skor matrisinden (`sm`, binde bir birimlerle) çizilir.
 - **Bacak isabeti:** kupon bacağının altında, o bahis türünün geriye dönük sınavdaki isabeti (`performance.fam`).
+
+## 14 günde milyoner köşesi
+Sanal 100 TL'lik kasa her gün tamamen bota en güvendiği, toplam oranı en az 2 olan 1-3 maçlık kuponda oynanır (`bot.build_milyoner`: oran ≥ 2 koşuluyla tutma olasılığı en yüksek kupon; bacakların MBS koşulu kupondaki maç sayısını aşmaz). Kupon maç günü ilk kaydedildiği hâliyle sabit kalır, `kupon_gecmisi.json` içinde `mil` işaretiyle saklanır ve diğer kupon istatistiklerine karışmaz. Sonuçlar mevcut kupon denetimiyle gelir; `mil_summary` seriyi çıkarır: tutan kuponun oranıyla kasa çarpılır, tutmayan denemeyi bitirir (ertesi gün yeniden 100 TL), 14 gün üst üste tutarsa 100 × 2^14 = 1.638.400 TL hedefine ulaşılmış sayılır. Uygun kupon çıkmayan gün atlanır. Sayfa, kuponun tutma olasılığından 14 günlük serinin olasılığını açıkça gösterir; köşe gerçek parayla tüm kasayı oynamak için bir öneri değildir.
