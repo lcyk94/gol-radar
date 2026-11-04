@@ -5005,8 +5005,8 @@
  "2026-11-05": {
   "list": [
    {
-    "odds": 3.01,
-    "p": 0.2814,
+    "odds": 3.1,
+    "p": 0.2758,
     "legs": [
      {
       "time": "20:45",
@@ -5014,8 +5014,8 @@
       "away": "Bournemouth",
       "league": "UEFA Avrupa Ligi",
       "sel": "MS 2",
-      "o": 1.32,
-      "p": 0.639,
+      "o": 1.34,
+      "p": 0.63,
       "nid": 3269161,
       "mk": "Maç Sonucu",
       "mtid": 1,
@@ -5023,9 +5023,9 @@
       "idx": 2,
       "fam": "MS",
       "base": 0.29,
-      "edge": 0.349,
+      "edge": 0.34,
       "why": [
-       "Model beklentisi: Sparta Prag 0.97, Bournemouth 2.15 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Model beklentisi: Sparta Prag 0.99, Bournemouth 2.13 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
        "Form: Bournemouth son 5 maçta 3G 0B 2M (8-6 gol)."
       ]
      },
@@ -5035,8 +5035,8 @@
       "away": "Lyon",
       "league": "UEFA Avrupa Ligi",
       "sel": "ÇŞ X-2",
-      "o": 1.78,
-      "p": 0.714,
+      "o": 1.81,
+      "p": 0.71,
       "nid": 3269201,
       "mk": "Çifte Şans",
       "mtid": 3,
@@ -5044,9 +5044,9 @@
       "idx": 2,
       "fam": "ÇŞ",
       "base": 0.56,
-      "edge": 0.154,
+      "edge": 0.15,
       "why": [
-       "Model beklentisi: Sociedad B 1.39, Lyon 1.83 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Model beklentisi: Sociedad B 1.40, Lyon 1.82 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
        "Form: Sociedad B son 5 maçta 1G 0B 4M (6-12 gol); Lyon son 5 maçta 3G 0B 2M (9-5 gol).",
        "Hücum/savunma (son 10+ maç): Sociedad B 1.3 atıyor, 2.0 yiyor; Lyon 1.5 atıyor, 1.1 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -5069,7 +5069,7 @@
       "base": 0.341,
       "edge": 0.276,
       "why": [
-       "Model beklentisi: Benfica 2.96, Lech Poznan 0.82 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
+       "Model beklentisi: Benfica 2.97, Lech Poznan 0.83 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %34.",
        "Form: Benfica son 5 maçta 4G 0B 1M (9-5 gol); Lech Poznan son 5 maçta 5G 0B 0M (20-5 gol).",
        "Hücum/savunma (son 10+ maç): Benfica 2.7 atıyor, 0.8 yiyor; Lech Poznan 3.0 atıyor, 1.0 yiyor.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
