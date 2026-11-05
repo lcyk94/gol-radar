@@ -335,3 +335,11 @@ def test_mil_summary_attempts():
     full = {f"2026-09-{i + 1:02d}": [{"mil": True, "odds": 2.0, "status": "won", "p": .5}] for i in range(bot.MIL_DAYS)}
     s2 = bot.mil_summary(full)
     assert s2["reached"] and s2["attempts"][0]["result"] == "goal" and s2["attempts"][0]["bank"] == 100 * 2 ** bot.MIL_DAYS
+
+
+def test_mil_summary_keeps_legs():
+    leg = {"home": "A", "away": "B", "sel": "MS 1", "o": 1.5, "ok": True, "score": "2-0", "time": "20:00"}
+    g = {"2026-09-01": [{"mil": True, "odds": 2.1, "status": "won", "p": .6, "legs": [leg]}],
+         "2026-09-02": [{"mil": True, "odds": 2.0, "status": "lost", "p": .6, "legs": [dict(leg, ok=False, score="0-1")]}]}
+    a = bot.mil_summary(g)["attempts"][0]
+    assert a["result"] == "lost" and a["path"][0]["legs"][0]["score"] == "2-0" and a["path"][1]["legs"][0]["ok"] is False
