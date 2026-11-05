@@ -1238,7 +1238,9 @@ def mil_summary(graded):
                 continue
             if cur is None:
                 cur = {"start": d, "days": 0, "bank": MIL_START, "path": [], "result": "running", "pending": 0}
-            cur["path"].append({"date": d, "odds": k["odds"], "status": k["status"], "p": k.get("p")})
+            cur["path"].append({"date": d, "odds": k["odds"], "status": k["status"], "p": k.get("p"),
+                                "legs": [{x: l.get(x) for x in ("time", "home", "away", "league", "mk", "sel", "o", "p", "ok", "score")}
+                                         for l in (k.get("legs") or [])]})
             if k["status"] == "won":
                 won += 1
                 cur["days"] += 1
@@ -1258,7 +1260,7 @@ def mil_summary(graded):
     if cur is not None:
         attempts.append(cur)
     best = max([a["days"] for a in attempts] or [0])
-    return {"attempts": attempts[-12:], "best": best, "won": won, "lost": lost, "pending": pend,
+    return {"attempts": attempts[-30:], "best": best, "won": won, "lost": lost, "pending": pend,
             "n_attempts": len(attempts), "days_goal": MIL_DAYS, "start": MIL_START, "target_odds": MIL_ODDS,
             "reached": any(a["result"] == "goal" for a in attempts)}
 
