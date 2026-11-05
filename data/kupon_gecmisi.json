@@ -5301,7 +5301,7 @@
     ]
    },
    {
-    "odds": 3.57,
+    "odds": 3.54,
     "p": 0.1989,
     "legs": [
      {
@@ -5310,7 +5310,7 @@
       "away": "Wolfsberger AC",
       "league": "Avusturya Bundesliga",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.21,
+      "o": 1.2,
       "p": 0.552,
       "nid": 3270884,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
@@ -5376,7 +5376,7 @@
     ]
    },
    {
-    "odds": 4.45,
+    "odds": 4.43,
     "p": 0.1953,
     "legs": [
      {
@@ -5431,7 +5431,7 @@
       "away": "Udinese",
       "league": "İtalya Serie A",
       "sel": "Ev hiçbir yarıyı kazanamaz",
-      "o": 2.0,
+      "o": 1.99,
       "p": 0.6,
       "nid": 3270939,
       "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
