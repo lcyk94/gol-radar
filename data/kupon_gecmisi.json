@@ -6108,5 +6108,1060 @@
    }
   ],
   "mil_saved_on": "2026-11-06"
+ },
+ "2026-11-07": {
+  "list": [
+   {
+    "odds": 3.39,
+    "p": 0.2583,
+    "legs": [
+     {
+      "time": "",
+      "home": "Mainz",
+      "away": "Bayern Munich",
+      "league": "Almanya Bundesliga",
+      "sel": "MS2 & 1,5 Üst",
+      "o": 1.24,
+      "p": 0.695,
+      "nid": 3275627,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.266,
+      "edge": 0.429,
+      "why": [
+       "Model beklentisi: Mainz 1.29, Bayern Munich 3.10 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Mainz son 5 maçta 2G 0B 3M (11-14 gol); Bayern Munich son 5 maçta 3G 2B 0M (20-6 gol).",
+       "Gol temposu (son 10+ maç): Mainz maçlarında ortalama 4.0, Bayern Munich maçlarında 4.2 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Mainz 3-4 Bayern Munich, Bayern Munich 2-2 Mainz, Bayern Munich 3-0 Mainz."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Rosenborg",
+      "away": "Start",
+      "league": "Norveç Eliteserien",
+      "sel": "HMS -1 · 1",
+      "o": 1.41,
+      "p": 0.62,
+      "nid": 3279210,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "base": 0.258,
+      "edge": 0.362,
+      "why": [
+       "Model beklentisi: Rosenborg 2.94, Start 0.77 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %26.",
+       "Form: Rosenborg son 5 maçta 4G 1B 0M (13-2 gol); Start son 5 maçta 1G 0B 4M (4-14 gol).",
+       "Hücum/savunma (son 10+ maç): Rosenborg 2.8 atıyor, 1.0 yiyor; Start 1.0 atıyor, 2.1 yiyor.",
+       "Son ikili maçlar: Start 0-3 Rosenborg, Rosenborg 1-0 Start, Start 0-0 Rosenborg."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "3,5 Üst",
+      "o": 1.94,
+      "p": 0.599,
+      "nid": 3274248,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.27,
+      "edge": 0.329,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.59, Kawasaki Frontale 1.58 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (12-7 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.5, Kawasaki Frontale maçlarında 4.1 gol; 2.5 üst oranı %60 / %90, iki takım da gol atma oranı %50 / %90.",
+       "Son ikili maçlar: Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale, Kashiwa Reysol 2-3 Kawasaki Frontale."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.41,
+    "p": 0.253,
+    "legs": [
+     {
+      "time": "",
+      "home": "Roma",
+      "away": "Sassuolo",
+      "league": "İtalya Serie A",
+      "sel": "MS1 & 2,5 Üst",
+      "o": 1.43,
+      "p": 0.577,
+      "nid": 3275171,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.223,
+      "edge": 0.353,
+      "why": [
+       "Model beklentisi: Roma 2.69, Sassuolo 0.96 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Form: Roma son 5 maçta 3G 2B 0M (14-7 gol); Sassuolo son 5 maçta 0G 1B 4M (7-17 gol).",
+       "Gol temposu (son 10+ maç): Roma maçlarında ortalama 3.8, Sassuolo maçlarında 4.2 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %50 / %90.",
+       "Son ikili maçlar: Roma 2-0 Sassuolo, Sassuolo 0-1 Roma."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Preston",
+      "away": "Southampton",
+      "league": "İngiltere Championship",
+      "sel": "MS 2",
+      "o": 1.43,
+      "p": 0.642,
+      "nid": 3275546,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.289,
+      "edge": 0.354,
+      "why": [
+       "Model beklentisi: Preston 0.97, Southampton 2.17 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Preston son 5 maçta 0G 1B 4M (4-14 gol); Southampton son 5 maçta 3G 2B 0M (9-4 gol).",
+       "Hücum/savunma (son 10+ maç): Preston 0.9 atıyor, 2.1 yiyor; Southampton 1.9 atıyor, 0.9 yiyor.",
+       "Son ikili maçlar: Preston 1-3 Southampton, Southampton 0-2 Preston."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Cagliari",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.67,
+      "p": 0.683,
+      "nid": 3274807,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.348,
+      "edge": 0.335,
+      "why": [
+       "Model beklentisi: Cagliari 1.18, Frosinone 2.36 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Cagliari son 5 maçta 0G 1B 4M (4-13 gol); Frosinone son 5 maçta 3G 1B 1M (15-10 gol).",
+       "Gol temposu (son 10+ maç): Cagliari maçlarında ortalama 2.4, Frosinone maçlarında 3.8 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %40 / %50."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 5.44,
+    "p": 0.3409,
+    "legs": [
+     {
+      "time": "",
+      "home": "Shimizu S-Pulse",
+      "away": "FC Tokyo",
+      "league": "Japonya J1 Lig",
+      "sel": "MS 2",
+      "o": 2.72,
+      "p": 0.631,
+      "nid": 3274356,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.321,
+      "edge": 0.31,
+      "why": [
+       "Model beklentisi: Shimizu S-Pulse 0.71, FC Tokyo 1.81 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Shimizu S-Pulse son 5 maçta 1G 1B 3M (4-14 gol); FC Tokyo son 5 maçta 4G 1B 0M (17-0 gol).",
+       "Hücum/savunma (son 10+ maç): Shimizu S-Pulse 0.9 atıyor, 2.0 yiyor; FC Tokyo 2.6 atıyor, 0.1 yiyor.",
+       "Son ikili maçlar: Shimizu S-Pulse 1-1 FC Tokyo, Shimizu S-Pulse 1-1 FC Tokyo, FC Tokyo 0-2 Shimizu S-Pulse."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Degerfors",
+      "away": "GAIS",
+      "league": "İsveç Allsvenskan",
+      "sel": "ÇŞ X-2",
+      "o": 1.25,
+      "p": 0.82,
+      "nid": 3276054,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.56,
+      "edge": 0.26,
+      "why": [
+       "Model beklentisi: Degerfors 0.71, GAIS 1.42 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Degerfors son 5 maçta 0G 1B 4M (3-12 gol); GAIS son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Hücum/savunma (son 10+ maç): Degerfors 0.5 atıyor, 1.9 yiyor; GAIS 1.3 atıyor, 1.1 yiyor.",
+       "Son ikili maçlar: GAIS 1-1 Degerfors, Degerfors 0-3 GAIS, GAIS 2-0 Degerfors."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Eyupspor",
+      "away": "Kocaelispor",
+      "league": "Türkiye Süper Lig",
+      "sel": "KG Yok",
+      "o": 1.6,
+      "p": 0.659,
+      "nid": 3275952,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.427,
+      "edge": 0.231,
+      "why": [
+       "Model beklentisi: Eyupspor 0.74, Kocaelispor 1.01 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Eyupspor son 5 maçta 0G 0B 5M (1-20 gol); Kocaelispor son 5 maçta 2G 1B 2M (6-5 gol).",
+       "Gol temposu (son 10+ maç): Eyupspor maçlarında ortalama 3.1, Kocaelispor maçlarında 2.0 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %20 / %40.",
+       "Son ikili maçlar: Eyupspor 0-1 Kocaelispor, Kocaelispor 1-0 Eyupspor."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.28,
+    "p": 0.205,
+    "legs": [
+     {
+      "time": "",
+      "home": "Blackburn",
+      "away": "West Ham",
+      "league": "İngiltere Championship",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.4,
+      "p": 0.628,
+      "nid": 3276247,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.314,
+      "edge": 0.315,
+      "why": [
+       "Model beklentisi: Blackburn 1.42, West Ham 2.13 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Blackburn son 5 maçta 2G 0B 3M (6-9 gol); West Ham son 5 maçta 2G 1B 2M (13-9 gol).",
+       "Gol temposu (son 10+ maç): Blackburn maçlarında ortalama 3.2, West Ham maçlarında 4.2 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %60."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Luzern",
+      "away": "Young Boys",
+      "league": "İsviçre Super League",
+      "sel": "İY 1,5 Üst",
+      "o": 1.55,
+      "p": 0.591,
+      "nid": 3275434,
+      "mk": "1. Yarı Alt/Üst 1,5",
+      "mtid": 14,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "İY AÜ",
+      "base": 0.39,
+      "edge": 0.201,
+      "why": [
+       "Model beklentisi: Luzern 2.03, Young Boys 2.44 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Luzern son 5 maçta 1G 1B 3M (9-12 gol); Young Boys son 5 maçta 3G 1B 1M (12-9 gol).",
+       "Gol temposu (son 10+ maç): Luzern maçlarında ortalama 3.7, Young Boys maçlarında 4.9 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %80 / %80.",
+       "Son ikili maçlar: Young Boys 3-3 Luzern, Luzern 1-2 Young Boys, Young Boys 2-0 Luzern.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "St Etienne",
+      "away": "Laval",
+      "league": "Fransa Ligue 2",
+      "sel": "2Y 1",
+      "o": 1.51,
+      "p": 0.553,
+      "nid": 3275377,
+      "mk": "2. Yarı Sonucu",
+      "mtid": 9,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "2Y",
+      "base": 0.352,
+      "edge": 0.201,
+      "why": [
+       "Model beklentisi: St Etienne 2.21, Laval 0.86 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: St Etienne son 5 maçta 3G 1B 1M (6-5 gol); Laval son 5 maçta 1G 2B 2M (7-8 gol).",
+       "Hücum/savunma (son 10+ maç): St Etienne 2.0 atıyor, 1.1 yiyor; Laval 1.3 atıyor, 1.8 yiyor.",
+       "Son ikili maçlar: St Etienne 2-1 Laval, Laval 3-3 St Etienne.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.73,
+    "p": 0.3631,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Shimizu S-Pulse",
+      "away": "FC Tokyo",
+      "league": "Japonya J1 Lig",
+      "sel": "MS 2",
+      "o": 2.72,
+      "p": 0.631,
+      "nid": 3274356,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.321,
+      "edge": 0.31,
+      "why": [
+       "Model beklentisi: Shimizu S-Pulse 0.71, FC Tokyo 1.81 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Shimizu S-Pulse son 5 maçta 1G 1B 3M (4-14 gol); FC Tokyo son 5 maçta 4G 1B 0M (17-0 gol).",
+       "Hücum/savunma (son 10+ maç): Shimizu S-Pulse 0.9 atıyor, 2.0 yiyor; FC Tokyo 2.6 atıyor, 0.1 yiyor.",
+       "Son ikili maçlar: Shimizu S-Pulse 1-1 FC Tokyo, Shimizu S-Pulse 1-1 FC Tokyo, FC Tokyo 0-2 Shimizu S-Pulse."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Antwerp",
+      "away": "Lommel SK",
+      "league": "Belçika Pro League",
+      "sel": "Ev iki yarıda da atamaz",
+      "o": 1.33,
+      "p": 0.831,
+      "nid": 3275253,
+      "mk": "Ev Sahibi İki Yarıda da Gol",
+      "mtid": 295,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.71,
+      "edge": 0.121,
+      "why": [
+       "Model beklentisi: Antwerp 1.07, Lommel SK 1.24 gol. Bu seçenek %83 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %71.",
+       "Form: Antwerp son 5 maçta 1G 0B 4M (6-12 gol); Lommel SK son 5 maçta 2G 2B 1M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Antwerp maçlarında ortalama 3.8, Lommel SK maçlarında 2.4 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %60 / %30.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %47 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "19:00",
+      "home": "Real Madrid",
+      "away": "Valladolid",
+      "league": "İspanya Segunda RFEF",
+      "sel": "MS 1",
+      "o": 1.86,
+      "p": 0.692,
+      "nid": 3279308,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.252,
+      "why": [
+       "Model beklentisi: Real Madrid 2.69, Valladolid 1.16 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Real Madrid son 5 maçta 4G 0B 1M (11-4 gol); Valladolid son 5 maçta 2G 1B 2M (14-10 gol).",
+       "Hücum/savunma (son 10+ maç): Real Madrid 2.6 atıyor, 0.9 yiyor; Valladolid 2.0 atıyor, 1.6 yiyor.",
+       "Son ikili maçlar: Valladolid 0-3 Real Madrid, Real Madrid 3-0 Valladolid.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.61,
+    "p": 0.2804,
+    "surprise": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Cagliari",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "MS 2",
+      "o": 2.18,
+      "p": 0.633,
+      "nid": 3274807,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.333,
+      "edge": 0.3,
+      "why": [
+       "Model beklentisi: Cagliari 1.18, Frosinone 2.36 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Cagliari son 5 maçta 0G 1B 4M (4-13 gol); Frosinone son 5 maçta 3G 1B 1M (15-10 gol).",
+       "Hücum/savunma (son 10+ maç): Cagliari 0.9 atıyor, 1.5 yiyor; Frosinone 2.4 atıyor, 1.4 yiyor."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.57,
+      "p": 0.731,
+      "nid": 3274248,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.409,
+      "edge": 0.323,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.59, Kawasaki Frontale 1.58 gol. Bu seçenek %73 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (12-7 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.5, Kawasaki Frontale maçlarında 4.1 gol; 2.5 üst oranı %60 / %90, iki takım da gol atma oranı %50 / %90.",
+       "Son ikili maçlar: Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale, Kashiwa Reysol 2-3 Kawasaki Frontale."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Degerfors",
+      "away": "GAIS",
+      "league": "İsveç Allsvenskan",
+      "sel": "KG Yok",
+      "o": 1.93,
+      "p": 0.606,
+      "nid": 3276054,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.432,
+      "edge": 0.174,
+      "why": [
+       "Model beklentisi: Degerfors 0.71, GAIS 1.42 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Degerfors son 5 maçta 0G 1B 4M (3-12 gol); GAIS son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Gol temposu (son 10+ maç): Degerfors maçlarında ortalama 2.4, GAIS maçlarında 2.4 gol; 2.5 üst oranı %40 / %40, iki takım da gol atma oranı %30 / %30.",
+       "Son ikili maçlar: GAIS 1-1 Degerfors, Degerfors 0-3 GAIS, GAIS 2-0 Degerfors."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 2.04,
+    "p": 0.6525,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Shimizu S-Pulse",
+      "away": "FC Tokyo",
+      "league": "Japonya J1 Lig",
+      "sel": "ÇŞ X-2",
+      "o": 1.37,
+      "p": 0.866,
+      "nid": 3274356,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.597,
+      "edge": 0.269,
+      "why": [
+       "Model beklentisi: Shimizu S-Pulse 0.71, FC Tokyo 1.81 gol. Bu seçenek %87 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %60.",
+       "Form: Shimizu S-Pulse son 5 maçta 1G 1B 3M (4-14 gol); FC Tokyo son 5 maçta 4G 1B 0M (17-0 gol).",
+       "Hücum/savunma (son 10+ maç): Shimizu S-Pulse 0.9 atıyor, 2.0 yiyor; FC Tokyo 2.6 atıyor, 0.1 yiyor.",
+       "Son ikili maçlar: Shimizu S-Pulse 1-1 FC Tokyo, Shimizu S-Pulse 1-1 FC Tokyo, FC Tokyo 0-2 Shimizu S-Pulse."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Cagliari",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.49,
+      "p": 0.754,
+      "nid": 3274807,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.481,
+      "edge": 0.272,
+      "why": [
+       "Model beklentisi: Cagliari 1.18, Frosinone 2.36 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Cagliari son 5 maçta 0G 1B 4M (4-13 gol); Frosinone son 5 maçta 3G 1B 1M (15-10 gol).",
+       "Gol temposu (son 10+ maç): Cagliari maçlarında ortalama 2.4, Frosinone maçlarında 3.8 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %40 / %50.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %43, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-07",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 19,
+      "time": "",
+      "home": "Mainz",
+      "away": "Bayern Munich",
+      "league": "Almanya Bundesliga",
+      "sel": "MS2 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.24,
+      "p": 0.695,
+      "base": 0.266,
+      "edge": 0.429,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3275627,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Mainz 1.29, Bayern Munich 3.10 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Mainz son 5 maçta 2G 0B 3M (11-14 gol); Bayern Munich son 5 maçta 3G 2B 0M (20-6 gol).",
+       "Gol temposu (son 10+ maç): Mainz maçlarında ortalama 4.0, Bayern Munich maçlarında 4.2 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Mainz 3-4 Bayern Munich, Bayern Munich 2-2 Mainz, Bayern Munich 3-0 Mainz."
+      ]
+     },
+     {
+      "id": 76,
+      "time": "",
+      "home": "Rosenborg",
+      "away": "Start",
+      "league": "Norveç Eliteserien",
+      "sel": "HMS -1 · 1",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.41,
+      "p": 0.62,
+      "base": 0.258,
+      "edge": 0.362,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3279210,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Rosenborg 2.94, Start 0.77 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %26.",
+       "Form: Rosenborg son 5 maçta 4G 1B 0M (13-2 gol); Start son 5 maçta 1G 0B 4M (4-14 gol).",
+       "Hücum/savunma (son 10+ maç): Rosenborg 2.8 atıyor, 1.0 yiyor; Start 1.0 atıyor, 2.1 yiyor.",
+       "Son ikili maçlar: Start 0-3 Rosenborg, Rosenborg 1-0 Start, Start 0-0 Rosenborg."
+      ]
+     },
+     {
+      "id": 65,
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "3,5 Üst",
+      "mk": "Alt/Üst 3,5",
+      "o": 1.94,
+      "p": 0.599,
+      "base": 0.27,
+      "edge": 0.329,
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3274248,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.59, Kawasaki Frontale 1.58 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (12-7 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.5, Kawasaki Frontale maçlarında 4.1 gol; 2.5 üst oranı %60 / %90, iki takım da gol atma oranı %50 / %90.",
+       "Son ikili maçlar: Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale, Kashiwa Reysol 2-3 Kawasaki Frontale."
+      ]
+     }
+    ],
+    "odds": 3.39,
+    "date": "2026-11-07",
+    "p": 0.2583,
+    "ev": 0.88,
+    "score": 1.12
+   },
+   {
+    "legs": [
+     {
+      "id": 57,
+      "time": "",
+      "home": "Roma",
+      "away": "Sassuolo",
+      "league": "İtalya Serie A",
+      "sel": "MS1 & 2,5 Üst",
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "o": 1.43,
+      "p": 0.577,
+      "base": 0.223,
+      "edge": 0.353,
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3275171,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Roma 2.69, Sassuolo 0.96 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Form: Roma son 5 maçta 3G 2B 0M (14-7 gol); Sassuolo son 5 maçta 0G 1B 4M (7-17 gol).",
+       "Gol temposu (son 10+ maç): Roma maçlarında ortalama 3.8, Sassuolo maçlarında 4.2 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %50 / %90.",
+       "Son ikili maçlar: Roma 2-0 Sassuolo, Sassuolo 0-1 Roma."
+      ]
+     },
+     {
+      "id": 32,
+      "time": "",
+      "home": "Preston",
+      "away": "Southampton",
+      "league": "İngiltere Championship",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.43,
+      "p": 0.642,
+      "base": 0.289,
+      "edge": 0.354,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3275546,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Preston 0.97, Southampton 2.17 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Preston son 5 maçta 0G 1B 4M (4-14 gol); Southampton son 5 maçta 3G 2B 0M (9-4 gol).",
+       "Hücum/savunma (son 10+ maç): Preston 0.9 atıyor, 2.1 yiyor; Southampton 1.9 atıyor, 0.9 yiyor.",
+       "Son ikili maçlar: Preston 1-3 Southampton, Southampton 0-2 Preston."
+      ]
+     },
+     {
+      "id": 56,
+      "time": "",
+      "home": "Cagliari",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.67,
+      "p": 0.683,
+      "base": 0.348,
+      "edge": 0.335,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3274807,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Cagliari 1.18, Frosinone 2.36 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Cagliari son 5 maçta 0G 1B 4M (4-13 gol); Frosinone son 5 maçta 3G 1B 1M (15-10 gol).",
+       "Gol temposu (son 10+ maç): Cagliari maçlarında ortalama 2.4, Frosinone maçlarında 3.8 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %40 / %50."
+      ]
+     }
+    ],
+    "odds": 3.41,
+    "date": "2026-11-07",
+    "p": 0.253,
+    "ev": 0.86,
+    "score": 0.942
+   },
+   {
+    "legs": [
+     {
+      "id": 67,
+      "time": "",
+      "home": "Shimizu S-Pulse",
+      "away": "FC Tokyo",
+      "league": "Japonya J1 Lig",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 2.72,
+      "p": 0.631,
+      "base": 0.321,
+      "edge": 0.31,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3274356,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Shimizu S-Pulse 0.71, FC Tokyo 1.81 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Shimizu S-Pulse son 5 maçta 1G 1B 3M (4-14 gol); FC Tokyo son 5 maçta 4G 1B 0M (17-0 gol).",
+       "Hücum/savunma (son 10+ maç): Shimizu S-Pulse 0.9 atıyor, 2.0 yiyor; FC Tokyo 2.6 atıyor, 0.1 yiyor.",
+       "Son ikili maçlar: Shimizu S-Pulse 1-1 FC Tokyo, Shimizu S-Pulse 1-1 FC Tokyo, FC Tokyo 0-2 Shimizu S-Pulse."
+      ]
+     },
+     {
+      "id": 101,
+      "time": "",
+      "home": "Degerfors",
+      "away": "GAIS",
+      "league": "İsveç Allsvenskan",
+      "sel": "ÇŞ X-2",
+      "mk": "Çifte Şans",
+      "o": 1.25,
+      "p": 0.82,
+      "base": 0.56,
+      "edge": 0.26,
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "t": "g",
+      "src": "model",
+      "nid": 3276054,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Degerfors 0.71, GAIS 1.42 gol. Bu seçenek %82 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Degerfors son 5 maçta 0G 1B 4M (3-12 gol); GAIS son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Hücum/savunma (son 10+ maç): Degerfors 0.5 atıyor, 1.9 yiyor; GAIS 1.3 atıyor, 1.1 yiyor.",
+       "Son ikili maçlar: GAIS 1-1 Degerfors, Degerfors 0-3 GAIS, GAIS 2-0 Degerfors."
+      ]
+     },
+     {
+      "id": 108,
+      "time": "",
+      "home": "Eyupspor",
+      "away": "Kocaelispor",
+      "league": "Türkiye Süper Lig",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.6,
+      "p": 0.659,
+      "base": 0.427,
+      "edge": 0.231,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3275952,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Eyupspor 0.74, Kocaelispor 1.01 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Eyupspor son 5 maçta 0G 0B 5M (1-20 gol); Kocaelispor son 5 maçta 2G 1B 2M (6-5 gol).",
+       "Gol temposu (son 10+ maç): Eyupspor maçlarında ortalama 3.1, Kocaelispor maçlarında 2.0 gol; 2.5 üst oranı %50 / %40, iki takım da gol atma oranı %20 / %40.",
+       "Son ikili maçlar: Eyupspor 0-1 Kocaelispor, Kocaelispor 1-0 Eyupspor."
+      ]
+     }
+    ],
+    "odds": 5.44,
+    "date": "2026-11-07",
+    "p": 0.3409,
+    "ev": 1.85,
+    "score": 0.702
+   },
+   {
+    "legs": [
+     {
+      "id": 39,
+      "time": "",
+      "home": "Blackburn",
+      "away": "West Ham",
+      "league": "İngiltere Championship",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.4,
+      "p": 0.628,
+      "base": 0.314,
+      "edge": 0.315,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3276247,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Blackburn 1.42, West Ham 2.13 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Blackburn son 5 maçta 2G 0B 3M (6-9 gol); West Ham son 5 maçta 2G 1B 2M (13-9 gol).",
+       "Gol temposu (son 10+ maç): Blackburn maçlarında ortalama 3.2, West Ham maçlarında 4.2 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %70 / %60."
+      ]
+     },
+     {
+      "id": 103,
+      "time": "",
+      "home": "Luzern",
+      "away": "Young Boys",
+      "league": "İsviçre Super League",
+      "sel": "İY 1,5 Üst",
+      "mk": "1. Yarı Alt/Üst 1,5",
+      "o": 1.55,
+      "p": 0.591,
+      "base": 0.39,
+      "edge": 0.201,
+      "mtid": 14,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "İY AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3275434,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Luzern 2.03, Young Boys 2.44 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %39.",
+       "Form: Luzern son 5 maçta 1G 1B 3M (9-12 gol); Young Boys son 5 maçta 3G 1B 1M (12-9 gol).",
+       "Gol temposu (son 10+ maç): Luzern maçlarında ortalama 3.7, Young Boys maçlarında 4.9 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %80 / %80.",
+       "Son ikili maçlar: Young Boys 3-3 Luzern, Luzern 1-2 Young Boys, Young Boys 2-0 Luzern.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 50,
+      "time": "",
+      "home": "St Etienne",
+      "away": "Laval",
+      "league": "Fransa Ligue 2",
+      "sel": "2Y 1",
+      "mk": "2. Yarı Sonucu",
+      "o": 1.51,
+      "p": 0.553,
+      "base": 0.352,
+      "edge": 0.201,
+      "mtid": 9,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "2Y",
+      "t": "g",
+      "src": "model",
+      "nid": 3275377,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: St Etienne 2.21, Laval 0.86 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: St Etienne son 5 maçta 3G 1B 1M (6-5 gol); Laval son 5 maçta 1G 2B 2M (7-8 gol).",
+       "Hücum/savunma (son 10+ maç): St Etienne 2.0 atıyor, 1.1 yiyor; Laval 1.3 atıyor, 1.8 yiyor.",
+       "Son ikili maçlar: St Etienne 2-1 Laval, Laval 3-3 St Etienne.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ],
+    "odds": 3.28,
+    "date": "2026-11-07",
+    "p": 0.205,
+    "ev": 0.67,
+    "score": 0.616
+   },
+   {
+    "legs": [
+     {
+      "id": 67,
+      "time": "",
+      "home": "Shimizu S-Pulse",
+      "away": "FC Tokyo",
+      "league": "Japonya J1 Lig",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 2.72,
+      "p": 0.631,
+      "base": 0.321,
+      "edge": 0.31,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3274356,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Shimizu S-Pulse 0.71, FC Tokyo 1.81 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Shimizu S-Pulse son 5 maçta 1G 1B 3M (4-14 gol); FC Tokyo son 5 maçta 4G 1B 0M (17-0 gol).",
+       "Hücum/savunma (son 10+ maç): Shimizu S-Pulse 0.9 atıyor, 2.0 yiyor; FC Tokyo 2.6 atıyor, 0.1 yiyor.",
+       "Son ikili maçlar: Shimizu S-Pulse 1-1 FC Tokyo, Shimizu S-Pulse 1-1 FC Tokyo, FC Tokyo 0-2 Shimizu S-Pulse."
+      ]
+     },
+     {
+      "id": 10,
+      "time": "",
+      "home": "Antwerp",
+      "away": "Lommel SK",
+      "league": "Belçika Pro League",
+      "sel": "Ev iki yarıda da atamaz",
+      "mk": "Ev Sahibi İki Yarıda da Gol",
+      "o": 1.33,
+      "p": 0.831,
+      "base": 0.71,
+      "edge": 0.121,
+      "mtid": 295,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3275253,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Antwerp 1.07, Lommel SK 1.24 gol. Bu seçenek %83 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %71.",
+       "Form: Antwerp son 5 maçta 1G 0B 4M (6-12 gol); Lommel SK son 5 maçta 2G 2B 1M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Antwerp maçlarında ortalama 3.8, Lommel SK maçlarında 2.4 gol; 2.5 üst oranı %80 / %40, iki takım da gol atma oranı %60 / %30.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %47 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 929,
+      "time": "19:00",
+      "home": "Real Madrid",
+      "away": "Valladolid",
+      "league": "İspanya Segunda RFEF",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.86,
+      "p": 0.692,
+      "base": 0.44,
+      "edge": 0.252,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3279308,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Real Madrid 2.69, Valladolid 1.16 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Real Madrid son 5 maçta 4G 0B 1M (11-4 gol); Valladolid son 5 maçta 2G 1B 2M (14-10 gol).",
+       "Hücum/savunma (son 10+ maç): Real Madrid 2.6 atıyor, 0.9 yiyor; Valladolid 2.0 atıyor, 1.6 yiyor.",
+       "Son ikili maçlar: Valladolid 0-3 Real Madrid, Real Madrid 3-0 Valladolid.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 6.73,
+    "date": "2026-11-07",
+    "p": 0.3631,
+    "ev": 2.44,
+    "score": 0.363,
+    "surprise": true
+   },
+   {
+    "legs": [
+     {
+      "id": 56,
+      "time": "",
+      "home": "Cagliari",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 2.18,
+      "p": 0.633,
+      "base": 0.333,
+      "edge": 0.3,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3274807,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Cagliari 1.18, Frosinone 2.36 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Cagliari son 5 maçta 0G 1B 4M (4-13 gol); Frosinone son 5 maçta 3G 1B 1M (15-10 gol).",
+       "Hücum/savunma (son 10+ maç): Cagliari 0.9 atıyor, 1.5 yiyor; Frosinone 2.4 atıyor, 1.4 yiyor."
+      ]
+     },
+     {
+      "id": 65,
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "Ev 1,5 Üst",
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "o": 1.57,
+      "p": 0.731,
+      "base": 0.409,
+      "edge": 0.323,
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3274248,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.59, Kawasaki Frontale 1.58 gol. Bu seçenek %73 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (12-7 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.5, Kawasaki Frontale maçlarında 4.1 gol; 2.5 üst oranı %60 / %90, iki takım da gol atma oranı %50 / %90.",
+       "Son ikili maçlar: Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale, Kashiwa Reysol 2-3 Kawasaki Frontale."
+      ]
+     },
+     {
+      "id": 101,
+      "time": "",
+      "home": "Degerfors",
+      "away": "GAIS",
+      "league": "İsveç Allsvenskan",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.93,
+      "p": 0.606,
+      "base": 0.432,
+      "edge": 0.174,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3276054,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Degerfors 0.71, GAIS 1.42 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Degerfors son 5 maçta 0G 1B 4M (3-12 gol); GAIS son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Gol temposu (son 10+ maç): Degerfors maçlarında ortalama 2.4, GAIS maçlarında 2.4 gol; 2.5 üst oranı %40 / %40, iki takım da gol atma oranı %30 / %30.",
+       "Son ikili maçlar: GAIS 1-1 Degerfors, Degerfors 0-3 GAIS, GAIS 2-0 Degerfors."
+      ]
+     }
+    ],
+    "odds": 6.61,
+    "date": "2026-11-07",
+    "p": 0.2804,
+    "ev": 1.85,
+    "score": 0.28,
+    "surprise": true
+   }
+  ],
+  "mil_saved_on": "2026-11-07"
  }
 }
