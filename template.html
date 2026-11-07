@@ -764,11 +764,11 @@ function renderMil(){
     body += `<div><dl class="milbig"><div><dt>Seri günü</dt><dd>${Math.min(dayNo,DAYS)} / ${DAYS}</dd></div>`+
       `<div><dt>Sanal kasa</dt><dd>${pend ? '?' : tl(bank)}</dd></div>`+
       `<div><dt>Kupon oranı</dt><dd>${T.odds.toFixed(2)}</dd></div>`+
-      `<div><dt>Tutma olasılığı</dt><dd>%${(T.p*100).toFixed(T.p<0.1?1:0)}</dd></div></dl>`+
+      `<div><dt>Bot güveni (tutma)</dt><dd>%${(T.p*100).toFixed(T.p<0.1?1:0)}</dd></div></dl>`+(T.p_model!=null?`<p class="cn">Güven, modelin (%${(T.p_model*100).toFixed(0)}) ve bahis sitesinin oranının ima ettiği olasılığın yarı yarıya karışımıdır. Kayıtlı kuponlarda piyasa tahmini modelden daha isabetli çıktığı için model tek başına kullanılmıyor.</p>`:'')+
       `<p class="cn">${esc(fmtLong(T.date))} için botun en güvendiği, oranı ${tgt} ve üzeri kupon (${T.legs.length} maç). `+
       (pend ? 'Dünkü kuponun sonucu henüz gelmedi, kasa ona göre belli olacak. ' : `Bu kupon tutarsa kasa ${tl(bank*T.odds)} olur. `)+`</p>`+
       T.legs.map(l=>`<div class="mlg"><span class="t">${esc(l.time)}</span><span class="n"><b>${esc(l.home)} - ${esc(l.away)}</b><span>${esc(l.mk)}${l.league?' · '+esc(l.league):''}</span></span>`+
-        `<span class="o">${esc(l.sel)}<small>${l.o.toFixed(2)} · model %${pct(l.p)}</small></span></div>`).join('')+
+        `<span class="o">${esc(l.sel)}<small>${l.o.toFixed(2)} · model %${pct(l.p)}${l.pm!=null?` · piyasa %${pct(l.pm)}`:''}</small></span></div>`).join('')+
       `<button class="cpy" type="button" data-mil="1">Kuponu kopyala</button>`+
       `<p class="mlw"><b>Gerçekçi ol:</b> bu kuponun tutma olasılığı %${(T.p*100).toFixed(0)}. ${rem} gün üst üste tutturmanın olasılığı, her gün aynı olasılıkla, yaklaşık <b>${once.toLocaleString('tr-TR')}'de 1</b>. `+
       `Bu yüzden köşe, gerçek parayla tüm kasayı her gün basmak için bir öneri değildir; bot sanal ${START} TL ile ilerler ve geçmişi burada görünür.</p></div>`;
