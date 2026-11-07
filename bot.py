@@ -1128,22 +1128,31 @@ def _frozen_today(out_rows, today):
 MIL_ODDS = 2.0          # "14 günde milyoner" kuponunun toplam oranı en az bu kadar
 MIL_DAYS = 14           # 100 TL x 2^14 = 1.638.400 TL
 MIL_START = 100.0
+MIL_BLEND = 0.5         # milyoner kuponunda güven = 0.5 x model + 0.5 x piyasanın (bahis payı düşülmüş) olasılığı
+MIL_MKT = 0.94          # piyasa olasılığı = 0.94 / oran (Nesine seçeneklerinde ortalama bahis payı; kayıtlı bacaklarda isabet/ (1/oran) = 0.94)
+
+
+def _bp(x):
+    """Bacağın 'bot güveni': model olasılığı ile oranın ima ettiği piyasa olasılığının karışımı.
+    Kayıtlı 142 bacakta (27 Ekim - 7 Kasım) piyasa olasılığı modelden daha iyi tahmin etti (Brier 0,232 / 0,244): model, piyasadan
+    çok ayrıştığı seçeneklerde aşırı iddialıydı. Seçim bu yüzden iki tahminin karışımına dayanır."""
+    return MIL_BLEND * x[1] + (1 - MIL_BLEND) * min(0.99, MIL_MKT / x[2])
 
 
 def _best_mil(items, pool_size=30):
-    """Milyoner kuponu: toplam oranı MIL_ODDS ve üzeri olan 1, 2 ya da 3 maçlık kuponlar arasında TUTMA OLASILIĞI en yüksek olan
+    """Milyoner kuponu: toplam oranı MIL_ODDS ve üzeri olan 1, 2 ya da 3 maçlık kuponlar arasında tutma olasılığı (model ve piyasa karışımı) en yüksek olan
     (eşitlikte oranı 2'ye en yakın). Maç sayısı serbesttir; bacakların MBS koşulu kupondaki maç sayısını aşmamalı.
     Adaylar normal kuponlarla aynı havuzdan gelir (yeşil, ligin sıradan maçından en az MIN_EDGE yukarıda, Nesine'de açık)."""
     cands = []
     for t in items:
         opts, best_p = [], -1.0
         for x in sorted(t[2], key=lambda x: -x[2]):
-            if x[1] > best_p + 1e-12:
+            if _bp(x) > best_p + 1e-12:
                 opts.append(x)
-                best_p = x[1]
+                best_p = _bp(x)
         if opts:
             cands.append((t, opts[:6]))
-    cands.sort(key=lambda c: -max(x[1] * x[2] for x in c[1]))
+    cands.sort(key=lambda c: -max(_bp(x) * x[2] for x in c[1]))
     cands = cands[:pool_size]
     best = None
     for n in (1, 2, 3):
@@ -1154,7 +1163,7 @@ def _best_mil(items, pool_size=30):
                 od = math.prod(x[2] for x in pick)
                 if od < MIL_ODDS or max(x[3].get("mbs") or 1 for x in pick) > n:
                     continue
-                pr = math.prod(x[1] for x in pick)
+                pr = math.prod(_bp(x) for x in pick)
                 key = (round(pr, 6), -od)
                 if best is None or key > best[0]:
                     best = (key, pr, od, tuple(cands[i][0] for i in idx), pick)
@@ -1199,8 +1208,13 @@ def build_milyoner(out_rows):
             continue
         pr0, od, combo, pick = best
         legs, pr = _legs_dicts(combo, pick, None)
-        return {"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"), "p": round(pr, 4),
-                "ev": round(pr * od, 2), "mil": True}
+        pb = 1.0
+        for l in legs:                    # bacak başına: model, piyasa ve karışım olasılığı
+            l["pm"] = round(min(0.99, MIL_MKT / l["o"]), 3)
+            l["pb"] = round(MIL_BLEND * l["p"] + (1 - MIL_BLEND) * l["pm"], 3)
+            pb *= l["pb"]
+        return {"legs": legs, "odds": round(od, 2), "date": day.strftime("%Y-%m-%d"), "p": round(pb, 4), "p_model": round(pr, 4),
+                "ev": round(pb * od, 2), "mil": True}
     return None
 
 
@@ -1215,9 +1229,9 @@ def save_mil(k, keep_days=120):
     if ent.get("mil_saved_on") == d:
         return
     ent["list"] = [x for x in ent.get("list", []) if not x.get("mil")]
-    ent["list"].append({"odds": k["odds"], "p": k["p"], "mil": True,
+    ent["list"].append({"odds": k["odds"], "p": k["p"], "p_model": k.get("p_model"), "mil": True,
                         "legs": [{x: l[x] for x in ("time", "home", "away", "league", "sel", "o", "p", "nid", "mk", "mtid", "line",
-                                                    "idx", "fam", "base", "edge", "why") if x in l} for l in k["legs"]]})
+                                                    "idx", "fam", "base", "edge", "why", "pm", "pb") if x in l} for l in k["legs"]]})
     if d == today_tr().strftime("%Y-%m-%d"):
         ent["mil_saved_on"] = d
     for x in sorted(log)[:-keep_days]:
