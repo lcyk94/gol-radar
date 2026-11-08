@@ -8196,5 +8196,67 @@
    }
   ],
   "mil_saved_on": "2026-11-08"
+ },
+ "2026-11-09": {
+  "list": [
+   {
+    "odds": 2.05,
+    "p": 0.4158,
+    "p_model": 0.4007,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Sabadell",
+      "away": "Sociedad B",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.59,
+      "p": 0.587,
+      "nid": 3279223,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.471,
+      "edge": 0.116,
+      "why": [
+       "Model beklentisi: Sabadell 1.42, Sociedad B 0.77 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Sabadell son 5 maçta 1G 2B 2M (4-5 gol); Sociedad B son 5 maçta 1G 0B 4M (6-12 gol).",
+       "Gol temposu (son 10+ maç): Sabadell maçlarında ortalama 2.3, Sociedad B maçlarında 3.3 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %60 / %70."
+      ],
+      "pm": 0.591,
+      "pb": 0.589
+     },
+     {
+      "time": "",
+      "home": "Kristiansund",
+      "away": "Valerenga",
+      "league": "Norveç Eliteserien",
+      "sel": "HMS -1 · 2",
+      "o": 1.29,
+      "p": 0.683,
+      "nid": 3380885,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.526,
+      "edge": 0.156,
+      "why": [
+       "Model beklentisi: Kristiansund 1.57, Valerenga 1.90 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %53.",
+       "Form: Kristiansund son 5 maçta 1G 1B 3M (9-14 gol); Valerenga son 5 maçta 3G 1B 1M (10-4 gol).",
+       "Hücum/savunma (son 10+ maç): Kristiansund 1.6 atıyor, 2.6 yiyor; Valerenga 2.1 atıyor, 1.9 yiyor.",
+       "Son ikili maçlar: Valerenga 3-1 Kristiansund, Valerenga 3-3 Kristiansund, Kristiansund 0-2 Valerenga."
+      ],
+      "pm": 0.729,
+      "pb": 0.706
+     }
+    ]
+   }
+  ],
+  "mil_saved_on": "2026-11-09"
  }
 }
