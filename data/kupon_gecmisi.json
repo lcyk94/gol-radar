@@ -8335,7 +8335,91 @@
       ]
      }
     ]
+   },
+   {
+    "odds": 2.72,
+    "p": 0.2972,
+    "p_model": 0.2754,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Northampton",
+      "away": "Gillingham",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "o": 1.89,
+      "p": 0.688,
+      "nid": 3284201,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.476,
+      "edge": 0.211,
+      "why": [
+       "Model beklentisi: Northampton 0.94, Gillingham 0.70 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Northampton son 5 maçta 2G 1B 2M (5-3 gol); Gillingham son 5 maçta 2G 1B 2M (9-10 gol).",
+       "Gol temposu (son 10+ maç): Northampton maçlarında ortalama 1.6, Gillingham maçlarında 3.2 gol; 2.5 üst oranı %0 / %70, iki takım da gol atma oranı %30 / %60.",
+       "Son ikili maçlar: Gillingham 1-1 Northampton."
+      ],
+      "pm": 0.497,
+      "pb": 0.593
+     },
+     {
+      "time": "22:00",
+      "home": "Oxford",
+      "away": "Cheltenham",
+      "league": "İngiltere Trophy Kupası, Güney",
+      "sel": "2,5 Üst",
+      "o": 1.2,
+      "p": 0.647,
+      "nid": 3284434,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.501,
+      "edge": 0.146,
+      "why": [
+       "Model beklentisi: Oxford 2.50, Cheltenham 0.84 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Oxford son 5 maçta 3G 2B 0M (6-2 gol); Cheltenham son 5 maçta 2G 0B 3M (7-11 gol).",
+       "Gol temposu (son 10+ maç): Oxford maçlarında ortalama 2.2, Cheltenham maçlarında 3.3 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %50 / %70.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ],
+      "pm": 0.783,
+      "pb": 0.715
+     },
+     {
+      "time": "22:00",
+      "home": "Plymouth",
+      "away": "Swindon",
+      "league": "İngiltere Trophy Kupası, Güney",
+      "sel": "2,5 Üst",
+      "o": 1.2,
+      "p": 0.619,
+      "nid": 3284221,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.501,
+      "edge": 0.118,
+      "why": [
+       "Model beklentisi: Plymouth 2.02, Swindon 1.18 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Plymouth son 5 maçta 2G 1B 2M (5-8 gol); Swindon son 5 maçta 2G 2B 1M (6-4 gol).",
+       "Gol temposu (son 10+ maç): Plymouth maçlarında ortalama 3.0, Swindon maçlarında 2.2 gol; 2.5 üst oranı %60 / %40, iki takım da gol atma oranı %40 / %50.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ],
+      "pm": 0.783,
+      "pb": 0.701
+     }
+    ]
    }
-  ]
+  ],
+  "mil_saved_on": "2026-11-10"
  }
 }
