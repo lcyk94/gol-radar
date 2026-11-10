@@ -87,12 +87,27 @@ LEAGUES.update(EXTRA)
 ODDS_SETS = [("AvgH", "AvgD", "AvgA"), ("B365H", "B365D", "B365A"),
              ("PSH", "PSD", "PSA")]
 ODDS_COLS = []        # yurtdışı oranları hiçbir yerde kullanılmaz; geçmiş dosyalardan yalnızca maç sonuçları alınır
-KEEP = ["Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "HTHG", "HTAG"]
+KEEP = ["Div", "Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG", "HTHG", "HTAG", "HS", "AS", "HST", "AST"]
 
 MAX_GOALS = 10
 RHO = -0.06          # Dixon-Coles düşük skor düzeltmesi
 HALF_LIFE = 200      # gün: eski maçların ağırlığı yarıya iner
 REG = 1.0            # takım parametrelerine ridge cezası
+SHOT_W = 0.0         # şut verisinden üretilen beklenen gol (xG vekili) ağırlığı; 0 = yalnızca gerçek gol
+SHRINK = 1.0         # takım etkilerinin çarpanı; <1 = olasılıkları ortalamaya doğru çeker (aşırı iddialılığı azaltır)
+MODEL_CFG_FILE = DATA_DIR / "model_ayar.json"
+_CFG = {}
+
+
+def load_model_cfg(path=None):
+    """Walk-forward ayarından seçilen model parametreleri (data/model_ayar.json); dosya yoksa varsayılanlar."""
+    global _CFG
+    try:
+        d = json.loads(Path(path or MODEL_CFG_FILE).read_text(encoding="utf-8"))
+        _CFG = {k: float(d[k]) for k in ("half_life", "reg", "shot_w", "shrink") if k in d}
+    except Exception:  # noqa: BLE001
+        _CFG = {}
+    return _CFG
 
 
 # --------------------------------------------------------------------------
@@ -178,7 +193,7 @@ def _clean(df):
     df = df.copy()
     df["Date"] = pd.to_datetime(df["Date"], dayfirst=True, format="mixed",
                                 errors="coerce")
-    for c in ("FTHG", "FTAG", "HTHG", "HTAG"):
+    for c in ("FTHG", "FTAG", "HTHG", "HTAG", "HS", "AS", "HST", "AST"):
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
     df = df.dropna(subset=["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"])
@@ -242,8 +257,31 @@ class Model:
     """log(λ_ev) = mu + ev + atak[ev] - savunma[dep]
        log(λ_dep) = mu + atak[dep] - savunma[ev]"""
 
-    def __init__(self, half_life=HALF_LIFE, reg=REG, rho=RHO):
-        self.half_life, self.reg, self.rho = half_life, reg, rho
+    def __init__(self, half_life=None, reg=None, rho=RHO, shot_w=None, shrink=None):
+        self.half_life = half_life if half_life is not None else _CFG.get("half_life", HALF_LIFE)
+        self.reg = reg if reg is not None else _CFG.get("reg", REG)
+        self.shot_w = shot_w if shot_w is not None else _CFG.get("shot_w", SHOT_W)
+        self.shrink = shrink if shrink is not None else _CFG.get("shrink", SHRINK)
+        self.rho = rho
+
+    @staticmethod
+    def _xg_proxy(df):
+        """Şutlardan beklenen gol vekili: a*isabetli + b*isabetsiz, katsayılar eğitim verisindeki gollere en küçük kareyle uydurulur.
+        Şut verisi olmayan maçlarda NaN (o maçlarda gerçek gol kullanılır)."""
+        if not all(c in df.columns for c in ("HS", "AS", "HST", "AST")):
+            return None
+        hs, as_, hst, ast = (df[c].to_numpy(float) for c in ("HS", "AS", "HST", "AST"))
+        ok = np.isfinite(hs) & np.isfinite(as_) & np.isfinite(hst) & np.isfinite(ast) & (hs >= hst) & (as_ >= ast)
+        if ok.sum() < 200:
+            return None
+        X = np.r_[np.c_[hst[ok], (hs - hst)[ok]], np.c_[ast[ok], (as_ - ast)[ok]]]
+        y = np.r_[df["FTHG"].to_numpy(float)[ok], df["FTAG"].to_numpy(float)[ok]]
+        coef = np.linalg.lstsq(X, y, rcond=None)[0].clip(min=0.0)
+        if coef.sum() <= 0:
+            return None
+        ph = np.where(ok, hst * coef[0] + (hs - hst) * coef[1], np.nan)
+        pa = np.where(ok, ast * coef[0] + (as_ - ast) * coef[1], np.nan)
+        return ph, pa
 
     def fit(self, df, ref_date=None):
         ref_date = pd.Timestamp(ref_date) if ref_date is not None else df["Date"].max()
@@ -254,6 +292,12 @@ class Model:
         ai = df["AwayTeam"].map(idx).to_numpy()
         hg = df["FTHG"].to_numpy(float)
         ag = df["FTAG"].to_numpy(float)
+        if self.shot_w > 0:                       # gol ile şut-vekili karışımı (Poisson olabilirliği kesirli hedefle de çalışır)
+            px = self._xg_proxy(df)
+            if px is not None:
+                a = self.shot_w
+                hg = np.where(np.isfinite(px[0]), (1 - a) * hg + a * px[0], hg)
+                ag = np.where(np.isfinite(px[1]), (1 - a) * ag + a * px[1], ag)
         age = (ref_date - df["Date"]).dt.days.clip(lower=0).to_numpy(float)
         w = 0.5 ** (age / self.half_life)
         reg = self.reg
@@ -287,8 +331,9 @@ class Model:
         return all(t in self.att for t in teams)
 
     def lambdas(self, home, away):
-        lh = np.exp(self.mu + self.home + self.att[home] - self.dfn[away])
-        la = np.exp(self.mu + self.att[away] - self.dfn[home])
+        k = getattr(self, "shrink", 1.0)          # 1 = ham model; <1 = takım farkları ortalamaya çekilir
+        lh = np.exp(self.mu + self.home + k * (self.att[home] - self.dfn[away]))
+        la = np.exp(self.mu + k * (self.att[away] - self.dfn[home]))
         return lh, la
 
     def predict(self, home, away):
@@ -376,6 +421,104 @@ def backtest(df, n_test=150, step_days=7, verbose=True):
         print("LogLoss/Brier düşük = iyi. Piyasanın altına inmek çok zordur;")
         print("model tabanın belirgin altındaysa gerçekten bilgi taşıyor demektir.")
     return out
+
+
+# --------------------------------------------------------------------------
+# Model ayarı: yeni özellik yalnızca walk-forward log-loss'u düşürüyorsa kullanılır
+# --------------------------------------------------------------------------
+TUNE_SHRINKS = (1.0, 0.95, 0.9, 0.85, 0.8)
+TUNE_MIN_GAIN = 0.0005        # varsayılana göre bundan az iyileşme gürültü sayılır, varsayılan kalır
+
+
+def _match_loss(lh, la, hg, ag):
+    """Bir maç için 1X2, Üst 2.5 ve KG log-loss ortalaması."""
+    p = predict_lambdas(lh, la)
+    y = 0 if hg > ag else (1 if hg == ag else 2)
+    p1x2 = (p["p1"], p["px"], p["p2"])[y]
+    po = p["over25"] if (hg + ag) >= 3 else 1 - p["over25"]
+    pb = p["btts"] if (hg > 0 and ag > 0) else 1 - p["btts"]
+    return float(np.mean([-math.log(max(x, 1e-9)) for x in (p1x2, po, pb)]))
+
+
+def tune_eval(df, cfg, n_days=150, step_days=14, shrinks=TUNE_SHRINKS, min_train=300):
+    """df: tek lig. cfg ile her fold'da yalnızca geçmişle uydurur; shrink değerleri için ortalama kayıp {shrink: (kayıp, n)}."""
+    df = df.sort_values("Date").reset_index(drop=True)
+    end = df["Date"].max()
+    d = end - timedelta(days=n_days)
+    tot = {k: 0.0 for k in shrinks}
+    n = 0
+    while d <= end:
+        train = df[df["Date"] < d]
+        test = df[(df["Date"] >= d) & (df["Date"] < d + timedelta(days=step_days))]
+        d += timedelta(days=step_days)
+        if len(test) == 0 or len(train) < min_train:
+            continue
+        m = Model(half_life=cfg["half_life"], reg=cfg["reg"], shot_w=cfg["shot_w"], shrink=1.0).fit(train, ref_date=test["Date"].min())
+        for r in test.itertuples(index=False):
+            if not m.knows(r.HomeTeam, r.AwayTeam):
+                continue
+            for k in shrinks:
+                m.shrink = k
+                lh, la = m.lambdas(r.HomeTeam, r.AwayTeam)
+                tot[k] += _match_loss(lh, la, r.FTHG, r.FTAG)
+            n += 1
+    return {k: (tot[k] / n if n else float("nan"), n) for k in shrinks}
+
+
+def cmd_tune(leagues=None, out=None, n_days=150):
+    """Parametreleri sırayla dener (şut ağırlığı, yarı ömür, ceza, kısma); her adımda yalnızca daha iyi olanı tutar."""
+    hist = load_results(leagues)
+    has_shots = {d for d, g in hist.groupby("Div") if all(c in g.columns for c in ("HS", "HST")) and g["HST"].notna().mean() > 0.5}
+    divs = [d for d, g in hist.groupby("Div") if len(g) >= 800]
+    if not divs:
+        print("Ayar için yeterli veri yok.")
+        return None
+    print(f"Ayar ligleri: {', '.join(divs)} (şut verisi olan: {len(has_shots)})")
+
+    def score(cfg):
+        tot = {k: 0.0 for k in TUNE_SHRINKS}
+        n = 0
+        for dv in divs:
+            c = dict(cfg)
+            if dv not in has_shots:
+                c["shot_w"] = 0.0
+            res = tune_eval(hist[hist["Div"] == dv], c, n_days=n_days)
+            for k, (l, m_) in res.items():
+                if m_:
+                    tot[k] += l * m_
+            n += max(v[1] for v in res.values())
+        return {k: (v / n if n else float("nan")) for k, v in tot.items()}, n
+
+    base = {"half_life": HALF_LIFE, "reg": REG, "shot_w": SHOT_W}
+    sc0, n = score(base)
+    ref = sc0[1.0]
+    best, best_s, best_k = dict(base), ref, 1.0
+    print(f"Varsayılan: kayıp {ref:.4f} ({n} maç)")
+    steps = [("shot_w", (0.3, 0.5, 0.7)), ("half_life", (120, 300)), ("reg", (0.5, 2.0))]
+    for key, vals in steps:
+        for v in vals:
+            cand = dict(best)
+            cand[key] = v
+            sc, _ = score(cand)
+            k = min(sc, key=lambda z: sc[z])
+            print(f"  {key}={v}: {sc[1.0]:.4f} (en iyi kısma {k}: {sc[k]:.4f})")
+            if sc[k] < best_s - 1e-9:
+                best, best_s, best_k = cand, sc[k], k
+    # son: kısma yalnızca en iyi ayarda seçilir
+    sc, _ = score(best)
+    best_k = min(sc, key=lambda z: sc[z])
+    best_s = sc[best_k]
+    gain = ref - best_s
+    use = gain >= TUNE_MIN_GAIN
+    res = {"half_life": best["half_life"], "reg": best["reg"], "shot_w": best["shot_w"], "shrink": best_k} if use else {}
+    print(f"\nSonuç: varsayılan {ref:.4f} -> en iyi {best_s:.4f} (kazanç {gain:+.4f}); "
+          + ("yeni ayar KULLANILACAK: " + json.dumps(res) if use else "kazanç gürültü düzeyinde: varsayılan kalır"))
+    payload = {**res, "default_loss": round(ref, 5), "best_loss": round(best_s, 5), "n": n, "divs": divs,
+               "tested_on": today_tr().isoformat(), "used": bool(use)}
+    p = Path(out or MODEL_CFG_FILE)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
+    return payload
 
 
 # --------------------------------------------------------------------------
@@ -2488,6 +2631,9 @@ def main():
     b.add_argument("--league", required=True)
     b.add_argument("--matches", type=int, default=150)
     sub.add_parser("leagues")
+    tn = sub.add_parser("tune")
+    tn.add_argument("--league", nargs="*")
+    tn.add_argument("--days", type=int, default=365)
     sub.add_parser("selftest")
     for name in ("site", "demo"):
         s = sub.add_parser(name)
@@ -2497,6 +2643,8 @@ def main():
             s.add_argument("--league", nargs="*")
             s.add_argument("--days", type=int, default=7)
     a = ap.parse_args()
+    if a.cmd != "tune":
+        load_model_cfg()                  # tune kendi varsayılanlarını ölçer; diğer komutlar seçilmiş ayarı kullanır
 
     if a.cmd == "update":
         update(a.league)
@@ -2506,6 +2654,8 @@ def main():
         cmd_match(a.home, a.away, a.league)
     elif a.cmd == "backtest":
         backtest(load_results([a.league]), n_test=a.matches)
+    elif a.cmd == "tune":
+        cmd_tune(a.league, n_days=a.days)
     elif a.cmd == "leagues":
         for k, v in LEAGUES.items():
             print(f"{k:5}{v}")
