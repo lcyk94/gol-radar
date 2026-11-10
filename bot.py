@@ -826,10 +826,13 @@ def build_markets(p, row=None):
 
     src = row.get("SRC") if row is not None else None
 
-    def S(label, prob, odds=None):
+    def S(label, prob, odds=None, rf=None):
         t, note = tier(float(prob), odds)
-        return {"l": label, "p": round(float(prob), 4),
-                "o": round(float(odds), 2) if odds else None, "t": t, "n": note}
+        d_ = {"l": label, "p": round(float(prob), 4),
+              "o": round(float(odds), 2) if odds else None, "t": t, "n": note}
+        if rf and odds and act and nes:       # kupona eklenebilir: Nesine bahis no, çizgi, (n=seçenek no | i=sıra), değer
+            d_["rf"] = list(rf)
+        return d_
 
     nes, act = _nes_of(row) if row is not None else (None, False)
     cs = (None, None, None)
@@ -857,31 +860,32 @@ def build_markets(p, row=None):
         """Nesine'nin bu bahis/çizgi/seçenek için açtığı oran; yoksa None (uydurulmaz)."""
         return idx.get((mtid, round(float(line), 2)), {}).get(n)
 
-    M = [("Maç Sonucu", [S("MS 1", p1, o1), S("MS X", px, ox), S("MS 2", p2, o2)]),
-         ("Çifte Şans", [S("1-X", p1 + px, cs[0]), S("1-2", p1 + p2, cs[1]), S("X-2", px + p2, cs[2])])]
+    M = [("Maç Sonucu", [S("MS 1", p1, o1, (1, 0, "i", 0)), S("MS X", px, ox, (1, 0, "i", 1)), S("MS 2", p2, o2, (1, 0, "i", 2))]),
+         ("Çifte Şans", [S("1-X", p1 + px, cs[0], (3, 0, "i", 0)), S("1-2", p1 + p2, cs[1], (3, 0, "i", 1)), S("X-2", px + p2, cs[2], (3, 0, "i", 2))])]
     for line in (1.5, 2.5, 3.5):
         over = m[g > line].sum()
         oo, uo = (over25, under25) if line == 2.5 else ((NO(11, 1.5, 2), NO(11, 1.5, 1)) if line == 1.5
                                                        else (NO(13, 3.5, 2), NO(13, 3.5, 1)))
-        M.append((f"Alt/Üst {line}", [S("Alt", 1 - over, uo), S("Üst", over, oo)]))
+        mt_, un_, ov_ = (12, 1, 2) if line == 2.5 else ((11, 1, 2) if line == 1.5 else (13, 1, 2))
+        M.append((f"Alt/Üst {line}", [S("Alt", 1 - over, uo, (mt_, line, "n", un_)), S("Üst", over, oo, (mt_, line, "n", ov_))]))
     yes = m[1:, 1:].sum()
-    M.append(("Karşılıklı Gol", [S("Var", yes, kgo[0]), S("Yok", 1 - yes, kgo[1])]))
+    M.append(("Karşılıklı Gol", [S("Var", yes, kgo[0], (38, 0, "i", 0)), S("Yok", 1 - yes, kgo[1], (38, 0, "i", 1))]))
     # Bahis numaraları Nesine'nin kendi sayfa tablosundan doğrulandı (43 Toplam Gol Aralığı, 20 Ev Sahibi 1,5 Gol,
     # 29 Deplasman 1,5 Gol, 268 Handikaplı MS, 343 Maç Sonucu & 2,5 Alt/Üst). 0.5 çizgileri için numara doğrulanmadı.
-    M.append(("Toplam Gol", [S("0-1", m[g <= 1].sum(), NO(43, 0, 1)), S("2-3", m[(g >= 2) & (g <= 3)].sum(), NO(43, 0, 2)),
-                             S("4-5", m[(g >= 4) & (g <= 5)].sum(), NO(43, 0, 3)), S("6+", m[g >= 6].sum(), NO(43, 0, 4))]))
+    M.append(("Toplam Gol", [S("0-1", m[g <= 1].sum(), NO(43, 0, 1), (43, 0, "n", 1)), S("2-3", m[(g >= 2) & (g <= 3)].sum(), NO(43, 0, 2), (43, 0, "n", 2)),
+                             S("4-5", m[(g >= 4) & (g <= 5)].sum(), NO(43, 0, 3), (43, 0, "n", 3)), S("6+", m[g >= 6].sum(), NO(43, 0, 4), (43, 0, "n", 4))]))
     M.append(("Ev Sahibi Golleri", [S("0.5 Alt", m[0, :].sum()), S("0.5 Üst", 1 - m[0, :].sum()),
-                                    S("1.5 Alt", m[:2, :].sum(), NO(20, 1.5, 1)), S("1.5 Üst", m[2:, :].sum(), NO(20, 1.5, 2))]))
+                                    S("1.5 Alt", m[:2, :].sum(), NO(20, 1.5, 1), (20, 1.5, "n", 1)), S("1.5 Üst", m[2:, :].sum(), NO(20, 1.5, 2), (20, 1.5, "n", 2))]))
     M.append(("Deplasman Golleri", [S("0.5 Alt", m[:, 0].sum()), S("0.5 Üst", 1 - m[:, 0].sum()),
-                                    S("1.5 Alt", m[:, :2].sum(), NO(29, 1.5, 1)), S("1.5 Üst", m[:, 2:].sum(), NO(29, 1.5, 2))]))
-    M.append(("Handikaplı MS (Ev -1)", [S("1", m[d >= 2].sum(), NO(268, -1, 1)), S("X", m[d == 1].sum(), NO(268, -1, 2)),
-                                        S("2", m[d <= 0].sum(), NO(268, -1, 3))]))
-    M.append(("Handikaplı MS (Dep -1)", [S("1", m[d >= 0].sum(), NO(268, 1, 1)), S("X", m[d == -1].sum(), NO(268, 1, 2)),
-                                         S("2", m[d <= -2].sum(), NO(268, 1, 3))]))
+                                    S("1.5 Alt", m[:, :2].sum(), NO(29, 1.5, 1), (29, 1.5, "n", 1)), S("1.5 Üst", m[:, 2:].sum(), NO(29, 1.5, 2), (29, 1.5, "n", 2))]))
+    M.append(("Handikaplı MS (Ev -1)", [S("1", m[d >= 2].sum(), NO(268, -1, 1), (268, -1, "n", 1)), S("X", m[d == 1].sum(), NO(268, -1, 2), (268, -1, "n", 2)),
+                                        S("2", m[d <= 0].sum(), NO(268, -1, 3), (268, -1, "n", 3))]))
+    M.append(("Handikaplı MS (Dep -1)", [S("1", m[d >= 0].sum(), NO(268, 1, 1), (268, 1, "n", 1)), S("X", m[d == -1].sum(), NO(268, 1, 2), (268, 1, "n", 2)),
+                                         S("2", m[d <= -2].sum(), NO(268, 1, 3), (268, 1, "n", 3))]))
     combo = []
     for lab, mask, ia, iu in (("1", d > 0, 1, 4), ("X", d == 0, 2, 5), ("2", d < 0, 3, 6)):
-        combo += [S(f"{lab} & Alt", m[mask & (g <= 2)].sum(), NO(343, 2.5, ia)),
-                  S(f"{lab} & Üst", m[mask & (g >= 3)].sum(), NO(343, 2.5, iu))]
+        combo += [S(f"{lab} & Alt", m[mask & (g <= 2)].sum(), NO(343, 2.5, ia), (343, 2.5, "n", ia)),
+                  S(f"{lab} & Üst", m[mask & (g >= 3)].sum(), NO(343, 2.5, iu), (343, 2.5, "n", iu))]
     M.append(("MS ve Alt/Üst 2.5", combo))
     top = np.argsort(-m.ravel())[:8]
     M.append(("Doğru Skor", [S(f"{a}-{b}", m[a, b])
