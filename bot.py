@@ -2078,6 +2078,76 @@ def _valid_ok(mtid):
     return v is None or bool((v.get(mtid) or {}).get("ok"))
 
 
+LEDGER_FILE = DATA_DIR / "tahmin_defteri.json"
+LEDGER_MARKETS = {"ms": (1, 0.0), "ou": (12, 2.5), "kg": (38, 0.0)}      # defterde izlenen ana pazarlar
+LEDGER_KEEP_DAYS = 120
+
+
+def ledger_update(matches, today=None, path=None):
+    """Tahmin defteri: maçtan önce, botun HER maç için verdiği model olasılığını ve o andaki Nesine oranını kaydeder
+    (maç başlayınca üzerine yazılmaz). Amaç kupona girmeyenler dahil bütün maçlarda modeli piyasayla yansız karşılaştırmaktır."""
+    path = Path(path) if path else LEDGER_FILE
+    today = today or today_tr().strftime("%Y-%m-%d")
+    try:
+        led = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except Exception:  # noqa: BLE001
+        led = {}
+    cut = (pd.Timestamp(today) - pd.Timedelta(days=LEDGER_KEEP_DAYS)).strftime("%Y-%m-%d")
+    led = {k: v for k, v in led.items() if v.get("d", "") >= cut}
+    now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M")
+    n_new = 0
+    for m in matches:
+        nid, nm = m.get("nid"), m.get("nm")
+        if nid is None or not nm or str(m.get("date", "")) < today:
+            continue
+        rec = {}
+        for key, (mtid, line) in LEDGER_MARKETS.items():
+            k = next((x for x in nm if str(x.get("mtid")) == str(mtid) and abs(float(x.get("line") or 0) - line) < 1e-9), None)
+            if not k or not k.get("ps") or not k.get("outs") or not all((o or {}).get("o") for o in k["outs"]):
+                continue
+            rec[key] = {"p": k["ps"], "o": [o["o"] for o in k["outs"]]}
+        if not rec:
+            continue
+        n_new += str(nid) not in led
+        led[str(nid)] = {"d": m["date"], "src": m.get("src") or "model", "h": m.get("home"), "a": m.get("away"), "t": now, **rec}
+    path.write_text(json.dumps(led, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return led, n_new
+
+
+def ledger_report(led, byid, blend=0.5, mkt_margin=None):
+    """Defterdeki sonuçlanmış maçlarda model, piyasa (bahis payı çıkarılmış oranlar) ve ikisinin karışımının log-kaybı
+    (düşük iyidir). Yalnızca modelin kendi olasılığını verdiği maçlar defterde bulunur."""
+    out = {}
+    for key, (mtid, line) in LEDGER_MARKETS.items():
+        ll = {"model": 0.0, "market": 0.0, "blend": 0.0}
+        br = {"model": 0.0, "market": 0.0, "blend": 0.0}
+        n = 0
+        days = []
+        for nid, rec in led.items():
+            res, r = byid.get(int(nid)) if str(nid).isdigit() else None, rec.get(key)
+            if not res or not r:
+                continue
+            hg, ag = res[0], res[1]
+            h1, a1 = (res[2], res[3]) if len(res) > 3 else (None, None)
+            win = [i for i in range(len(r["p"])) if pz.outcome(mtid, line, i, hg, ag, h1, a1) is True]
+            if len(win) != 1:
+                continue
+            w = win[0]
+            inv = [1.0 / o for o in r["o"]]
+            fair = [x / sum(inv) for x in inv]
+            pm = [min(max(x, 1e-6), 1 - 1e-6) for x in r["p"]]
+            pb = [blend * a + (1 - blend) * b for a, b in zip(pm, fair)]
+            for name, pv in (("model", pm), ("market", fair), ("blend", pb)):
+                ll[name] += -math.log(max(pv[w], 1e-9))
+                br[name] += sum((pv[i] - (1.0 if i == w else 0.0)) ** 2 for i in range(len(pv)))
+            n += 1
+            days.append(rec["d"])
+        if n:
+            out[key] = {"n": n, **{f"ll_{k}": round(v / n, 4) for k, v in ll.items()},
+                        **{f"br_{k}": round(v / n, 4) for k, v in br.items()}, "from": min(days), "to": max(days)}
+    return out
+
+
 def nes_markets(nes, p, src=None, div=None):
     """Nesine'de bu maç için açık olan bütün pazarlar (sitede listelenir). Modelin olasılığı yalnızca pazarlar.py'de
     adı/seçenek sırası Nesine tablosundan doğrulanan ve çalıştırma sırasında oranlara karşı sınavı geçen pazarlarda gösterilir."""
@@ -2305,6 +2375,16 @@ def cmd_site(leagues, days, out, open_it, demo=False):
             print(f"  ! dünkü kupon sonuçları atlandı: {e}")
     payload = site_payload(rows, demo, perf, nes_info, yday, None if demo else hist_all)
     payload["pazar_dogrulama"] = None if not valid else {str(k): x for k, x in valid.items()}
+    payload["ledger"] = None
+    if not demo:
+        try:
+            led, n_new = ledger_update(payload["matches"])
+            byid_l, _ = nesine_results()
+            payload["ledger"] = ledger_report(led, byid_l)
+            print(f"  Tahmin defteri: {len(led)} maç ({n_new} yeni); sonuçlanan: " +
+                  ", ".join(f"{k} n={v['n']} model {v['ll_model']} piyasa {v['ll_market']}" for k, v in payload["ledger"].items()))
+        except Exception as e:  # noqa: BLE001  defter sayfayı bozmasın
+            print(f"  ! tahmin defteri atlandı: {e}")
     if not demo:
         try:
             save_coupons(payload["coupons"])
