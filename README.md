@@ -37,3 +37,9 @@ Aday: Nesine'nin maçta açtığı ve `pazarlar.py`'de tanımlı bütün bahis t
 
 ## 14 günde milyoner köşesi
 Sanal 100 TL'lik kasa her gün tamamen bota en güvendiği, toplam oranı en az 2 olan 1-3 maçlık kuponda oynanır (`bot.build_milyoner`: oran ≥ 2 koşuluyla tutma olasılığı en yüksek kupon; bacakların MBS koşulu kupondaki maç sayısını aşmaz). Kupon maç günü ilk kaydedildiği hâliyle sabit kalır, `kupon_gecmisi.json` içinde `mil` işaretiyle saklanır ve diğer kupon istatistiklerine karışmaz. Sonuçlar mevcut kupon denetimiyle gelir; `mil_summary` seriyi çıkarır: tutan kuponun oranıyla kasa çarpılır, tutmayan denemeyi bitirir (ertesi gün yeniden 100 TL), 14 gün üst üste tutarsa 100 × 2^14 = 1.638.400 TL hedefine ulaşılmış sayılır. Uygun kupon çıkmayan gün atlanır. Sayfa, kuponun tutma olasılığından 14 günlük serinin olasılığını açıkça gösterir; köşe gerçek parayla tüm kasayı oynamak için bir öneri değildir.
+
+## Model ayarı (haftalık)
+
+`.github/workflows/tune.yml` haftada bir `python bot.py tune` çalıştırır. Şut verisinden üretilen beklenen gol (xG vekili), yarı ömür, ceza ve olasılık kısması geçmiş maçlarda
+walk-forward (her hafta yalnızca o güne kadarki veriyle) denenir. Ölçüt 1X2, Üst 2.5 ve KG log-loss ortalamasıdır. Kazanç 0,0005'ten azsa varsayılan model kalır.
+Sonuç `data/model_ayar.json` dosyasına yazılır; site bunu okur. Yeni bir özellik ancak ölçümde işe yararsa kullanılır.
