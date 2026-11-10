@@ -1,0 +1,40 @@
+name: Model ayarı
+
+# Haftada bir (pazar 03:00 TR) ve elle: şut ağırlığı, yarı ömür, ceza ve kısma değerlerini geçmiş maçlarda dener.
+# Yalnızca walk-forward log-loss'u gerçekten düşürüyorsa data/model_ayar.json "used": true olur; site bunu okur.
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tune
+  cancel-in-progress: false
+
+jobs:
+  tune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: data/*.csv
+          key: fd-${{ github.run_id }}
+          restore-keys: fd-
+      - run: python bot.py update
+      - run: python bot.py tune --days 365 | tee tune.log
+      - name: Sonucu depoya yaz
+        run: |
+          git config user.name "gol-radar-bot"
+          git config user.email "gol-radar-bot@users.noreply.github.com"
+          git add -f data/model_ayar.json
+          git diff --cached --quiet || (git commit -m "Model ayarı güncellendi" && for i in 1 2 3; do git pull --rebase --autostash && git push && break || sleep 5; done)
