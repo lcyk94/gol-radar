@@ -8591,7 +8591,159 @@
       ]
      }
     ]
+   },
+   {
+    "odds": 2.17,
+    "p": 0.4148,
+    "p_model": 0.4223,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kawasaki Frontale",
+      "away": "Kashiwa Reysol",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Var",
+      "o": 1.26,
+      "p": 0.746,
+      "nid": 3361199,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.54,
+      "edge": 0.207,
+      "why": [
+       "Model beklentisi: Kawasaki Frontale 1.89, Kashiwa Reysol 2.07 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol); Kashiwa Reysol son 5 maçta 3G 1B 1M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Kawasaki Frontale maçlarında ortalama 3.8, Kashiwa Reysol maçlarında 3.7 gol; 2.5 üst oranı %90 / %70, iki takım da gol atma oranı %90 / %60.",
+       "Son ikili maçlar: Kashiwa Reysol 2-1 Kawasaki Frontale, Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale."
+      ],
+      "pm": 0.746,
+      "pb": 0.746
+     },
+     {
+      "time": "",
+      "home": "Vissel Kobe",
+      "away": "Machida",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Yok",
+      "o": 1.72,
+      "p": 0.566,
+      "nid": 3361184,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.46,
+      "edge": 0.106,
+      "why": [
+       "Model beklentisi: Vissel Kobe 1.01, Machida 1.11 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Vissel Kobe son 5 maçta 2G 2B 1M (9-5 gol); Machida son 5 maçta 2G 3B 0M (8-0 gol).",
+       "Gol temposu (son 10+ maç): Vissel Kobe maçlarında ortalama 3.0, Machida maçlarında 2.4 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %60 / %40.",
+       "Son ikili maçlar: Vissel Kobe 0-0 Machida, Machida 2-0 Vissel Kobe, Vissel Kobe 1-0 Machida."
+      ],
+      "pm": 0.547,
+      "pb": 0.556
+     }
+    ]
    }
-  ]
+  ],
+  "saved_on": "2026-11-11",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 2,
+      "time": "",
+      "home": "Kawasaki Frontale",
+      "away": "Kashiwa Reysol",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.29,
+      "p": 0.756,
+      "base": 0.488,
+      "edge": 0.268,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3361199,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Kawasaki Frontale 1.89, Kashiwa Reysol 2.07 gol. Bu seçenek %76 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol); Kashiwa Reysol son 5 maçta 3G 1B 1M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Kawasaki Frontale maçlarında ortalama 3.8, Kashiwa Reysol maçlarında 3.7 gol; 2.5 üst oranı %90 / %70, iki takım da gol atma oranı %90 / %60.",
+       "Son ikili maçlar: Kashiwa Reysol 2-1 Kawasaki Frontale, Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale."
+      ]
+     },
+     {
+      "id": 3,
+      "time": "",
+      "home": "Urawa Reds",
+      "away": "Cerezo Osaka",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.36,
+      "p": 0.634,
+      "base": 0.488,
+      "edge": 0.146,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3361187,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Urawa Reds 1.94, Cerezo Osaka 1.33 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Urawa Reds son 5 maçta 3G 1B 1M (7-8 gol); Cerezo Osaka son 5 maçta 1G 2B 2M (9-13 gol).",
+       "Gol temposu (son 10+ maç): Urawa Reds maçlarında ortalama 3.1, Cerezo Osaka maçlarında 3.3 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %50 / %70.",
+       "Son ikili maçlar: Urawa Reds 0-0 Cerezo Osaka, Cerezo Osaka 1-1 Urawa Reds, Urawa Reds 0-1 Cerezo Osaka."
+      ]
+     },
+     {
+      "id": 1,
+      "time": "",
+      "home": "Vissel Kobe",
+      "away": "Machida",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.72,
+      "p": 0.566,
+      "base": 0.46,
+      "edge": 0.106,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3361184,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Vissel Kobe 1.01, Machida 1.11 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Vissel Kobe son 5 maçta 2G 2B 1M (9-5 gol); Machida son 5 maçta 2G 3B 0M (8-0 gol).",
+       "Gol temposu (son 10+ maç): Vissel Kobe maçlarında ortalama 3.0, Machida maçlarında 2.4 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %60 / %40.",
+       "Son ikili maçlar: Vissel Kobe 0-0 Machida, Machida 2-0 Vissel Kobe, Vissel Kobe 1-0 Machida."
+      ]
+     }
+    ],
+    "odds": 3.02,
+    "date": "2026-11-11",
+    "p": 0.2714,
+    "ev": 0.82,
+    "score": 0.22
+   }
+  ],
+  "mil_saved_on": "2026-11-11"
  }
 }
