@@ -1,3 +1,4 @@
+import math
 """Kupon motoru testleri. Veri SENTETİKTİR: kurgusal takımlar, Nesine'nin pazar yapısını taklit eden oranlar."""
 import sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
@@ -343,3 +344,22 @@ def test_mil_summary_keeps_legs():
          "2026-09-02": [{"mil": True, "odds": 2.0, "status": "lost", "p": .6, "legs": [dict(leg, ok=False, score="0-1")]}]}
     a = bot.mil_summary(g)["attempts"][0]
     assert a["result"] == "lost" and a["path"][0]["legs"][0]["score"] == "2-0" and a["path"][1]["legs"][0]["ok"] is False
+
+
+def test_ledger_update_and_report(tmp_path):
+    def nm(ps, odds):
+        return {"mtid": "1", "line": 0, "ps": ps, "outs": [{"n": i + 1, "o": o} for i, o in enumerate(odds)]}
+    ms = [{"nid": 5, "date": "2026-12-01", "home": "A", "away": "B", "src": "model",
+           "nm": [nm([.5, .3, .2], [2.0, 3.3, 4.0]),
+                  {"mtid": "12", "line": 2.5, "ps": [.45, .55], "outs": [{"n": 1, "o": 1.95}, {"n": 2, "o": 1.85}]}]},
+          {"nid": 6, "date": "2026-11-20", "home": "C", "away": "D", "src": "model", "nm": [nm([.4, .3, .3], [2.4, 3.2, 3.0])]},  # geçmiş gün: yazılmaz
+          {"nid": 7, "date": "2026-12-01", "home": "E", "away": "F", "src": "model", "nm": [nm(None, [2.0, 3.0, 3.5])]}]        # modelsiz: yazılmaz
+    led, n = bot.ledger_update(ms, today="2026-12-01", path=tmp_path / "l.json")
+    assert set(led) == {"5"} and n == 1 and set(led["5"]) >= {"ms", "ou", "h", "a"}
+    led, n2 = bot.ledger_update(ms, today="2026-12-01", path=tmp_path / "l.json")
+    assert n2 == 0 and len(led) == 1
+    rep = bot.ledger_report(led, {5: (2, 1, None, None)})
+    assert rep["ms"]["n"] == 1 and rep["ou"]["n"] == 1
+    assert abs(rep["ms"]["ll_model"] - (-math.log(.5))) < 1e-3          # ev galibiyeti, model .5 demişti
+    assert rep["ou"]["ll_model"] == round(-math.log(.55), 4)           # 3 gol: Üst
+    assert bot.ledger_report(led, {}) == {}
