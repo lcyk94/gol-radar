@@ -8262,8 +8262,8 @@
  "2026-11-10": {
   "list": [
    {
-    "odds": 3.02,
-    "p": 0.2691,
+    "odds": 3.07,
+    "p": 0.2629,
     "legs": [
      {
       "time": "",
@@ -8271,7 +8271,7 @@
       "away": "Gillingham",
       "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.89,
+      "o": 1.86,
       "p": 0.688,
       "nid": 3284201,
       "mk": "Karşılıklı Gol",
@@ -8280,35 +8280,12 @@
       "idx": 1,
       "fam": "KG",
       "base": 0.476,
-      "edge": 0.212,
+      "edge": 0.211,
       "why": [
-       "Model beklentisi: Northampton 0.94, Gillingham 0.69 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Model beklentisi: Northampton 0.94, Gillingham 0.70 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
        "Form: Northampton son 5 maçta 2G 1B 2M (5-3 gol); Gillingham son 5 maçta 2G 1B 2M (9-10 gol).",
        "Gol temposu (son 10+ maç): Northampton maçlarında ortalama 1.6, Gillingham maçlarında 3.2 gol; 2.5 üst oranı %0 / %70, iki takım da gol atma oranı %30 / %60.",
        "Son ikili maçlar: Gillingham 1-1 Northampton."
-      ]
-     },
-     {
-      "time": "22:00",
-      "home": "Oxford",
-      "away": "Cheltenham",
-      "league": "İngiltere Trophy Kupası, Güney",
-      "sel": "2,5 Üst",
-      "o": 1.24,
-      "p": 0.636,
-      "nid": 3284434,
-      "mk": "Alt/Üst 2,5",
-      "mtid": 12,
-      "line": 2.5,
-      "idx": 1,
-      "fam": "AÜ",
-      "base": 0.501,
-      "edge": 0.135,
-      "why": [
-       "Model beklentisi: Oxford 2.43, Cheltenham 0.85 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
-       "Form: Oxford son 5 maçta 3G 2B 0M (6-2 gol); Cheltenham son 5 maçta 2G 0B 3M (7-11 gol).",
-       "Gol temposu (son 10+ maç): Oxford maçlarında ortalama 2.2, Cheltenham maçlarında 3.3 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %50 / %70.",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      },
      {
@@ -8317,8 +8294,8 @@
       "away": "Leyton Orient",
       "league": "İngiltere Trophy Kupası, Güney",
       "sel": "2,5 Üst",
-      "o": 1.29,
-      "p": 0.615,
+      "o": 1.26,
+      "p": 0.624,
       "nid": 3284450,
       "mk": "Alt/Üst 2,5",
       "mtid": 12,
@@ -8326,11 +8303,34 @@
       "idx": 1,
       "fam": "AÜ",
       "base": 0.501,
-      "edge": 0.115,
+      "edge": 0.123,
       "why": [
-       "Model beklentisi: Barnet 1.82, Leyton Orient 1.36 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Model beklentisi: Barnet 1.83, Leyton Orient 1.39 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
        "Form: Barnet son 5 maçta 2G 2B 1M (8-7 gol); Leyton Orient son 5 maçta 2G 1B 2M (6-3 gol).",
        "Gol temposu (son 10+ maç): Barnet maçlarında ortalama 3.4, Leyton Orient maçlarında 2.4 gol; 2.5 üst oranı %70 / %40, iki takım da gol atma oranı %100 / %30.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "22:30",
+      "home": "Bradford",
+      "away": "Cork City",
+      "league": "İngiltere Trophy Kupası, Kuzey",
+      "sel": "MS 1",
+      "o": 1.31,
+      "p": 0.612,
+      "nid": 3284357,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.172,
+      "why": [
+       "Model beklentisi: Bradford 1.85, Cork City 0.82 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Bradford son 5 maçta 1G 3B 1M (2-3 gol); Cork City son 5 maçta 0G 1B 4M (3-7 gol).",
+       "Hücum/savunma (son 10+ maç): Bradford 0.7 atıyor, 0.6 yiyor; Cork City 0.6 atıyor, 1.5 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
@@ -8420,6 +8420,178 @@
     ]
    }
   ],
+  "saved_on": "2026-11-10",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 1,
+      "time": "",
+      "home": "Northampton",
+      "away": "Gillingham",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.86,
+      "p": 0.688,
+      "base": 0.476,
+      "edge": 0.211,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3284201,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Northampton 0.94, Gillingham 0.70 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Northampton son 5 maçta 2G 1B 2M (5-3 gol); Gillingham son 5 maçta 2G 1B 2M (9-10 gol).",
+       "Gol temposu (son 10+ maç): Northampton maçlarında ortalama 1.6, Gillingham maçlarında 3.2 gol; 2.5 üst oranı %0 / %70, iki takım da gol atma oranı %30 / %60.",
+       "Son ikili maçlar: Gillingham 1-1 Northampton."
+      ]
+     },
+     {
+      "id": 26,
+      "time": "22:00",
+      "home": "Barnet",
+      "away": "Leyton Orient",
+      "league": "İngiltere Trophy Kupası, Güney",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.26,
+      "p": 0.624,
+      "base": 0.501,
+      "edge": 0.123,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "blend",
+      "nid": 3284450,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Barnet 1.83, Leyton Orient 1.39 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Barnet son 5 maçta 2G 2B 1M (8-7 gol); Leyton Orient son 5 maçta 2G 1B 2M (6-3 gol).",
+       "Gol temposu (son 10+ maç): Barnet maçlarında ortalama 3.4, Leyton Orient maçlarında 2.4 gol; 2.5 üst oranı %70 / %40, iki takım da gol atma oranı %100 / %30.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "id": 35,
+      "time": "22:30",
+      "home": "Bradford",
+      "away": "Cork City",
+      "league": "İngiltere Trophy Kupası, Kuzey",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.31,
+      "p": 0.612,
+      "base": 0.44,
+      "edge": 0.172,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3284357,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Bradford 1.85, Cork City 0.82 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Bradford son 5 maçta 1G 3B 1M (2-3 gol); Cork City son 5 maçta 0G 1B 4M (3-7 gol).",
+       "Hücum/savunma (son 10+ maç): Bradford 0.7 atıyor, 0.6 yiyor; Cork City 0.6 atıyor, 1.5 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.07,
+    "date": "2026-11-10",
+    "p": 0.2629,
+    "ev": 0.81,
+    "score": 0.507
+   }
+  ],
   "mil_saved_on": "2026-11-10"
+ },
+ "2026-11-11": {
+  "list": [
+   {
+    "odds": 3.02,
+    "p": 0.2714,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kawasaki Frontale",
+      "away": "Kashiwa Reysol",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "o": 1.29,
+      "p": 0.756,
+      "nid": 3361199,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.488,
+      "edge": 0.268,
+      "why": [
+       "Model beklentisi: Kawasaki Frontale 1.89, Kashiwa Reysol 2.07 gol. Bu seçenek %76 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol); Kashiwa Reysol son 5 maçta 3G 1B 1M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Kawasaki Frontale maçlarında ortalama 3.8, Kashiwa Reysol maçlarında 3.7 gol; 2.5 üst oranı %90 / %70, iki takım da gol atma oranı %90 / %60.",
+       "Son ikili maçlar: Kashiwa Reysol 2-1 Kawasaki Frontale, Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Urawa Reds",
+      "away": "Cerezo Osaka",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "o": 1.36,
+      "p": 0.634,
+      "nid": 3361187,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.488,
+      "edge": 0.146,
+      "why": [
+       "Model beklentisi: Urawa Reds 1.94, Cerezo Osaka 1.33 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Urawa Reds son 5 maçta 3G 1B 1M (7-8 gol); Cerezo Osaka son 5 maçta 1G 2B 2M (9-13 gol).",
+       "Gol temposu (son 10+ maç): Urawa Reds maçlarında ortalama 3.1, Cerezo Osaka maçlarında 3.3 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %50 / %70.",
+       "Son ikili maçlar: Urawa Reds 0-0 Cerezo Osaka, Cerezo Osaka 1-1 Urawa Reds, Urawa Reds 0-1 Cerezo Osaka."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Vissel Kobe",
+      "away": "Machida",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Yok",
+      "o": 1.72,
+      "p": 0.566,
+      "nid": 3361184,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.46,
+      "edge": 0.106,
+      "why": [
+       "Model beklentisi: Vissel Kobe 1.01, Machida 1.11 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Vissel Kobe son 5 maçta 2G 2B 1M (9-5 gol); Machida son 5 maçta 2G 3B 0M (8-0 gol).",
+       "Gol temposu (son 10+ maç): Vissel Kobe maçlarında ortalama 3.0, Machida maçlarında 2.4 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %60 / %40.",
+       "Son ikili maçlar: Vissel Kobe 0-0 Machida, Machida 2-0 Vissel Kobe, Vissel Kobe 1-0 Machida."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
