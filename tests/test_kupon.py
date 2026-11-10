@@ -363,3 +363,52 @@ def test_ledger_update_and_report(tmp_path):
     assert abs(rep["ms"]["ll_model"] - (-math.log(.5))) < 1e-3          # ev galibiyeti, model .5 demişti
     assert rep["ou"]["ll_model"] == round(-math.log(.55), 4)           # 3 gol: Üst
     assert bot.ledger_report(led, {}) == {}
+
+
+# ---- model ayarı: şut vekili, kısma, walk-forward seçimi ----
+def _syn_league(rounds=110, seed=1, shots=True):
+    import numpy as np, pandas as pd
+    rng = np.random.default_rng(seed)
+    att, dfn = rng.normal(0, .25, 20), rng.normal(0, .25, 20)
+    rows = []
+    for rd in range(rounds):
+        perm = rng.permutation(20)
+        for a in range(0, 20, 2):
+            h, w = perm[a], perm[a + 1]
+            lh, la = np.exp(.45 + att[h] - dfn[w]), np.exp(.25 + att[w] - dfn[h])
+            r = dict(Div="E0", Date=pd.Timestamp("2025-08-01") + pd.Timedelta(days=rd * 7), HomeTeam=f"T{h}",
+                     AwayTeam=f"T{w}", FTHG=rng.poisson(lh), FTAG=rng.poisson(la))
+            if shots:
+                hst, ast = rng.poisson(lh * 3.2), rng.poisson(la * 3.2)
+                r.update(HST=hst, AST=ast, HS=hst + rng.poisson(5), AS=ast + rng.poisson(5))
+            rows.append(r)
+    return pd.DataFrame(rows)
+
+
+def test_shot_proxy_and_shrink():
+    df = _syn_league(40)
+    px = bot.Model._xg_proxy(df)
+    assert px is not None and abs(np.nanmean(px[0]) - df["FTHG"].mean()) < 0.15      # vekil ortalamada gollerle uyumlu
+    assert bot.Model._xg_proxy(df.drop(columns=["HS", "AS", "HST", "AST"])) is None   # şut yoksa kullanılmaz
+    m0 = bot.Model(shot_w=0.0).fit(df)
+    m1 = bot.Model(shot_w=0.5).fit(df)
+    assert m1.fit(df.drop(columns=["HS", "AS", "HST", "AST"])).knows("T1", "T2")       # şutsuz veriyle de çalışır
+    h, a = "T1", "T2"
+    lh_full, _ = m0.lambdas(h, a)
+    m0.shrink = 0.8
+    lh_shr, _ = m0.lambdas(h, a)
+    assert abs(math.log(lh_shr) - m0.mu - m0.home) <= abs(math.log(lh_full) - m0.mu - m0.home) + 1e-12   # kısma ortalamaya çeker
+
+
+def test_tune_writes_config(tmp_path, monkeypatch):
+    monkeypatch.setattr(bot, "DATA_DIR", tmp_path)
+    _syn_league(110).to_csv(tmp_path / "E0_2526.csv", index=False, date_format="%d/%m/%Y")
+    out = tmp_path / "model_ayar.json"
+    res = bot.cmd_tune(["E0"], out=out, n_days=100)
+    assert out.exists() and res["n"] > 50
+    assert res["best_loss"] <= res["default_loss"] + 1e-9           # seçilen ayar varsayılandan kötü olamaz
+    assert res["used"] == (res["default_loss"] - res["best_loss"] >= bot.TUNE_MIN_GAIN)
+    cfg = bot.load_model_cfg(out)
+    assert (not res["used"]) or cfg.get("shot_w") is not None
+    bot.load_model_cfg(tmp_path / "yok.json")                         # dosya yoksa varsayılanlar
+    assert bot._CFG == {}
