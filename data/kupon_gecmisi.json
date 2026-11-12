@@ -8823,7 +8823,7 @@
     ]
    },
    {
-    "odds": 3.43,
+    "odds": 3.38,
     "p": 0.3003,
     "legs": [
      {
@@ -8855,7 +8855,7 @@
       "away": "Northampton",
       "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.62,
+      "o": 1.6,
       "p": 0.708,
       "nid": 3294047,
       "mk": "Karşılıklı Gol",
@@ -8898,8 +8898,8 @@
     ]
    },
    {
-    "odds": 4.38,
-    "p": 0.2411,
+    "odds": 4.28,
+    "p": 0.2424,
     "legs": [
      {
       "time": "",
@@ -8953,8 +8953,8 @@
       "away": "Union de Santa Fe",
       "league": "Kolombiya Liga Dimayor, Final",
       "sel": "Ev 1,5 Üst",
-      "o": 2.24,
-      "p": 0.68,
+      "o": 2.19,
+      "p": 0.683,
       "nid": 3390355,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -8962,9 +8962,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.443,
-      "edge": 0.237,
+      "edge": 0.24,
       "why": [
-       "Model beklentisi: Inter 2.35, Union de Santa Fe 1.31 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Inter 2.36, Union de Santa Fe 1.32 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); Union de Santa Fe son 5 maçta 2G 2B 1M (7-5 gol).",
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -8974,7 +8974,7 @@
    },
    {
     "odds": 4.71,
-    "p": 0.2665,
+    "p": 0.2661,
     "legs": [
      {
       "time": "",
@@ -9029,7 +9029,7 @@
       "league": "İspanya Primera RFEF",
       "sel": "HMS -1 · 2",
       "o": 1.34,
-      "p": 0.775,
+      "p": 0.774,
       "nid": 3298766,
       "mk": "Handikaplı MS (ev -1)",
       "mtid": 268,
@@ -9037,9 +9037,9 @@
       "idx": 2,
       "fam": "HMS",
       "base": 0.56,
-      "edge": 0.216,
+      "edge": 0.214,
       "why": [
-       "Model beklentisi: Heracles 1.17, Villarreal 1.91 gol. Bu seçenek %78 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Model beklentisi: Heracles 1.18, Villarreal 1.93 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
        "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
        "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -9048,8 +9048,8 @@
     ]
    },
    {
-    "odds": 7.36,
-    "p": 0.3909,
+    "odds": 7.2,
+    "p": 0.3929,
     "surprise": true,
     "legs": [
      {
@@ -9104,8 +9104,8 @@
       "away": "Union de Santa Fe",
       "league": "Kolombiya Liga Dimayor, Final",
       "sel": "Ev 1,5 Üst",
-      "o": 2.24,
-      "p": 0.68,
+      "o": 2.19,
+      "p": 0.683,
       "nid": 3390355,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -9113,9 +9113,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.443,
-      "edge": 0.237,
+      "edge": 0.24,
       "why": [
-       "Model beklentisi: Inter 2.35, Union de Santa Fe 1.31 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Inter 2.36, Union de Santa Fe 1.32 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); Union de Santa Fe son 5 maçta 2G 2B 1M (7-5 gol).",
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -9124,7 +9124,7 @@
     ]
    },
    {
-    "odds": 6.26,
+    "odds": 6.19,
     "p": 0.2456,
     "surprise": true,
     "legs": [
@@ -9156,7 +9156,7 @@
       "away": "Northampton",
       "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.62,
+      "o": 1.6,
       "p": 0.708,
       "nid": 3294047,
       "mk": "Karşılıklı Gol",
