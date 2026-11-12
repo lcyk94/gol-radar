@@ -8749,7 +8749,7 @@
  "2026-11-14": {
   "list": [
    {
-    "odds": 3.81,
+    "odds": 4.0,
     "p": 0.249,
     "legs": [
      {
@@ -8758,7 +8758,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "HMS -1 · 1",
-      "o": 2.29,
+      "o": 2.41,
       "p": 0.712,
       "nid": 3298942,
       "mk": "Handikaplı MS (ev -1)",
@@ -8824,7 +8824,7 @@
    },
    {
     "odds": 3.25,
-    "p": 0.3003,
+    "p": 0.3002,
     "legs": [
      {
       "time": "",
@@ -8899,7 +8899,7 @@
    },
    {
     "odds": 4.37,
-    "p": 0.2413,
+    "p": 0.2412,
     "legs": [
      {
       "time": "",
@@ -8974,7 +8974,7 @@
    },
    {
     "odds": 4.82,
-    "p": 0.2639,
+    "p": 0.2638,
     "legs": [
      {
       "time": "",
@@ -9013,7 +9013,7 @@
       "idx": 1,
       "fam": "YARI",
       "base": 0.41,
-      "edge": 0.161,
+      "edge": 0.16,
       "why": [
        "Model beklentisi: Oviedo 0.92, Girona 1.03 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
        "Form: Oviedo son 5 maçta 3G 1B 1M (11-8 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
@@ -9039,7 +9039,7 @@
       "base": 0.56,
       "edge": 0.208,
       "why": [
-       "Model beklentisi: Heracles 1.21, Villarreal 1.93 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Model beklentisi: Heracles 1.21, Villarreal 1.92 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
        "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
        "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -9048,8 +9048,8 @@
     ]
    },
    {
-    "odds": 6.14,
-    "p": 0.407,
+    "odds": 6.04,
+    "p": 0.4153,
     "surprise": true,
     "legs": [
      {
@@ -9081,7 +9081,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "MS 1",
-      "o": 1.46,
+      "o": 1.52,
       "p": 0.866,
       "nid": 3298942,
       "mk": "Maç Sonucu",
@@ -9098,6 +9098,36 @@
        "Son ikili maçlar: Girona 2-1 Barcelona, Barcelona 2-1 Girona, Barcelona 4-1 Girona."
       ]
      },
+     {
+      "time": "",
+      "home": "Mallorca",
+      "away": "Cordoba",
+      "league": "İspanya Segunda",
+      "sel": "Dep hiçbir yarıyı kazanamaz",
+      "o": 1.51,
+      "p": 0.722,
+      "nid": 3299057,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.564,
+      "edge": 0.158,
+      "why": [
+       "Model beklentisi: Mallorca 1.68, Cordoba 0.72 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Mallorca son 5 maçta 2G 3B 0M (7-4 gol); Cordoba son 5 maçta 3G 1B 1M (9-4 gol).",
+       "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.8, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %60.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 6.01,
+    "p": 0.3113,
+    "surprise": true,
+    "legs": [
      {
       "time": "",
       "home": "Salford",
@@ -9119,34 +9149,27 @@
        "Form: Salford son 5 maçta 5G 0B 0M (12-5 gol); Northampton son 5 maçta 2G 1B 2M (5-3 gol).",
        "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Northampton maçlarında 1.6 gol; 2.5 üst oranı %60 / %0, iki takım da gol atma oranı %60 / %30."
       ]
-     }
-    ]
-   },
-   {
-    "odds": 6.75,
-    "p": 0.2999,
-    "surprise": true,
-    "legs": [
+     },
      {
       "time": "",
-      "home": "Mallorca",
-      "away": "Cordoba",
-      "league": "İspanya Segunda",
+      "home": "Exeter",
+      "away": "Cheltenham",
+      "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 2.19,
-      "p": 0.574,
-      "nid": 3299057,
+      "o": 1.67,
+      "p": 0.647,
+      "nid": 3295196,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
       "line": 0.0,
       "idx": 1,
       "fam": "KG",
-      "base": 0.471,
-      "edge": 0.104,
+      "base": 0.476,
+      "edge": 0.171,
       "why": [
-       "Model beklentisi: Mallorca 1.68, Cordoba 0.72 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
-       "Form: Mallorca son 5 maçta 2G 3B 0M (7-4 gol); Cordoba son 5 maçta 3G 1B 1M (9-4 gol).",
-       "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.8, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %60."
+       "Model beklentisi: Exeter 1.22, Cheltenham 0.67 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Exeter son 5 maçta 3G 1B 1M (6-3 gol); Cheltenham son 5 maçta 2G 0B 3M (7-11 gol).",
+       "Gol temposu (son 10+ maç): Exeter maçlarında ortalama 1.2, Cheltenham maçlarında 3.3 gol; 2.5 üst oranı %20 / %60, iki takım da gol atma oranı %20 / %70."
       ]
      },
      {
@@ -9171,36 +9194,13 @@
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
-     },
-     {
-      "time": "20:45",
-      "home": "Heracles",
-      "away": "Villarreal",
-      "league": "İspanya Primera RFEF",
-      "sel": "HMS -1 · 2",
-      "o": 1.37,
-      "p": 0.768,
-      "nid": 3298766,
-      "mk": "Handikaplı MS (ev -1)",
-      "mtid": 268,
-      "line": -1.0,
-      "idx": 2,
-      "fam": "HMS",
-      "base": 0.56,
-      "edge": 0.208,
-      "why": [
-       "Model beklentisi: Heracles 1.21, Villarreal 1.93 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
-       "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
-       "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
      }
     ]
    },
    {
     "odds": 2.19,
     "p": 0.501,
-    "p_model": 0.5744,
+    "p_model": 0.5743,
     "mil": true,
     "legs": [
      {
@@ -9218,7 +9218,7 @@
       "idx": 1,
       "fam": "KG",
       "base": 0.471,
-      "edge": 0.104,
+      "edge": 0.103,
       "why": [
        "Model beklentisi: Mallorca 1.68, Cordoba 0.72 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
        "Form: Mallorca son 5 maçta 2G 3B 0M (7-4 gol); Cordoba son 5 maçta 3G 1B 1M (9-4 gol).",
