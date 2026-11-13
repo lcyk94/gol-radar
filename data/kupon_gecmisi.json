@@ -8749,7 +8749,7 @@
  "2026-11-14": {
   "list": [
    {
-    "odds": 5.17,
+    "odds": 4.95,
     "p": 0.249,
     "legs": [
      {
@@ -8758,7 +8758,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "HMS -1 · 1",
-      "o": 3.11,
+      "o": 2.98,
       "p": 0.712,
       "nid": 3298942,
       "mk": "Handikaplı MS (ev -1)",
@@ -8823,7 +8823,7 @@
     ]
    },
    {
-    "odds": 3.19,
+    "odds": 3.23,
     "p": 0.3002,
     "legs": [
      {
@@ -8877,7 +8877,7 @@
       "away": "Castellon",
       "league": "İspanya Segunda",
       "sel": "Dep bir yarıyı kazanır",
-      "o": 1.44,
+      "o": 1.46,
       "p": 0.626,
       "nid": 3299150,
       "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
@@ -8898,8 +8898,8 @@
     ]
    },
    {
-    "odds": 4.37,
-    "p": 0.2412,
+    "odds": 4.44,
+    "p": 0.2404,
     "legs": [
      {
       "time": "",
@@ -8953,8 +8953,8 @@
       "away": "Union de Santa Fe",
       "league": "Kolombiya Liga Dimayor, Final",
       "sel": "Ev 1,5 Üst",
-      "o": 2.25,
-      "p": 0.68,
+      "o": 2.29,
+      "p": 0.678,
       "nid": 3390355,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -8962,9 +8962,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.443,
-      "edge": 0.237,
+      "edge": 0.235,
       "why": [
-       "Model beklentisi: Inter 2.35, Union de Santa Fe 1.34 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Inter 2.34, Union de Santa Fe 1.35 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); Union de Santa Fe son 5 maçta 2G 2B 1M (7-5 gol).",
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -9048,7 +9048,7 @@
     ]
    },
    {
-    "odds": 6.53,
+    "odds": 6.35,
     "p": 0.4414,
     "surprise": true,
     "legs": [
@@ -9058,7 +9058,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "MS 1",
-      "o": 1.8,
+      "o": 1.75,
       "p": 0.866,
       "nid": 3298942,
       "mk": "Maç Sonucu",
@@ -9124,54 +9124,52 @@
     ]
    },
    {
-    "odds": 6.08,
-    "p": 0.2967,
+    "odds": 6.0,
+    "p": 0.3102,
     "surprise": true,
     "legs": [
      {
       "time": "",
-      "home": "Mallorca",
-      "away": "Cordoba",
-      "league": "İspanya Segunda",
-      "sel": "Dep hiçbir yarıyı kazanamaz",
-      "o": 1.51,
-      "p": 0.722,
-      "nid": 3299057,
-      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
-      "mtid": 585,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "YARI",
-      "base": 0.564,
-      "edge": 0.158,
-      "why": [
-       "Model beklentisi: Mallorca 1.68, Cordoba 0.72 gol. Bu seçenek %72 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
-       "Form: Mallorca son 5 maçta 2G 3B 0M (7-4 gol); Cordoba son 5 maçta 3G 1B 1M (9-4 gol).",
-       "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.8, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %60.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Oviedo",
-      "away": "Girona",
-      "league": "İspanya La Liga",
+      "home": "Salford",
+      "away": "Northampton",
+      "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.79,
-      "p": 0.604,
-      "nid": 3299318,
+      "o": 1.57,
+      "p": 0.708,
+      "nid": 3294047,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
       "line": 0.0,
       "idx": 1,
       "fam": "KG",
-      "base": 0.455,
-      "edge": 0.149,
+      "base": 0.476,
+      "edge": 0.231,
       "why": [
-       "Model beklentisi: Oviedo 0.92, Girona 1.03 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
-       "Form: Oviedo son 5 maçta 3G 1B 1M (11-8 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
-       "Gol temposu (son 10+ maç): Oviedo maçlarında ortalama 3.3, Girona maçlarında 2.2 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %40.",
-       "Son ikili maçlar: Oviedo 1-0 Girona, Girona 3-3 Oviedo."
+       "Model beklentisi: Salford 1.11, Northampton 0.55 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Salford son 5 maçta 5G 0B 0M (12-5 gol); Northampton son 5 maçta 2G 1B 2M (5-3 gol).",
+       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Northampton maçlarında 1.6 gol; 2.5 üst oranı %60 / %0, iki takım da gol atma oranı %60 / %30."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Exeter",
+      "away": "Cheltenham",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "o": 1.67,
+      "p": 0.647,
+      "nid": 3295196,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.476,
+      "edge": 0.171,
+      "why": [
+       "Model beklentisi: Exeter 1.22, Cheltenham 0.67 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Exeter son 5 maçta 3G 1B 1M (6-3 gol); Cheltenham son 5 maçta 2G 0B 3M (7-11 gol).",
+       "Gol temposu (son 10+ maç): Exeter maçlarında ortalama 1.2, Cheltenham maçlarında 3.3 gol; 2.5 üst oranı %20 / %60, iki takım da gol atma oranı %20 / %70."
       ]
      },
      {
@@ -9180,8 +9178,8 @@
       "away": "Union de Santa Fe",
       "league": "Kolombiya Liga Dimayor, Final",
       "sel": "Ev 1,5 Üst",
-      "o": 2.25,
-      "p": 0.68,
+      "o": 2.29,
+      "p": 0.678,
       "nid": 3390355,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -9189,9 +9187,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.443,
-      "edge": 0.237,
+      "edge": 0.235,
       "why": [
-       "Model beklentisi: Inter 2.35, Union de Santa Fe 1.34 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Inter 2.34, Union de Santa Fe 1.35 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); Union de Santa Fe son 5 maçta 2G 2B 1M (7-5 gol).",
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
