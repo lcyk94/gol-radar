@@ -8749,7 +8749,7 @@
  "2026-11-14": {
   "list": [
    {
-    "odds": 4.95,
+    "odds": 5.38,
     "p": 0.249,
     "legs": [
      {
@@ -8758,7 +8758,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "HMS -1 · 1",
-      "o": 2.98,
+      "o": 3.24,
       "p": 0.712,
       "nid": 3298942,
       "mk": "Handikaplı MS (ev -1)",
@@ -8898,7 +8898,7 @@
     ]
    },
    {
-    "odds": 4.44,
+    "odds": 4.48,
     "p": 0.2404,
     "legs": [
      {
@@ -8907,7 +8907,7 @@
       "away": "Aldershot",
       "league": "İngiltere Conference",
       "sel": "MS1 & 1,5 Üst",
-      "o": 1.32,
+      "o": 1.33,
       "p": 0.58,
       "nid": 3293434,
       "mk": "Maç Sonucu & 1,5 Alt/Üst",
@@ -8973,8 +8973,8 @@
     ]
    },
    {
-    "odds": 4.82,
-    "p": 0.2641,
+    "odds": 4.64,
+    "p": 0.2653,
     "legs": [
      {
       "time": "",
@@ -9004,7 +9004,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "Ev hiçbir yarıyı kazanamaz",
-      "o": 1.87,
+      "o": 1.83,
       "p": 0.57,
       "nid": 3299318,
       "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
@@ -9028,8 +9028,8 @@
       "away": "Villarreal",
       "league": "İspanya Primera RFEF",
       "sel": "HMS -1 · 2",
-      "o": 1.37,
-      "p": 0.769,
+      "o": 1.35,
+      "p": 0.772,
       "nid": 3298766,
       "mk": "Handikaplı MS (ev -1)",
       "mtid": 268,
@@ -9037,9 +9037,9 @@
       "idx": 2,
       "fam": "HMS",
       "base": 0.56,
-      "edge": 0.209,
+      "edge": 0.212,
       "why": [
-       "Model beklentisi: Heracles 1.20, Villarreal 1.91 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Model beklentisi: Heracles 1.18, Villarreal 1.91 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
        "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
        "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -9048,8 +9048,8 @@
     ]
    },
    {
-    "odds": 6.33,
-    "p": 0.4419,
+    "odds": 6.63,
+    "p": 0.444,
     "surprise": true,
     "legs": [
      {
@@ -9058,7 +9058,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "MS 1",
-      "o": 1.75,
+      "o": 1.86,
       "p": 0.866,
       "nid": 3298942,
       "mk": "Maç Sonucu",
@@ -9104,8 +9104,8 @@
       "away": "Villarreal",
       "league": "İspanya Primera RFEF",
       "sel": "HMS -1 · 2",
-      "o": 1.37,
-      "p": 0.769,
+      "o": 1.35,
+      "p": 0.772,
       "nid": 3298766,
       "mk": "Handikaplı MS (ev -1)",
       "mtid": 268,
@@ -9113,9 +9113,9 @@
       "idx": 2,
       "fam": "HMS",
       "base": 0.56,
-      "edge": 0.209,
+      "edge": 0.212,
       "why": [
-       "Model beklentisi: Heracles 1.20, Villarreal 1.91 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Model beklentisi: Heracles 1.18, Villarreal 1.91 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
        "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
        "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
