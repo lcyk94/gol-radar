@@ -8749,8 +8749,8 @@
  "2026-11-14": {
   "list": [
    {
-    "odds": 6.71,
-    "p": 0.249,
+    "odds": 6.48,
+    "p": 0.2489,
     "legs": [
      {
       "time": "",
@@ -8758,7 +8758,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "HMS -1 · 1",
-      "o": 4.04,
+      "o": 3.9,
       "p": 0.712,
       "nid": 3298942,
       "mk": "Handikaplı MS (ev -1)",
@@ -8812,7 +8812,7 @@
       "idx": 3,
       "fam": "MS&AÜ",
       "base": 0.314,
-      "edge": 0.258,
+      "edge": 0.257,
       "why": [
        "Model beklentisi: Livingston 2.14, Morton 0.77 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
        "Form: Livingston son 5 maçta 2G 2B 1M (6-3 gol); Morton son 5 maçta 4G 0B 1M (12-8 gol).",
@@ -8824,7 +8824,7 @@
    },
    {
     "odds": 3.2,
-    "p": 0.2998,
+    "p": 0.2997,
     "legs": [
      {
       "time": "",
@@ -8833,7 +8833,7 @@
       "league": "İngiltere League Two",
       "sel": "KG Yok",
       "o": 1.57,
-      "p": 0.708,
+      "p": 0.707,
       "nid": 3294047,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
@@ -8878,7 +8878,7 @@
       "league": "Kolombiya Liga Dimayor, Final",
       "sel": "2,5 Üst",
       "o": 1.52,
-      "p": 0.711,
+      "p": 0.71,
       "nid": 3390355,
       "mk": "Alt/Üst 2,5",
       "mtid": 12,
@@ -8973,7 +8973,7 @@
    },
    {
     "odds": 4.58,
-    "p": 0.2669,
+    "p": 0.2668,
     "legs": [
      {
       "time": "",
@@ -9028,7 +9028,7 @@
       "league": "İspanya Primera RFEF",
       "sel": "HMS -1 · 2",
       "o": 1.33,
-      "p": 0.777,
+      "p": 0.776,
       "nid": 3298766,
       "mk": "Handikaplı MS (ev -1)",
       "mtid": 268,
@@ -9047,8 +9047,8 @@
     ]
    },
    {
-    "odds": 7.66,
-    "p": 0.4465,
+    "odds": 7.45,
+    "p": 0.4464,
     "surprise": true,
     "legs": [
      {
@@ -9057,7 +9057,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "MS 1",
-      "o": 2.19,
+      "o": 2.13,
       "p": 0.866,
       "nid": 3298942,
       "mk": "Maç Sonucu",
@@ -9104,7 +9104,7 @@
       "league": "İspanya Primera RFEF",
       "sel": "HMS -1 · 2",
       "o": 1.33,
-      "p": 0.777,
+      "p": 0.776,
       "nid": 3298766,
       "mk": "Handikaplı MS (ev -1)",
       "mtid": 268,
@@ -9124,7 +9124,7 @@
    },
    {
     "odds": 6.06,
-    "p": 0.2465,
+    "p": 0.2464,
     "surprise": true,
     "legs": [
      {
@@ -9179,7 +9179,7 @@
       "league": "Kolombiya Liga Dimayor, Final",
       "sel": "2,5 Üst",
       "o": 1.52,
-      "p": 0.711,
+      "p": 0.71,
       "nid": 3390355,
       "mk": "Alt/Üst 2,5",
       "mtid": 12,
@@ -9200,7 +9200,7 @@
    {
     "odds": 2.19,
     "p": 0.501,
-    "p_model": 0.5743,
+    "p_model": 0.5742,
     "mil": true,
     "legs": [
      {
@@ -9229,6 +9229,549 @@
      }
     ]
    }
-  ]
+  ],
+  "saved_on": "2026-11-14",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 27,
+      "time": "",
+      "home": "Barcelona",
+      "away": "Girona",
+      "league": "İspanya La Liga",
+      "sel": "HMS -1 · 1",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 3.9,
+      "p": 0.712,
+      "base": 0.229,
+      "edge": 0.483,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 0,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3298942,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Barcelona 3.41, Girona 0.72 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %23.",
+       "Form: Barcelona son 5 maçta 4G 0B 1M (17-6 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
+       "Hücum/savunma (son 10+ maç): Barcelona 4.1 atıyor, 1.3 yiyor; Girona 1.5 atıyor, 0.7 yiyor.",
+       "Son ikili maçlar: Girona 2-1 Barcelona, Barcelona 2-1 Girona, Barcelona 4-1 Girona."
+      ]
+     },
+     {
+      "id": 18,
+      "time": "",
+      "home": "Gateshead",
+      "away": "Barrow",
+      "league": "İngiltere Conference",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.34,
+      "p": 0.611,
+      "base": 0.307,
+      "edge": 0.304,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3294256,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Gateshead 0.96, Barrow 2.00 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Gateshead son 5 maçta 0G 0B 5M (3-10 gol); Barrow son 5 maçta 4G 1B 0M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Gateshead 0.5 atıyor, 2.6 yiyor; Barrow 2.1 atıyor, 1.0 yiyor."
+      ]
+     },
+     {
+      "id": 26,
+      "time": "",
+      "home": "Livingston",
+      "away": "Morton",
+      "league": "İskoçya Championship",
+      "sel": "MS1 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.24,
+      "p": 0.572,
+      "base": 0.314,
+      "edge": 0.257,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3293956,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Livingston 2.14, Morton 0.77 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Livingston son 5 maçta 2G 2B 1M (6-3 gol); Morton son 5 maçta 4G 0B 1M (12-8 gol).",
+       "Gol temposu (son 10+ maç): Livingston maçlarında ortalama 2.4, Morton maçlarında 3.3 gol; 2.5 üst oranı %50 / %60, iki takım da gol atma oranı %50 / %70.",
+       "Son ikili maçlar: Morton 1-4 Livingston, Morton 1-2 Livingston, Livingston 3-2 Morton."
+      ]
+     }
+    ],
+    "odds": 6.48,
+    "date": "2026-11-14",
+    "p": 0.2489,
+    "ev": 1.61,
+    "score": 1.044
+   },
+   {
+    "legs": [
+     {
+      "id": 6,
+      "time": "",
+      "home": "Salford",
+      "away": "Northampton",
+      "league": "İngiltere League Two",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.57,
+      "p": 0.707,
+      "base": 0.476,
+      "edge": 0.231,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3294047,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Salford 1.11, Northampton 0.55 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Salford son 5 maçta 5G 0B 0M (12-5 gol); Northampton son 5 maçta 2G 1B 2M (5-3 gol).",
+       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Northampton maçlarında 1.6 gol; 2.5 üst oranı %60 / %0, iki takım da gol atma oranı %60 / %30."
+      ]
+     },
+     {
+      "id": 14,
+      "time": "",
+      "home": "Yeovil",
+      "away": "Boreham Wood",
+      "league": "İngiltere Conference",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.34,
+      "p": 0.596,
+      "base": 0.37,
+      "edge": 0.226,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3293728,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Yeovil 1.33, Boreham Wood 2.01 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
+       "Form: Yeovil son 5 maçta 3G 0B 2M (15-5 gol); Boreham Wood son 5 maçta 5G 0B 0M (15-5 gol).",
+       "Gol temposu (son 10+ maç): Yeovil maçlarında ortalama 3.5, Boreham Wood maçlarında 3.7 gol; 2.5 üst oranı %60 / %80, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Boreham Wood 3-2 Yeovil, Yeovil 0-3 Boreham Wood."
+      ]
+     },
+     {
+      "id": 52,
+      "time": "04:30",
+      "home": "Inter",
+      "away": "Union de Santa Fe",
+      "league": "Kolombiya Liga Dimayor, Final",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.52,
+      "p": 0.71,
+      "base": 0.501,
+      "edge": 0.21,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "blend",
+      "nid": 3390355,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Inter 2.35, Union de Santa Fe 1.33 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); Union de Santa Fe son 5 maçta 2G 2B 1M (7-5 gol).",
+       "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.2,
+    "date": "2026-11-14",
+    "p": 0.2997,
+    "ev": 0.96,
+    "score": 0.667
+   },
+   {
+    "legs": [
+     {
+      "id": 13,
+      "time": "",
+      "home": "Southend",
+      "away": "Aldershot",
+      "league": "İngiltere Conference",
+      "sel": "MS1 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.32,
+      "p": 0.58,
+      "base": 0.349,
+      "edge": 0.231,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3293434,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Southend 2.35, Aldershot 1.09 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Southend son 5 maçta 2G 2B 1M (12-10 gol); Aldershot son 5 maçta 1G 0B 4M (3-9 gol).",
+       "Gol temposu (son 10+ maç): Southend maçlarında ortalama 4.5, Aldershot maçlarında 2.7 gol; 2.5 üst oranı %90 / %50, iki takım da gol atma oranı %100 / %60.",
+       "Son ikili maçlar: Aldershot 0-2 Southend, Southend 3-0 Aldershot, Southend 2-1 Aldershot."
+      ]
+     },
+     {
+      "id": 19,
+      "time": "",
+      "home": "Scunthorpe",
+      "away": "Worthing",
+      "league": "İngiltere Conference",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.73,
+      "p": 0.589,
+      "base": 0.37,
+      "edge": 0.219,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3294389,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Scunthorpe 1.70, Worthing 1.98 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
+       "Form: Scunthorpe son 5 maçta 0G 0B 5M (4-14 gol); Worthing son 5 maçta 3G 1B 1M (12-8 gol).",
+       "Gol temposu (son 10+ maç): Scunthorpe maçlarında ortalama 3.1, Worthing maçlarında 3.4 gol; 2.5 üst oranı %60 / %80, iki takım da gol atma oranı %50 / %70."
+      ]
+     },
+     {
+      "id": 31,
+      "time": "",
+      "home": "Valladolid",
+      "away": "Castellon",
+      "league": "İspanya Segunda",
+      "sel": "Dep bir yarıyı kazanır",
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "o": 1.46,
+      "p": 0.626,
+      "base": 0.436,
+      "edge": 0.19,
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3299150,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Valladolid 1.15, Castellon 1.67 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Valladolid son 5 maçta 3G 0B 2M (14-9 gol); Castellon son 5 maçta 2G 2B 1M (9-3 gol).",
+       "Gol temposu (son 10+ maç): Valladolid maçlarında ortalama 3.7, Castellon maçlarında 2.7 gol; 2.5 üst oranı %80 / %50, iki takım da gol atma oranı %70 / %40.",
+       "Son ikili maçlar: Valladolid 0-4 Castellon, Castellon 0-1 Valladolid.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ],
+    "odds": 3.33,
+    "date": "2026-11-14",
+    "p": 0.2138,
+    "ev": 0.71,
+    "score": 0.44
+   },
+   {
+    "legs": [
+     {
+      "id": 21,
+      "time": "",
+      "home": "Kidderminster",
+      "away": "Halifax",
+      "league": "İngiltere Conference",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.88,
+      "p": 0.603,
+      "base": 0.419,
+      "edge": 0.184,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3294720,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Kidderminster 1.02, Halifax 0.94 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Kidderminster son 5 maçta 0G 3B 2M (3-5 gol); Halifax son 5 maçta 3G 1B 1M (12-6 gol).",
+       "Gol temposu (son 10+ maç): Kidderminster maçlarında ortalama 1.6, Halifax maçlarında 2.9 gol; 2.5 üst oranı %30 / %50, iki takım da gol atma oranı %40 / %60."
+      ]
+     },
+     {
+      "id": 28,
+      "time": "",
+      "home": "Oviedo",
+      "away": "Girona",
+      "league": "İspanya La Liga",
+      "sel": "Ev hiçbir yarıyı kazanamaz",
+      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
+      "o": 1.83,
+      "p": 0.57,
+      "base": 0.41,
+      "edge": 0.16,
+      "mtid": 584,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3299318,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Oviedo 0.92, Girona 1.03 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %41.",
+       "Form: Oviedo son 5 maçta 3G 1B 1M (11-8 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
+       "Gol temposu (son 10+ maç): Oviedo maçlarında ortalama 3.3, Girona maçlarında 2.2 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %40.",
+       "Son ikili maçlar: Oviedo 1-0 Girona, Girona 3-3 Oviedo.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %41 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 397,
+      "time": "20:45",
+      "home": "Heracles",
+      "away": "Villarreal",
+      "league": "İspanya Primera RFEF",
+      "sel": "HMS -1 · 2",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.33,
+      "p": 0.776,
+      "base": 0.56,
+      "edge": 0.217,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3298766,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Heracles 1.17, Villarreal 1.92 gol. Bu seçenek %78 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
+       "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 4.58,
+    "date": "2026-11-14",
+    "p": 0.2668,
+    "ev": 1.22,
+    "score": 0.261
+   },
+   {
+    "legs": [
+     {
+      "id": 27,
+      "time": "",
+      "home": "Barcelona",
+      "away": "Girona",
+      "league": "İspanya La Liga",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 2.13,
+      "p": 0.866,
+      "base": 0.45,
+      "edge": 0.416,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3298942,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Barcelona 3.41, Girona 0.72 gol. Bu seçenek %87 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Barcelona son 5 maçta 4G 0B 1M (17-6 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
+       "Hücum/savunma (son 10+ maç): Barcelona 4.1 atıyor, 1.3 yiyor; Girona 1.5 atıyor, 0.7 yiyor.",
+       "Son ikili maçlar: Girona 2-1 Barcelona, Barcelona 2-1 Girona, Barcelona 4-1 Girona."
+      ]
+     },
+     {
+      "id": 0,
+      "time": "",
+      "home": "Juventude",
+      "away": "Botafogo RJ",
+      "league": "Brezilya Serie A",
+      "sel": "HMS -1 · 2",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 2.63,
+      "p": 0.664,
+      "base": 0.533,
+      "edge": 0.131,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3294755,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Juventude 1.28, Botafogo RJ 1.40 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %53.",
+       "Form: Juventude son 5 maçta 0G 3B 2M (6-10 gol); Botafogo RJ son 5 maçta 2G 1B 2M (4-6 gol).",
+       "Hücum/savunma (son 10+ maç): Juventude 1.3 atıyor, 1.6 yiyor; Botafogo RJ 0.9 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: Juventude 1-3 Botafogo RJ, Botafogo RJ 2-0 Juventude, Juventude 3-2 Botafogo RJ."
+      ]
+     },
+     {
+      "id": 397,
+      "time": "20:45",
+      "home": "Heracles",
+      "away": "Villarreal",
+      "league": "İspanya Primera RFEF",
+      "sel": "HMS -1 · 2",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.33,
+      "p": 0.776,
+      "base": 0.56,
+      "edge": 0.217,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3298766,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Heracles 1.17, Villarreal 1.92 gol. Bu seçenek %78 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
+       "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 7.45,
+    "date": "2026-11-14",
+    "p": 0.4464,
+    "ev": 3.33,
+    "score": 0.446,
+    "surprise": true
+   },
+   {
+    "legs": [
+     {
+      "id": 30,
+      "time": "",
+      "home": "Mallorca",
+      "away": "Cordoba",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 2.19,
+      "p": 0.574,
+      "base": 0.471,
+      "edge": 0.103,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3299057,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Mallorca 1.68, Cordoba 0.72 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Mallorca son 5 maçta 2G 3B 0M (7-4 gol); Cordoba son 5 maçta 3G 1B 1M (9-4 gol).",
+       "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.8, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %60."
+      ]
+     },
+     {
+      "id": 28,
+      "time": "",
+      "home": "Oviedo",
+      "away": "Girona",
+      "league": "İspanya La Liga",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.82,
+      "p": 0.604,
+      "base": 0.455,
+      "edge": 0.149,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3299318,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Oviedo 0.92, Girona 1.03 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Oviedo son 5 maçta 3G 1B 1M (11-8 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
+       "Gol temposu (son 10+ maç): Oviedo maçlarında ortalama 3.3, Girona maçlarında 2.2 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %40.",
+       "Son ikili maçlar: Oviedo 1-0 Girona, Girona 3-3 Oviedo."
+      ]
+     },
+     {
+      "id": 52,
+      "time": "04:30",
+      "home": "Inter",
+      "away": "Union de Santa Fe",
+      "league": "Kolombiya Liga Dimayor, Final",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.52,
+      "p": 0.71,
+      "base": 0.501,
+      "edge": 0.21,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "blend",
+      "nid": 3390355,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Inter 2.35, Union de Santa Fe 1.33 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); Union de Santa Fe son 5 maçta 2G 2B 1M (7-5 gol).",
+       "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, Union de Santa Fe maçlarında 3.1 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %60 / %70.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 6.06,
+    "date": "2026-11-14",
+    "p": 0.2464,
+    "ev": 1.49,
+    "score": 0.246,
+    "surprise": true
+   }
+  ],
+  "mil_saved_on": "2026-11-14"
  }
 }
