@@ -8749,7 +8749,7 @@
  "2026-11-14": {
   "list": [
    {
-    "odds": 4.0,
+    "odds": 5.17,
     "p": 0.249,
     "legs": [
      {
@@ -8758,7 +8758,7 @@
       "away": "Girona",
       "league": "İspanya La Liga",
       "sel": "HMS -1 · 1",
-      "o": 2.41,
+      "o": 3.11,
       "p": 0.712,
       "nid": 3298942,
       "mk": "Handikaplı MS (ev -1)",
@@ -8823,7 +8823,7 @@
     ]
    },
    {
-    "odds": 3.25,
+    "odds": 3.19,
     "p": 0.3002,
     "legs": [
      {
@@ -8855,7 +8855,7 @@
       "away": "Northampton",
       "league": "İngiltere League Two",
       "sel": "KG Yok",
-      "o": 1.6,
+      "o": 1.57,
       "p": 0.708,
       "nid": 3294047,
       "mk": "Karşılıklı Gol",
@@ -9048,17 +9048,40 @@
     ]
    },
    {
-    "odds": 6.04,
-    "p": 0.4153,
+    "odds": 6.53,
+    "p": 0.4414,
     "surprise": true,
     "legs": [
+     {
+      "time": "",
+      "home": "Barcelona",
+      "away": "Girona",
+      "league": "İspanya La Liga",
+      "sel": "MS 1",
+      "o": 1.8,
+      "p": 0.866,
+      "nid": 3298942,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.45,
+      "edge": 0.416,
+      "why": [
+       "Model beklentisi: Barcelona 3.41, Girona 0.72 gol. Bu seçenek %87 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Barcelona son 5 maçta 4G 0B 1M (17-6 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
+       "Hücum/savunma (son 10+ maç): Barcelona 4.1 atıyor, 1.3 yiyor; Girona 1.5 atıyor, 0.7 yiyor.",
+       "Son ikili maçlar: Girona 2-1 Barcelona, Barcelona 2-1 Girona, Barcelona 4-1 Girona."
+      ]
+     },
      {
       "time": "",
       "home": "Juventude",
       "away": "Botafogo RJ",
       "league": "Brezilya Serie A",
       "sel": "HMS -1 · 2",
-      "o": 2.63,
+      "o": 2.65,
       "p": 0.664,
       "nid": 3294755,
       "mk": "Handikaplı MS (ev -1)",
@@ -9076,28 +9099,35 @@
       ]
      },
      {
-      "time": "",
-      "home": "Barcelona",
-      "away": "Girona",
-      "league": "İspanya La Liga",
-      "sel": "MS 1",
-      "o": 1.52,
-      "p": 0.866,
-      "nid": 3298942,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "MS",
-      "base": 0.45,
-      "edge": 0.416,
+      "time": "20:45",
+      "home": "Heracles",
+      "away": "Villarreal",
+      "league": "İspanya Primera RFEF",
+      "sel": "HMS -1 · 2",
+      "o": 1.37,
+      "p": 0.768,
+      "nid": 3298766,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.56,
+      "edge": 0.208,
       "why": [
-       "Model beklentisi: Barcelona 3.41, Girona 0.72 gol. Bu seçenek %87 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
-       "Form: Barcelona son 5 maçta 4G 0B 1M (17-6 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
-       "Hücum/savunma (son 10+ maç): Barcelona 4.1 atıyor, 1.3 yiyor; Girona 1.5 atıyor, 0.7 yiyor.",
-       "Son ikili maçlar: Girona 2-1 Barcelona, Barcelona 2-1 Girona, Barcelona 4-1 Girona."
+       "Model beklentisi: Heracles 1.21, Villarreal 1.92 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Heracles son 5 maçta 0G 0B 5M (1-11 gol); Villarreal son 5 maçta 2G 1B 2M (4-3 gol).",
+       "Hücum/savunma (son 10+ maç): Heracles 0.4 atıyor, 2.3 yiyor; Villarreal 1.3 atıyor, 1.1 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
-     },
+     }
+    ]
+   },
+   {
+    "odds": 6.08,
+    "p": 0.2967,
+    "surprise": true,
+    "legs": [
      {
       "time": "",
       "home": "Mallorca",
@@ -9120,56 +9150,28 @@
        "Gol temposu (son 10+ maç): Mallorca maçlarında ortalama 1.8, Cordoba maçlarında 3.2 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %60.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %43 oranında atılıyor (geçmiş maçların yarı skorlarından)."
       ]
-     }
-    ]
-   },
-   {
-    "odds": 6.01,
-    "p": 0.3113,
-    "surprise": true,
-    "legs": [
-     {
-      "time": "",
-      "home": "Salford",
-      "away": "Northampton",
-      "league": "İngiltere League Two",
-      "sel": "KG Yok",
-      "o": 1.6,
-      "p": 0.708,
-      "nid": 3294047,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 1,
-      "fam": "KG",
-      "base": 0.476,
-      "edge": 0.231,
-      "why": [
-       "Model beklentisi: Salford 1.11, Northampton 0.55 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Salford son 5 maçta 5G 0B 0M (12-5 gol); Northampton son 5 maçta 2G 1B 2M (5-3 gol).",
-       "Gol temposu (son 10+ maç): Salford maçlarında ortalama 3.1, Northampton maçlarında 1.6 gol; 2.5 üst oranı %60 / %0, iki takım da gol atma oranı %60 / %30."
-      ]
      },
      {
       "time": "",
-      "home": "Exeter",
-      "away": "Cheltenham",
-      "league": "İngiltere League Two",
+      "home": "Oviedo",
+      "away": "Girona",
+      "league": "İspanya La Liga",
       "sel": "KG Yok",
-      "o": 1.67,
-      "p": 0.647,
-      "nid": 3295196,
+      "o": 1.79,
+      "p": 0.604,
+      "nid": 3299318,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
       "line": 0.0,
       "idx": 1,
       "fam": "KG",
-      "base": 0.476,
-      "edge": 0.171,
+      "base": 0.455,
+      "edge": 0.149,
       "why": [
-       "Model beklentisi: Exeter 1.22, Cheltenham 0.67 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Exeter son 5 maçta 3G 1B 1M (6-3 gol); Cheltenham son 5 maçta 2G 0B 3M (7-11 gol).",
-       "Gol temposu (son 10+ maç): Exeter maçlarında ortalama 1.2, Cheltenham maçlarında 3.3 gol; 2.5 üst oranı %20 / %60, iki takım da gol atma oranı %20 / %70."
+       "Model beklentisi: Oviedo 0.92, Girona 1.03 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Oviedo son 5 maçta 3G 1B 1M (11-8 gol); Girona son 5 maçta 2G 1B 2M (8-4 gol).",
+       "Gol temposu (son 10+ maç): Oviedo maçlarında ortalama 3.3, Girona maçlarında 2.2 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %40.",
+       "Son ikili maçlar: Oviedo 1-0 Girona, Girona 3-3 Oviedo."
       ]
      },
      {
