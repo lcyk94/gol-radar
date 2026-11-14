@@ -9773,5 +9773,563 @@
    }
   ],
   "mil_saved_on": "2026-11-14"
+ },
+ "2026-11-15": {
+  "list": [
+   {
+    "odds": 3.71,
+    "p": 0.2132,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "3,5 Üst",
+      "o": 1.92,
+      "p": 0.581,
+      "nid": 3372556,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.27,
+      "edge": 0.311,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.52, Kawasaki Frontale 1.55 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (10-6 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.7, Kawasaki Frontale maçlarında 3.8 gol; 2.5 üst oranı %70 / %90, iki takım da gol atma oranı %60 / %90.",
+       "Son ikili maçlar: Kashiwa Reysol 2-1 Kawasaki Frontale, Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Banfield",
+      "away": "Boca Juniors",
+      "league": "Arjantin Primera",
+      "sel": "MS 2",
+      "o": 1.24,
+      "p": 0.562,
+      "nid": 3295245,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.277,
+      "edge": 0.285,
+      "why": [
+       "Model beklentisi: Banfield 0.82, Boca Juniors 1.64 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %28.",
+       "Form: Banfield son 5 maçta 1G 2B 2M (6-8 gol); Boca Juniors son 5 maçta 4G 1B 0M (7-3 gol).",
+       "Hücum/savunma (son 10+ maç): Banfield 1.3 atıyor, 1.8 yiyor; Boca Juniors 1.8 atıyor, 0.6 yiyor.",
+       "Son ikili maçlar: Boca Juniors 2-0 Banfield, Banfield 0-1 Boca Juniors, Boca Juniors 3-0 Banfield."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Eldense",
+      "away": "Sabadell",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.56,
+      "p": 0.654,
+      "nid": 3299255,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.471,
+      "edge": 0.183,
+      "why": [
+       "Model beklentisi: Eldense 0.84, Sabadell 0.91 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Eldense son 5 maçta 2G 0B 3M (5-9 gol); Sabadell son 5 maçta 1G 2B 2M (4-5 gol).",
+       "Gol temposu (son 10+ maç): Eldense maçlarında ortalama 2.4, Sabadell maçlarında 2.2 gol; 2.5 üst oranı %40 / %40, iki takım da gol atma oranı %40 / %60."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.21,
+    "p": 0.242,
+    "legs": [
+     {
+      "time": "",
+      "home": "Chapecoense-SC",
+      "away": "Vasco",
+      "league": "Brezilya Serie A",
+      "sel": "2,5 Üst",
+      "o": 1.47,
+      "p": 0.608,
+      "nid": 3363610,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.431,
+      "edge": 0.177,
+      "why": [
+       "Model beklentisi: Chapecoense-SC 1.35, Vasco 1.79 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Chapecoense-SC son 5 maçta 1G 0B 4M (4-11 gol); Vasco son 5 maçta 2G 1B 2M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Chapecoense-SC maçlarında ortalama 3.1, Vasco maçlarında 3.1 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Vasco 1-1 Chapecoense-SC, Vasco 1-1 Chapecoense-SC, Chapecoense-SC 1-2 Vasco."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Machida",
+      "away": "Vissel Kobe",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Yok",
+      "o": 1.55,
+      "p": 0.574,
+      "nid": 3372546,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.46,
+      "edge": 0.114,
+      "why": [
+       "Model beklentisi: Machida 1.35, Vissel Kobe 0.83 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Machida son 5 maçta 2G 3B 0M (8-0 gol); Vissel Kobe son 5 maçta 2G 2B 1M (9-5 gol).",
+       "Gol temposu (son 10+ maç): Machida maçlarında ortalama 2.4, Vissel Kobe maçlarında 3.0 gol; 2.5 üst oranı %50 / %70, iki takım da gol atma oranı %40 / %60.",
+       "Son ikili maçlar: Vissel Kobe 0-0 Machida, Machida 2-0 Vissel Kobe, Vissel Kobe 1-0 Machida."
+      ]
+     },
+     {
+      "time": "13:30",
+      "home": "Levante",
+      "away": "Eldense",
+      "league": "İspanya 3. Federasyon",
+      "sel": "MS 1",
+      "o": 1.41,
+      "p": 0.693,
+      "nid": 3298221,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.253,
+      "why": [
+       "Model beklentisi: Levante 2.18, Eldense 0.76 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Eldense son 5 maçta 2G 0B 3M (5-9 gol).",
+       "Hücum/savunma (son 10+ maç): Levante 1.6 atıyor, 1.8 yiyor; Eldense 1.1 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: Eldense 1-2 Levante, Levante 3-1 Eldense.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.25,
+    "p": 0.2096,
+    "legs": [
+     {
+      "time": "",
+      "home": "Eibar",
+      "away": "Cadiz",
+      "league": "İspanya Segunda",
+      "sel": "MS 1",
+      "o": 1.46,
+      "p": 0.597,
+      "nid": 3299124,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.439,
+      "edge": 0.157,
+      "why": [
+       "Model beklentisi: Eibar 1.69, Cadiz 0.73 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Eibar son 5 maçta 1G 2B 2M (6-8 gol); Cadiz son 5 maçta 1G 0B 4M (5-8 gol).",
+       "Hücum/savunma (son 10+ maç): Eibar 1.9 atıyor, 1.1 yiyor; Cadiz 1.3 atıyor, 1.5 yiyor.",
+       "Son ikili maçlar: Eibar 3-1 Cadiz, Cadiz 1-0 Eibar, Cadiz 0-0 Eibar."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Cerezo Osaka",
+      "away": "Urawa Reds",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "o": 1.4,
+      "p": 0.622,
+      "nid": 3372547,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.488,
+      "edge": 0.134,
+      "why": [
+       "Model beklentisi: Cerezo Osaka 1.61, Urawa Reds 1.60 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Cerezo Osaka son 5 maçta 1G 2B 2M (9-13 gol); Urawa Reds son 5 maçta 3G 1B 1M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Cerezo Osaka maçlarında ortalama 3.3, Urawa Reds maçlarında 3.1 gol; 2.5 üst oranı %50 / %70, iki takım da gol atma oranı %70 / %50.",
+       "Son ikili maçlar: Urawa Reds 0-0 Cerezo Osaka, Cerezo Osaka 1-1 Urawa Reds, Urawa Reds 0-1 Cerezo Osaka."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Tenerife",
+      "away": "Ceuta",
+      "league": "İspanya Segunda",
+      "sel": "MS 1",
+      "o": 1.59,
+      "p": 0.565,
+      "nid": 3299048,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.439,
+      "edge": 0.125,
+      "why": [
+       "Model beklentisi: Tenerife 1.76, Ceuta 0.92 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Tenerife son 5 maçta 0G 4B 1M (7-8 gol); Ceuta son 5 maçta 0G 0B 5M (3-12 gol).",
+       "Hücum/savunma (son 10+ maç): Tenerife 1.1 atıyor, 1.6 yiyor; Ceuta 0.9 atıyor, 2.0 yiyor."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 2.03,
+    "p": 0.4705,
+    "p_model": 0.5052,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "o": 1.3,
+      "p": 0.772,
+      "nid": 3372556,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.488,
+      "edge": 0.284,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.52, Kawasaki Frontale 1.55 gol. Bu seçenek %77 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (10-6 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.7, Kawasaki Frontale maçlarında 3.8 gol; 2.5 üst oranı %70 / %90, iki takım da gol atma oranı %60 / %90.",
+       "Son ikili maçlar: Kashiwa Reysol 2-1 Kawasaki Frontale, Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale."
+      ],
+      "pm": 0.723,
+      "pb": 0.748
+     },
+     {
+      "time": "",
+      "home": "Eldense",
+      "away": "Sabadell",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "o": 1.56,
+      "p": 0.654,
+      "nid": 3299255,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.471,
+      "edge": 0.183,
+      "why": [
+       "Model beklentisi: Eldense 0.84, Sabadell 0.91 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Eldense son 5 maçta 2G 0B 3M (5-9 gol); Sabadell son 5 maçta 1G 2B 2M (4-5 gol).",
+       "Gol temposu (son 10+ maç): Eldense maçlarında ortalama 2.4, Sabadell maçlarında 2.2 gol; 2.5 üst oranı %40 / %40, iki takım da gol atma oranı %40 / %60."
+      ],
+      "pm": 0.603,
+      "pb": 0.629
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-15",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 4,
+      "time": "",
+      "home": "Kashiwa Reysol",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "3,5 Üst",
+      "mk": "Alt/Üst 3,5",
+      "o": 1.92,
+      "p": 0.581,
+      "base": 0.27,
+      "edge": 0.311,
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3372556,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Kashiwa Reysol 2.52, Kawasaki Frontale 1.55 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Kashiwa Reysol son 5 maçta 3G 1B 1M (10-6 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (11-10 gol).",
+       "Gol temposu (son 10+ maç): Kashiwa Reysol maçlarında ortalama 3.7, Kawasaki Frontale maçlarında 3.8 gol; 2.5 üst oranı %70 / %90, iki takım da gol atma oranı %60 / %90.",
+       "Son ikili maçlar: Kashiwa Reysol 2-1 Kawasaki Frontale, Kawasaki Frontale 4-4 Kashiwa Reysol, Kashiwa Reysol 1-1 Kawasaki Frontale."
+      ]
+     },
+     {
+      "id": 0,
+      "time": "",
+      "home": "Banfield",
+      "away": "Boca Juniors",
+      "league": "Arjantin Primera",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.24,
+      "p": 0.562,
+      "base": 0.277,
+      "edge": 0.285,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3295245,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Banfield 0.82, Boca Juniors 1.64 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %28.",
+       "Form: Banfield son 5 maçta 1G 2B 2M (6-8 gol); Boca Juniors son 5 maçta 4G 1B 0M (7-3 gol).",
+       "Hücum/savunma (son 10+ maç): Banfield 1.3 atıyor, 1.8 yiyor; Boca Juniors 1.8 atıyor, 0.6 yiyor.",
+       "Son ikili maçlar: Boca Juniors 2-0 Banfield, Banfield 0-1 Boca Juniors, Boca Juniors 3-0 Banfield."
+      ]
+     },
+     {
+      "id": 10,
+      "time": "",
+      "home": "Eldense",
+      "away": "Sabadell",
+      "league": "İspanya Segunda",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.56,
+      "p": 0.654,
+      "base": 0.471,
+      "edge": 0.183,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3299255,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Eldense 0.84, Sabadell 0.91 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Eldense son 5 maçta 2G 0B 3M (5-9 gol); Sabadell son 5 maçta 1G 2B 2M (4-5 gol).",
+       "Gol temposu (son 10+ maç): Eldense maçlarında ortalama 2.4, Sabadell maçlarında 2.2 gol; 2.5 üst oranı %40 / %40, iki takım da gol atma oranı %40 / %60."
+      ]
+     }
+    ],
+    "odds": 3.71,
+    "date": "2026-11-15",
+    "p": 0.2132,
+    "ev": 0.79,
+    "score": 0.779
+   },
+   {
+    "legs": [
+     {
+      "id": 1,
+      "time": "",
+      "home": "Chapecoense-SC",
+      "away": "Vasco",
+      "league": "Brezilya Serie A",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.47,
+      "p": 0.608,
+      "base": 0.431,
+      "edge": 0.177,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3363610,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Chapecoense-SC 1.35, Vasco 1.79 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Chapecoense-SC son 5 maçta 1G 0B 4M (4-11 gol); Vasco son 5 maçta 2G 1B 2M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Chapecoense-SC maçlarında ortalama 3.1, Vasco maçlarında 3.1 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Vasco 1-1 Chapecoense-SC, Vasco 1-1 Chapecoense-SC, Chapecoense-SC 1-2 Vasco."
+      ]
+     },
+     {
+      "id": 2,
+      "time": "",
+      "home": "Machida",
+      "away": "Vissel Kobe",
+      "league": "Japonya J1 Lig",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.55,
+      "p": 0.574,
+      "base": 0.46,
+      "edge": 0.114,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3372546,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Machida 1.35, Vissel Kobe 0.83 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Machida son 5 maçta 2G 3B 0M (8-0 gol); Vissel Kobe son 5 maçta 2G 2B 1M (9-5 gol).",
+       "Gol temposu (son 10+ maç): Machida maçlarında ortalama 2.4, Vissel Kobe maçlarında 3.0 gol; 2.5 üst oranı %50 / %70, iki takım da gol atma oranı %40 / %60.",
+       "Son ikili maçlar: Vissel Kobe 0-0 Machida, Machida 2-0 Vissel Kobe, Vissel Kobe 1-0 Machida."
+      ]
+     },
+     {
+      "id": 129,
+      "time": "13:30",
+      "home": "Levante",
+      "away": "Eldense",
+      "league": "İspanya 3. Federasyon",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.41,
+      "p": 0.693,
+      "base": 0.44,
+      "edge": 0.253,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3298221,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Levante 2.18, Eldense 0.76 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Eldense son 5 maçta 2G 0B 3M (5-9 gol).",
+       "Hücum/savunma (son 10+ maç): Levante 1.6 atıyor, 1.8 yiyor; Eldense 1.1 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: Eldense 1-2 Levante, Levante 3-1 Eldense.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.21,
+    "date": "2026-11-15",
+    "p": 0.242,
+    "ev": 0.78,
+    "score": 0.244
+   },
+   {
+    "legs": [
+     {
+      "id": 8,
+      "time": "",
+      "home": "Eibar",
+      "away": "Cadiz",
+      "league": "İspanya Segunda",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.46,
+      "p": 0.597,
+      "base": 0.439,
+      "edge": 0.157,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3299124,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Eibar 1.69, Cadiz 0.73 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Eibar son 5 maçta 1G 2B 2M (6-8 gol); Cadiz son 5 maçta 1G 0B 4M (5-8 gol).",
+       "Hücum/savunma (son 10+ maç): Eibar 1.9 atıyor, 1.1 yiyor; Cadiz 1.3 atıyor, 1.5 yiyor.",
+       "Son ikili maçlar: Eibar 3-1 Cadiz, Cadiz 1-0 Eibar, Cadiz 0-0 Eibar."
+      ]
+     },
+     {
+      "id": 3,
+      "time": "",
+      "home": "Cerezo Osaka",
+      "away": "Urawa Reds",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.4,
+      "p": 0.622,
+      "base": 0.488,
+      "edge": 0.134,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3372547,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Cerezo Osaka 1.61, Urawa Reds 1.60 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Cerezo Osaka son 5 maçta 1G 2B 2M (9-13 gol); Urawa Reds son 5 maçta 3G 1B 1M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Cerezo Osaka maçlarında ortalama 3.3, Urawa Reds maçlarında 3.1 gol; 2.5 üst oranı %50 / %70, iki takım da gol atma oranı %70 / %50.",
+       "Son ikili maçlar: Urawa Reds 0-0 Cerezo Osaka, Cerezo Osaka 1-1 Urawa Reds, Urawa Reds 0-1 Cerezo Osaka."
+      ]
+     },
+     {
+      "id": 7,
+      "time": "",
+      "home": "Tenerife",
+      "away": "Ceuta",
+      "league": "İspanya Segunda",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.59,
+      "p": 0.565,
+      "base": 0.439,
+      "edge": 0.125,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3299048,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Tenerife 1.76, Ceuta 0.92 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Tenerife son 5 maçta 0G 4B 1M (7-8 gol); Ceuta son 5 maçta 0G 0B 5M (3-12 gol).",
+       "Hücum/savunma (son 10+ maç): Tenerife 1.1 atıyor, 1.6 yiyor; Ceuta 0.9 atıyor, 2.0 yiyor."
+      ]
+     }
+    ],
+    "odds": 3.25,
+    "date": "2026-11-15",
+    "p": 0.2096,
+    "ev": 0.68,
+    "score": -0.484
+   }
+  ],
+  "mil_saved_on": "2026-11-15"
  }
 }
