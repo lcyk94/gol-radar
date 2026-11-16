@@ -163,7 +163,7 @@
    "1": "Evet",
    "2": "Hayır"
   },
-  "name": "1.Oyuncu Herhangi Bir Seti Alır"
+  "name": "1. Oyuncu Herhangi Bir Seti Alır"
  },
  "def|189": {
   "labels": {
@@ -177,14 +177,14 @@
    "1": "Alt",
    "2": "Üst"
   },
-  "name": "1.Oyuncu Oyun Alt/Üst"
+  "name": "1. Oyuncu Oyun Alt/Üst"
  },
  "def|191": {
   "labels": {
    "1": "Alt",
    "2": "Üst"
   },
-  "name": "2.Oyuncu Oyun Alt/Üst"
+  "name": "2. Oyuncu Oyun Alt/Üst"
  },
  "def|192": {
   "labels": {
@@ -383,7 +383,7 @@
    "1": "Evet",
    "2": "Hayır"
   },
-  "name": "2.Oyuncu Herhangi Bir Seti Alır"
+  "name": "2. Oyuncu Herhangi Bir Seti Alır"
  },
  "def|248": {
   "labels": {
@@ -703,25 +703,25 @@
  },
  "def|342": {
   "labels": {
-   "1": "MS1 & Alt",
-   "2": "MSX & Alt",
-   "3": "MS2 & Alt",
-   "4": "MS1 & Üst",
-   "5": "MSX & Üst",
-   "6": "MS2 & Üst"
+   "1": "MS1 & 1,5 Alt",
+   "2": "MSX & 1,5 Alt",
+   "3": "MS2 & 1,5 Alt",
+   "4": "MS1 & 1,5 Üst",
+   "5": "MSX & 1,5 Üst",
+   "6": "MS2 & 1,5 Üst"
   },
-  "name": "Maç Sonucu & 1,5 Alt/Üst"
+  "name": "Maç Sonucu ve 1,5 Alt/Üst"
  },
  "def|343": {
   "labels": {
-   "1": "MS1 & Alt",
-   "2": "MSX & Alt",
-   "3": "MS2 & Alt",
-   "4": "MS1 & Üst",
-   "5": "MSX & Üst",
-   "6": "MS2 & Üst"
+   "1": "MS1 & 2,5 Alt",
+   "2": "MSX & 2,5 Alt",
+   "3": "MS2 & 2,5 Alt",
+   "4": "MS1 & 2,5 Üst",
+   "5": "MSX & 2,5 Üst",
+   "6": "MS2 & 2,5 Üst"
   },
-  "name": "Maç Sonucu & 2,5 Alt/Üst"
+  "name": "Maç Sonucu ve 2,5 Alt/Üst"
  },
  "def|344": {
   "labels": {
@@ -802,8 +802,8 @@
  },
  "def|375": {
   "labels": {
-   "1": "1",
-   "2": "2"
+   "1": "MS 1",
+   "2": "MS 2"
   },
   "name": "Maç Sonucu"
  },
@@ -1405,7 +1405,7 @@
    "1": "Alt",
    "2": "Üst"
   },
-  "name": "Periyot Alt/Üst"
+  "name": "Periyot Gol Alt/Üst"
  },
  "def|671": {
   "labels": {
