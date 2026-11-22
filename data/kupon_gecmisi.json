@@ -10331,5 +10331,636 @@
    }
   ],
   "mil_saved_on": "2026-11-15"
+ },
+ "2026-11-22": {
+  "list": [
+   {
+    "odds": 3.3,
+    "p": 0.2113,
+    "legs": [
+     {
+      "time": "",
+      "home": "Kortrijk",
+      "away": "St. Gilloise",
+      "league": "Belçika Pro League",
+      "sel": "MS 2",
+      "o": 1.23,
+      "p": 0.642,
+      "nid": 3319514,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.291,
+      "edge": 0.351,
+      "why": [
+       "Model beklentisi: Kortrijk 0.75, St. Gilloise 1.91 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Kortrijk son 5 maçta 1G 1B 3M (3-8 gol); St. Gilloise son 5 maçta 4G 1B 0M (11-4 gol).",
+       "Hücum/savunma (son 10+ maç): Kortrijk 0.4 atıyor, 2.0 yiyor; St. Gilloise 2.5 atıyor, 0.6 yiyor.",
+       "Son ikili maçlar: Kortrijk 1-2 St. Gilloise, St. Gilloise 3-0 Kortrijk."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Marseille",
+      "away": "Le Mans",
+      "league": "Fransa Ligue 1",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.46,
+      "p": 0.568,
+      "nid": 3318989,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.355,
+      "edge": 0.212,
+      "why": [
+       "Model beklentisi: Marseille 2.37, Le Mans 1.19 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %36.",
+       "Form: Marseille son 5 maçta 5G 0B 0M (15-6 gol); Le Mans son 5 maçta 0G 2B 3M (3-10 gol).",
+       "Gol temposu (son 10+ maç): Marseille maçlarında ortalama 3.6, Le Mans maçlarında 3.1 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %50 / %80."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Horsens",
+      "away": "Silkeborg",
+      "league": "Danimarka Süper Lig",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.84,
+      "p": 0.58,
+      "nid": 3319863,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.452,
+      "edge": 0.128,
+      "why": [
+       "Model beklentisi: Horsens 1.95, Silkeborg 1.35 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Horsens son 5 maçta 1G 2B 2M (8-7 gol); Silkeborg son 5 maçta 1G 2B 2M (6-12 gol).",
+       "Gol temposu (son 10+ maç): Horsens maçlarında ortalama 3.6, Silkeborg maçlarında 3.4 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Silkeborg 3-3 Horsens, Horsens 0-1 Silkeborg, Silkeborg 1-2 Horsens."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.07,
+    "p": 0.2445,
+    "legs": [
+     {
+      "time": "",
+      "home": "Milan",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "2,5 Üst",
+      "o": 1.21,
+      "p": 0.682,
+      "nid": 3319931,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.474,
+      "edge": 0.208,
+      "why": [
+       "Model beklentisi: Milan 1.86, Frosinone 1.66 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Milan son 5 maçta 4G 0B 1M (12-8 gol); Frosinone son 5 maçta 3G 1B 1M (15-8 gol).",
+       "Gol temposu (son 10+ maç): Milan maçlarında ortalama 3.3, Frosinone maçlarında 3.8 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %70 / %50."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Brommapojkarna",
+      "away": "Halmstad",
+      "league": "İsveç Allsvenskan",
+      "sel": "MS 1",
+      "o": 1.88,
+      "p": 0.562,
+      "nid": 3318976,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.121,
+      "why": [
+       "Model beklentisi: Brommapojkarna 1.73, Halmstad 0.91 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Brommapojkarna son 5 maçta 1G 2B 2M (3-3 gol); Halmstad son 5 maçta 2G 0B 3M (4-8 gol).",
+       "Hücum/savunma (son 10+ maç): Brommapojkarna 1.2 atıyor, 1.7 yiyor; Halmstad 0.8 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: Halmstad 1-3 Brommapojkarna, Halmstad 0-0 Brommapojkarna, Brommapojkarna 0-1 Halmstad."
+      ]
+     },
+     {
+      "time": "17:00",
+      "home": "Young Boys",
+      "away": "Juventus",
+      "league": "İsviçre Yükselme 1.Ligi",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.35,
+      "p": 0.638,
+      "nid": 3319855,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.328,
+      "edge": 0.309,
+      "why": [
+       "Model beklentisi: Young Boys 1.40, Juventus 2.17 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Young Boys son 5 maçta 4G 0B 1M (13-9 gol); Juventus son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Gol temposu (son 10+ maç): Young Boys maçlarında ortalama 5.0, Juventus maçlarında 2.6 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %80 / %40.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.04,
+    "p": 0.2021,
+    "legs": [
+     {
+      "time": "",
+      "home": "Olympiakos",
+      "away": "Iraklis",
+      "league": "Yunanistan Super League",
+      "sel": "Dep: yarılar eşit",
+      "o": 1.35,
+      "p": 0.62,
+      "nid": 3319173,
+      "mk": "Deplasman Hangi Yarıda Daha Çok Gol Atar",
+      "mtid": 587,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.432,
+      "edge": 0.188,
+      "why": [
+       "Model beklentisi: Olympiakos 1.84, Iraklis 0.55 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Olympiakos son 5 maçta 4G 1B 0M (12-3 gol); Iraklis son 5 maçta 1G 1B 3M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Olympiakos maçlarında ortalama 2.1, Iraklis maçlarında 2.5 gol; 2.5 üst oranı %20 / %40, iki takım da gol atma oranı %30 / %60.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %46, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Celta B",
+      "away": "Valladolid",
+      "league": "İspanya Segunda",
+      "sel": "2,5 Üst",
+      "o": 1.52,
+      "p": 0.586,
+      "nid": 3318600,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.482,
+      "edge": 0.104,
+      "why": [
+       "Model beklentisi: Celta B 1.62, Valladolid 1.42 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Celta B son 5 maçta 0G 2B 3M (5-11 gol); Valladolid son 5 maçta 2G 0B 3M (9-10 gol).",
+       "Gol temposu (son 10+ maç): Celta B maçlarında ortalama 3.4, Valladolid maçlarında 3.7 gol; 2.5 üst oranı %60 / %80, iki takım da gol atma oranı %70 / %70."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Getafe",
+      "away": "Ath Madrid",
+      "league": "İspanya La Liga",
+      "sel": "KG Yok",
+      "o": 1.48,
+      "p": 0.556,
+      "nid": 3318556,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.455,
+      "edge": 0.101,
+      "why": [
+       "Model beklentisi: Getafe 0.91, Ath Madrid 1.30 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Getafe son 5 maçta 1G 1B 3M (4-11 gol); Ath Madrid son 5 maçta 4G 0B 1M (7-3 gol).",
+       "Gol temposu (son 10+ maç): Getafe maçlarında ortalama 2.2, Ath Madrid maçlarında 2.7 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %40.",
+       "Son ikili maçlar: Ath Madrid 1-0 Getafe, Getafe 0-1 Ath Madrid, Getafe 2-1 Ath Madrid."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 2.08,
+    "p": 0.4331,
+    "p_model": 0.442,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Horsens",
+      "away": "Silkeborg",
+      "league": "Danimarka Süper Lig",
+      "sel": "2,5 Üst",
+      "o": 1.54,
+      "p": 0.641,
+      "nid": 3319863,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.532,
+      "edge": 0.109,
+      "why": [
+       "Model beklentisi: Horsens 1.95, Silkeborg 1.35 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %53.",
+       "Form: Horsens son 5 maçta 1G 2B 2M (8-7 gol); Silkeborg son 5 maçta 1G 2B 2M (6-12 gol).",
+       "Gol temposu (son 10+ maç): Horsens maçlarında ortalama 3.6, Silkeborg maçlarında 3.4 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Silkeborg 3-3 Horsens, Horsens 0-1 Silkeborg, Silkeborg 1-2 Horsens."
+      ],
+      "pm": 0.61,
+      "pb": 0.625
+     },
+     {
+      "time": "",
+      "home": "Marseille",
+      "away": "Le Mans",
+      "league": "Fransa Ligue 1",
+      "sel": "2,5 Üst",
+      "o": 1.35,
+      "p": 0.69,
+      "nid": 3318989,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.555,
+      "edge": 0.134,
+      "why": [
+       "Model beklentisi: Marseille 2.37, Le Mans 1.19 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Marseille son 5 maçta 5G 0B 0M (15-6 gol); Le Mans son 5 maçta 0G 2B 3M (3-10 gol).",
+       "Gol temposu (son 10+ maç): Marseille maçlarında ortalama 3.6, Le Mans maçlarında 3.1 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %50 / %80."
+      ],
+      "pm": 0.696,
+      "pb": 0.693
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-22",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 4,
+      "time": "",
+      "home": "Kortrijk",
+      "away": "St. Gilloise",
+      "league": "Belçika Pro League",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.23,
+      "p": 0.642,
+      "base": 0.291,
+      "edge": 0.351,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3319514,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Kortrijk 0.75, St. Gilloise 1.91 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Kortrijk son 5 maçta 1G 1B 3M (3-8 gol); St. Gilloise son 5 maçta 4G 1B 0M (11-4 gol).",
+       "Hücum/savunma (son 10+ maç): Kortrijk 0.4 atıyor, 2.0 yiyor; St. Gilloise 2.5 atıyor, 0.6 yiyor.",
+       "Son ikili maçlar: Kortrijk 1-2 St. Gilloise, St. Gilloise 3-0 Kortrijk."
+      ]
+     },
+     {
+      "id": 18,
+      "time": "",
+      "home": "Marseille",
+      "away": "Le Mans",
+      "league": "Fransa Ligue 1",
+      "sel": "MS1 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.46,
+      "p": 0.568,
+      "base": 0.355,
+      "edge": 0.212,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3318989,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Marseille 2.37, Le Mans 1.19 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %36.",
+       "Form: Marseille son 5 maçta 5G 0B 0M (15-6 gol); Le Mans son 5 maçta 0G 2B 3M (3-10 gol).",
+       "Gol temposu (son 10+ maç): Marseille maçlarında ortalama 3.6, Le Mans maçlarında 3.1 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %50 / %80."
+      ]
+     },
+     {
+      "id": 14,
+      "time": "",
+      "home": "Horsens",
+      "away": "Silkeborg",
+      "league": "Danimarka Süper Lig",
+      "sel": "Ev 1,5 Üst",
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "o": 1.84,
+      "p": 0.58,
+      "base": 0.452,
+      "edge": 0.128,
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3319863,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Horsens 1.95, Silkeborg 1.35 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Horsens son 5 maçta 1G 2B 2M (8-7 gol); Silkeborg son 5 maçta 1G 2B 2M (6-12 gol).",
+       "Gol temposu (son 10+ maç): Horsens maçlarında ortalama 3.6, Silkeborg maçlarında 3.4 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %60 / %70.",
+       "Son ikili maçlar: Silkeborg 3-3 Horsens, Horsens 0-1 Silkeborg, Silkeborg 1-2 Horsens."
+      ]
+     }
+    ],
+    "odds": 3.3,
+    "date": "2026-11-22",
+    "p": 0.2113,
+    "ev": 0.7,
+    "score": 0.691
+   },
+   {
+    "legs": [
+     {
+      "id": 28,
+      "time": "",
+      "home": "Milan",
+      "away": "Frosinone",
+      "league": "İtalya Serie A",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.21,
+      "p": 0.682,
+      "base": 0.474,
+      "edge": 0.208,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3319931,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Milan 1.86, Frosinone 1.66 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Milan son 5 maçta 4G 0B 1M (12-8 gol); Frosinone son 5 maçta 3G 1B 1M (15-8 gol).",
+       "Gol temposu (son 10+ maç): Milan maçlarında ortalama 3.3, Frosinone maçlarında 3.8 gol; 2.5 üst oranı %60 / %60, iki takım da gol atma oranı %70 / %50."
+      ]
+     },
+     {
+      "id": 53,
+      "time": "",
+      "home": "Brommapojkarna",
+      "away": "Halmstad",
+      "league": "İsveç Allsvenskan",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.88,
+      "p": 0.562,
+      "base": 0.44,
+      "edge": 0.121,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3318976,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Brommapojkarna 1.73, Halmstad 0.91 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Brommapojkarna son 5 maçta 1G 2B 2M (3-3 gol); Halmstad son 5 maçta 2G 0B 3M (4-8 gol).",
+       "Hücum/savunma (son 10+ maç): Brommapojkarna 1.2 atıyor, 1.7 yiyor; Halmstad 0.8 atıyor, 1.7 yiyor.",
+       "Son ikili maçlar: Halmstad 1-3 Brommapojkarna, Halmstad 0-0 Brommapojkarna, Brommapojkarna 0-1 Halmstad."
+      ]
+     },
+     {
+      "id": 447,
+      "time": "17:00",
+      "home": "Young Boys",
+      "away": "Juventus",
+      "league": "İsviçre Yükselme 1.Ligi",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.35,
+      "p": 0.638,
+      "base": 0.328,
+      "edge": 0.309,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "blend",
+      "nid": 3319855,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Young Boys 1.40, Juventus 2.17 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Young Boys son 5 maçta 4G 0B 1M (13-9 gol); Juventus son 5 maçta 2G 1B 2M (6-7 gol).",
+       "Gol temposu (son 10+ maç): Young Boys maçlarında ortalama 5.0, Juventus maçlarında 2.6 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %80 / %40.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.07,
+    "date": "2026-11-22",
+    "p": 0.2445,
+    "ev": 0.75,
+    "score": 0.439
+   },
+   {
+    "legs": [
+     {
+      "id": 21,
+      "time": "",
+      "home": "Olympiakos",
+      "away": "Iraklis",
+      "league": "Yunanistan Super League",
+      "sel": "Dep: yarılar eşit",
+      "mk": "Deplasman Hangi Yarıda Daha Çok Gol Atar",
+      "o": 1.35,
+      "p": 0.62,
+      "base": 0.432,
+      "edge": 0.188,
+      "mtid": 587,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3319173,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Olympiakos 1.84, Iraklis 0.55 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %43.",
+       "Form: Olympiakos son 5 maçta 4G 1B 0M (12-3 gol); Iraklis son 5 maçta 1G 1B 3M (7-8 gol).",
+       "Gol temposu (son 10+ maç): Olympiakos maçlarında ortalama 2.1, Iraklis maçlarında 2.5 gol; 2.5 üst oranı %20 / %40, iki takım da gol atma oranı %30 / %60.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %46, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 49,
+      "time": "",
+      "home": "Celta B",
+      "away": "Valladolid",
+      "league": "İspanya Segunda",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.52,
+      "p": 0.586,
+      "base": 0.482,
+      "edge": 0.104,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3318600,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Celta B 1.62, Valladolid 1.42 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Celta B son 5 maçta 0G 2B 3M (5-11 gol); Valladolid son 5 maçta 2G 0B 3M (9-10 gol).",
+       "Gol temposu (son 10+ maç): Celta B maçlarında ortalama 3.4, Valladolid maçlarında 3.7 gol; 2.5 üst oranı %60 / %80, iki takım da gol atma oranı %70 / %70."
+      ]
+     },
+     {
+      "id": 45,
+      "time": "",
+      "home": "Getafe",
+      "away": "Ath Madrid",
+      "league": "İspanya La Liga",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.48,
+      "p": 0.556,
+      "base": 0.455,
+      "edge": 0.101,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3318556,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Getafe 0.91, Ath Madrid 1.30 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Getafe son 5 maçta 1G 1B 3M (4-11 gol); Ath Madrid son 5 maçta 4G 0B 1M (7-3 gol).",
+       "Gol temposu (son 10+ maç): Getafe maçlarında ortalama 2.2, Ath Madrid maçlarında 2.7 gol; 2.5 üst oranı %30 / %70, iki takım da gol atma oranı %40 / %40.",
+       "Son ikili maçlar: Ath Madrid 1-0 Getafe, Getafe 0-1 Ath Madrid, Getafe 2-1 Ath Madrid."
+      ]
+     }
+    ],
+    "odds": 3.04,
+    "date": "2026-11-22",
+    "p": 0.2021,
+    "ev": 0.61,
+    "score": 0.294
+   }
+  ],
+  "mil_saved_on": "2026-11-22"
+ },
+ "2026-11-23": {
+  "list": [
+   {
+    "odds": 3.13,
+    "p": 0.2561,
+    "legs": [
+     {
+      "time": "",
+      "home": "Ceuta",
+      "away": "Almeria",
+      "league": "İspanya Segunda",
+      "sel": "2,5 Üst",
+      "o": 1.47,
+      "p": 0.611,
+      "nid": 3318724,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.482,
+      "edge": 0.13,
+      "why": [
+       "Model beklentisi: Ceuta 1.42, Almeria 1.73 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Ceuta son 5 maçta 0G 0B 5M (2-12 gol); Almeria son 5 maçta 3G 2B 0M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Ceuta maçlarında ortalama 2.9, Almeria maçlarında 2.7 gol; 2.5 üst oranı %60 / %50, iki takım da gol atma oranı %70 / %50.",
+       "Son ikili maçlar: Almeria 4-2 Ceuta, Ceuta 3-2 Almeria."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Buyuksehyr",
+      "away": "Corum",
+      "league": "Türkiye Süper Lig",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.52,
+      "p": 0.6,
+      "nid": 3319387,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.468,
+      "edge": 0.132,
+      "why": [
+       "Model beklentisi: Buyuksehyr 2.02, Corum 1.45 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Buyuksehyr son 5 maçta 3G 1B 1M (9-6 gol); Corum son 5 maçta 3G 0B 2M (8-9 gol).",
+       "Gol temposu (son 10+ maç): Buyuksehyr maçlarında ortalama 3.4, Corum maçlarında 3.8 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %60 / %50."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Sochaux",
+      "away": "Dunkerque",
+      "league": "Fransa Ligue 2",
+      "sel": "ÇŞ X-2",
+      "o": 1.4,
+      "p": 0.698,
+      "nid": 3319333,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.583,
+      "edge": 0.115,
+      "why": [
+       "Model beklentisi: Sochaux 1.16, Dunkerque 1.41 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %58.",
+       "Form: Sochaux son 5 maçta 0G 1B 4M (4-10 gol); Dunkerque son 5 maçta 2G 1B 2M (7-5 gol).",
+       "Hücum/savunma (son 10+ maç): Sochaux 0.8 atıyor, 1.2 yiyor; Dunkerque 1.0 atıyor, 1.2 yiyor."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
