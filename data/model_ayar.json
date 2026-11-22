@@ -3,9 +3,9 @@
  "reg": 2.0,
  "shot_w": 0.7,
  "shrink": 0.9,
- "default_loss": 0.80272,
- "best_loss": 0.79831,
- "n": 8662,
+ "default_loss": 0.80228,
+ "best_loss": 0.79808,
+ "n": 8642,
  "divs": [
   "ARG",
   "AUT",
@@ -33,6 +33,6 @@
   "SWZ",
   "USA"
  ],
- "tested_on": "2026-11-15",
+ "tested_on": "2026-11-22",
  "used": true
 }
