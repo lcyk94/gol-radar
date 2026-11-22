@@ -10889,30 +10889,29 @@
  "2026-11-23": {
   "list": [
    {
-    "odds": 3.13,
-    "p": 0.2561,
+    "odds": 3.31,
+    "p": 0.2253,
     "legs": [
      {
       "time": "",
-      "home": "Ceuta",
-      "away": "Almeria",
-      "league": "İspanya Segunda",
+      "home": "Wieczysta Krakow",
+      "away": "Motor Lublin",
+      "league": "Polonya Ekstraklasa",
       "sel": "2,5 Üst",
-      "o": 1.47,
-      "p": 0.611,
-      "nid": 3318724,
+      "o": 1.25,
+      "p": 0.67,
+      "nid": 3313168,
       "mk": "Alt/Üst 2,5",
       "mtid": 12,
       "line": 2.5,
       "idx": 1,
       "fam": "AÜ",
-      "base": 0.482,
-      "edge": 0.13,
+      "base": 0.496,
+      "edge": 0.174,
       "why": [
-       "Model beklentisi: Ceuta 1.42, Almeria 1.73 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Ceuta son 5 maçta 0G 0B 5M (2-12 gol); Almeria son 5 maçta 3G 2B 0M (10-6 gol).",
-       "Gol temposu (son 10+ maç): Ceuta maçlarında ortalama 2.9, Almeria maçlarında 2.7 gol; 2.5 üst oranı %60 / %50, iki takım da gol atma oranı %70 / %50.",
-       "Son ikili maçlar: Almeria 4-2 Ceuta, Ceuta 3-2 Almeria."
+       "Model beklentisi: Wieczysta Krakow 1.82, Motor Lublin 1.63 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Wieczysta Krakow son 5 maçta 0G 0B 5M (4-11 gol); Motor Lublin son 5 maçta 4G 1B 0M (13-9 gol).",
+       "Gol temposu (son 10+ maç): Wieczysta Krakow maçlarında ortalama 2.8, Motor Lublin maçlarında 3.4 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %60 / %80."
       ]
      },
      {
@@ -10942,21 +10941,22 @@
       "home": "Sochaux",
       "away": "Dunkerque",
       "league": "Fransa Ligue 2",
-      "sel": "ÇŞ X-2",
-      "o": 1.4,
-      "p": 0.698,
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.74,
+      "p": 0.56,
       "nid": 3319333,
-      "mk": "Çifte Şans",
-      "mtid": 3,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
       "line": 0.0,
-      "idx": 2,
-      "fam": "ÇŞ",
-      "base": 0.583,
-      "edge": 0.115,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.454,
+      "edge": 0.106,
       "why": [
-       "Model beklentisi: Sochaux 1.16, Dunkerque 1.41 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %58.",
+       "Model beklentisi: Sochaux 1.16, Dunkerque 1.41 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
        "Form: Sochaux son 5 maçta 0G 1B 4M (4-10 gol); Dunkerque son 5 maçta 2G 1B 2M (7-5 gol).",
-       "Hücum/savunma (son 10+ maç): Sochaux 0.8 atıyor, 1.2 yiyor; Dunkerque 1.0 atıyor, 1.2 yiyor."
+       "Gol temposu (son 10+ maç): Sochaux maçlarında ortalama 2.0, Dunkerque maçlarında 2.2 gol; 2.5 üst oranı %20 / %30, iki takım da gol atma oranı %50 / %40.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
       ]
      }
     ]
