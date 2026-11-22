@@ -10889,51 +10889,52 @@
  "2026-11-23": {
   "list": [
    {
-    "odds": 3.31,
-    "p": 0.2253,
+    "odds": 3.12,
+    "p": 0.2306,
     "legs": [
-     {
-      "time": "",
-      "home": "Wieczysta Krakow",
-      "away": "Motor Lublin",
-      "league": "Polonya Ekstraklasa",
-      "sel": "2,5 Üst",
-      "o": 1.25,
-      "p": 0.67,
-      "nid": 3313168,
-      "mk": "Alt/Üst 2,5",
-      "mtid": 12,
-      "line": 2.5,
-      "idx": 1,
-      "fam": "AÜ",
-      "base": 0.496,
-      "edge": 0.174,
-      "why": [
-       "Model beklentisi: Wieczysta Krakow 1.82, Motor Lublin 1.63 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
-       "Form: Wieczysta Krakow son 5 maçta 0G 0B 5M (4-11 gol); Motor Lublin son 5 maçta 4G 1B 0M (13-9 gol).",
-       "Gol temposu (son 10+ maç): Wieczysta Krakow maçlarında ortalama 2.8, Motor Lublin maçlarında 3.4 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %60 / %80."
-      ]
-     },
      {
       "time": "",
       "home": "Buyuksehyr",
       "away": "Corum",
       "league": "Türkiye Süper Lig",
-      "sel": "Ev 1,5 Üst",
-      "o": 1.52,
-      "p": 0.6,
+      "sel": "2,5 Üst",
+      "o": 1.4,
+      "p": 0.674,
       "nid": 3319387,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
       "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.468,
-      "edge": 0.132,
+      "fam": "AÜ",
+      "base": 0.538,
+      "edge": 0.136,
       "why": [
-       "Model beklentisi: Buyuksehyr 2.02, Corum 1.45 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Model beklentisi: Buyuksehyr 2.02, Corum 1.45 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
        "Form: Buyuksehyr son 5 maçta 3G 1B 1M (9-6 gol); Corum son 5 maçta 3G 0B 2M (8-9 gol).",
        "Gol temposu (son 10+ maç): Buyuksehyr maçlarında ortalama 3.4, Corum maçlarında 3.8 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %60 / %50."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Vancouver Whitecaps",
+      "away": "Real Salt Lake",
+      "league": "ABD MLS",
+      "sel": "MS 1",
+      "o": 1.28,
+      "p": 0.611,
+      "nid": 3409574,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.486,
+      "edge": 0.125,
+      "why": [
+       "Model beklentisi: Vancouver Whitecaps 2.06, Real Salt Lake 1.00 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Vancouver Whitecaps son 5 maçta 4G 0B 1M (13-4 gol); Real Salt Lake son 5 maçta 4G 0B 1M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Vancouver Whitecaps 2.1 atıyor, 1.1 yiyor; Real Salt Lake 1.6 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: Real Salt Lake 0-3 Vancouver Whitecaps, Vancouver Whitecaps 1-0 Real Salt Lake, Real Salt Lake 2-3 Vancouver Whitecaps."
       ]
      },
      {
@@ -10960,7 +10961,157 @@
       ]
      }
     ]
+   },
+   {
+    "odds": 2.0,
+    "p": 0.4405,
+    "p_model": 0.4405,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Sochaux",
+      "away": "Dunkerque",
+      "league": "Fransa Ligue 2",
+      "sel": "ÇŞ X-2",
+      "o": 1.4,
+      "p": 0.698,
+      "nid": 3319333,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.583,
+      "edge": 0.115,
+      "why": [
+       "Model beklentisi: Sochaux 1.16, Dunkerque 1.41 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %58.",
+       "Form: Sochaux son 5 maçta 0G 1B 4M (4-10 gol); Dunkerque son 5 maçta 2G 1B 2M (7-5 gol).",
+       "Hücum/savunma (son 10+ maç): Sochaux 0.8 atıyor, 1.2 yiyor; Dunkerque 1.0 atıyor, 1.2 yiyor."
+      ],
+      "pm": 0.671,
+      "pb": 0.684
+     },
+     {
+      "time": "",
+      "home": "Ceuta",
+      "away": "Almeria",
+      "league": "İspanya Segunda",
+      "sel": "KG Var",
+      "o": 1.43,
+      "p": 0.631,
+      "nid": 3318724,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.529,
+      "edge": 0.102,
+      "why": [
+       "Model beklentisi: Ceuta 1.42, Almeria 1.73 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %53.",
+       "Form: Ceuta son 5 maçta 0G 0B 5M (2-12 gol); Almeria son 5 maçta 3G 2B 0M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Ceuta maçlarında ortalama 2.9, Almeria maçlarında 2.7 gol; 2.5 üst oranı %60 / %50, iki takım da gol atma oranı %70 / %50.",
+       "Son ikili maçlar: Almeria 4-2 Ceuta, Ceuta 3-2 Almeria."
+      ],
+      "pm": 0.657,
+      "pb": 0.644
+     }
+    ]
    }
-  ]
+  ],
+  "saved_on": "2026-11-23",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 17,
+      "time": "",
+      "home": "Buyuksehyr",
+      "away": "Corum",
+      "league": "Türkiye Süper Lig",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.4,
+      "p": 0.674,
+      "base": 0.538,
+      "edge": 0.136,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3319387,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Buyuksehyr 2.02, Corum 1.45 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Buyuksehyr son 5 maçta 3G 1B 1M (9-6 gol); Corum son 5 maçta 3G 0B 2M (8-9 gol).",
+       "Gol temposu (son 10+ maç): Buyuksehyr maçlarında ortalama 3.4, Corum maçlarında 3.8 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %60 / %50."
+      ]
+     },
+     {
+      "id": 19,
+      "time": "",
+      "home": "Vancouver Whitecaps",
+      "away": "Real Salt Lake",
+      "league": "ABD MLS",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.28,
+      "p": 0.611,
+      "base": 0.486,
+      "edge": 0.125,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3409574,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Vancouver Whitecaps 2.06, Real Salt Lake 1.00 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: Vancouver Whitecaps son 5 maçta 4G 0B 1M (13-4 gol); Real Salt Lake son 5 maçta 4G 0B 1M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Vancouver Whitecaps 2.1 atıyor, 1.1 yiyor; Real Salt Lake 1.6 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: Real Salt Lake 0-3 Vancouver Whitecaps, Vancouver Whitecaps 1-0 Real Salt Lake, Real Salt Lake 2-3 Vancouver Whitecaps."
+      ]
+     },
+     {
+      "id": 6,
+      "time": "",
+      "home": "Sochaux",
+      "away": "Dunkerque",
+      "league": "Fransa Ligue 2",
+      "sel": "Dep bir yarıyı kazanır",
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "o": 1.74,
+      "p": 0.56,
+      "base": 0.454,
+      "edge": 0.106,
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3319333,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Sochaux 1.16, Dunkerque 1.41 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Sochaux son 5 maçta 0G 1B 4M (4-10 gol); Dunkerque son 5 maçta 2G 1B 2M (7-5 gol).",
+       "Gol temposu (son 10+ maç): Sochaux maçlarında ortalama 2.0, Dunkerque maçlarında 2.2 gol; 2.5 üst oranı %20 / %30, iki takım da gol atma oranı %50 / %40.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %44, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     }
+    ],
+    "odds": 3.12,
+    "date": "2026-11-23",
+    "p": 0.2306,
+    "ev": 0.72,
+    "score": 0.367
+   }
+  ],
+  "mil_saved_on": "2026-11-23"
  }
 }
