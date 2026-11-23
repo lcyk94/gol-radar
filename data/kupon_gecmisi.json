@@ -11113,5 +11113,83 @@
    }
   ],
   "mil_saved_on": "2026-11-23"
+ },
+ "2026-11-26": {
+  "list": [
+   {
+    "odds": 3.25,
+    "p": 0.2584,
+    "legs": [
+     {
+      "time": "20:45",
+      "home": "Viktoria Plzen",
+      "away": "Benfica",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "MS 2",
+      "o": 1.33,
+      "p": 0.634,
+      "nid": 3326599,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.344,
+      "why": [
+       "Model beklentisi: Viktoria Plzen 1.11, Benfica 2.29 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (9-6 gol)."
+      ]
+     },
+     {
+      "time": "20:45",
+      "home": "Ajax",
+      "away": "Thun",
+      "league": "UEFA Konferans Ligi",
+      "sel": "Ev iki yarıda da gol atar",
+      "o": 1.38,
+      "p": 0.605,
+      "nid": 3326643,
+      "mk": "Ev Sahibi İki Yarıda da Gol",
+      "mtid": 295,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.276,
+      "edge": 0.328,
+      "why": [
+       "Model beklentisi: Ajax 3.04, Thun 1.11 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %28.",
+       "Form: Ajax son 5 maçta 3G 2B 0M (11-6 gol); Thun son 5 maçta 2G 1B 2M (14-15 gol).",
+       "Gol temposu (son 10+ maç): Ajax maçlarında ortalama 4.1, Thun maçlarında 4.8 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %80.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Inter",
+      "away": "FC Copenhagen",
+      "league": "UEFA Konferans Ligi",
+      "sel": "KG Var",
+      "o": 1.77,
+      "p": 0.674,
+      "nid": 3326548,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.545,
+      "edge": 0.13,
+      "why": [
+       "Model beklentisi: Inter 1.62, FC Copenhagen 1.79 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Inter son 5 maçta 4G 0B 1M (10-5 gol); FC Copenhagen son 5 maçta 2G 2B 1M (6-4 gol).",
+       "Gol temposu (son 10+ maç): Inter maçlarında ortalama 3.6, FC Copenhagen maçlarında 2.4 gol; 2.5 üst oranı %70 / %30, iki takım da gol atma oranı %60 / %40.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
