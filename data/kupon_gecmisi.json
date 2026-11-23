@@ -11191,5 +11191,236 @@
     ]
    }
   ]
+ },
+ "2026-11-24": {
+  "list": [
+   {
+    "odds": 3.12,
+    "p": 0.2512,
+    "legs": [
+     {
+      "time": "",
+      "home": "Zenit",
+      "away": "Krylya Sovetov",
+      "league": "Rusya Premier Lig",
+      "sel": "Dep: yarılar eşit",
+      "o": 1.75,
+      "p": 0.592,
+      "nid": 3321786,
+      "mk": "Deplasman Hangi Yarıda Daha Çok Gol Atar",
+      "mtid": 587,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.44,
+      "edge": 0.153,
+      "why": [
+       "Model beklentisi: Zenit 2.21, Krylya Sovetov 0.61 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Zenit son 5 maçta 5G 0B 0M (14-2 gol); Krylya Sovetov son 5 maçta 2G 2B 1M (7-4 gol).",
+       "Gol temposu (son 10+ maç): Zenit maçlarında ortalama 2.4, Krylya Sovetov maçlarında 2.5 gol; 2.5 üst oranı %50 / %50, iki takım da gol atma oranı %40 / %70.",
+       "Son ikili maçlar: Zenit 2-1 Krylya Sovetov, Krylya Sovetov 1-1 Zenit, Zenit 2-3 Krylya Sovetov.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "20:45",
+      "home": "Bodo/Glimt",
+      "away": "LASK",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "MS 1",
+      "o": 1.33,
+      "p": 0.616,
+      "nid": 3322113,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.176,
+      "why": [
+       "Model beklentisi: Bodo/Glimt 2.36, LASK 1.25 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Bodo/Glimt son 5 maçta 4G 0B 1M (10-4 gol); LASK son 5 maçta 3G 0B 2M (11-8 gol).",
+       "Hücum/savunma (son 10+ maç): Bodo/Glimt 2.2 atıyor, 1.2 yiyor; LASK 2.5 atıyor, 1.5 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "RB Leipzig",
+      "away": "Lens",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "KG Var",
+      "o": 1.34,
+      "p": 0.688,
+      "nid": 3322138,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.545,
+      "edge": 0.143,
+      "why": [
+       "Model beklentisi: RB Leipzig 2.42, Lens 1.39 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: RB Leipzig son 5 maçta 4G 0B 1M (17-9 gol); Lens son 5 maçta 2G 1B 2M (7-6 gol).",
+       "Gol temposu (son 10+ maç): RB Leipzig maçlarında ortalama 4.6, Lens maçlarında 2.7 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %40 / %80.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "2026-11-25": {
+  "list": [
+   {
+    "odds": 3.31,
+    "p": 0.2679,
+    "legs": [
+     {
+      "time": "",
+      "home": "Chapecoense-SC",
+      "away": "Palmeiras",
+      "league": "Brezilya Serie A",
+      "sel": "MS 2",
+      "o": 1.79,
+      "p": 0.666,
+      "nid": 3336213,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.25,
+      "edge": 0.416,
+      "why": [
+       "Model beklentisi: Chapecoense-SC 0.77, Palmeiras 2.05 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %25.",
+       "Form: Chapecoense-SC son 5 maçta 1G 0B 4M (3-10 gol); Palmeiras son 5 maçta 3G 1B 1M (11-3 gol).",
+       "Hücum/savunma (son 10+ maç): Chapecoense-SC 0.6 atıyor, 2.2 yiyor; Palmeiras 1.8 atıyor, 0.4 yiyor.",
+       "Son ikili maçlar: Palmeiras 1-0 Chapecoense-SC, Chapecoense-SC 0-2 Palmeiras, Palmeiras 3-1 Chapecoense-SC."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Paris SG",
+      "away": "Roma",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "KG Var",
+      "o": 1.34,
+      "p": 0.655,
+      "nid": 3324080,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.545,
+      "edge": 0.11,
+      "why": [
+       "Model beklentisi: Paris SG 2.28, Roma 1.29 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Paris SG son 5 maçta 5G 0B 0M (14-4 gol); Roma son 5 maçta 4G 1B 0M (20-8 gol).",
+       "Gol temposu (son 10+ maç): Paris SG maçlarında ortalama 3.3, Roma maçlarında 3.9 gol; 2.5 üst oranı %70 / %70, iki takım da gol atma oranı %70 / %60.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Lille",
+      "away": "Bayern Munich",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.38,
+      "p": 0.614,
+      "nid": 3324210,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.329,
+      "edge": 0.285,
+      "why": [
+       "Model beklentisi: Lille 1.15, Bayern Munich 2.07 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Lille son 5 maçta 2G 2B 1M (5-4 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
+       "Gol temposu (son 10+ maç): Lille maçlarında ortalama 2.0, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %30 / %80, iki takım da gol atma oranı %50 / %80.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.31,
+    "p": 0.2355,
+    "legs": [
+     {
+      "time": "",
+      "home": "Rubin Kazan",
+      "away": "Rodina Moscow",
+      "league": "Rusya Premier Lig",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.66,
+      "p": 0.59,
+      "nid": 3321795,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.417,
+      "edge": 0.173,
+      "why": [
+       "Model beklentisi: Rubin Kazan 1.99, Rodina Moscow 0.94 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Avispa Fukuoka",
+      "away": "Yokohama F. Marinos",
+      "league": "Japonya J1 Lig",
+      "sel": "Ev hiçbir yarıyı kazanamaz",
+      "o": 1.65,
+      "p": 0.582,
+      "nid": 3324196,
+      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
+      "mtid": 584,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.452,
+      "edge": 0.129,
+      "why": [
+       "Model beklentisi: Avispa Fukuoka 1.00, Yokohama F. Marinos 1.31 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Avispa Fukuoka son 5 maçta 0G 1B 4M (3-12 gol); Yokohama F. Marinos son 5 maçta 1G 4B 0M (8-6 gol).",
+       "Gol temposu (son 10+ maç): Avispa Fukuoka maçlarında ortalama 2.7, Yokohama F. Marinos maçlarında 2.2 gol; 2.5 üst oranı %60 / %20, iki takım da gol atma oranı %60 / %60.",
+       "Son ikili maçlar: Yokohama F. Marinos 2-0 Avispa Fukuoka, Avispa Fukuoka 2-1 Yokohama F. Marinos, Avispa Fukuoka 2-1 Yokohama F. Marinos.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "20:45",
+      "home": "Slavia Prag",
+      "away": "Villarreal",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "ÇŞ X-2",
+      "o": 1.21,
+      "p": 0.686,
+      "nid": 3324359,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.56,
+      "edge": 0.126,
+      "why": [
+       "Model beklentisi: Slavia Prag 1.44, Villarreal 1.74 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Villarreal son 5 maçta 2G 1B 2M (6-5 gol)."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
