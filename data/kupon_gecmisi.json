@@ -11117,27 +11117,48 @@
  "2026-11-26": {
   "list": [
    {
-    "odds": 3.37,
-    "p": 0.2519,
+    "odds": 3.01,
+    "p": 0.2933,
     "legs": [
+     {
+      "time": "20:45",
+      "home": "Viktoria Plzen",
+      "away": "Benfica",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "MS 2",
+      "o": 1.29,
+      "p": 0.652,
+      "nid": 3326599,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.362,
+      "why": [
+       "Model beklentisi: Viktoria Plzen 1.07, Benfica 2.34 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (9-6 gol)."
+      ]
+     },
      {
       "time": "20:45",
       "home": "Ajax",
       "away": "Thun",
       "league": "UEFA Konferans Ligi",
-      "sel": "3,5 Üst",
-      "o": 1.47,
-      "p": 0.603,
+      "sel": "MS1 & 2,5 Üst",
+      "o": 1.21,
+      "p": 0.653,
       "nid": 3326643,
-      "mk": "Alt/Üst 3,5",
-      "mtid": 13,
-      "line": 3.5,
-      "idx": 1,
-      "fam": "AÜ",
-      "base": 0.281,
-      "edge": 0.322,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.267,
+      "edge": 0.386,
       "why": [
-       "Model beklentisi: Ajax 3.09, Thun 1.10 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %28.",
+       "Model beklentisi: Ajax 3.11, Thun 1.09 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
        "Form: Ajax son 5 maçta 4G 1B 0M (13-5 gol); Thun son 5 maçta 1G 1B 3M (14-17 gol).",
        "Gol temposu (son 10+ maç): Ajax maçlarında ortalama 4.0, Thun maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %80.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -11149,8 +11170,8 @@
       "away": "FC Copenhagen",
       "league": "UEFA Konferans Ligi",
       "sel": "KG Var",
-      "o": 1.79,
-      "p": 0.691,
+      "o": 1.93,
+      "p": 0.69,
       "nid": 3326548,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
@@ -11158,12 +11179,62 @@
       "idx": 0,
       "fam": "KG",
       "base": 0.545,
-      "edge": 0.146,
+      "edge": 0.145,
       "why": [
-       "Model beklentisi: Inter 1.70, FC Copenhagen 1.82 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Model beklentisi: Inter 1.67, FC Copenhagen 1.84 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
        "Form: Inter son 5 maçta 3G 1B 1M (11-8 gol); FC Copenhagen son 5 maçta 2G 2B 1M (5-7 gol).",
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 4.3, FC Copenhagen maçlarında 2.5 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %30.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.49,
+    "p": 0.2521,
+    "legs": [
+     {
+      "time": "03:00",
+      "home": "Barcelona",
+      "away": "Independiente",
+      "league": "Ekvador Pro Lig",
+      "sel": "Ev 1,5 Üst",
+      "o": 2.1,
+      "p": 0.645,
+      "nid": 3414056,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.443,
+      "edge": 0.202,
+      "why": [
+       "Model beklentisi: Barcelona 2.20, Independiente 1.11 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Barcelona son 5 maçta 4G 0B 1M (17-8 gol); Independiente son 5 maçta 2G 2B 1M (6-5 gol).",
+       "Gol temposu (son 10+ maç): Barcelona maçlarında ortalama 5.2, Independiente maçlarında 2.2 gol; 2.5 üst oranı %100 / %40, iki takım da gol atma oranı %80 / %70.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "time": "20:45",
+      "home": "Iberia 1999",
+      "away": "Getafe",
+      "league": "UEFA Konferans Ligi",
+      "sel": "MS 2",
+      "o": 1.3,
+      "p": 0.646,
+      "nid": 3326613,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.356,
+      "why": [
+       "Model beklentisi: Iberia 1999 0.68, Getafe 1.84 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Getafe son 5 maçta 1G 1B 3M (4-11 gol)."
       ]
      },
      {
@@ -11427,52 +11498,50 @@
  "2026-11-25": {
   "list": [
    {
-    "odds": 3.85,
-    "p": 0.2161,
+    "odds": 3.12,
+    "p": 0.2443,
     "legs": [
      {
       "time": "",
-      "home": "Chapecoense-SC",
-      "away": "Palmeiras",
-      "league": "Brezilya Serie A",
-      "sel": "MS2 & 1,5 Üst",
-      "o": 2.23,
-      "p": 0.551,
-      "nid": 3336213,
-      "mk": "Maç Sonucu & 1,5 Alt/Üst",
-      "mtid": 342,
-      "line": 1.5,
-      "idx": 5,
-      "fam": "MS&AÜ",
-      "base": 0.169,
-      "edge": 0.381,
-      "why": [
-       "Model beklentisi: Chapecoense-SC 0.76, Palmeiras 2.05 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %17.",
-       "Form: Chapecoense-SC son 5 maçta 0G 0B 5M (2-11 gol); Palmeiras son 5 maçta 2G 2B 1M (10-4 gol).",
-       "Gol temposu (son 10+ maç): Chapecoense-SC maçlarında ortalama 2.8, Palmeiras maçlarında 2.4 gol; 2.5 üst oranı %60 / %30, iki takım da gol atma oranı %50 / %40.",
-       "Son ikili maçlar: Palmeiras 1-0 Chapecoense-SC, Chapecoense-SC 0-2 Palmeiras, Palmeiras 3-1 Chapecoense-SC."
-      ]
-     },
-     {
-      "time": "23:00",
-      "home": "Inter",
-      "away": "Stuttgart",
-      "league": "UEFA Şampiyonlar Ligi",
+      "home": "Rubin Kazan",
+      "away": "Rodina Moscow",
+      "league": "Rusya Premier Lig",
       "sel": "MS 1",
-      "o": 1.25,
-      "p": 0.64,
-      "nid": 3324191,
+      "o": 1.69,
+      "p": 0.61,
+      "nid": 3321795,
       "mk": "Maç Sonucu",
       "mtid": 1,
       "line": 0.0,
       "idx": 0,
       "fam": "MS",
-      "base": 0.44,
-      "edge": 0.199,
+      "base": 0.437,
+      "edge": 0.173,
       "why": [
-       "Model beklentisi: Inter 2.59, Stuttgart 1.34 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Inter son 5 maçta 3G 1B 1M (11-8 gol); Stuttgart son 5 maçta 2G 1B 2M (7-6 gol).",
-       "Hücum/savunma (son 10+ maç): Inter 2.7 atıyor, 1.6 yiyor; Stuttgart 1.5 atıyor, 1.5 yiyor.",
+       "Model beklentisi: Rubin Kazan 1.98, Rodina Moscow 0.94 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol)."
+      ]
+     },
+     {
+      "time": "23:00",
+      "home": "Paris SG",
+      "away": "Roma",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "KG Var",
+      "o": 1.3,
+      "p": 0.664,
+      "nid": 3324080,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.545,
+      "edge": 0.119,
+      "why": [
+       "Model beklentisi: Paris SG 2.29, Roma 1.32 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Paris SG son 5 maçta 5G 0B 0M (14-4 gol); Roma son 5 maçta 4G 1B 0M (20-8 gol).",
+       "Gol temposu (son 10+ maç): Paris SG maçlarında ortalama 3.3, Roma maçlarında 3.9 gol; 2.5 üst oranı %70 / %70, iki takım da gol atma oranı %70 / %60.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      },
@@ -11482,8 +11551,8 @@
       "away": "Bayern Munich",
       "league": "UEFA Şampiyonlar Ligi",
       "sel": "Dep 1,5 Üst",
-      "o": 1.38,
-      "p": 0.614,
+      "o": 1.42,
+      "p": 0.603,
       "nid": 3324210,
       "mk": "Deplasman 1,5 Gol Alt/Üst",
       "mtid": 29,
@@ -11491,9 +11560,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.329,
-      "edge": 0.285,
+      "edge": 0.274,
       "why": [
-       "Model beklentisi: Lille 1.15, Bayern Munich 2.07 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Model beklentisi: Lille 1.15, Bayern Munich 2.03 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
        "Form: Lille son 5 maçta 2G 2B 1M (5-4 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
        "Gol temposu (son 10+ maç): Lille maçlarında ortalama 2.0, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %30 / %80, iki takım da gol atma oranı %50 / %80.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -11502,28 +11571,30 @@
     ]
    },
    {
-    "odds": 3.23,
-    "p": 0.2475,
+    "odds": 3.05,
+    "p": 0.2865,
     "legs": [
      {
       "time": "",
-      "home": "Rubin Kazan",
-      "away": "Rodina Moscow",
+      "home": "Akhmat Grozny",
+      "away": "Krasnodar",
       "league": "Rusya Premier Lig",
-      "sel": "MS 1",
-      "o": 1.69,
-      "p": 0.611,
-      "nid": 3321795,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "MS",
-      "base": 0.437,
-      "edge": 0.174,
+      "sel": "HMS -1 · 2",
+      "o": 1.39,
+      "p": 0.776,
+      "nid": 3321773,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.563,
+      "edge": 0.213,
       "why": [
-       "Model beklentisi: Rubin Kazan 1.99, Rodina Moscow 0.94 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol)."
+       "Model beklentisi: Akhmat Grozny 1.00, Krasnodar 1.64 gol. Bu seçenek %78 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Akhmat Grozny son 5 maçta 1G 3B 1M (6-5 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Akhmat Grozny 1.0 atıyor, 1.4 yiyor; Krasnodar 1.9 atıyor, 1.0 yiyor.",
+       "Son ikili maçlar: Akhmat Grozny 0-1 Krasnodar, Krasnodar 2-0 Akhmat Grozny, Krasnodar 3-1 Akhmat Grozny."
       ]
      },
      {
@@ -11532,7 +11603,7 @@
       "away": "Yokohama F. Marinos",
       "league": "Japonya J1 Lig",
       "sel": "Ev hiçbir yarıyı kazanamaz",
-      "o": 1.58,
+      "o": 1.59,
       "p": 0.592,
       "nid": 3324196,
       "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
@@ -11551,30 +11622,270 @@
       ]
      },
      {
+      "time": "",
+      "home": "V-Varen Nagasaki",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "o": 1.38,
+      "p": 0.623,
+      "nid": 3324334,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.488,
+      "edge": 0.136,
+      "why": [
+       "Model beklentisi: V-Varen Nagasaki 1.53, Kawasaki Frontale 1.69 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: V-Varen Nagasaki son 5 maçta 1G 2B 2M (6-4 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (8-8 gol).",
+       "Gol temposu (son 10+ maç): V-Varen Nagasaki maçlarında ortalama 2.2, Kawasaki Frontale maçlarında 3.6 gol; 2.5 üst oranı %30 / %80, iki takım da gol atma oranı %50 / %80.",
+       "Son ikili maçlar: V-Varen Nagasaki 1-2 Kawasaki Frontale, Kawasaki Frontale 1-0 V-Varen Nagasaki."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 2.04,
+    "p": 0.4588,
+    "p_model": 0.4862,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Akhmat Grozny",
+      "away": "Krasnodar",
+      "league": "Rusya Premier Lig",
+      "sel": "İY X-2",
+      "o": 1.21,
+      "p": 0.797,
+      "nid": 3321773,
+      "mk": "1. Yarı Çifte Şans",
+      "mtid": 8,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "İY ÇŞ",
+      "base": 0.666,
+      "edge": 0.13,
+      "why": [
+       "Model beklentisi: Akhmat Grozny 1.00, Krasnodar 1.64 gol. Bu seçenek %80 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %67.",
+       "Form: Akhmat Grozny son 5 maçta 1G 3B 1M (6-5 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Akhmat Grozny 1.0 atıyor, 1.4 yiyor; Krasnodar 1.9 atıyor, 1.0 yiyor.",
+       "Son ikili maçlar: Akhmat Grozny 0-1 Krasnodar, Krasnodar 2-0 Akhmat Grozny, Krasnodar 3-1 Akhmat Grozny.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ],
+      "pm": 0.777,
+      "pb": 0.787
+     },
+     {
+      "time": "",
+      "home": "Rubin Kazan",
+      "away": "Rodina Moscow",
+      "league": "Rusya Premier Lig",
+      "sel": "MS 1",
+      "o": 1.69,
+      "p": 0.61,
+      "nid": 3321795,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.437,
+      "edge": 0.173,
+      "why": [
+       "Model beklentisi: Rubin Kazan 1.98, Rodina Moscow 0.94 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol)."
+      ],
+      "pm": 0.556,
+      "pb": 0.583
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-25",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 15,
+      "time": "",
+      "home": "Rubin Kazan",
+      "away": "Rodina Moscow",
+      "league": "Rusya Premier Lig",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.69,
+      "p": 0.61,
+      "base": 0.437,
+      "edge": 0.173,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3321795,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Rubin Kazan 1.98, Rodina Moscow 0.94 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Rodina Moscow son 4 maçta 1G 0B 3M (4-10 gol)."
+      ]
+     },
+     {
+      "id": 72,
       "time": "23:00",
-      "home": "Club Brugge",
-      "away": "Liverpool",
+      "home": "Paris SG",
+      "away": "Roma",
       "league": "UEFA Şampiyonlar Ligi",
       "sel": "KG Var",
-      "o": 1.21,
-      "p": 0.685,
-      "nid": 3324255,
       "mk": "Karşılıklı Gol",
+      "o": 1.3,
+      "p": 0.664,
+      "base": 0.545,
+      "edge": 0.119,
       "mtid": 38,
       "line": 0.0,
       "idx": 0,
       "fam": "KG",
-      "base": 0.545,
-      "edge": 0.14,
+      "t": "g",
+      "src": "blend",
+      "nid": 3324080,
+      "mbs": 1,
       "why": [
-       "Model beklentisi: Club Brugge 1.53, Liverpool 2.02 gol. Bu seçenek %68 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
-       "Form: Club Brugge son 5 maçta 4G 1B 0M (17-7 gol); Liverpool son 5 maçta 4G 0B 1M (11-3 gol).",
-       "Gol temposu (son 10+ maç): Club Brugge maçlarında ortalama 3.6, Liverpool maçlarında 2.4 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %70 / %30.",
+       "Model beklentisi: Paris SG 2.29, Roma 1.32 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Paris SG son 5 maçta 5G 0B 0M (14-4 gol); Roma son 5 maçta 4G 1B 0M (20-8 gol).",
+       "Gol temposu (son 10+ maç): Paris SG maçlarında ortalama 3.3, Roma maçlarında 3.9 gol; 2.5 üst oranı %70 / %70, iki takım da gol atma oranı %70 / %60.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "id": 88,
+      "time": "23:00",
+      "home": "Lille",
+      "away": "Bayern Munich",
+      "league": "UEFA Şampiyonlar Ligi",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.42,
+      "p": 0.603,
+      "base": 0.329,
+      "edge": 0.274,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "blend",
+      "nid": 3324210,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Lille 1.15, Bayern Munich 2.03 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %33.",
+       "Form: Lille son 5 maçta 2G 2B 1M (5-4 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
+       "Gol temposu (son 10+ maç): Lille maçlarında ortalama 2.0, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %30 / %80, iki takım da gol atma oranı %50 / %80.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
-    ]
+    ],
+    "odds": 3.12,
+    "date": "2026-11-25",
+    "p": 0.2443,
+    "ev": 0.76,
+    "score": 0.566
+   },
+   {
+    "legs": [
+     {
+      "id": 14,
+      "time": "",
+      "home": "Akhmat Grozny",
+      "away": "Krasnodar",
+      "league": "Rusya Premier Lig",
+      "sel": "HMS -1 · 2",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.39,
+      "p": 0.776,
+      "base": 0.563,
+      "edge": 0.213,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3321773,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Akhmat Grozny 1.00, Krasnodar 1.64 gol. Bu seçenek %78 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %56.",
+       "Form: Akhmat Grozny son 5 maçta 1G 3B 1M (6-5 gol); Krasnodar son 5 maçta 4G 0B 1M (11-5 gol).",
+       "Hücum/savunma (son 10+ maç): Akhmat Grozny 1.0 atıyor, 1.4 yiyor; Krasnodar 1.9 atıyor, 1.0 yiyor.",
+       "Son ikili maçlar: Akhmat Grozny 0-1 Krasnodar, Krasnodar 2-0 Akhmat Grozny, Krasnodar 3-1 Akhmat Grozny."
+      ]
+     },
+     {
+      "id": 11,
+      "time": "",
+      "home": "Avispa Fukuoka",
+      "away": "Yokohama F. Marinos",
+      "league": "Japonya J1 Lig",
+      "sel": "Ev hiçbir yarıyı kazanamaz",
+      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
+      "o": 1.59,
+      "p": 0.592,
+      "base": 0.453,
+      "edge": 0.139,
+      "mtid": 584,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3324196,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Avispa Fukuoka 0.98, Yokohama F. Marinos 1.33 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Avispa Fukuoka son 5 maçta 0G 1B 4M (3-10 gol); Yokohama F. Marinos son 5 maçta 1G 4B 0M (10-8 gol).",
+       "Gol temposu (son 10+ maç): Avispa Fukuoka maçlarında ortalama 2.3, Yokohama F. Marinos maçlarında 2.4 gol; 2.5 üst oranı %50 / %30, iki takım da gol atma oranı %50 / %60.",
+       "Son ikili maçlar: Yokohama F. Marinos 2-0 Avispa Fukuoka, Avispa Fukuoka 2-1 Yokohama F. Marinos, Avispa Fukuoka 2-1 Yokohama F. Marinos.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 12,
+      "time": "",
+      "home": "V-Varen Nagasaki",
+      "away": "Kawasaki Frontale",
+      "league": "Japonya J1 Lig",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.38,
+      "p": 0.623,
+      "base": 0.488,
+      "edge": 0.136,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3324334,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: V-Varen Nagasaki 1.53, Kawasaki Frontale 1.69 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %49.",
+       "Form: V-Varen Nagasaki son 5 maçta 1G 2B 2M (6-4 gol); Kawasaki Frontale son 5 maçta 3G 0B 2M (8-8 gol).",
+       "Gol temposu (son 10+ maç): V-Varen Nagasaki maçlarında ortalama 2.2, Kawasaki Frontale maçlarında 3.6 gol; 2.5 üst oranı %30 / %80, iki takım da gol atma oranı %50 / %80.",
+       "Son ikili maçlar: V-Varen Nagasaki 1-2 Kawasaki Frontale, Kawasaki Frontale 1-0 V-Varen Nagasaki."
+      ]
+     }
+    ],
+    "odds": 3.05,
+    "date": "2026-11-25",
+    "p": 0.2865,
+    "ev": 0.87,
+    "score": 0.488
    }
-  ]
+  ],
+  "mil_saved_on": "2026-11-25"
  }
 }
