@@ -11190,8 +11190,8 @@
     ]
    },
    {
-    "odds": 3.49,
-    "p": 0.2521,
+    "odds": 3.64,
+    "p": 0.2489,
     "legs": [
      {
       "time": "03:00",
@@ -11199,8 +11199,8 @@
       "away": "Independiente",
       "league": "Ekvador Pro Lig",
       "sel": "Ev 1,5 Üst",
-      "o": 2.1,
-      "p": 0.645,
+      "o": 2.19,
+      "p": 0.637,
       "nid": 3414056,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -11208,9 +11208,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.443,
-      "edge": 0.202,
+      "edge": 0.195,
       "why": [
-       "Model beklentisi: Barcelona 2.20, Independiente 1.11 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Barcelona 2.17, Independiente 1.08 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Barcelona son 5 maçta 4G 0B 1M (17-8 gol); Independiente son 5 maçta 2G 2B 1M (6-5 gol).",
        "Gol temposu (son 10+ maç): Barcelona maçlarında ortalama 5.2, Independiente maçlarında 2.2 gol; 2.5 üst oranı %100 / %40, iki takım da gol atma oranı %80 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -11254,7 +11254,7 @@
       "base": 0.366,
       "edge": 0.239,
       "why": [
-       "Model beklentisi: Lyon 2.55, Lillestrom 0.83 gol. Bu seçenek %61 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
+       "Model beklentisi: Lyon 2.54, Lillestrom 0.82 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
        "Form: Lyon son 5 maçta 3G 0B 2M (5-5 gol); Lillestrom son 5 maçta 5G 0B 0M (11-4 gol).",
        "Hücum/savunma (son 10+ maç): Lyon 1.4 atıyor, 0.9 yiyor; Lillestrom 1.8 atıyor, 1.4 yiyor.",
        "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
