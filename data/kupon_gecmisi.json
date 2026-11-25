@@ -11118,7 +11118,7 @@
   "list": [
    {
     "odds": 3.01,
-    "p": 0.2933,
+    "p": 0.2941,
     "legs": [
      {
       "time": "20:45",
@@ -11137,7 +11137,7 @@
       "base": 0.29,
       "edge": 0.362,
       "why": [
-       "Model beklentisi: Viktoria Plzen 1.07, Benfica 2.34 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Model beklentisi: Viktoria Plzen 1.09, Benfica 2.36 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
        "Form: Benfica son 5 maçta 4G 0B 1M (9-6 gol)."
       ]
      },
@@ -11148,7 +11148,7 @@
       "league": "UEFA Konferans Ligi",
       "sel": "MS1 & 2,5 Üst",
       "o": 1.21,
-      "p": 0.653,
+      "p": 0.654,
       "nid": 3326643,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
       "mtid": 343,
@@ -11156,9 +11156,9 @@
       "idx": 3,
       "fam": "MS&AÜ",
       "base": 0.267,
-      "edge": 0.386,
+      "edge": 0.388,
       "why": [
-       "Model beklentisi: Ajax 3.11, Thun 1.09 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Model beklentisi: Ajax 3.11, Thun 1.08 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
        "Form: Ajax son 5 maçta 4G 1B 0M (13-5 gol); Thun son 5 maçta 1G 1B 3M (14-17 gol).",
        "Gol temposu (son 10+ maç): Ajax maçlarında ortalama 4.0, Thun maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %80.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -11190,8 +11190,8 @@
     ]
    },
    {
-    "odds": 3.64,
-    "p": 0.2489,
+    "odds": 3.75,
+    "p": 0.2492,
     "legs": [
      {
       "time": "03:00",
@@ -11199,8 +11199,8 @@
       "away": "Independiente",
       "league": "Ekvador Pro Lig",
       "sel": "Ev 1,5 Üst",
-      "o": 2.19,
-      "p": 0.637,
+      "o": 2.29,
+      "p": 0.629,
       "nid": 3414056,
       "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
       "mtid": 20,
@@ -11208,9 +11208,9 @@
       "idx": 1,
       "fam": "TAKIM",
       "base": 0.443,
-      "edge": 0.195,
+      "edge": 0.186,
       "why": [
-       "Model beklentisi: Barcelona 2.17, Independiente 1.08 gol. Bu seçenek %64 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Barcelona 2.14, Independiente 1.09 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Barcelona son 5 maçta 4G 0B 1M (17-8 gol); Independiente son 5 maçta 2G 2B 1M (6-5 gol).",
        "Gol temposu (son 10+ maç): Barcelona maçlarında ortalama 5.2, Independiente maçlarında 2.2 gol; 2.5 üst oranı %100 / %40, iki takım da gol atma oranı %80 / %70.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -11222,8 +11222,8 @@
       "away": "Getafe",
       "league": "UEFA Konferans Ligi",
       "sel": "MS 2",
-      "o": 1.3,
-      "p": 0.646,
+      "o": 1.28,
+      "p": 0.655,
       "nid": 3326613,
       "mk": "Maç Sonucu",
       "mtid": 1,
@@ -11231,9 +11231,9 @@
       "idx": 2,
       "fam": "MS",
       "base": 0.29,
-      "edge": 0.356,
+      "edge": 0.365,
       "why": [
-       "Model beklentisi: Iberia 1999 0.68, Getafe 1.84 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Model beklentisi: Iberia 1999 0.66, Getafe 1.86 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
        "Form: Getafe son 5 maçta 1G 1B 3M (4-11 gol)."
       ]
      },
