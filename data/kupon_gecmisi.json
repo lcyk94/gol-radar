@@ -11117,17 +11117,38 @@
  "2026-11-26": {
   "list": [
    {
-    "odds": 3.02,
-    "p": 0.3024,
+    "odds": 3.01,
+    "p": 0.294,
     "legs": [
+     {
+      "time": "20:45",
+      "home": "Viktoria Plzen",
+      "away": "Benfica",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "MS 2",
+      "o": 1.29,
+      "p": 0.652,
+      "nid": 3326599,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "base": 0.29,
+      "edge": 0.362,
+      "why": [
+       "Model beklentisi: Viktoria Plzen 1.08, Benfica 2.35 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (9-6 gol)."
+      ]
+     },
      {
       "time": "20:45",
       "home": "Ajax",
       "away": "Thun",
       "league": "UEFA Konferans Ligi",
       "sel": "MS1 & 2,5 Üst",
-      "o": 1.2,
-      "p": 0.657,
+      "o": 1.21,
+      "p": 0.655,
       "nid": 3326643,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
       "mtid": 343,
@@ -11135,9 +11156,9 @@
       "idx": 3,
       "fam": "MS&AÜ",
       "base": 0.267,
-      "edge": 0.391,
+      "edge": 0.388,
       "why": [
-       "Model beklentisi: Ajax 3.14, Thun 1.10 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Model beklentisi: Ajax 3.12, Thun 1.10 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
        "Form: Ajax son 5 maçta 4G 1B 0M (13-5 gol); Thun son 5 maçta 1G 1B 3M (14-17 gol).",
        "Gol temposu (son 10+ maç): Ajax maçlarında ortalama 4.0, Thun maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %80.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -11149,8 +11170,8 @@
       "away": "FC Copenhagen",
       "league": "UEFA Konferans Ligi",
       "sel": "KG Var",
-      "o": 2.0,
-      "p": 0.69,
+      "o": 1.93,
+      "p": 0.689,
       "nid": 3326548,
       "mk": "Karşılıklı Gol",
       "mtid": 38,
@@ -11158,112 +11179,164 @@
       "idx": 0,
       "fam": "KG",
       "base": 0.545,
-      "edge": 0.145,
+      "edge": 0.144,
       "why": [
-       "Model beklentisi: Inter 1.66, FC Copenhagen 1.86 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Model beklentisi: Inter 1.67, FC Copenhagen 1.84 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
        "Form: Inter son 5 maçta 3G 1B 1M (11-8 gol); FC Copenhagen son 5 maçta 2G 2B 1M (5-7 gol).",
        "Gol temposu (son 10+ maç): Inter maçlarında ortalama 4.3, FC Copenhagen maçlarında 2.5 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %30.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
-     },
-     {
-      "time": "23:00",
-      "home": "Banja Luka",
-      "away": "Atalanta",
-      "league": "UEFA Konferans Ligi",
-      "sel": "MS 2",
-      "o": 1.26,
-      "p": 0.667,
-      "nid": 3326579,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 2,
-      "fam": "MS",
-      "base": 0.29,
-      "edge": 0.377,
-      "why": [
-       "Model beklentisi: Banja Luka 0.97, Atalanta 2.30 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
-       "Form: Atalanta son 5 maçta 1G 3B 1M (11-13 gol)."
       ]
      }
     ]
    },
    {
-    "odds": 3.77,
-    "p": 0.2508,
+    "odds": 2.32,
+    "p": 0.4363,
+    "p_model": 0.4837,
+    "mil": true,
     "legs": [
      {
-      "time": "03:00",
-      "home": "Barcelona",
-      "away": "Independiente",
-      "league": "Ekvador Pro Lig",
-      "sel": "Ev 1,5 Üst",
-      "o": 2.32,
-      "p": 0.627,
-      "nid": 3414056,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.443,
-      "edge": 0.184,
+      "time": "23:00",
+      "home": "Inter",
+      "away": "FC Copenhagen",
+      "league": "UEFA Konferans Ligi",
+      "sel": "KG Var",
+      "o": 1.93,
+      "p": 0.689,
+      "nid": 3326548,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.545,
+      "edge": 0.144,
       "why": [
-       "Model beklentisi: Barcelona 2.13, Independiente 1.08 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Barcelona son 5 maçta 4G 0B 1M (17-8 gol); Independiente son 5 maçta 2G 2B 1M (6-5 gol).",
-       "Gol temposu (son 10+ maç): Barcelona maçlarında ortalama 5.2, Independiente maçlarında 2.2 gol; 2.5 üst oranı %100 / %40, iki takım da gol atma oranı %80 / %70.",
+       "Model beklentisi: Inter 1.67, FC Copenhagen 1.84 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Inter son 5 maçta 3G 1B 1M (11-8 gol); FC Copenhagen son 5 maçta 2G 2B 1M (5-7 gol).",
+       "Gol temposu (son 10+ maç): Inter maçlarında ortalama 4.3, FC Copenhagen maçlarında 2.5 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %30.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
-      ]
+      ],
+      "pm": 0.487,
+      "pb": 0.588
      },
      {
-      "time": "20:45",
-      "home": "Iberia 1999",
-      "away": "Getafe",
-      "league": "UEFA Konferans Ligi",
-      "sel": "MS 2",
-      "o": 1.27,
-      "p": 0.662,
-      "nid": 3326613,
+      "time": "23:00",
+      "home": "Ferencvaros",
+      "away": "NK Celje",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "MS 1",
+      "o": 1.2,
+      "p": 0.702,
+      "nid": 3326534,
       "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.262,
+      "why": [
+       "Model beklentisi: Ferencvaros 2.35, NK Celje 0.85 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44."
+      ],
+      "pm": 0.783,
+      "pb": 0.742
+     }
+    ]
+   }
+  ],
+  "saved_on": "2026-11-26",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 90,
+      "time": "20:45",
+      "home": "Viktoria Plzen",
+      "away": "Benfica",
+      "league": "UEFA Avrupa Ligi",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.29,
+      "p": 0.652,
+      "base": 0.29,
+      "edge": 0.362,
       "mtid": 1,
       "line": 0.0,
       "idx": 2,
       "fam": "MS",
-      "base": 0.29,
-      "edge": 0.372,
+      "t": "g",
+      "src": "market",
+      "nid": 3326599,
+      "mbs": 1,
       "why": [
-       "Model beklentisi: Iberia 1999 0.66, Getafe 1.89 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
-       "Form: Getafe son 5 maçta 1G 1B 3M (4-11 gol)."
+       "Model beklentisi: Viktoria Plzen 1.08, Benfica 2.35 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %29.",
+       "Form: Benfica son 5 maçta 4G 0B 1M (9-6 gol)."
       ]
      },
      {
+      "id": 102,
+      "time": "20:45",
+      "home": "Ajax",
+      "away": "Thun",
+      "league": "UEFA Konferans Ligi",
+      "sel": "MS1 & 2,5 Üst",
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "o": 1.21,
+      "p": 0.655,
+      "base": 0.267,
+      "edge": 0.388,
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "blend",
+      "nid": 3326643,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Ajax 3.12, Thun 1.10 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Form: Ajax son 5 maçta 4G 1B 0M (13-5 gol); Thun son 5 maçta 1G 1B 3M (14-17 gol).",
+       "Gol temposu (son 10+ maç): Ajax maçlarında ortalama 4.0, Thun maçlarında 4.6 gol; 2.5 üst oranı %80 / %80, iki takım da gol atma oranı %80 / %80.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     },
+     {
+      "id": 78,
       "time": "23:00",
-      "home": "Lyon",
-      "away": "Lillestrom",
-      "league": "UEFA Avrupa Ligi",
-      "sel": "2Y 1",
-      "o": 1.28,
-      "p": 0.605,
-      "nid": 3326639,
-      "mk": "2. Yarı Sonucu",
-      "mtid": 9,
+      "home": "Inter",
+      "away": "FC Copenhagen",
+      "league": "UEFA Konferans Ligi",
+      "sel": "KG Var",
+      "mk": "Karşılıklı Gol",
+      "o": 1.93,
+      "p": 0.689,
+      "base": 0.545,
+      "edge": 0.144,
+      "mtid": 38,
       "line": 0.0,
       "idx": 0,
-      "fam": "2Y",
-      "base": 0.366,
-      "edge": 0.239,
+      "fam": "KG",
+      "t": "g",
+      "src": "blend",
+      "nid": 3326548,
+      "mbs": 1,
       "why": [
-       "Model beklentisi: Lyon 2.54, Lillestrom 0.82 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %37.",
-       "Form: Lyon son 5 maçta 3G 0B 2M (5-5 gol); Lillestrom son 5 maçta 5G 0B 0M (11-4 gol).",
-       "Hücum/savunma (son 10+ maç): Lyon 1.4 atıyor, 0.9 yiyor; Lillestrom 1.8 atıyor, 1.4 yiyor.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından).",
+       "Model beklentisi: Inter 1.67, FC Copenhagen 1.84 gol. Bu seçenek %69 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Inter son 5 maçta 3G 1B 1M (11-8 gol); FC Copenhagen son 5 maçta 2G 2B 1M (5-7 gol).",
+       "Gol temposu (son 10+ maç): Inter maçlarında ortalama 4.3, FC Copenhagen maçlarında 2.5 gol; 2.5 üst oranı %80 / %30, iki takım da gol atma oranı %70 / %30.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
-    ]
+    ],
+    "odds": 3.01,
+    "date": "2026-11-26",
+    "p": 0.294,
+    "ev": 0.89,
+    "score": 0.894
    }
-  ]
+  ],
+  "mil_saved_on": "2026-11-26"
  },
  "2026-11-24": {
   "list": [
@@ -11887,5 +11960,240 @@
    }
   ],
   "mil_saved_on": "2026-11-25"
+ },
+ "2026-11-27": {
+  "list": [
+   {
+    "odds": 3.48,
+    "p": 0.2506,
+    "legs": [
+     {
+      "time": "",
+      "home": "Levante",
+      "away": "Santander",
+      "league": "İspanya La Liga",
+      "sel": "2,5 Üst",
+      "o": 1.3,
+      "p": 0.698,
+      "nid": 3336789,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.504,
+      "edge": 0.194,
+      "why": [
+       "Model beklentisi: Levante 2.11, Santander 1.50 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Santander son 5 maçta 3G 0B 2M (7-9 gol).",
+       "Gol temposu (son 10+ maç): Levante maçlarında ortalama 2.9, Santander maçlarında 4.2 gol; 2.5 üst oranı %50 / %90, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Levante 3-1 Santander, Santander 1-0 Levante."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Club Leon",
+      "away": "Cruz Azul",
+      "league": "Meksika Liga MX",
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.43,
+      "p": 0.597,
+      "nid": 3421465,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.438,
+      "edge": 0.16,
+      "why": [
+       "Model beklentisi: Club Leon 1.30, Cruz Azul 1.64 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Club Leon son 5 maçta 2G 2B 1M (7-5 gol); Cruz Azul son 5 maçta 4G 0B 1M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Club Leon maçlarında ortalama 2.9, Cruz Azul maçlarında 4.1 gol; 2.5 üst oranı %40 / %80, iki takım da gol atma oranı %80 / %70.",
+       "Son ikili maçlar: Cruz Azul 2-1 Club Leon, Club Leon 2-1 Cruz Azul, Cruz Azul 4-1 Club Leon.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "21:00",
+      "home": "Ath Bilbao",
+      "away": "Cultural Leonesa",
+      "league": "İspanya Primera RFEF",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.87,
+      "p": 0.602,
+      "nid": 3336957,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.443,
+      "edge": 0.159,
+      "why": [
+       "Model beklentisi: Ath Bilbao 2.03, Cultural Leonesa 0.91 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Ath Bilbao son 5 maçta 2G 1B 2M (8-6 gol); Cultural Leonesa son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Gol temposu (son 10+ maç): Ath Bilbao maçlarında ortalama 2.1, Cultural Leonesa maçlarında 2.4 gol; 2.5 üst oranı %40 / %50, iki takım da gol atma oranı %40 / %70.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.19,
+    "p": 0.1937,
+    "legs": [
+     {
+      "time": "",
+      "home": "Werder Bremen",
+      "away": "M'gladbach",
+      "league": "Almanya Bundesliga",
+      "sel": "MS 1",
+      "o": 1.53,
+      "p": 0.562,
+      "nid": 3331036,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.122,
+      "why": [
+       "Model beklentisi: Werder Bremen 2.25, M'gladbach 1.40 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Werder Bremen son 5 maçta 3G 1B 1M (11-5 gol); M'gladbach son 5 maçta 1G 1B 3M (5-8 gol).",
+       "Hücum/savunma (son 10+ maç): Werder Bremen 2.1 atıyor, 1.5 yiyor; M'gladbach 1.2 atıyor, 2.6 yiyor.",
+       "Son ikili maçlar: Werder Bremen 1-1 M'gladbach, M'gladbach 0-4 Werder Bremen, Werder Bremen 2-4 M'gladbach."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Venezia",
+      "away": "Bologna",
+      "league": "İtalya Serie A",
+      "sel": "Ev hiçbir yarıyı kazanamaz",
+      "o": 1.51,
+      "p": 0.592,
+      "nid": 3331070,
+      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
+      "mtid": 584,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "base": 0.465,
+      "edge": 0.127,
+      "why": [
+       "Model beklentisi: Venezia 1.05, Bologna 1.49 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Venezia son 5 maçta 1G 0B 4M (2-9 gol); Bologna son 5 maçta 4G 1B 0M (11-5 gol).",
+       "Gol temposu (son 10+ maç): Venezia maçlarında ortalama 2.9, Bologna maçlarında 3.0 gol; 2.5 üst oranı %50 / %60, iki takım da gol atma oranı %40 / %80.",
+       "Son ikili maçlar: Venezia 0-1 Bologna, Bologna 3-0 Venezia.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %43, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Southampton",
+      "away": "Middlesbrough",
+      "league": "İngiltere Championship",
+      "sel": "2,5 Üst",
+      "o": 1.38,
+      "p": 0.582,
+      "nid": 3331002,
+      "mk": "Alt/Üst 2,5",
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "base": 0.478,
+      "edge": 0.103,
+      "why": [
+       "Model beklentisi: Southampton 1.63, Middlesbrough 1.39 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Southampton son 5 maçta 3G 1B 1M (10-5 gol); Middlesbrough son 5 maçta 3G 1B 1M (10-3 gol).",
+       "Gol temposu (son 10+ maç): Southampton maçlarında ortalama 2.5, Middlesbrough maçlarında 3.1 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %50 / %50.",
+       "Son ikili maçlar: Middlesbrough 4-0 Southampton, Southampton 1-1 Middlesbrough."
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "2026-11-28": {
+  "list": [
+   {
+    "odds": 3.35,
+    "p": 0.2415,
+    "legs": [
+     {
+      "time": "",
+      "home": "Real Salt Lake",
+      "away": "Vancouver Whitecaps",
+      "league": "ABD MLS",
+      "sel": "ÇŞ X-2",
+      "o": 1.28,
+      "p": 0.706,
+      "nid": 3409585,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.514,
+      "edge": 0.192,
+      "why": [
+       "Model beklentisi: Real Salt Lake 1.25, Vancouver Whitecaps 1.59 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
+       "Form: Real Salt Lake son 5 maçta 2G 1B 2M (6-7 gol); Vancouver Whitecaps son 5 maçta 4G 0B 1M (13-3 gol).",
+       "Hücum/savunma (son 10+ maç): Real Salt Lake 1.7 atıyor, 1.1 yiyor; Vancouver Whitecaps 2.0 atıyor, 1.1 yiyor.",
+       "Son ikili maçlar: Vancouver Whitecaps 2-0 Real Salt Lake, Real Salt Lake 0-3 Vancouver Whitecaps, Vancouver Whitecaps 1-0 Real Salt Lake."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Rubin Kazan",
+      "away": "Akron Togliatti",
+      "league": "Rusya Premier Lig",
+      "sel": "MS 1",
+      "o": 1.7,
+      "p": 0.554,
+      "nid": 3333314,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.437,
+      "edge": 0.117,
+      "why": [
+       "Model beklentisi: Rubin Kazan 1.76, Akron Togliatti 0.96 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Akron Togliatti son 5 maçta 0G 0B 5M (3-15 gol).",
+       "Hücum/savunma (son 10+ maç): Rubin Kazan 1.0 atıyor, 0.9 yiyor; Akron Togliatti 0.9 atıyor, 2.2 yiyor.",
+       "Son ikili maçlar: Akron Togliatti 1-2 Rubin Kazan, Rubin Kazan 1-1 Akron Togliatti, Akron Togliatti 2-2 Rubin Kazan."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Columbus Crew",
+      "away": "Inter Miami",
+      "league": "ABD MLS",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.54,
+      "p": 0.617,
+      "nid": 3389719,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.511,
+      "edge": 0.106,
+      "why": [
+       "Model beklentisi: Columbus Crew 2.09, Inter Miami 1.73 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
+       "Form: Columbus Crew son 5 maçta 5G 0B 0M (16-5 gol); Inter Miami son 5 maçta 1G 2B 2M (7-11 gol).",
+       "Gol temposu (son 10+ maç): Columbus Crew maçlarında ortalama 3.7, Inter Miami maçlarında 3.5 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %50 / %60.",
+       "Son ikili maçlar: Inter Miami 0-3 Columbus Crew, Columbus Crew 2-1 Inter Miami, Inter Miami 2-2 Columbus Crew."
+      ]
+     }
+    ]
+   }
+  ]
  }
 }
