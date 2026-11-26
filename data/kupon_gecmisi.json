@@ -11964,8 +11964,8 @@
  "2026-11-27": {
   "list": [
    {
-    "odds": 3.48,
-    "p": 0.2506,
+    "odds": 3.42,
+    "p": 0.261,
     "legs": [
      {
       "time": "",
@@ -12019,28 +12019,28 @@
       "home": "Ath Bilbao",
       "away": "Cultural Leonesa",
       "league": "İspanya Primera RFEF",
-      "sel": "Ev 1,5 Üst",
-      "o": 1.87,
-      "p": 0.602,
+      "sel": "MS 1",
+      "o": 1.84,
+      "p": 0.627,
       "nid": 3336957,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.443,
-      "edge": 0.159,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.186,
       "why": [
-       "Model beklentisi: Ath Bilbao 2.03, Cultural Leonesa 0.91 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Ath Bilbao 2.03, Cultural Leonesa 0.91 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Ath Bilbao son 5 maçta 2G 1B 2M (8-6 gol); Cultural Leonesa son 5 maçta 1G 2B 2M (6-8 gol).",
-       "Gol temposu (son 10+ maç): Ath Bilbao maçlarında ortalama 2.1, Cultural Leonesa maçlarında 2.4 gol; 2.5 üst oranı %40 / %50, iki takım da gol atma oranı %40 / %70.",
+       "Hücum/savunma (son 10+ maç): Ath Bilbao 1.4 atıyor, 0.7 yiyor; Cultural Leonesa 1.0 atıyor, 1.4 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
     ]
    },
    {
-    "odds": 3.19,
+    "odds": 3.15,
     "p": 0.1937,
     "legs": [
      {
@@ -12049,7 +12049,7 @@
       "away": "M'gladbach",
       "league": "Almanya Bundesliga",
       "sel": "MS 1",
-      "o": 1.53,
+      "o": 1.51,
       "p": 0.562,
       "nid": 3331036,
       "mk": "Maç Sonucu",
