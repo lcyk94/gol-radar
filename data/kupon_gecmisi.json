@@ -11964,8 +11964,8 @@
  "2026-11-27": {
   "list": [
    {
-    "odds": 3.42,
-    "p": 0.261,
+    "odds": 3.4,
+    "p": 0.2609,
     "legs": [
      {
       "time": "",
@@ -11996,7 +11996,7 @@
       "away": "Cruz Azul",
       "league": "Meksika Liga MX",
       "sel": "Dep bir yarıyı kazanır",
-      "o": 1.43,
+      "o": 1.42,
       "p": 0.597,
       "nid": 3421465,
       "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
@@ -12021,7 +12021,7 @@
       "league": "İspanya Primera RFEF",
       "sel": "MS 1",
       "o": 1.84,
-      "p": 0.627,
+      "p": 0.626,
       "nid": 3336957,
       "mk": "Maç Sonucu",
       "mtid": 1,
@@ -12031,7 +12031,7 @@
       "base": 0.44,
       "edge": 0.186,
       "why": [
-       "Model beklentisi: Ath Bilbao 2.03, Cultural Leonesa 0.91 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Ath Bilbao 2.02, Cultural Leonesa 0.90 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Ath Bilbao son 5 maçta 2G 1B 2M (8-6 gol); Cultural Leonesa son 5 maçta 1G 2B 2M (6-8 gol).",
        "Hücum/savunma (son 10+ maç): Ath Bilbao 1.4 atıyor, 0.7 yiyor; Cultural Leonesa 1.0 atıyor, 1.4 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -12040,29 +12040,29 @@
     ]
    },
    {
-    "odds": 3.15,
-    "p": 0.1937,
+    "odds": 3.0,
+    "p": 0.2269,
     "legs": [
      {
       "time": "",
       "home": "Werder Bremen",
       "away": "M'gladbach",
       "league": "Almanya Bundesliga",
-      "sel": "MS 1",
-      "o": 1.51,
-      "p": 0.562,
+      "sel": "Ev 1,5 Üst",
+      "o": 1.41,
+      "p": 0.658,
       "nid": 3331036,
-      "mk": "Maç Sonucu",
-      "mtid": 1,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "MS",
-      "base": 0.44,
-      "edge": 0.122,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.522,
+      "edge": 0.136,
       "why": [
-       "Model beklentisi: Werder Bremen 2.25, M'gladbach 1.40 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Werder Bremen 2.25, M'gladbach 1.40 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %52.",
        "Form: Werder Bremen son 5 maçta 3G 1B 1M (11-5 gol); M'gladbach son 5 maçta 1G 1B 3M (5-8 gol).",
-       "Hücum/savunma (son 10+ maç): Werder Bremen 2.1 atıyor, 1.5 yiyor; M'gladbach 1.2 atıyor, 2.6 yiyor.",
+       "Gol temposu (son 10+ maç): Werder Bremen maçlarında ortalama 3.6, M'gladbach maçlarında 3.8 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %70 / %60.",
        "Son ikili maçlar: Werder Bremen 1-1 M'gladbach, M'gladbach 0-4 Werder Bremen, Werder Bremen 2-4 M'gladbach."
       ]
      },
@@ -12096,7 +12096,7 @@
       "away": "Middlesbrough",
       "league": "İngiltere Championship",
       "sel": "2,5 Üst",
-      "o": 1.38,
+      "o": 1.41,
       "p": 0.582,
       "nid": 3331002,
       "mk": "Alt/Üst 2,5",
@@ -12105,11 +12105,11 @@
       "idx": 1,
       "fam": "AÜ",
       "base": 0.478,
-      "edge": 0.103,
+      "edge": 0.104,
       "why": [
-       "Model beklentisi: Southampton 1.63, Middlesbrough 1.39 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
-       "Form: Southampton son 5 maçta 3G 1B 1M (10-5 gol); Middlesbrough son 5 maçta 3G 1B 1M (10-3 gol).",
-       "Gol temposu (son 10+ maç): Southampton maçlarında ortalama 2.5, Middlesbrough maçlarında 3.1 gol; 2.5 üst oranı %40 / %60, iki takım da gol atma oranı %50 / %50.",
+       "Model beklentisi: Southampton 1.62, Middlesbrough 1.40 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Southampton son 5 maçta 2G 2B 1M (8-4 gol); Middlesbrough son 5 maçta 3G 1B 1M (7-3 gol).",
+       "Gol temposu (son 10+ maç): Southampton maçlarında ortalama 2.2, Middlesbrough maçlarında 3.0 gol; 2.5 üst oranı %30 / %60, iki takım da gol atma oranı %50 / %50.",
        "Son ikili maçlar: Middlesbrough 4-0 Southampton, Southampton 1-1 Middlesbrough."
       ]
      }
@@ -12120,76 +12120,77 @@
  "2026-11-28": {
   "list": [
    {
-    "odds": 3.35,
-    "p": 0.2415,
+    "odds": 3.03,
+    "p": 0.2194,
     "legs": [
      {
       "time": "",
-      "home": "Real Salt Lake",
-      "away": "Vancouver Whitecaps",
-      "league": "ABD MLS",
-      "sel": "ÇŞ X-2",
-      "o": 1.28,
-      "p": 0.706,
-      "nid": 3409585,
-      "mk": "Çifte Şans",
-      "mtid": 3,
-      "line": 0.0,
-      "idx": 2,
-      "fam": "ÇŞ",
-      "base": 0.514,
-      "edge": 0.192,
+      "home": "Hamburg",
+      "away": "Bayern Munich",
+      "league": "Almanya Bundesliga",
+      "sel": "MS2 & 2,5 Üst",
+      "o": 1.34,
+      "p": 0.579,
+      "nid": 3333436,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.221,
+      "edge": 0.358,
       "why": [
-       "Model beklentisi: Real Salt Lake 1.25, Vancouver Whitecaps 1.59 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
-       "Form: Real Salt Lake son 5 maçta 2G 1B 2M (6-7 gol); Vancouver Whitecaps son 5 maçta 4G 0B 1M (13-3 gol).",
-       "Hücum/savunma (son 10+ maç): Real Salt Lake 1.7 atıyor, 1.1 yiyor; Vancouver Whitecaps 2.0 atıyor, 1.1 yiyor.",
-       "Son ikili maçlar: Vancouver Whitecaps 2-0 Real Salt Lake, Real Salt Lake 0-3 Vancouver Whitecaps, Vancouver Whitecaps 1-0 Real Salt Lake."
+       "Model beklentisi: Hamburg 1.22, Bayern Munich 2.78 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Form: Hamburg son 5 maçta 2G 0B 3M (5-9 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
+       "Gol temposu (son 10+ maç): Hamburg maçlarında ortalama 3.4, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %40 / %80.",
+       "Son ikili maçlar: Hamburg 2-2 Bayern Munich, Bayern Munich 5-0 Hamburg."
       ]
      },
      {
       "time": "",
-      "home": "Rubin Kazan",
-      "away": "Akron Togliatti",
-      "league": "Rusya Premier Lig",
-      "sel": "MS 1",
-      "o": 1.7,
-      "p": 0.554,
-      "nid": 3333314,
+      "home": "Angers",
+      "away": "Lens",
+      "league": "Fransa Ligue 1",
+      "sel": "MS 2",
+      "o": 1.47,
+      "p": 0.565,
+      "nid": 3333155,
       "mk": "Maç Sonucu",
       "mtid": 1,
       "line": 0.0,
-      "idx": 0,
+      "idx": 2,
       "fam": "MS",
-      "base": 0.437,
-      "edge": 0.117,
+      "base": 0.306,
+      "edge": 0.259,
       "why": [
-       "Model beklentisi: Rubin Kazan 1.76, Akron Togliatti 0.96 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
-       "Form: Rubin Kazan son 5 maçta 2G 1B 2M (7-8 gol); Akron Togliatti son 5 maçta 0G 0B 5M (3-15 gol).",
-       "Hücum/savunma (son 10+ maç): Rubin Kazan 1.0 atıyor, 0.9 yiyor; Akron Togliatti 0.9 atıyor, 2.2 yiyor.",
-       "Son ikili maçlar: Akron Togliatti 1-2 Rubin Kazan, Rubin Kazan 1-1 Akron Togliatti, Akron Togliatti 2-2 Rubin Kazan."
+       "Model beklentisi: Angers 1.12, Lens 1.97 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Angers son 5 maçta 0G 1B 4M (2-13 gol); Lens son 5 maçta 2G 1B 2M (7-6 gol).",
+       "Hücum/savunma (son 10+ maç): Angers 0.9 atıyor, 2.1 yiyor; Lens 1.3 atıyor, 1.4 yiyor.",
+       "Son ikili maçlar: Lens 5-1 Angers, Angers 1-2 Lens, Lens 1-0 Angers."
       ]
      },
      {
-      "time": "",
-      "home": "Columbus Crew",
-      "away": "Inter Miami",
-      "league": "ABD MLS",
-      "sel": "Ev 1,5 Üst",
+      "time": "18:00",
+      "home": "Ross County",
+      "away": "Rangers",
+      "league": "İskoçya Kupası",
+      "sel": "KG Var",
       "o": 1.54,
-      "p": 0.617,
-      "nid": 3389719,
-      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
-      "mtid": 20,
-      "line": 1.5,
-      "idx": 1,
-      "fam": "TAKIM",
-      "base": 0.511,
-      "edge": 0.106,
+      "p": 0.671,
+      "nid": 3351732,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "KG",
+      "base": 0.545,
+      "edge": 0.127,
       "why": [
-       "Model beklentisi: Columbus Crew 2.09, Inter Miami 1.73 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %51.",
-       "Form: Columbus Crew son 5 maçta 5G 0B 0M (16-5 gol); Inter Miami son 5 maçta 1G 2B 2M (7-11 gol).",
-       "Gol temposu (son 10+ maç): Columbus Crew maçlarında ortalama 3.7, Inter Miami maçlarında 3.5 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %50 / %60.",
-       "Son ikili maçlar: Inter Miami 0-3 Columbus Crew, Columbus Crew 2-1 Inter Miami, Inter Miami 2-2 Columbus Crew."
+       "Model beklentisi: Ross County 1.82, Rangers 1.58 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Form: Ross County son 5 maçta 2G 0B 3M (8-9 gol); Rangers son 5 maçta 4G 1B 0M (13-5 gol).",
+       "Gol temposu (son 10+ maç): Ross County maçlarında ortalama 2.9, Rangers maçlarında 2.9 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %40 / %50.",
+       "Son ikili maçlar: Rangers 4-0 Ross County, Ross County 0-3 Rangers, Rangers 6-0 Ross County.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
       ]
      }
     ]
