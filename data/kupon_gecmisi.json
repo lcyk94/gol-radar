@@ -12364,30 +12364,31 @@
  "2026-11-28": {
   "list": [
    {
-    "odds": 3.04,
-    "p": 0.2192,
+    "odds": 3.13,
+    "p": 0.1761,
     "legs": [
      {
       "time": "",
       "home": "Hamburg",
       "away": "Bayern Munich",
       "league": "Almanya Bundesliga",
-      "sel": "MS2 & 2,5 Üst",
-      "o": 1.35,
-      "p": 0.579,
+      "sel": "Dep iki yarıda da gol atar",
+      "o": 1.47,
+      "p": 0.559,
       "nid": 3333436,
-      "mk": "Maç Sonucu & 2,5 Alt/Üst",
-      "mtid": 343,
-      "line": 2.5,
-      "idx": 5,
-      "fam": "MS&AÜ",
-      "base": 0.221,
-      "edge": 0.358,
+      "mk": "Deplasman İki Yarıda da Gol",
+      "mtid": 296,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.266,
+      "edge": 0.293,
       "why": [
-       "Model beklentisi: Hamburg 1.22, Bayern Munich 2.78 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Model beklentisi: Hamburg 1.22, Bayern Munich 2.78 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
        "Form: Hamburg son 5 maçta 2G 0B 3M (5-9 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
        "Gol temposu (son 10+ maç): Hamburg maçlarında ortalama 3.4, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %40 / %80.",
-       "Son ikili maçlar: Hamburg 2-2 Bayern Munich, Bayern Munich 5-0 Hamburg."
+       "Son ikili maçlar: Hamburg 2-2 Bayern Munich, Bayern Munich 5-0 Hamburg.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
       ]
      },
      {
@@ -12414,34 +12415,33 @@
       ]
      },
      {
-      "time": "18:00",
-      "home": "Ross County",
-      "away": "Rangers",
-      "league": "İskoçya Kupası",
-      "sel": "KG Var",
-      "o": 1.53,
-      "p": 0.671,
-      "nid": 3351732,
-      "mk": "Karşılıklı Gol",
-      "mtid": 38,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "KG",
-      "base": 0.545,
-      "edge": 0.126,
+      "time": "",
+      "home": "Rochdale",
+      "away": "Barnet",
+      "league": "İngiltere League Two",
+      "sel": "Dep 1,5 Üst",
+      "o": 1.45,
+      "p": 0.558,
+      "nid": 3333423,
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.322,
+      "edge": 0.236,
       "why": [
-       "Model beklentisi: Ross County 1.83, Rangers 1.57 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
-       "Form: Ross County son 5 maçta 2G 0B 3M (8-9 gol); Rangers son 5 maçta 4G 1B 0M (13-5 gol).",
-       "Gol temposu (son 10+ maç): Ross County maçlarında ortalama 2.9, Rangers maçlarında 2.9 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %40 / %50.",
-       "Son ikili maçlar: Rangers 4-0 Ross County, Ross County 0-3 Rangers, Rangers 6-0 Ross County.",
-       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+       "Model beklentisi: Rochdale 1.21, Barnet 1.87 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Rochdale son 5 maçta 0G 1B 4M (6-15 gol); Barnet son 5 maçta 2G 3B 0M (7-4 gol).",
+       "Gol temposu (son 10+ maç): Rochdale maçlarında ortalama 3.4, Barnet maçlarında 2.9 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %60 / %90.",
+       "Son ikili maçlar: Rochdale 0-4 Barnet, Barnet 2-1 Rochdale."
       ]
      }
     ]
    },
    {
-    "odds": 3.23,
-    "p": 0.1725,
+    "odds": 3.01,
+    "p": 0.1848,
     "legs": [
      {
       "time": "",
@@ -12472,23 +12472,22 @@
       "home": "PSV Eindhoven",
       "away": "Go Ahead Eagles",
       "league": "Hollanda Eredivisie",
-      "sel": "İY 1,5 Üst",
-      "o": 1.46,
-      "p": 0.562,
+      "sel": "3,5 Üst",
+      "o": 1.36,
+      "p": 0.602,
       "nid": 3331469,
-      "mk": "1. Yarı Alt/Üst 1,5",
-      "mtid": 14,
-      "line": 1.5,
+      "mk": "Alt/Üst 3,5",
+      "mtid": 13,
+      "line": 3.5,
       "idx": 1,
-      "fam": "İY AÜ",
-      "base": 0.422,
-      "edge": 0.14,
+      "fam": "AÜ",
+      "base": 0.4,
+      "edge": 0.202,
       "why": [
-       "Model beklentisi: PSV Eindhoven 2.84, Go Ahead Eagles 1.35 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Model beklentisi: PSV Eindhoven 2.84, Go Ahead Eagles 1.35 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %40.",
        "Form: PSV Eindhoven son 5 maçta 3G 1B 1M (18-6 gol); Go Ahead Eagles son 5 maçta 2G 0B 3M (5-11 gol).",
        "Gol temposu (son 10+ maç): PSV Eindhoven maçlarında ortalama 4.7, Go Ahead Eagles maçlarında 3.9 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %80 / %70.",
-       "Son ikili maçlar: Go Ahead Eagles 1-4 PSV Eindhoven, PSV Eindhoven 2-1 Go Ahead Eagles, Go Ahead Eagles 3-2 PSV Eindhoven.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %46, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+       "Son ikili maçlar: Go Ahead Eagles 1-4 PSV Eindhoven, PSV Eindhoven 2-1 Go Ahead Eagles, Go Ahead Eagles 3-2 PSV Eindhoven."
       ]
      },
      {
