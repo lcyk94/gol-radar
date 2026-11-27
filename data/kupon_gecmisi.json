@@ -11964,8 +11964,8 @@
  "2026-11-27": {
   "list": [
    {
-    "odds": 3.4,
-    "p": 0.2609,
+    "odds": 3.29,
+    "p": 0.2608,
     "legs": [
      {
       "time": "",
@@ -11973,7 +11973,7 @@
       "away": "Santander",
       "league": "İspanya La Liga",
       "sel": "2,5 Üst",
-      "o": 1.3,
+      "o": 1.26,
       "p": 0.698,
       "nid": 3336789,
       "mk": "Alt/Üst 2,5",
@@ -12031,7 +12031,7 @@
       "base": 0.44,
       "edge": 0.186,
       "why": [
-       "Model beklentisi: Ath Bilbao 2.02, Cultural Leonesa 0.90 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Model beklentisi: Ath Bilbao 2.01, Cultural Leonesa 0.90 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
        "Form: Ath Bilbao son 5 maçta 2G 1B 2M (8-6 gol); Cultural Leonesa son 5 maçta 1G 2B 2M (6-8 gol).",
        "Hücum/savunma (son 10+ maç): Ath Bilbao 1.4 atıyor, 0.7 yiyor; Cultural Leonesa 1.0 atıyor, 1.4 yiyor.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
@@ -12040,7 +12040,7 @@
     ]
    },
    {
-    "odds": 3.0,
+    "odds": 3.02,
     "p": 0.2269,
     "legs": [
      {
@@ -12072,7 +12072,7 @@
       "away": "Bologna",
       "league": "İtalya Serie A",
       "sel": "Ev hiçbir yarıyı kazanamaz",
-      "o": 1.51,
+      "o": 1.52,
       "p": 0.592,
       "nid": 3331070,
       "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
@@ -12114,14 +12114,258 @@
       ]
      }
     ]
+   },
+   {
+    "odds": 2.03,
+    "p": 0.4223,
+    "p_model": 0.4092,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Werder Bremen",
+      "away": "M'gladbach",
+      "league": "Almanya Bundesliga",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.41,
+      "p": 0.658,
+      "nid": 3331036,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.522,
+      "edge": 0.136,
+      "why": [
+       "Model beklentisi: Werder Bremen 2.25, M'gladbach 1.40 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %52.",
+       "Form: Werder Bremen son 5 maçta 3G 1B 1M (11-5 gol); M'gladbach son 5 maçta 1G 1B 3M (5-8 gol).",
+       "Gol temposu (son 10+ maç): Werder Bremen maçlarında ortalama 3.6, M'gladbach maçlarında 3.8 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Werder Bremen 1-1 M'gladbach, M'gladbach 0-4 Werder Bremen, Werder Bremen 2-4 M'gladbach."
+      ],
+      "pm": 0.667,
+      "pb": 0.663
+     },
+     {
+      "time": "",
+      "home": "Levante",
+      "away": "Santander",
+      "league": "İspanya La Liga",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.44,
+      "p": 0.622,
+      "nid": 3336789,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.451,
+      "edge": 0.171,
+      "why": [
+       "Model beklentisi: Levante 2.11, Santander 1.50 gol. Bu seçenek %62 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %45.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Santander son 5 maçta 3G 0B 2M (7-9 gol).",
+       "Gol temposu (son 10+ maç): Levante maçlarında ortalama 2.9, Santander maçlarında 4.2 gol; 2.5 üst oranı %50 / %90, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Levante 3-1 Santander, Santander 1-0 Levante."
+      ],
+      "pm": 0.653,
+      "pb": 0.637
+     }
+    ]
    }
-  ]
+  ],
+  "saved_on": "2026-11-27",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 15,
+      "time": "",
+      "home": "Levante",
+      "away": "Santander",
+      "league": "İspanya La Liga",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.26,
+      "p": 0.698,
+      "base": 0.504,
+      "edge": 0.194,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3336789,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Levante 2.11, Santander 1.50 gol. Bu seçenek %70 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %50.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Santander son 5 maçta 3G 0B 2M (7-9 gol).",
+       "Gol temposu (son 10+ maç): Levante maçlarında ortalama 2.9, Santander maçlarında 4.2 gol; 2.5 üst oranı %50 / %90, iki takım da gol atma oranı %70 / %70.",
+       "Son ikili maçlar: Levante 3-1 Santander, Santander 1-0 Levante."
+      ]
+     },
+     {
+      "id": 12,
+      "time": "",
+      "home": "Club Leon",
+      "away": "Cruz Azul",
+      "league": "Meksika Liga MX",
+      "sel": "Dep bir yarıyı kazanır",
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "o": 1.42,
+      "p": 0.597,
+      "base": 0.438,
+      "edge": 0.16,
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3421465,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Club Leon 1.30, Cruz Azul 1.64 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Club Leon son 5 maçta 2G 2B 1M (7-5 gol); Cruz Azul son 5 maçta 4G 0B 1M (10-6 gol).",
+       "Gol temposu (son 10+ maç): Club Leon maçlarında ortalama 2.9, Cruz Azul maçlarında 4.1 gol; 2.5 üst oranı %40 / %80, iki takım da gol atma oranı %80 / %70.",
+       "Son ikili maçlar: Cruz Azul 2-1 Club Leon, Club Leon 2-1 Cruz Azul, Cruz Azul 4-1 Club Leon.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 805,
+      "time": "21:00",
+      "home": "Ath Bilbao",
+      "away": "Cultural Leonesa",
+      "league": "İspanya Primera RFEF",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.84,
+      "p": 0.626,
+      "base": 0.44,
+      "edge": 0.186,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3336957,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Ath Bilbao 2.01, Cultural Leonesa 0.90 gol. Bu seçenek %63 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Ath Bilbao son 5 maçta 2G 1B 2M (8-6 gol); Cultural Leonesa son 5 maçta 1G 2B 2M (6-8 gol).",
+       "Hücum/savunma (son 10+ maç): Ath Bilbao 1.4 atıyor, 0.7 yiyor; Cultural Leonesa 1.0 atıyor, 1.4 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.29,
+    "date": "2026-11-27",
+    "p": 0.2608,
+    "ev": 0.86,
+    "score": 0.54
+   },
+   {
+    "legs": [
+     {
+      "id": 2,
+      "time": "",
+      "home": "Werder Bremen",
+      "away": "M'gladbach",
+      "league": "Almanya Bundesliga",
+      "sel": "Ev 1,5 Üst",
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "o": 1.41,
+      "p": 0.658,
+      "base": 0.522,
+      "edge": 0.136,
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3331036,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Werder Bremen 2.25, M'gladbach 1.40 gol. Bu seçenek %66 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %52.",
+       "Form: Werder Bremen son 5 maçta 3G 1B 1M (11-5 gol); M'gladbach son 5 maçta 1G 1B 3M (5-8 gol).",
+       "Gol temposu (son 10+ maç): Werder Bremen maçlarında ortalama 3.6, M'gladbach maçlarında 3.8 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Werder Bremen 1-1 M'gladbach, M'gladbach 0-4 Werder Bremen, Werder Bremen 2-4 M'gladbach."
+      ]
+     },
+     {
+      "id": 10,
+      "time": "",
+      "home": "Venezia",
+      "away": "Bologna",
+      "league": "İtalya Serie A",
+      "sel": "Ev hiçbir yarıyı kazanamaz",
+      "mk": "Ev Sahibi Herhangi Bir Yarıyı Kazanır",
+      "o": 1.52,
+      "p": 0.592,
+      "base": 0.465,
+      "edge": 0.127,
+      "mtid": 584,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3331070,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Venezia 1.05, Bologna 1.49 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %47.",
+       "Form: Venezia son 5 maçta 1G 0B 4M (2-9 gol); Bologna son 5 maçta 4G 1B 0M (11-5 gol).",
+       "Gol temposu (son 10+ maç): Venezia maçlarında ortalama 2.9, Bologna maçlarında 3.0 gol; 2.5 üst oranı %50 / %60, iki takım da gol atma oranı %40 / %80.",
+       "Son ikili maçlar: Venezia 0-1 Bologna, Bologna 3-0 Venezia.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %43, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 7,
+      "time": "",
+      "home": "Southampton",
+      "away": "Middlesbrough",
+      "league": "İngiltere Championship",
+      "sel": "2,5 Üst",
+      "mk": "Alt/Üst 2,5",
+      "o": 1.41,
+      "p": 0.582,
+      "base": 0.478,
+      "edge": 0.104,
+      "mtid": 12,
+      "line": 2.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3331002,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Southampton 1.62, Middlesbrough 1.40 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %48.",
+       "Form: Southampton son 5 maçta 2G 2B 1M (8-4 gol); Middlesbrough son 5 maçta 3G 1B 1M (7-3 gol).",
+       "Gol temposu (son 10+ maç): Southampton maçlarında ortalama 2.2, Middlesbrough maçlarında 3.0 gol; 2.5 üst oranı %30 / %60, iki takım da gol atma oranı %50 / %50.",
+       "Son ikili maçlar: Middlesbrough 4-0 Southampton, Southampton 1-1 Middlesbrough."
+      ]
+     }
+    ],
+    "odds": 3.02,
+    "date": "2026-11-27",
+    "p": 0.2269,
+    "ev": 0.69,
+    "score": 0.167
+   }
+  ],
+  "mil_saved_on": "2026-11-27"
  },
  "2026-11-28": {
   "list": [
    {
-    "odds": 3.03,
-    "p": 0.2194,
+    "odds": 3.04,
+    "p": 0.2192,
     "legs": [
      {
       "time": "",
@@ -12129,7 +12373,7 @@
       "away": "Bayern Munich",
       "league": "Almanya Bundesliga",
       "sel": "MS2 & 2,5 Üst",
-      "o": 1.34,
+      "o": 1.35,
       "p": 0.579,
       "nid": 3333436,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -12175,7 +12419,7 @@
       "away": "Rangers",
       "league": "İskoçya Kupası",
       "sel": "KG Var",
-      "o": 1.54,
+      "o": 1.53,
       "p": 0.671,
       "nid": 3351732,
       "mk": "Karşılıklı Gol",
@@ -12184,13 +12428,89 @@
       "idx": 0,
       "fam": "KG",
       "base": 0.545,
-      "edge": 0.127,
+      "edge": 0.126,
       "why": [
-       "Model beklentisi: Ross County 1.82, Rangers 1.58 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
+       "Model beklentisi: Ross County 1.83, Rangers 1.57 gol. Bu seçenek %67 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %54.",
        "Form: Ross County son 5 maçta 2G 0B 3M (8-9 gol); Rangers son 5 maçta 4G 1B 0M (13-5 gol).",
        "Gol temposu (son 10+ maç): Ross County maçlarında ortalama 2.9, Rangers maçlarında 2.9 gol; 2.5 üst oranı %70 / %60, iki takım da gol atma oranı %40 / %50.",
        "Son ikili maçlar: Rangers 4-0 Ross County, Ross County 0-3 Rangers, Rangers 6-0 Ross County.",
        "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.23,
+    "p": 0.1725,
+    "legs": [
+     {
+      "time": "",
+      "home": "FCSB",
+      "away": "Csikszereda M. Ciuc",
+      "league": "Romanya Liga 1",
+      "sel": "2Y 1",
+      "o": 1.34,
+      "p": 0.558,
+      "nid": 3331579,
+      "mk": "2. Yarı Sonucu",
+      "mtid": 9,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "2Y",
+      "base": 0.352,
+      "edge": 0.205,
+      "why": [
+       "Model beklentisi: FCSB 2.15, Csikszereda M. Ciuc 0.73 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: FCSB son 5 maçta 2G 1B 2M (6-4 gol); Csikszereda M. Ciuc son 5 maçta 1G 2B 2M (3-8 gol).",
+       "Hücum/savunma (son 10+ maç): FCSB 1.1 atıyor, 1.6 yiyor; Csikszereda M. Ciuc 0.7 atıyor, 2.2 yiyor.",
+       "Son ikili maçlar: Csikszereda M. Ciuc 0-2 FCSB, Csikszereda M. Ciuc 1-0 FCSB, FCSB 1-0 Csikszereda M. Ciuc.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "PSV Eindhoven",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "İY 1,5 Üst",
+      "o": 1.46,
+      "p": 0.562,
+      "nid": 3331469,
+      "mk": "1. Yarı Alt/Üst 1,5",
+      "mtid": 14,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "İY AÜ",
+      "base": 0.422,
+      "edge": 0.14,
+      "why": [
+       "Model beklentisi: PSV Eindhoven 2.84, Go Ahead Eagles 1.35 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: PSV Eindhoven son 5 maçta 3G 1B 1M (18-6 gol); Go Ahead Eagles son 5 maçta 2G 0B 3M (5-11 gol).",
+       "Gol temposu (son 10+ maç): PSV Eindhoven maçlarında ortalama 4.7, Go Ahead Eagles maçlarında 3.9 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %80 / %70.",
+       "Son ikili maçlar: Go Ahead Eagles 1-4 PSV Eindhoven, PSV Eindhoven 2-1 Go Ahead Eagles, Go Ahead Eagles 3-2 PSV Eindhoven.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %46, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Harrogate",
+      "away": "Yeovil",
+      "league": "İngiltere Conference",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.65,
+      "p": 0.55,
+      "nid": 3332706,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.35,
+      "edge": 0.201,
+      "why": [
+       "Model beklentisi: Harrogate 2.17, Yeovil 0.99 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Harrogate son 5 maçta 2G 1B 2M (10-8 gol); Yeovil son 5 maçta 3G 1B 1M (10-8 gol).",
+       "Gol temposu (son 10+ maç): Harrogate maçlarında ortalama 3.2, Yeovil maçlarında 3.6 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %50 / %60."
       ]
      }
     ]
