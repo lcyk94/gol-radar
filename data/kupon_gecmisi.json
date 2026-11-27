@@ -12364,31 +12364,30 @@
  "2026-11-28": {
   "list": [
    {
-    "odds": 3.13,
-    "p": 0.1761,
+    "odds": 3.07,
+    "p": 0.1822,
     "legs": [
      {
       "time": "",
       "home": "Hamburg",
       "away": "Bayern Munich",
       "league": "Almanya Bundesliga",
-      "sel": "Dep iki yarıda da gol atar",
-      "o": 1.47,
-      "p": 0.559,
+      "sel": "MS2 & 2,5 Üst",
+      "o": 1.4,
+      "p": 0.579,
       "nid": 3333436,
-      "mk": "Deplasman İki Yarıda da Gol",
-      "mtid": 296,
-      "line": 0.0,
-      "idx": 0,
-      "fam": "YARI",
-      "base": 0.266,
-      "edge": 0.293,
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "base": 0.221,
+      "edge": 0.358,
       "why": [
-       "Model beklentisi: Hamburg 1.22, Bayern Munich 2.78 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %27.",
+       "Model beklentisi: Hamburg 1.22, Bayern Munich 2.78 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
        "Form: Hamburg son 5 maçta 2G 0B 3M (5-9 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
        "Gol temposu (son 10+ maç): Hamburg maçlarında ortalama 3.4, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %40 / %80.",
-       "Son ikili maçlar: Hamburg 2-2 Bayern Munich, Bayern Munich 5-0 Hamburg.",
-       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %45 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+       "Son ikili maçlar: Hamburg 2-2 Bayern Munich, Bayern Munich 5-0 Hamburg."
       ]
      },
      {
@@ -12397,7 +12396,7 @@
       "away": "Lens",
       "league": "Fransa Ligue 1",
       "sel": "MS 2",
-      "o": 1.47,
+      "o": 1.51,
       "p": 0.565,
       "nid": 3333155,
       "mk": "Maç Sonucu",
@@ -12440,8 +12439,8 @@
     ]
    },
    {
-    "odds": 3.01,
-    "p": 0.1848,
+    "odds": 3.03,
+    "p": 0.187,
     "legs": [
      {
       "time": "",
@@ -12469,47 +12468,49 @@
      },
      {
       "time": "",
-      "home": "PSV Eindhoven",
-      "away": "Go Ahead Eagles",
-      "league": "Hollanda Eredivisie",
+      "home": "Real Salt Lake",
+      "away": "Vancouver Whitecaps",
+      "league": "ABD MLS",
+      "sel": "Dep bir yarıyı kazanır",
+      "o": 1.49,
+      "p": 0.591,
+      "nid": 3409585,
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "base": 0.422,
+      "edge": 0.168,
+      "why": [
+       "Model beklentisi: Real Salt Lake 1.25, Vancouver Whitecaps 1.59 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Real Salt Lake son 5 maçta 2G 1B 2M (6-7 gol); Vancouver Whitecaps son 5 maçta 4G 0B 1M (13-3 gol).",
+       "Gol temposu (son 10+ maç): Real Salt Lake maçlarında ortalama 2.8, Vancouver Whitecaps maçlarında 3.1 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Vancouver Whitecaps 2-0 Real Salt Lake, Real Salt Lake 0-3 Vancouver Whitecaps, Vancouver Whitecaps 1-0 Real Salt Lake.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Stuttgart",
+      "away": "Ein Frankfurt",
+      "league": "Almanya Bundesliga",
       "sel": "3,5 Üst",
-      "o": 1.36,
-      "p": 0.602,
-      "nid": 3331469,
+      "o": 1.52,
+      "p": 0.568,
+      "nid": 3332452,
       "mk": "Alt/Üst 3,5",
       "mtid": 13,
       "line": 3.5,
       "idx": 1,
       "fam": "AÜ",
       "base": 0.4,
-      "edge": 0.202,
+      "edge": 0.168,
       "why": [
-       "Model beklentisi: PSV Eindhoven 2.84, Go Ahead Eagles 1.35 gol. Bu seçenek %60 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %40.",
-       "Form: PSV Eindhoven son 5 maçta 3G 1B 1M (18-6 gol); Go Ahead Eagles son 5 maçta 2G 0B 3M (5-11 gol).",
-       "Gol temposu (son 10+ maç): PSV Eindhoven maçlarında ortalama 4.7, Go Ahead Eagles maçlarında 3.9 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %80 / %70.",
-       "Son ikili maçlar: Go Ahead Eagles 1-4 PSV Eindhoven, PSV Eindhoven 2-1 Go Ahead Eagles, Go Ahead Eagles 3-2 PSV Eindhoven."
-      ]
-     },
-     {
-      "time": "",
-      "home": "Harrogate",
-      "away": "Yeovil",
-      "league": "İngiltere Conference",
-      "sel": "MS1 & 1,5 Üst",
-      "o": 1.65,
-      "p": 0.55,
-      "nid": 3332706,
-      "mk": "Maç Sonucu & 1,5 Alt/Üst",
-      "mtid": 342,
-      "line": 1.5,
-      "idx": 3,
-      "fam": "MS&AÜ",
-      "base": 0.35,
-      "edge": 0.201,
-      "why": [
-       "Model beklentisi: Harrogate 2.17, Yeovil 0.99 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
-       "Form: Harrogate son 5 maçta 2G 1B 2M (10-8 gol); Yeovil son 5 maçta 3G 1B 1M (10-8 gol).",
-       "Gol temposu (son 10+ maç): Harrogate maçlarında ortalama 3.2, Yeovil maçlarında 3.6 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %50 / %60."
+       "Model beklentisi: Stuttgart 2.44, Ein Frankfurt 1.57 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %40.",
+       "Form: Stuttgart son 5 maçta 2G 1B 2M (7-6 gol); Ein Frankfurt son 5 maçta 3G 1B 1M (7-4 gol).",
+       "Gol temposu (son 10+ maç): Stuttgart maçlarında ortalama 3.0, Ein Frankfurt maçlarında 3.6 gol; 2.5 üst oranı %50 / %70, iki takım da gol atma oranı %50 / %60.",
+       "Son ikili maçlar: Ein Frankfurt 2-2 Stuttgart, Stuttgart 3-2 Ein Frankfurt, Ein Frankfurt 1-0 Stuttgart."
       ]
      }
     ]
