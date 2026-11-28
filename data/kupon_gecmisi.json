@@ -12364,7 +12364,7 @@
  "2026-11-28": {
   "list": [
    {
-    "odds": 3.07,
+    "odds": 3.09,
     "p": 0.1822,
     "legs": [
      {
@@ -12373,7 +12373,7 @@
       "away": "Bayern Munich",
       "league": "Almanya Bundesliga",
       "sel": "MS2 & 2,5 Üst",
-      "o": 1.4,
+      "o": 1.42,
       "p": 0.579,
       "nid": 3333436,
       "mk": "Maç Sonucu & 2,5 Alt/Üst",
@@ -12396,7 +12396,7 @@
       "away": "Lens",
       "league": "Fransa Ligue 1",
       "sel": "MS 2",
-      "o": 1.51,
+      "o": 1.5,
       "p": 0.565,
       "nid": 3333155,
       "mk": "Maç Sonucu",
@@ -12439,8 +12439,8 @@
     ]
    },
    {
-    "odds": 3.03,
-    "p": 0.187,
+    "odds": 3.05,
+    "p": 0.1869,
     "legs": [
      {
       "time": "",
@@ -12448,7 +12448,7 @@
       "away": "Csikszereda M. Ciuc",
       "league": "Romanya Liga 1",
       "sel": "2Y 1",
-      "o": 1.34,
+      "o": 1.32,
       "p": 0.558,
       "nid": 3331579,
       "mk": "2. Yarı Sonucu",
@@ -12472,7 +12472,7 @@
       "away": "Vancouver Whitecaps",
       "league": "ABD MLS",
       "sel": "Dep bir yarıyı kazanır",
-      "o": 1.49,
+      "o": 1.51,
       "p": 0.591,
       "nid": 3409585,
       "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
@@ -12496,7 +12496,7 @@
       "away": "Ein Frankfurt",
       "league": "Almanya Bundesliga",
       "sel": "3,5 Üst",
-      "o": 1.52,
+      "o": 1.53,
       "p": 0.568,
       "nid": 3332452,
       "mk": "Alt/Üst 3,5",
@@ -12514,7 +12514,577 @@
       ]
      }
     ]
+   },
+   {
+    "odds": 3.02,
+    "p": 0.2357,
+    "legs": [
+     {
+      "time": "",
+      "home": "PSV Eindhoven",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "İY 1,5 Üst",
+      "o": 1.46,
+      "p": 0.562,
+      "nid": 3331469,
+      "mk": "1. Yarı Alt/Üst 1,5",
+      "mtid": 14,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "İY AÜ",
+      "base": 0.422,
+      "edge": 0.14,
+      "why": [
+       "Model beklentisi: PSV Eindhoven 2.84, Go Ahead Eagles 1.35 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: PSV Eindhoven son 5 maçta 3G 1B 1M (18-6 gol); Go Ahead Eagles son 5 maçta 2G 0B 3M (5-11 gol).",
+       "Gol temposu (son 10+ maç): PSV Eindhoven maçlarında ortalama 4.7, Go Ahead Eagles maçlarında 3.9 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %80 / %70.",
+       "Son ikili maçlar: Go Ahead Eagles 1-4 PSV Eindhoven, PSV Eindhoven 2-1 Go Ahead Eagles, Go Ahead Eagles 3-2 PSV Eindhoven.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %46, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "time": "",
+      "home": "FC Voluntari",
+      "away": "U. Cluj",
+      "league": "Romanya Liga 1",
+      "sel": "ÇŞ X-2",
+      "o": 1.3,
+      "p": 0.745,
+      "nid": 3331928,
+      "mk": "Çifte Şans",
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "base": 0.571,
+      "edge": 0.174,
+      "why": [
+       "Model beklentisi: FC Voluntari 1.26, U. Cluj 1.84 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %57.",
+       "Form: FC Voluntari son 5 maçta 0G 1B 4M (7-11 gol); U. Cluj son 5 maçta 3G 2B 0M (9-4 gol).",
+       "Hücum/savunma (son 10+ maç): FC Voluntari 1.3 atıyor, 2.0 yiyor; U. Cluj 2.0 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: FC Voluntari 0-2 U. Cluj, FC Voluntari 0-1 U. Cluj, FC Voluntari 0-0 U. Cluj."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Moreirense",
+      "away": "Santa Clara",
+      "league": "Portekiz Primeira Liga",
+      "sel": "KG Yok",
+      "o": 1.59,
+      "p": 0.563,
+      "nid": 3332820,
+      "mk": "Karşılıklı Gol",
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "base": 0.461,
+      "edge": 0.101,
+      "why": [
+       "Model beklentisi: Moreirense 1.02, Santa Clara 1.12 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Moreirense son 5 maçta 2G 1B 2M (6-5 gol); Santa Clara son 5 maçta 2G 1B 2M (5-4 gol).",
+       "Gol temposu (son 10+ maç): Moreirense maçlarında ortalama 2.7, Santa Clara maçlarında 2.0 gol; 2.5 üst oranı %60 / %40, iki takım da gol atma oranı %50 / %40.",
+       "Son ikili maçlar: Moreirense 1-0 Santa Clara, Santa Clara 0-1 Moreirense, Santa Clara 1-1 Moreirense."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 3.03,
+    "p": 0.2555,
+    "legs": [
+     {
+      "time": "",
+      "home": "Harrogate",
+      "away": "Yeovil",
+      "league": "İngiltere Conference",
+      "sel": "MS1 & 1,5 Üst",
+      "o": 1.65,
+      "p": 0.55,
+      "nid": 3332706,
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "base": 0.35,
+      "edge": 0.201,
+      "why": [
+       "Model beklentisi: Harrogate 2.17, Yeovil 0.99 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Harrogate son 5 maçta 2G 1B 2M (10-8 gol); Yeovil son 5 maçta 3G 1B 1M (10-8 gol).",
+       "Gol temposu (son 10+ maç): Harrogate maçlarında ortalama 3.2, Yeovil maçlarında 3.6 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %50 / %60."
+      ]
+     },
+     {
+      "time": "",
+      "home": "Bromley",
+      "away": "Burton",
+      "league": "İngiltere League One",
+      "sel": "HMS -1 · 2",
+      "o": 1.37,
+      "p": 0.713,
+      "nid": 3332123,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.573,
+      "edge": 0.14,
+      "why": [
+       "Model beklentisi: Bromley 1.27, Burton 1.66 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %57.",
+       "Form: Bromley son 5 maçta 1G 2B 2M (6-9 gol); Burton son 5 maçta 1G 1B 3M (5-11 gol).",
+       "Hücum/savunma (son 10+ maç): Bromley 1.1 atıyor, 1.9 yiyor; Burton 1.1 atıyor, 1.9 yiyor."
+      ]
+     },
+     {
+      "time": "14:00",
+      "home": "Levante",
+      "away": "Heracles",
+      "league": "İspanya 3. Federasyon",
+      "sel": "MS 1",
+      "o": 1.34,
+      "p": 0.651,
+      "nid": 3336062,
+      "mk": "Maç Sonucu",
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "base": 0.44,
+      "edge": 0.211,
+      "why": [
+       "Model beklentisi: Levante 2.06, Heracles 0.84 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Heracles son 5 maçta 0G 0B 5M (1-11 gol).",
+       "Hücum/savunma (son 10+ maç): Levante 1.2 atıyor, 1.7 yiyor; Heracles 0.4 atıyor, 2.3 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ]
+   },
+   {
+    "odds": 2.01,
+    "p": 0.4515,
+    "p_model": 0.464,
+    "mil": true,
+    "legs": [
+     {
+      "time": "",
+      "home": "Bromley",
+      "away": "Burton",
+      "league": "İngiltere League One",
+      "sel": "HMS -1 · 2",
+      "o": 1.37,
+      "p": 0.713,
+      "nid": 3332123,
+      "mk": "Handikaplı MS (ev -1)",
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "base": 0.573,
+      "edge": 0.14,
+      "why": [
+       "Model beklentisi: Bromley 1.27, Burton 1.66 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %57.",
+       "Form: Bromley son 5 maçta 1G 2B 2M (6-9 gol); Burton son 5 maçta 1G 1B 3M (5-11 gol).",
+       "Hücum/savunma (son 10+ maç): Bromley 1.1 atıyor, 1.9 yiyor; Burton 1.1 atıyor, 1.9 yiyor."
+      ],
+      "pm": 0.686,
+      "pb": 0.7
+     },
+     {
+      "time": "",
+      "home": "Cambuur",
+      "away": "Sparta Rotterdam",
+      "league": "Hollanda Eredivisie",
+      "sel": "Ev 1,5 Üst",
+      "o": 1.47,
+      "p": 0.651,
+      "nid": 3331905,
+      "mk": "Ev Sahibi 1,5 Gol Alt/Üst",
+      "mtid": 20,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "base": 0.525,
+      "edge": 0.126,
+      "why": [
+       "Model beklentisi: Cambuur 2.22, Sparta Rotterdam 1.61 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %53.",
+       "Form: Cambuur son 5 maçta 3G 1B 1M (17-10 gol); Sparta Rotterdam son 5 maçta 2G 0B 3M (9-14 gol).",
+       "Gol temposu (son 10+ maç): Cambuur maçlarında ortalama 4.2, Sparta Rotterdam maçlarında 4.5 gol; 2.5 üst oranı %80 / %100, iki takım da gol atma oranı %70 / %90."
+      ],
+      "pm": 0.639,
+      "pb": 0.645
+     }
+    ]
    }
-  ]
+  ],
+  "saved_on": "2026-11-28",
+  "full": [
+   {
+    "legs": [
+     {
+      "id": 9,
+      "time": "",
+      "home": "Hamburg",
+      "away": "Bayern Munich",
+      "league": "Almanya Bundesliga",
+      "sel": "MS2 & 2,5 Üst",
+      "mk": "Maç Sonucu & 2,5 Alt/Üst",
+      "o": 1.42,
+      "p": 0.579,
+      "base": 0.221,
+      "edge": 0.358,
+      "mtid": 343,
+      "line": 2.5,
+      "idx": 5,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3333436,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Hamburg 1.22, Bayern Munich 2.78 gol. Bu seçenek %58 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %22.",
+       "Form: Hamburg son 5 maçta 2G 0B 3M (5-9 gol); Bayern Munich son 5 maçta 3G 2B 0M (14-6 gol).",
+       "Gol temposu (son 10+ maç): Hamburg maçlarında ortalama 3.4, Bayern Munich maçlarında 4.0 gol; 2.5 üst oranı %70 / %80, iki takım da gol atma oranı %40 / %80.",
+       "Son ikili maçlar: Hamburg 2-2 Bayern Munich, Bayern Munich 5-0 Hamburg."
+      ]
+     },
+     {
+      "id": 59,
+      "time": "",
+      "home": "Angers",
+      "away": "Lens",
+      "league": "Fransa Ligue 1",
+      "sel": "MS 2",
+      "mk": "Maç Sonucu",
+      "o": 1.5,
+      "p": 0.565,
+      "base": 0.306,
+      "edge": 0.259,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "MS",
+      "t": "g",
+      "src": "model",
+      "nid": 3333155,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Angers 1.12, Lens 1.97 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %31.",
+       "Form: Angers son 5 maçta 0G 1B 4M (2-13 gol); Lens son 5 maçta 2G 1B 2M (7-6 gol).",
+       "Hücum/savunma (son 10+ maç): Angers 0.9 atıyor, 2.1 yiyor; Lens 1.3 atıyor, 1.4 yiyor.",
+       "Son ikili maçlar: Lens 5-1 Angers, Angers 1-2 Lens, Lens 1-0 Angers."
+      ]
+     },
+     {
+      "id": 44,
+      "time": "",
+      "home": "Rochdale",
+      "away": "Barnet",
+      "league": "İngiltere League Two",
+      "sel": "Dep 1,5 Üst",
+      "mk": "Deplasman 1,5 Gol Alt/Üst",
+      "o": 1.45,
+      "p": 0.558,
+      "base": 0.322,
+      "edge": 0.236,
+      "mtid": 29,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "TAKIM",
+      "t": "g",
+      "src": "model",
+      "nid": 3333423,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Rochdale 1.21, Barnet 1.87 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %32.",
+       "Form: Rochdale son 5 maçta 0G 1B 4M (6-15 gol); Barnet son 5 maçta 2G 3B 0M (7-4 gol).",
+       "Gol temposu (son 10+ maç): Rochdale maçlarında ortalama 3.4, Barnet maçlarında 2.9 gol; 2.5 üst oranı %60 / %70, iki takım da gol atma oranı %60 / %90.",
+       "Son ikili maçlar: Rochdale 0-4 Barnet, Barnet 2-1 Rochdale."
+      ]
+     }
+    ],
+    "odds": 3.09,
+    "date": "2026-11-28",
+    "p": 0.1822,
+    "ev": 0.56,
+    "score": 0.853
+   },
+   {
+    "legs": [
+     {
+      "id": 87,
+      "time": "",
+      "home": "FCSB",
+      "away": "Csikszereda M. Ciuc",
+      "league": "Romanya Liga 1",
+      "sel": "2Y 1",
+      "mk": "2. Yarı Sonucu",
+      "o": 1.32,
+      "p": 0.558,
+      "base": 0.352,
+      "edge": 0.205,
+      "mtid": 9,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "2Y",
+      "t": "g",
+      "src": "model",
+      "nid": 3331579,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: FCSB 2.15, Csikszereda M. Ciuc 0.73 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: FCSB son 5 maçta 2G 1B 2M (6-4 gol); Csikszereda M. Ciuc son 5 maçta 1G 2B 2M (3-8 gol).",
+       "Hücum/savunma (son 10+ maç): FCSB 1.1 atıyor, 1.6 yiyor; Csikszereda M. Ciuc 0.7 atıyor, 2.2 yiyor.",
+       "Son ikili maçlar: Csikszereda M. Ciuc 0-2 FCSB, Csikszereda M. Ciuc 1-0 FCSB, FCSB 1-0 Csikszereda M. Ciuc.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 109,
+      "time": "",
+      "home": "Real Salt Lake",
+      "away": "Vancouver Whitecaps",
+      "league": "ABD MLS",
+      "sel": "Dep bir yarıyı kazanır",
+      "mk": "Deplasman Herhangi Bir Yarıyı Kazanır",
+      "o": 1.51,
+      "p": 0.591,
+      "base": 0.422,
+      "edge": 0.168,
+      "mtid": 585,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "YARI",
+      "t": "g",
+      "src": "model",
+      "nid": 3409585,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Real Salt Lake 1.25, Vancouver Whitecaps 1.59 gol. Bu seçenek %59 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: Real Salt Lake son 5 maçta 2G 1B 2M (6-7 gol); Vancouver Whitecaps son 5 maçta 4G 0B 1M (13-3 gol).",
+       "Gol temposu (son 10+ maç): Real Salt Lake maçlarında ortalama 2.8, Vancouver Whitecaps maçlarında 3.1 gol; 2.5 üst oranı %70 / %50, iki takım da gol atma oranı %70 / %60.",
+       "Son ikili maçlar: Vancouver Whitecaps 2-0 Real Salt Lake, Real Salt Lake 0-3 Vancouver Whitecaps, Vancouver Whitecaps 1-0 Real Salt Lake.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %45, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 6,
+      "time": "",
+      "home": "Stuttgart",
+      "away": "Ein Frankfurt",
+      "league": "Almanya Bundesliga",
+      "sel": "3,5 Üst",
+      "mk": "Alt/Üst 3,5",
+      "o": 1.53,
+      "p": 0.568,
+      "base": 0.4,
+      "edge": 0.168,
+      "mtid": 13,
+      "line": 3.5,
+      "idx": 1,
+      "fam": "AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3332452,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Stuttgart 2.44, Ein Frankfurt 1.57 gol. Bu seçenek %57 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %40.",
+       "Form: Stuttgart son 5 maçta 2G 1B 2M (7-6 gol); Ein Frankfurt son 5 maçta 3G 1B 1M (7-4 gol).",
+       "Gol temposu (son 10+ maç): Stuttgart maçlarında ortalama 3.0, Ein Frankfurt maçlarında 3.6 gol; 2.5 üst oranı %50 / %70, iki takım da gol atma oranı %50 / %60.",
+       "Son ikili maçlar: Ein Frankfurt 2-2 Stuttgart, Stuttgart 3-2 Ein Frankfurt, Ein Frankfurt 1-0 Stuttgart."
+      ]
+     }
+    ],
+    "odds": 3.05,
+    "date": "2026-11-28",
+    "p": 0.1869,
+    "ev": 0.57,
+    "score": 0.541
+   },
+   {
+    "legs": [
+     {
+      "id": 75,
+      "time": "",
+      "home": "PSV Eindhoven",
+      "away": "Go Ahead Eagles",
+      "league": "Hollanda Eredivisie",
+      "sel": "İY 1,5 Üst",
+      "mk": "1. Yarı Alt/Üst 1,5",
+      "o": 1.46,
+      "p": 0.562,
+      "base": 0.422,
+      "edge": 0.14,
+      "mtid": 14,
+      "line": 1.5,
+      "idx": 1,
+      "fam": "İY AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3331469,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: PSV Eindhoven 2.84, Go Ahead Eagles 1.35 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %42.",
+       "Form: PSV Eindhoven son 5 maçta 3G 1B 1M (18-6 gol); Go Ahead Eagles son 5 maçta 2G 0B 3M (5-11 gol).",
+       "Gol temposu (son 10+ maç): PSV Eindhoven maçlarında ortalama 4.7, Go Ahead Eagles maçlarında 3.9 gol; 2.5 üst oranı %80 / %60, iki takım da gol atma oranı %80 / %70.",
+       "Son ikili maçlar: Go Ahead Eagles 1-4 PSV Eindhoven, PSV Eindhoven 2-1 Go Ahead Eagles, Go Ahead Eagles 3-2 PSV Eindhoven.",
+       "Yarı hesabı: ligde goller ilk yarıda ev sahibinde %46, deplasmanda %44 oranında atılıyor (geçmiş maçların yarı skorlarından)."
+      ]
+     },
+     {
+      "id": 88,
+      "time": "",
+      "home": "FC Voluntari",
+      "away": "U. Cluj",
+      "league": "Romanya Liga 1",
+      "sel": "ÇŞ X-2",
+      "mk": "Çifte Şans",
+      "o": 1.3,
+      "p": 0.745,
+      "base": 0.571,
+      "edge": 0.174,
+      "mtid": 3,
+      "line": 0.0,
+      "idx": 2,
+      "fam": "ÇŞ",
+      "t": "g",
+      "src": "model",
+      "nid": 3331928,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: FC Voluntari 1.26, U. Cluj 1.84 gol. Bu seçenek %75 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %57.",
+       "Form: FC Voluntari son 5 maçta 0G 1B 4M (7-11 gol); U. Cluj son 5 maçta 3G 2B 0M (9-4 gol).",
+       "Hücum/savunma (son 10+ maç): FC Voluntari 1.3 atıyor, 2.0 yiyor; U. Cluj 2.0 atıyor, 1.3 yiyor.",
+       "Son ikili maçlar: FC Voluntari 0-2 U. Cluj, FC Voluntari 0-1 U. Cluj, FC Voluntari 0-0 U. Cluj."
+      ]
+     },
+     {
+      "id": 81,
+      "time": "",
+      "home": "Moreirense",
+      "away": "Santa Clara",
+      "league": "Portekiz Primeira Liga",
+      "sel": "KG Yok",
+      "mk": "Karşılıklı Gol",
+      "o": 1.59,
+      "p": 0.563,
+      "base": 0.461,
+      "edge": 0.101,
+      "mtid": 38,
+      "line": 0.0,
+      "idx": 1,
+      "fam": "KG",
+      "t": "g",
+      "src": "model",
+      "nid": 3332820,
+      "mbs": 1,
+      "why": [
+       "Model beklentisi: Moreirense 1.02, Santa Clara 1.12 gol. Bu seçenek %56 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %46.",
+       "Form: Moreirense son 5 maçta 2G 1B 2M (6-5 gol); Santa Clara son 5 maçta 2G 1B 2M (5-4 gol).",
+       "Gol temposu (son 10+ maç): Moreirense maçlarında ortalama 2.7, Santa Clara maçlarında 2.0 gol; 2.5 üst oranı %60 / %40, iki takım da gol atma oranı %50 / %40.",
+       "Son ikili maçlar: Moreirense 1-0 Santa Clara, Santa Clara 0-1 Moreirense, Santa Clara 1-1 Moreirense."
+      ]
+     }
+    ],
+    "odds": 3.02,
+    "date": "2026-11-28",
+    "p": 0.2357,
+    "ev": 0.71,
+    "score": 0.416
+   },
+   {
+    "legs": [
+     {
+      "id": 51,
+      "time": "",
+      "home": "Harrogate",
+      "away": "Yeovil",
+      "league": "İngiltere Conference",
+      "sel": "MS1 & 1,5 Üst",
+      "mk": "Maç Sonucu & 1,5 Alt/Üst",
+      "o": 1.65,
+      "p": 0.55,
+      "base": 0.35,
+      "edge": 0.201,
+      "mtid": 342,
+      "line": 1.5,
+      "idx": 3,
+      "fam": "MS&AÜ",
+      "t": "g",
+      "src": "model",
+      "nid": 3332706,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Harrogate 2.17, Yeovil 0.99 gol. Bu seçenek %55 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %35.",
+       "Form: Harrogate son 5 maçta 2G 1B 2M (10-8 gol); Yeovil son 5 maçta 3G 1B 1M (10-8 gol).",
+       "Gol temposu (son 10+ maç): Harrogate maçlarında ortalama 3.2, Yeovil maçlarında 3.6 gol; 2.5 üst oranı %80 / %70, iki takım da gol atma oranı %50 / %60."
+      ]
+     },
+     {
+      "id": 32,
+      "time": "",
+      "home": "Bromley",
+      "away": "Burton",
+      "league": "İngiltere League One",
+      "sel": "HMS -1 · 2",
+      "mk": "Handikaplı MS (ev -1)",
+      "o": 1.37,
+      "p": 0.713,
+      "base": 0.573,
+      "edge": 0.14,
+      "mtid": 268,
+      "line": -1.0,
+      "idx": 2,
+      "fam": "HMS",
+      "t": "g",
+      "src": "model",
+      "nid": 3332123,
+      "mbs": 2,
+      "why": [
+       "Model beklentisi: Bromley 1.27, Burton 1.66 gol. Bu seçenek %71 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %57.",
+       "Form: Bromley son 5 maçta 1G 2B 2M (6-9 gol); Burton son 5 maçta 1G 1B 3M (5-11 gol).",
+       "Hücum/savunma (son 10+ maç): Bromley 1.1 atıyor, 1.9 yiyor; Burton 1.1 atıyor, 1.9 yiyor."
+      ]
+     },
+     {
+      "id": 631,
+      "time": "14:00",
+      "home": "Levante",
+      "away": "Heracles",
+      "league": "İspanya 3. Federasyon",
+      "sel": "MS 1",
+      "mk": "Maç Sonucu",
+      "o": 1.34,
+      "p": 0.651,
+      "base": 0.44,
+      "edge": 0.211,
+      "mtid": 1,
+      "line": 0.0,
+      "idx": 0,
+      "fam": "MS",
+      "t": "g",
+      "src": "blend",
+      "nid": 3336062,
+      "mbs": 3,
+      "why": [
+       "Model beklentisi: Levante 2.06, Heracles 0.84 gol. Bu seçenek %65 olasılıkla gerçekleşiyor; ligin sıradan bir maçında benzer seçenek %44.",
+       "Form: Levante son 5 maçta 1G 2B 2M (5-6 gol); Heracles son 5 maçta 0G 0B 5M (1-11 gol).",
+       "Hücum/savunma (son 10+ maç): Levante 1.2 atıyor, 1.7 yiyor; Heracles 0.4 atıyor, 2.3 yiyor.",
+       "Avrupa kupası: takımlar farklı liglerde olduğu için olasılığın yarısı modelden, yarısı Nesine'nin kendi olasılığından geliyor; bu maçta karar oranlardan tam bağımsız değil."
+      ]
+     }
+    ],
+    "odds": 3.03,
+    "date": "2026-11-28",
+    "p": 0.2555,
+    "ev": 0.77,
+    "score": 0.351
+   }
+  ],
+  "mil_saved_on": "2026-11-28"
  }
 }
